@@ -50,5 +50,6 @@ var searchData=
   ['asyncacceptor_47',['AsyncAcceptor',['../d3/d77/classresdb_1_1AsyncAcceptor.html#a704938a76f5f5fe69f63e14492357e63',1,'resdb::AsyncAcceptor::AsyncAcceptor()'],['../d3/d77/classresdb_1_1AsyncAcceptor.html',1,'resdb::AsyncAcceptor']]],
   ['asyncreplicaclient_48',['AsyncReplicaClient',['../d8/d9d/classresdb_1_1AsyncReplicaClient.html#ac37f58b2a37fc114f1c9396edf565de8',1,'resdb::AsyncReplicaClient::AsyncReplicaClient()'],['../d8/d9d/classresdb_1_1AsyncReplicaClient.html',1,'resdb::AsyncReplicaClient']]],
   ['atomicuniqueptr_49',['AtomicUniquePtr',['../db/d71/classresdb_1_1AtomicUniquePtr.html#a89da16eadc0421812b34f681f62c1804',1,'resdb::AtomicUniquePtr::AtomicUniquePtr()'],['../db/d71/classresdb_1_1AtomicUniquePtr.html',1,'resdb::AtomicUniquePtr&lt; T &gt;']]],
-  ['atomicuniqueptr_3c_20resdb_3a_3arequestinfo_20_3e_50',['AtomicUniquePtr&lt; resdb::RequestInfo &gt;',['../db/d71/classresdb_1_1AtomicUniquePtr.html',1,'resdb']]]
+  ['atomicuniqueptr_3c_20resdb_3a_3arequestinfo_20_3e_50',['AtomicUniquePtr&lt; resdb::RequestInfo &gt;',['../db/d71/classresdb_1_1AtomicUniquePtr.html',1,'resdb']]],
+  ['authentication_51',['Authentication',['../d3/df6/md__github_workspace_go_client_pkg_mod_google_golang_org_grpc_v1_54_0_Documentation_grpc_auth_support.html',1,'']]]
 ];

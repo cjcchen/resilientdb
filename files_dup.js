@@ -10,6 +10,7 @@ var files_dup =
     [ "durable_layer", "dir_1b880f3c34bd0303845a5a84852a9d2d.html", "dir_1b880f3c34bd0303845a5a84852a9d2d" ],
     [ "example", "dir_cfafba98a580ce4b62f8a6fa96d7cbb0.html", "dir_cfafba98a580ce4b62f8a6fa96d7cbb0" ],
     [ "execution", "dir_5492fae2ae9e8e8e3b45371f34937227.html", "dir_5492fae2ae9e8e8e3b45371f34937227" ],
+    [ "go_client", "dir_d40bf2febbadbf5aa05455b667a1e03f.html", "dir_d40bf2febbadbf5aa05455b667a1e03f" ],
     [ "kv_client", "dir_f895d4dfc6e7a953a3db85b61769c369.html", "dir_f895d4dfc6e7a953a3db85b61769c369" ],
     [ "kv_server", "dir_1a2e8693ec7585de5c4f1c089e972541.html", "dir_1a2e8693ec7585de5c4f1c089e972541" ],
     [ "node_modules", "dir_acd06b18086a0dd2ae699b1e0b775be8.html", "dir_acd06b18086a0dd2ae699b1e0b775be8" ],
