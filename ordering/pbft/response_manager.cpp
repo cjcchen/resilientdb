@@ -270,8 +270,6 @@ int ResponseManager::DoBatch(
   }
 
   if (!config_.IsPerformanceRunning()) {
-    LOG(ERROR) << "add context list:" << new_request->seq()
-               << " list size:" << context_list.size();
     batch_request.set_local_id(local_id_);
     int ret = AddContextList(std::move(context_list), local_id_++);
     if (ret != 0) {
@@ -296,8 +294,8 @@ int ResponseManager::DoBatch(
   new_request->set_proxy_id(config_.GetSelfInfo().id());
   replica_client_->SendMessage(*new_request, GetPrimary());
   send_num_++;
-  LOG(INFO) << "send msg to primary:" << GetPrimary()
-            << " batch size:" << batch_req.size();
+  //LOG(INFO) << "send msg to primary:" << GetPrimary()
+  //          << " batch size:" << batch_req.size();
   return 0;
 }
 

@@ -159,7 +159,6 @@ void ResDBServer::Run() {
           continue;
         }
 
-                LOG(ERROR)<<"accept:================";
         socket_queue2.Push(std::move(client_socket));
       }
   }));
@@ -170,7 +169,6 @@ void ResDBServer::Run() {
         if (client_socket == nullptr) {
           continue;
         }
-        LOG(ERROR)<<"get raw request ============";
         std::unique_ptr<DataInfo> request_info = std::make_unique<DataInfo>();
         int ret =
             client_socket->Recv(&request_info->buff, &request_info->data_len);
@@ -178,7 +176,6 @@ void ResDBServer::Run() {
           LOG(ERROR)<<"recv data fail:";
           continue;
         }
-        LOG(ERROR)<<"get data len:"<<request_info->data_len;
 
         Request request;
         request.set_type(Request::TYPE_CLIENT_REQUEST);
@@ -205,7 +202,6 @@ void ResDBServer::Run() {
         std::unique_ptr<QueueItem> item = std::make_unique<QueueItem>();
         item->socket = std::move(client_socket);
         item->data = std::move(new_request_info);
-        item->is_raw = true;
         input_queue_.Push(std::move(item));
       }
     }));
