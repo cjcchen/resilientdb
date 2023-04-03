@@ -64,7 +64,7 @@ class ResDBServer {
   void AcceptorHandler(const char* buffer, size_t data_len);
 
  private:
-  std::unique_ptr<Socket> socket_;
+  std::unique_ptr<Socket> socket_, socket2_;
   std::unique_ptr<ResDBService> service_;
   bool is_running = false;
   LockFreeQueue<QueueItem> input_queue_, resp_queue_;

@@ -38,6 +38,7 @@ namespace resdb {
 ResDBServer::ResDBServer(const ResDBConfig& config,
                          std::unique_ptr<ResDBService> service)
     : socket_(std::make_unique<TcpSocket>()),
+      socket2_(std::make_unique<TcpSocket>()),
       service_(std::move(service)),
       input_queue_("input"),
       resp_queue_("resp"),
@@ -55,6 +56,12 @@ ResDBServer::ResDBServer(const ResDBConfig& config,
              << " port:" << config.GetSelfInfo().port();
   assert(socket_->Listen(config.GetSelfInfo().ip(),
                          config.GetSelfInfo().port()) == 0);
+
+  LOG(ERROR) << "listen ip:" << config.GetSelfInfo().ip()
+             << " port:" << config.GetSelfInfo().port()+20000;
+  assert(socket2_->Listen(config.GetSelfInfo().ip(),
+                         config.GetSelfInfo().port()+20000) == 0);
+
   async_acceptor_ = std::make_unique<AsyncAcceptor>(
       config.GetSelfInfo().ip(), config_.GetSelfInfo().port() + 10000,
       config.GetInputWorkerNum(),
@@ -118,7 +125,7 @@ void ResDBServer::Run() {
 
   auto input_th = std::thread(&ResDBServer::InputProcess, this);
 
-  LockFreeQueue<Socket> socket_queue("server");
+  LockFreeQueue<Socket> socket_queue("server"), socket_queue2("server2");
   std::vector<std::thread> threads;
 
   int woker_num = config_.GetInputWorkerNum();
@@ -144,6 +151,64 @@ void ResDBServer::Run() {
       }
     }));
   }
+
+  threads.push_back(std::thread([&]() {
+      while (IsRunning()) {
+        auto client_socket = socket2_->Accept();
+        if (client_socket == nullptr) {
+          continue;
+        }
+
+                LOG(ERROR)<<"accept:================";
+        socket_queue2.Push(std::move(client_socket));
+      }
+  }));
+
+  threads.push_back(std::thread([&]() {
+      while (IsRunning()) {
+        auto client_socket = socket_queue2.Pop();
+        if (client_socket == nullptr) {
+          continue;
+        }
+        LOG(ERROR)<<"get raw request ============";
+        std::unique_ptr<DataInfo> request_info = std::make_unique<DataInfo>();
+        int ret =
+            client_socket->Recv(&request_info->buff, &request_info->data_len);
+        if (ret <= 0) {
+          LOG(ERROR)<<"recv data fail:";
+          continue;
+        }
+        LOG(ERROR)<<"get data len:"<<request_info->data_len;
+
+        Request request;
+        request.set_type(Request::TYPE_CLIENT_REQUEST);
+        request.set_need_response(true);
+        request.set_data(request_info->buff, request_info->data_len);
+
+        ResDBMessage message;
+        if (!request.SerializeToString(message.mutable_data())) {
+          LOG(ERROR) << "serialize data";
+          continue;
+        }
+
+        std::string tmp;
+        if (!message.SerializeToString(&tmp)) {
+          continue;
+        }
+
+        std::unique_ptr<DataInfo> new_request_info = std::make_unique<DataInfo>();
+
+        new_request_info->data_len = tmp.size();
+        new_request_info->buff = new char[tmp.size()];
+        memcpy(new_request_info->buff, tmp.c_str(), tmp.size());
+
+        std::unique_ptr<QueueItem> item = std::make_unique<QueueItem>();
+        item->socket = std::move(client_socket);
+        item->data = std::move(new_request_info);
+        item->is_raw = true;
+        input_queue_.Push(std::move(item));
+      }
+    }));
 
   while (IsRunning()) {
     auto client_socket = socket_->Accept();
