@@ -50,14 +50,12 @@ func (c * TransactionClient)SendTransaction(req *resdb.TransactionRequest) (*res
   var data_len uint32
   var read_len uint32
   var bs []byte
-  var n int
   var err error
   var conn net.Conn
   var data []byte
   var response resdb.TransactionResponse
 
   conn, err = net.Dial("tcp", fmt.Sprintf("%s:%d", c.ip, c.port))
-  log.Printf("conn to ip %s port %d",c.ip, c.port)
 
   if err != nil {
       log.Println("connect fail",err)
@@ -84,31 +82,27 @@ func (c * TransactionClient)SendTransaction(req *resdb.TransactionRequest) (*res
   if err != nil {
     return nil, err
   }
-  log.Printf("write len %d\n",data_len)
 
-  n, err = conn.Read(bs)
+  _, err = conn.Read(bs)
   if err != nil {
     fmt.Println("recv failed, err:", err)
     return nil, err
   }
 
   read_len = binary.LittleEndian.Uint32(bs)
-  log.Printf("read len %d, data %d\n",n, read_len)
 
   bs = make([]byte, read_len)
-  n, err = conn.Read(bs)
+  _, err = conn.Read(bs)
   if err != nil {
     fmt.Println("recv failed, err:", err)
       return nil, err
   }
-  log.Printf("read data len %d\n",n)
 
   err = proto.Unmarshal(bs, &response)
   if err != nil{
     log.Fatalln("UnMashal data error:", err)
   }
 
-  log.Printf("get response %s",response.String())
   return &response, nil
 }
 
