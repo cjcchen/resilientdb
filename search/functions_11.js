@@ -35,8 +35,8 @@ var searchData=
   ['rocksdurable_32',['RocksDurable',['../d5/d5b/classRocksDurable.html#ae12d5bb161665bec37bcf81c4875dac5',1,'RocksDurable::RocksDurable(void)'],['../d5/d5b/classRocksDurable.html#a6db8455aa2d4fd51aa2a15499bbd08c9',1,'RocksDurable::RocksDurable(char *cert_file, std::optional&lt; ResConfigData &gt; config_data)']]],
   ['rsasignstring_33',['RsaSignString',['../da/d1b/namespaceresdb_1_1utils.html#adf1d7ffe5d2e3dbbcd917cab7b37b1be',1,'resdb::utils']]],
   ['rsaverifystring_34',['RsaVerifyString',['../da/d1b/namespaceresdb_1_1utils.html#a278b4bb0996b3e85baf3fa6cfaf76541',1,'resdb::utils']]],
-  ['run_35',['Run',['../d3/d20/classresdb_1_1ResDBServer.html#a09a03bfaf26c7330347ef088f088fce2',1,'resdb::ResDBServer']]],
-  ['run_36',['run',['../d1/df3/classresdb_1_1CrowService.html#ad74ae4d67608f78e7910c7da88e6116a',1,'resdb::CrowService']]],
+  ['run_35',['run',['../d1/df3/classresdb_1_1CrowService.html#ad74ae4d67608f78e7910c7da88e6116a',1,'resdb::CrowService']]],
+  ['run_36',['Run',['../d3/d20/classresdb_1_1ResDBServer.html#a09a03bfaf26c7330347ef088f088fce2',1,'resdb::ResDBServer']]],
   ['runcmd_37',['RunCmd',['../de/d8d/namespacedeploy__manager.html#aa01b5c930f7db7a32989e350cd078b83',1,'deploy_manager']]],
   ['runningperformance_38',['RunningPerformance',['../db/ddb/classresdb_1_1ResDBConfig.html#a9e48528dcf8683b4a8e9118f992700c9',1,'resdb::ResDBConfig']]]
 ];
