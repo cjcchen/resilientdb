@@ -104,6 +104,19 @@ cc_proto_library(
 )
 
 proto_library(
+    name = "transaction_proto",
+    srcs = ["transaction.proto"],
+    deps = [
+    ],
+)
+
+cc_proto_library(
+    name = "transaction_cc_proto",
+    deps = [":transaction_proto"],
+)
+
+
+proto_library(
     name = "logging_proto",
     srcs = ["logging.proto"],
     deps = [

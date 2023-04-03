@@ -50,6 +50,7 @@ cc_library(
         "//durable_layer:rocksdb_durable",
         "//execution:transaction_executor_impl",
         "//proto:kv_server_cc_proto",
+        "//proto:transaction_cc_proto",
     ] + select({
         ":custom": [":py_verificator"],
         "//conditions:default": [],

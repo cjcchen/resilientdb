@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package resdb;
+option go_package = "./;resdb";
+
+
+message TransactionRequest {
+    string from = 1;
+    string to = 2;
+    uint64 amount  = 3;
+    uint64 uid = 4;
+}
+
+message TransactionResponse {
+  int32 ret = 1;
+}
+
