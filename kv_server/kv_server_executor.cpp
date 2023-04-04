@@ -51,8 +51,6 @@ std::unique_ptr<std::string> KVServerExecutor::ExecuteData(
     return nullptr;
   }
 
-  LOG(ERROR)<<"get txn:"<<tx_request.DebugString();
-
   std::unique_ptr<std::string> resp_str = std::make_unique<std::string>();
   tx_response.set_ret(10);
   tx_response.SerializeToString(resp_str.get());
