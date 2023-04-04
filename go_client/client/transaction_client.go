@@ -13,12 +13,14 @@ import (
 type TransactionClient struct {
   ip string
   port int
+  conn net.Conn
 }
 
 func MakeTransactionClient(ip string, port int) *TransactionClient {
   return &TransactionClient{
     ip:ip,
     port:port+20000,
+    conn:nil,
   }
 }
 
@@ -41,9 +43,12 @@ func (c * TransactionClient)SendRawTransaction(uid uint64, from string, to strin
   req.Transactions = make([]*resdb.Transaction, 1)
   req.Transactions[0] = &tx
 
-  resp, err = c.SendTransaction(&req)
-  if(err != nil){
-    return 0, err
+  for i:=0; i < 3; i++ {
+    resp, err = c.SendTransaction(&req)
+      if(err != nil){
+        continue
+      }
+    break;
   }
 
   if (resp.Result[0].Ret <0) {
@@ -84,17 +89,19 @@ func (c * TransactionClient)SendTransaction(req *resdb.TransactionsRequest) (*re
   var read_len uint32
   var bs []byte
   var err error
-  var conn net.Conn
   var data []byte
   var response resdb.TransactionsResponse
 
-  conn, err = net.Dial("tcp", fmt.Sprintf("%s:%d", c.ip, c.port))
-
-  if err != nil {
-      log.Println("connect fail",err)
-      return nil, err
+  if c.conn == nil {
+    c.conn, err = net.Dial("tcp", fmt.Sprintf("%s:%d", c.ip, c.port))
+    if err != nil {
+        log.Println("connect fail",err)
+        return nil, err
+    }
+    log.Printf("connect to %s:%d\n",c.ip, c.port)
   }
-  defer conn.Close() // 关闭TCP连接
+
+  //defer conn.Close() // 关闭TCP连接
 
   data, err = proto.Marshal(req)
   if err != nil {
@@ -106,28 +113,36 @@ func (c * TransactionClient)SendTransaction(req *resdb.TransactionsRequest) (*re
   bs = make([]byte, 8)
   binary.LittleEndian.PutUint32(bs, data_len)
 
-  _, err = conn.Write(bs)
+  _, err = c.conn.Write(bs)
   if err != nil {
+    c.conn.Close() // 关闭TCP连接
+    c.conn=nil
     return nil, err
   }
 
-  _, err = conn.Write([]byte(data))
+  _, err = c.conn.Write([]byte(data))
   if err != nil {
+    c.conn.Close() // 关闭TCP连接
+    c.conn=nil
     return nil, err
   }
 
-  _, err = conn.Read(bs)
+  _, err = c.conn.Read(bs)
   if err != nil {
-    fmt.Println("recv failed, err:", err)
+    log.Println("recv failed, err:", err)
+    c.conn.Close() // 关闭TCP连接
+    c.conn=nil
     return nil, err
   }
 
   read_len = binary.LittleEndian.Uint32(bs)
 
   bs = make([]byte, read_len)
-  _, err = conn.Read(bs)
+  _, err = c.conn.Read(bs)
   if err != nil {
-    fmt.Println("recv failed, err:", err)
+    log.Println("recv failed, err:", err)
+    c.conn.Close() // 关闭TCP连接
+    c.conn=nil
       return nil, err
   }
 

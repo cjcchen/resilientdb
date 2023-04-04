@@ -66,6 +66,10 @@ ConsensusServicePBFT::ConsensusServicePBFT(
   global_stats_ = Stats::GetGlobalStats();
 }
 
+void ConsensusServicePBFT::SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func){
+    response_manager_->SetSocketCallBack(func);
+}
+
 void ConsensusServicePBFT::SetNeedCommitQC(bool need_qc) {
   commitment_->SetNeedCommitQC(need_qc);
 }

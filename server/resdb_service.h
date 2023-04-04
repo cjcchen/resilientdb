@@ -46,6 +46,10 @@ class ResDBService {
   virtual void Start();
   virtual void Stop();
 
+  virtual void SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func);
+
+protected:
+  std::function<void(std::unique_ptr<Socket> socket)> socket_call_back_;
  private:
   std::atomic<bool> is_running_;
 };

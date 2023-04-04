@@ -58,6 +58,8 @@ class ResDBClient {
   // the server, it won't connect again.
   ResDBClient(std::unique_ptr<Socket> socket, bool connected = false);
 
+  std::unique_ptr<Socket> FetchSocket();
+
   virtual ~ResDBClient() = default;
 
   void Close();
