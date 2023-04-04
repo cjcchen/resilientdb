@@ -38,6 +38,8 @@ class TcpSocket : public Socket {
   TcpSocket(int socket_fd);
   ~TcpSocket();
 
+  int Fd();
+
   // For Server
   int Listen(const std::string& ip, int port) override;
   std::unique_ptr<Socket> Accept() override;

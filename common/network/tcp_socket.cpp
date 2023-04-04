@@ -79,6 +79,10 @@ TcpSocket::TcpSocket(int socket_fd) : socket_fd_(socket_fd) {}
 
 TcpSocket::~TcpSocket() { Close(); }
 
+int TcpSocket::Fd(){
+return socket_fd_;
+}
+
 void TcpSocket::ReInit() {
   Close();
   InitSocket();

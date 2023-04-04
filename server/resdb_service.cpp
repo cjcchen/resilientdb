@@ -41,4 +41,8 @@ void ResDBService::SetRunning(bool is_running) { is_running_ = is_running; }
 void ResDBService::Start() { SetRunning(true); }
 void ResDBService::Stop() { SetRunning(false); }
 
+void ResDBService::SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func) {
+  socket_call_back_ = func;
+}
+
 }  // namespace resdb

@@ -80,6 +80,9 @@ int ResponseManager::NewClientRequest(std::unique_ptr<Context> context,
     context->client = nullptr;
   }
 
+  global_stats_->IncClientRequest();
+
+  //LOG(ERROR)<<"get new request:";
   std::unique_ptr<QueueItem> queue_item = std::make_unique<QueueItem>();
   queue_item->context = std::move(context);
   queue_item->client_request = std::move(client_request);
@@ -204,6 +207,10 @@ void ResponseManager::SendResponseToClient(
     if (ret) {
       LOG(ERROR) << "send resp fail ret:" << ret;
     }
+
+    if( socket_call_back_ != nullptr ){
+      socket_call_back_(std::move(context->client->FetchSocket()));
+    }
   }
 }
 
@@ -242,6 +249,12 @@ int ResponseManager::BatchProposeMsg() {
           if (ret) {
             LOG(ERROR) << "send resp" << response.DebugString()
                        << " fail ret:" << ret;
+          }
+          if( socket_call_back_ != nullptr ){
+            socket_call_back_(std::move(batch_req[i]->context->client->FetchSocket()));
+          }
+          else {
+            LOG(ERROR)<<"no call back";
           }
         }
       }
@@ -297,6 +310,10 @@ int ResponseManager::DoBatch(
   //LOG(INFO) << "send msg to primary:" << GetPrimary()
   //          << " batch size:" << batch_req.size();
   return 0;
+}
+
+void ResponseManager::SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func) {
+  socket_call_back_ = func;
 }
 
 }  // namespace resdb

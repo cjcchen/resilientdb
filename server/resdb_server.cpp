@@ -62,6 +62,7 @@ ResDBServer::ResDBServer(const ResDBConfig& config,
   assert(socket2_->Listen(config.GetSelfInfo().ip(),
                          config.GetSelfInfo().port()+20000) == 0);
 
+
   async_acceptor_ = std::make_unique<AsyncAcceptor>(
       config.GetSelfInfo().ip(), config_.GetSelfInfo().port() + 10000,
       config.GetInputWorkerNum(),
@@ -126,6 +127,11 @@ void ResDBServer::Run() {
   auto input_th = std::thread(&ResDBServer::InputProcess, this);
 
   LockFreeQueue<Socket> socket_queue("server"), socket_queue2("server2");
+  
+  service_->SetSocketCallBack([&](std::unique_ptr<Socket> socket){
+    socket_queue2.Push(std::move(socket));   
+  });
+
   std::vector<std::thread> threads;
 
   int woker_num = config_.GetInputWorkerNum();
@@ -158,53 +164,55 @@ void ResDBServer::Run() {
         if (client_socket == nullptr) {
           continue;
         }
-
         socket_queue2.Push(std::move(client_socket));
       }
   }));
 
-  threads.push_back(std::thread([&]() {
-      while (IsRunning()) {
-        auto client_socket = socket_queue2.Pop();
-        if (client_socket == nullptr) {
-          continue;
-        }
-        std::unique_ptr<DataInfo> request_info = std::make_unique<DataInfo>();
-        int ret =
-            client_socket->Recv(&request_info->buff, &request_info->data_len);
-        if (ret <= 0) {
-          LOG(ERROR)<<"recv data fail:";
-          continue;
-        }
+  for (int i = 0; i < 8; ++i) {
+  //for (int i = 0; i < woker_num; ++i) {
+    threads.push_back(std::thread([&]() {
+          while (IsRunning()) {
+          auto client_socket = socket_queue2.Pop();
+          if (client_socket == nullptr) {
+            continue;
+          }
+          std::unique_ptr<DataInfo> request_info = std::make_unique<DataInfo>();
+          int ret =
+          client_socket->Recv(&request_info->buff, &request_info->data_len);
+          if (ret <= 0) {
+            LOG(ERROR)<<"recv data fail:";
+            continue;
+          }
+          //LOG(ERROR)<<"receive from :"<<client_socket->Fd();
+          Request request;
+          request.set_type(Request::TYPE_CLIENT_REQUEST);
+          request.set_need_response(true);
+          request.set_data(request_info->buff, request_info->data_len);
 
-        Request request;
-        request.set_type(Request::TYPE_CLIENT_REQUEST);
-        request.set_need_response(true);
-        request.set_data(request_info->buff, request_info->data_len);
+          ResDBMessage message;
+          if (!request.SerializeToString(message.mutable_data())) {
+            LOG(ERROR) << "serialize data";
+            continue;
+          }
 
-        ResDBMessage message;
-        if (!request.SerializeToString(message.mutable_data())) {
-          LOG(ERROR) << "serialize data";
-          continue;
-        }
+          std::string tmp;
+          if (!message.SerializeToString(&tmp)) {
+            continue;
+          }
 
-        std::string tmp;
-        if (!message.SerializeToString(&tmp)) {
-          continue;
-        }
+          std::unique_ptr<DataInfo> new_request_info = std::make_unique<DataInfo>();
 
-        std::unique_ptr<DataInfo> new_request_info = std::make_unique<DataInfo>();
+          new_request_info->data_len = tmp.size();
+          new_request_info->buff = new char[tmp.size()];
+          memcpy(new_request_info->buff, tmp.c_str(), tmp.size());
 
-        new_request_info->data_len = tmp.size();
-        new_request_info->buff = new char[tmp.size()];
-        memcpy(new_request_info->buff, tmp.c_str(), tmp.size());
-
-        std::unique_ptr<QueueItem> item = std::make_unique<QueueItem>();
-        item->socket = std::move(client_socket);
-        item->data = std::move(new_request_info);
-        input_queue_.Push(std::move(item));
-      }
+          std::unique_ptr<QueueItem> item = std::make_unique<QueueItem>();
+          item->socket = std::move(client_socket);
+          item->data = std::move(new_request_info);
+          input_queue_.Push(std::move(item));
+          }
     }));
+  }
 
   while (IsRunning()) {
     auto client_socket = socket_->Accept();

@@ -52,6 +52,8 @@ class Socket {
   virtual void SetRecvTimeout(int64_t microseconds) {}
   virtual void SetSendTimeout(int64_t microseconds) {}
   virtual int SetAsync(bool is_open = true) { return -1; }
+
+  virtual int Fd(){ return -1; }
 };
 
 }  // namespace resdb

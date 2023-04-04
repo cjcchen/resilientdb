@@ -50,6 +50,7 @@ class ResponseManager {
   int ProcessResponseMsg(std::unique_ptr<Context> context,
                          std::unique_ptr<Request> request);
 
+  void SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func);
  private:
   // Add response messages which will be sent back to the client
   // if there are f+1 same messages.
@@ -70,6 +71,7 @@ class ResponseManager {
   int BatchProposeMsg();
   int GetPrimary();
 
+
  private:
   ResDBConfig config_;
   ResDBReplicaClient* replica_client_;
@@ -82,6 +84,8 @@ class ResponseManager {
   SystemInfo* system_info_;
   std::atomic<int> send_num_;
   SignatureVerifier* verifier_;
+
+  std::function<void(std::unique_ptr<Socket> socket)> socket_call_back_;
 };
 
 }  // namespace resdb

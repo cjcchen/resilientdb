@@ -53,7 +53,17 @@ ResDBClient::ResDBClient(std::unique_ptr<Socket> socket, bool connected) {
   connected_ = connected;
 }
 
-void ResDBClient::Close() { socket_->Close(); }
+std::unique_ptr<Socket> ResDBClient::FetchSocket() {
+  auto s = std::move(socket_);
+  socket_ = nullptr;
+  return s;
+}
+
+void ResDBClient::Close() { 
+  if(socket_){
+    socket_->Close(); 
+  }
+}
 
 void ResDBClient::SetSignatureVerifier(SignatureVerifier* verifier) {
   verifier_ = verifier;

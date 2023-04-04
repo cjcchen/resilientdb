@@ -60,6 +60,8 @@ class ConsensusServicePBFT : public ConsensusService {
   void SetPreVerifyFunc(std::function<bool(const Request&)>);
   void SetNeedCommitQC(bool need_qc);
 
+  void SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func) override;
+
  protected:
   int InternalConsensusCommit(std::unique_ptr<Context> context,
                               std::unique_ptr<Request> request);
