@@ -99,6 +99,7 @@ $(document).ready(function(){initNavTree('d0/d8d/classresdb_1_1ResDBService.html
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="../../d1/d9a/classresdb_1_1ResDBService-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">resdb::ResDBService Class Reference</div></div>
 </div><!--header-->
@@ -136,6 +137,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3781b83a5b1d2e7e27e38ff1388aa4c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60b252910e7b8fad0d9ae50a68ff396a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8d/classresdb_1_1ResDBService.html#a60b252910e7b8fad0d9ae50a68ff396a">Stop</a> ()</td></tr>
 <tr class="separator:a60b252910e7b8fad0d9ae50a68ff396a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a706b63f7f4ab40fa8b54791d0c3bc255"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8d/classresdb_1_1ResDBService.html#a706b63f7f4ab40fa8b54791d0c3bc255">SetSocketCallBack</a> (std::function&lt; void(std::unique_ptr&lt; <a class="el" href="../../d0/d29/classresdb_1_1Socket.html">Socket</a> &gt; socket)&gt; func)</td></tr>
+<tr class="separator:a706b63f7f4ab40fa8b54791d0c3bc255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a2ff00faccb3e26cb51b0d7a0c1cd395f"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(std::unique_ptr&lt; <a class="el" href="../../d0/d29/classresdb_1_1Socket.html">Socket</a> &gt; socket)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8d/classresdb_1_1ResDBService.html#a2ff00faccb3e26cb51b0d7a0c1cd395f">socket_call_back_</a></td></tr>
+<tr class="separator:a2ff00faccb3e26cb51b0d7a0c1cd395f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -318,6 +326,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a706b63f7f4ab40fa8b54791d0c3bc255" name="a706b63f7f4ab40fa8b54791d0c3bc255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a706b63f7f4ab40fa8b54791d0c3bc255">&#9670;&#160;</a></span>SetSocketCallBack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void resdb::ResDBService::SetSocketCallBack </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void(std::unique_ptr&lt; <a class="el" href="../../d0/d29/classresdb_1_1Socket.html">Socket</a> &gt; socket)&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="../../d0/dde/classresdb_1_1ConsensusServicePBFT.html#a27bd5ba18f7176c4ecd03f59ed100b02">resdb::ConsensusServicePBFT</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d2/d9d/resdb__service_8cpp_source.html#l00044">44</a> of file <a class="el" href="../../d2/d9d/resdb__service_8cpp_source.html">resdb_service.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a3781b83a5b1d2e7e27e38ff1388aa4c0" name="a3781b83a5b1d2e7e27e38ff1388aa4c0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3781b83a5b1d2e7e27e38ff1388aa4c0">&#9670;&#160;</a></span>Start()</h2>
 
@@ -373,6 +411,31 @@ Public Member Functions</h2></td></tr>
 <p>Reimplemented in <a class="el" href="../../d6/d83/classresdb_1_1ConsensusService.html#a5f7e4e561f624622f11d1a1fd40679e8">resdb::ConsensusService</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="../../d2/d9d/resdb__service_8cpp_source.html#l00042">42</a> of file <a class="el" href="../../d2/d9d/resdb__service_8cpp_source.html">resdb_service.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a2ff00faccb3e26cb51b0d7a0c1cd395f" name="a2ff00faccb3e26cb51b0d7a0c1cd395f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff00faccb3e26cb51b0d7a0c1cd395f">&#9670;&#160;</a></span>socket_call_back_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(std::unique_ptr&lt;<a class="el" href="../../d0/d29/classresdb_1_1Socket.html">Socket</a>&gt; socket)&gt; resdb::ResDBService::socket_call_back_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d3/d8d/resdb__service_8h_source.html#l00052">52</a> of file <a class="el" href="../../d3/d8d/resdb__service_8h_source.html">resdb_service.h</a>.</p>
 
 </div>
 </div>

@@ -17,6 +17,7 @@ var classresdb_1_1ConsensusServicePBFT =
     [ "SetNeedCommitQC", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#ae92e7d7fdcd0d03b3218f3cf055cd753", null ],
     [ "SetPreVerifyFunc", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a25f5aa3fecad6fbd61209a72a23bdee6", null ],
     [ "SetPrimary", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#ad5e33c5fc799430799b3050cf6c1a92d", null ],
+    [ "SetSocketCallBack", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a27bd5ba18f7176c4ecd03f59ed100b02", null ],
     [ "SetupPerformanceDataFunc", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a3c2efcbab86ae9bcd25608b41fb2dffa", null ],
     [ "Start", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a99ae1245d7a94dff1d703ae0a92afd48", null ],
     [ "Start", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a99ae1245d7a94dff1d703ae0a92afd48", null ],

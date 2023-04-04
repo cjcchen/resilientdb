@@ -5,5 +5,6 @@ var classresdb_1_1ResponseManager =
     [ "AddContextList", "da/d2f/classresdb_1_1ResponseManager.html#ad636bfc79e485b5c92bfe52cd4da1991", null ],
     [ "FetchContextList", "da/d2f/classresdb_1_1ResponseManager.html#a11c2ce19a83939c28a16f8ff13e4e2b2", null ],
     [ "NewClientRequest", "da/d2f/classresdb_1_1ResponseManager.html#a4c6b8642f5ed520e27b7775843b589ec", null ],
-    [ "ProcessResponseMsg", "da/d2f/classresdb_1_1ResponseManager.html#a61d341a5f76717b270c37437401ded64", null ]
+    [ "ProcessResponseMsg", "da/d2f/classresdb_1_1ResponseManager.html#a61d341a5f76717b270c37437401ded64", null ],
+    [ "SetSocketCallBack", "da/d2f/classresdb_1_1ResponseManager.html#a47f3f06f24740c6ad9eb09f36427fcc5", null ]
 ];

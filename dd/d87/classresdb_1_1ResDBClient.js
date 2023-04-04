@@ -5,6 +5,7 @@ var classresdb_1_1ResDBClient =
     [ "~ResDBClient", "dd/d87/classresdb_1_1ResDBClient.html#a66ae33415fd14da92b525dbfecb4c841", null ],
     [ "Close", "dd/d87/classresdb_1_1ResDBClient.html#aab5ee06d3c535cec652c6a7dc4bef73b", null ],
     [ "Connect", "dd/d87/classresdb_1_1ResDBClient.html#a1631a49ead472a93c55f70a8ba145ff0", null ],
+    [ "FetchSocket", "dd/d87/classresdb_1_1ResDBClient.html#a8a2e09a026094a8da4e358ad97dd35de", null ],
     [ "IsLongConnection", "dd/d87/classresdb_1_1ResDBClient.html#af3d3287e9ea19b048f1d97b3aabc48a2", null ],
     [ "Recv", "dd/d87/classresdb_1_1ResDBClient.html#acdb49f817c5d1e9d3600c00db16247f1", null ],
     [ "RecvRawMessage", "dd/d87/classresdb_1_1ResDBClient.html#acb818894cf6b96531dd640958b3015fd", null ],

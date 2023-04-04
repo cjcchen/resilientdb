@@ -5,6 +5,7 @@ var classresdb_1_1Socket =
     [ "Accept", "d0/d29/classresdb_1_1Socket.html#a824c596c8df6a91609381032e2840ec6", null ],
     [ "Close", "d0/d29/classresdb_1_1Socket.html#a90e41631848c231bb831de93de272f9a", null ],
     [ "Connect", "d0/d29/classresdb_1_1Socket.html#a56801f80c712e8f80f3e44e00654fd4b", null ],
+    [ "Fd", "d0/d29/classresdb_1_1Socket.html#ab5a662eb5f2c506d65cee65b41147c6c", null ],
     [ "GetBindingPort", "d0/d29/classresdb_1_1Socket.html#a5b8a57849871ed521f47f65b404c5352", null ],
     [ "Listen", "d0/d29/classresdb_1_1Socket.html#a1a88f5068364d5277a788c374170cb15", null ],
     [ "Recv", "d0/d29/classresdb_1_1Socket.html#a23008bf7aebd8f5d9d19c507326f06b4", null ],

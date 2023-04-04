@@ -64,17 +64,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d5b/classresdb__validator_1_1transaction_1_1TransactionLink.html#a10e7faa7f909130d180ca8d8c0d90efb",
-"d3/d81/utxo__client__tools_8cpp.html#a1e3946030636ad02e7ff9413dcb1656b",
-"d5/d10/namespaceresdb.html#a690655c52d6c71dcf5e135b1bfe3f96a",
-"d6/d47/kv__server_2kv__server__performance_8cpp.html#a23749c714e816c5f22aaed0718ee0a8d",
-"d8/d15/classresdb_1_1utxo_1_1Transaction.html#a4905ab43d66b58cb9ef5bafc3594153d",
-"d9/dfa/classresdb_1_1contract_1_1ContractClient.html#a7d414fceddccb9146ceff3d34198b96c",
-"db/ddb/classresdb_1_1ResDBConfig.html#a90b6b79ce297e988e53c26f380c50c0a",
-"dd/d07/geo__pbft__commitment__test_8cpp_source.html",
-"de/d0d/classresdb_1_1Stats.html#a16b7ccdd8a90a554b1e2161f66d3c650",
-"df/d01/classresdb_1_1TransactionManager.html#a825b0fde2f6094d0d40cec9ba6556154",
-"dir_72799ecdfe0dab2254e38ac19090c366.html"
+"d1/d1b/classresdb_1_1ResDBReplicaClient.html#acfc11018d8c0ac06d43591a3469cd3ba",
+"d3/d7b/network__utils__test_8cpp.html",
+"d5/d10/namespaceresdb.html#a305b111f170bc87310d9e391ea86ac78",
+"d6/d29/transaction__executor__impl_8h_source.html",
+"d8/d01/resdb__server__test_8cpp.html#a354632aac8b9886bec55d63395269805",
+"d9/dd0/classresdb__validator_1_1exceptions_1_1DuplicateTransaction.html",
+"db/ddb/classresdb_1_1ResDBConfig.html#a75676bba0ad71fb1b3d7e8f59127182d",
+"dc/dfb/resdb__kv__performance__client_8cpp_source.html",
+"de/d05/consensus__service_8cpp.html",
+"df/d01/classresdb_1_1TransactionManager.html",
+"dir_5e71b3c3087997e8d1c606e904a96fba.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

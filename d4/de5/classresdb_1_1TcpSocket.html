@@ -123,6 +123,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a57d855d91226aee57dea26f2dcb73aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ec96205c1d63802dd1b268e7f72aecf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de5/classresdb_1_1TcpSocket.html#a2ec96205c1d63802dd1b268e7f72aecf">~TcpSocket</a> ()</td></tr>
 <tr class="separator:a2ec96205c1d63802dd1b268e7f72aecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0bffb2e614e0958d2edd44d09a4256"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de5/classresdb_1_1TcpSocket.html#acc0bffb2e614e0958d2edd44d09a4256">Fd</a> ()</td></tr>
+<tr class="separator:acc0bffb2e614e0958d2edd44d09a4256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac66d091d4ae97832ea9e6358075b76f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de5/classresdb_1_1TcpSocket.html#ac66d091d4ae97832ea9e6358075b76f9">Listen</a> (const std::string &amp;ip, int port) override</td></tr>
 <tr class="separator:ac66d091d4ae97832ea9e6358075b76f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3bda64e159fa9b5146a16b10009543f"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../d0/d29/classresdb_1_1Socket.html">Socket</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de5/classresdb_1_1TcpSocket.html#ac3bda64e159fa9b5146a16b10009543f">Accept</a> () override</td></tr>
@@ -174,6 +176,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad39afebd87a51deb8cfc413f00e79a1e inherit pub_methods_classresdb_1_1Socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8e06a28180d4b6d413fd939a9cb4926 inherit pub_methods_classresdb_1_1Socket"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d29/classresdb_1_1Socket.html#ac8e06a28180d4b6d413fd939a9cb4926">SetAsync</a> (bool is_open=true)</td></tr>
 <tr class="separator:ac8e06a28180d4b6d413fd939a9cb4926 inherit pub_methods_classresdb_1_1Socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a662eb5f2c506d65cee65b41147c6c inherit pub_methods_classresdb_1_1Socket"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d29/classresdb_1_1Socket.html#ab5a662eb5f2c506d65cee65b41147c6c">Fd</a> ()</td></tr>
+<tr class="separator:ab5a662eb5f2c506d65cee65b41147c6c inherit pub_methods_classresdb_1_1Socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -263,7 +267,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a824c596c8df6a91609381032e2840ec6">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +296,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a90e41631848c231bb831de93de272f9a">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00087">87</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00091">91</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +336,36 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a56801f80c712e8f80f3e44e00654fd4b">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00160">160</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+
+</div>
+</div>
+<a id="acc0bffb2e614e0958d2edd44d09a4256" name="acc0bffb2e614e0958d2edd44d09a4256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc0bffb2e614e0958d2edd44d09a4256">&#9670;&#160;</a></span>Fd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int resdb::TcpSocket::Fd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#ab5a662eb5f2c506d65cee65b41147c6c">resdb::Socket</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -361,7 +394,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a5b8a57849871ed521f47f65b404c5352">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00142">142</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00146">146</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +434,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a1a88f5068364d5277a788c374170cb15">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00103">103</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00107">107</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -441,7 +474,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a23008bf7aebd8f5d9d19c507326f06b4">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00208">208</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00212">212</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -470,7 +503,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a6c58a3d2ab2b871a186c5ea8daf16a5a">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +533,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a28aaf3b47b335f31a12ec3267a66db6d">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00183">183</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00187">187</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -530,7 +563,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#ac8e06a28180d4b6d413fd939a9cb4926">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00182">182</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -560,7 +593,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#a2fed65b083224fb6c6fb582d2fe79e4f">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00221">221</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00225">225</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
@@ -590,7 +623,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="../../d0/d29/classresdb_1_1Socket.html#ad39afebd87a51deb8cfc413f00e79a1e">resdb::Socket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00233">233</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html#l00237">237</a> of file <a class="el" href="../../d4/dfe/tcp__socket_8cpp_source.html">tcp_socket.cpp</a>.</p>
 
 </div>
 </div>
