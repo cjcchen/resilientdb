@@ -3,15 +3,24 @@ syntax = "proto3";
 package resdb;
 option go_package = "./;resdb";
 
-
-message TransactionRequest {
+message Transaction{
     string from = 1;
     string to = 2;
     uint64 amount  = 3;
     uint64 uid = 4;
 }
 
-message TransactionResponse {
-  int32 ret = 1;
+message TransactionsResult {
+    uint64 uid = 1;
+    int32 ret = 2;
+}
+
+message TransactionsRequest {
+  repeated Transaction transactions = 1;
+}
+
+
+message TransactionsResponse {
+  repeated TransactionsResult result = 1;
 }
 

@@ -43,18 +43,26 @@ KVServerExecutor::KVServerExecutor(void) {}
 
 std::unique_ptr<std::string> KVServerExecutor::ExecuteData(
     const std::string& request) {
-  TransactionRequest tx_request;
-  TransactionResponse tx_response;
+  TransactionsRequest tx_request;
+  TransactionsResponse tx_response;
 
   if (!tx_request.ParseFromString(request)) {
     LOG(ERROR) << "parse data fail";
     return nullptr;
   }
 
+  LOG(ERROR)<<"get txn:"<<tx_request.DebugString();
   std::unique_ptr<std::string> resp_str = std::make_unique<std::string>();
-  tx_response.set_ret(10);
+
+  for(const auto& txn : tx_request.transactions()){
+    Set(txn.from(), -txn.amount());
+    Set(txn.to(), txn.amount());
+    auto * res = tx_response.add_result();
+    res->set_ret(1);
+    res->set_uid(txn.uid());
+  }
+
   tx_response.SerializeToString(resp_str.get());
-  Set(tx_request.from(), tx_request.amount());
   return resp_str;
 }
 
