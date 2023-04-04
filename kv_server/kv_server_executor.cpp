@@ -51,7 +51,6 @@ std::unique_ptr<std::string> KVServerExecutor::ExecuteData(
     return nullptr;
   }
 
-  LOG(ERROR)<<"get txn:"<<tx_request.DebugString();
   std::unique_ptr<std::string> resp_str = std::make_unique<std::string>();
 
   for(const auto& txn : tx_request.transactions()){
