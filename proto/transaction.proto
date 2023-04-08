@@ -24,3 +24,6 @@ message TransactionsResponse {
   repeated TransactionsResult result = 1;
 }
 
+message TransactionQuery {
+  repeated uint64 uids = 1;
+}

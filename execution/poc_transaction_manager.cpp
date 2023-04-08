@@ -51,7 +51,6 @@ void PoCTransactionManager::ExecuteOne(const std::string& request){
     LOG(ERROR)<<"parse txn fail";
     return;
   }
-  LOG(ERROR)<<"get txn:"<<txn.DebugString();
   done_.insert(txn.uid());
 }
 
@@ -59,6 +58,9 @@ std::unique_ptr<std::string> PoCTransactionManager::ClientQuery(const std::strin
   TransactionQuery request; 
   TransactionQuery response; 
 
+  request.ParseFromString(str);
+
+LOG(ERROR)<<"client query:"<<request.DebugString();
   for(uint64_t uid : request.uids()){
     if(done_.find(uid) == done_.end()){
       break;

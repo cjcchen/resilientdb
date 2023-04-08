@@ -13,6 +13,3 @@ message Transaction {
 */
 
 
-message TransactionQuery {
-  repeated uint64 uids = 1;
-}

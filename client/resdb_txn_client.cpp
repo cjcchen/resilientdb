@@ -121,7 +121,6 @@ ResDBTxnClient::GetTxn(uint64_t min_seq, uint64_t max_seq) {
 
 
 absl::StatusOr<std::string> ResDBTxnClient::GetCustomQuery(const std::string& request_str) {
-  LOG(ERROR)<<"get query";
   std::vector<std::unique_ptr<ResDBClient>> clients;
   std::vector<std::thread> ths;
   std::string final_str;
@@ -192,7 +191,6 @@ absl::StatusOr<std::string> ResDBTxnClient::GetCustomQuery(const std::string& re
     LOG(ERROR) << "parse fail len:" << final_str.size();
     return absl::InternalError("recv data fail.");
   }
-  LOG(ERROR)<<"get resp";
   return resp.resp_str();
 }
 

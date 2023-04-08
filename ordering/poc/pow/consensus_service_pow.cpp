@@ -66,6 +66,7 @@ int ConsensusServicePoW::ConsensusCommit(std::unique_ptr<Context> context,
 
 int ConsensusServicePoW::ClientQuery(std::unique_ptr<Context> context,
                                          std::unique_ptr<Request> request) {
+                                         LOG(ERROR)<<"get client rquest size:"<<request->data().size();
       std::unique_ptr<std::string> resp = txn_manager_->ClientQuery(request->data());
       return context->client->SendRawMessageData(*resp);
 }
