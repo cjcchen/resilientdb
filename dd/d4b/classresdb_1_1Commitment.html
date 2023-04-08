@@ -114,8 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3ad2432561be7ba4b3f8042b8205d30b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88083294ed66b6e6446a1cd0b8f01392"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d4b/classresdb_1_1Commitment.html#a88083294ed66b6e6446a1cd0b8f01392">~Commitment</a> ()</td></tr>
 <tr class="separator:a88083294ed66b6e6446a1cd0b8f01392"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac80751893c1dce87afd0775a2f6dae6b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d4b/classresdb_1_1Commitment.html#ac80751893c1dce87afd0775a2f6dae6b">ProcessNewRequest</a> (std::unique_ptr&lt; <a class="el" href="../../d8/d18/structresdb_1_1Context.html">Context</a> &gt; context, std::unique_ptr&lt; Request &gt; client_request)</td></tr>
-<tr class="separator:ac80751893c1dce87afd0775a2f6dae6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5070819fc39f2f6bdf3dac50d123a99d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d4b/classresdb_1_1Commitment.html#a5070819fc39f2f6bdf3dac50d123a99d">ProcessNewRequest</a> (std::unique_ptr&lt; <a class="el" href="../../d8/d18/structresdb_1_1Context.html">Context</a> &gt; context, std::unique_ptr&lt; Request &gt; client_request, bool self_call=false)</td></tr>
+<tr class="separator:a5070819fc39f2f6bdf3dac50d123a99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8dd7375f1f720e0ab48e8e45433c27a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d4b/classresdb_1_1Commitment.html#ac8dd7375f1f720e0ab48e8e45433c27a">ProcessProposeMsg</a> (std::unique_ptr&lt; <a class="el" href="../../d8/d18/structresdb_1_1Context.html">Context</a> &gt; context, std::unique_ptr&lt; Request &gt; request)</td></tr>
 <tr class="separator:ac8dd7375f1f720e0ab48e8e45433c27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb234288fea60305f6b79b683d549e9b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d4b/classresdb_1_1Commitment.html#adb234288fea60305f6b79b683d549e9b">ProcessPrepareMsg</a> (std::unique_ptr&lt; <a class="el" href="../../d8/d18/structresdb_1_1Context.html">Context</a> &gt; context, std::unique_ptr&lt; Request &gt; request)</td></tr>
@@ -292,8 +292,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac80751893c1dce87afd0775a2f6dae6b" name="ac80751893c1dce87afd0775a2f6dae6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac80751893c1dce87afd0775a2f6dae6b">&#9670;&#160;</a></span>ProcessNewRequest()</h2>
+<a id="a5070819fc39f2f6bdf3dac50d123a99d" name="a5070819fc39f2f6bdf3dac50d123a99d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5070819fc39f2f6bdf3dac50d123a99d">&#9670;&#160;</a></span>ProcessNewRequest()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,7 +311,13 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::unique_ptr&lt; Request &gt;&#160;</td>
-          <td class="paramname"><em>client_request</em>&#160;</td>
+          <td class="paramname"><em>client_request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>self_call</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -402,7 +408,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/d25/commitment_8cpp_source.html#l00108">108</a> of file <a class="el" href="../../df/d25/commitment_8cpp_source.html">commitment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d25/commitment_8cpp_source.html#l00110">110</a> of file <a class="el" href="../../df/d25/commitment_8cpp_source.html">commitment.cpp</a>.</p>
 
 </div>
 </div>

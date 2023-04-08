@@ -10,6 +10,7 @@ var hierarchy =
     [ "resdb::BatchQueue< T >", "d5/db6/classresdb_1_1BatchQueue.html", null ],
     [ "resdb::BatchQueue< std::unique_ptr< QueueItem > >", "d5/db6/classresdb_1_1BatchQueue.html", null ],
     [ "resdb::BlockingQueue< T >", "dd/d88/classresdb_1_1BlockingQueue.html", null ],
+    [ "resdb::BlockManager", "de/d46/classresdb_1_1BlockManager.html", null ],
     [ "resdb::CheckPointManager", "dc/db0/classresdb_1_1CheckPointManager.html", [
       [ "resdb::MockCheckPointManager", "de/da4/classresdb_1_1MockCheckPointManager.html", null ]
     ] ],
@@ -18,6 +19,7 @@ var hierarchy =
     [ "resdb::contract::ContractManager", "d6/d7d/classresdb_1_1contract_1_1ContractManager.html", null ],
     [ "resdb::CrowService", "d1/df3/classresdb_1_1CrowService.html", null ],
     [ "resdb::CustomQuery", "d6/dd9/classresdb_1_1CustomQuery.html", [
+      [ "resdb::poc::TransactionQuery", "d0/d06/classresdb_1_1poc_1_1TransactionQuery.html", null ],
       [ "resdb::utxo::QueryExecutor", "d0/da0/classresdb_1_1utxo_1_1QueryExecutor.html", null ]
     ] ],
     [ "resdb::DataInfo", "dd/dd6/structresdb_1_1DataInfo.html", null ],
@@ -62,11 +64,15 @@ var hierarchy =
     [ "resdb::LockFreeCollectorPool", "d7/d31/classresdb_1_1LockFreeCollectorPool.html", null ],
     [ "resdb::LockFreeQueue< T >", "da/dd3/classresdb_1_1LockFreeQueue.html", null ],
     [ "resdb::LockFreeQueue< BatchClientResponse >", "da/dd3/classresdb_1_1LockFreeQueue.html", null ],
+    [ "resdb::LockFreeQueue< ClientTransactions >", "da/dd3/classresdb_1_1LockFreeQueue.html", null ],
     [ "resdb::LockFreeQueue< QueueItem >", "da/dd3/classresdb_1_1LockFreeQueue.html", null ],
     [ "resdb::LockFreeQueue< Request >", "da/dd3/classresdb_1_1LockFreeQueue.html", null ],
     [ "resdb::LockFreeQueue< resdb::QueueItem >", "da/dd3/classresdb_1_1LockFreeQueue.html", null ],
     [ "resdb::LockFreeQueue< std::string >", "da/dd3/classresdb_1_1LockFreeQueue.html", null ],
     [ "resdb::Logging", "dc/df2/classresdb_1_1Logging.html", null ],
+    [ "resdb::Merkle", "df/d02/classresdb_1_1Merkle.html", null ],
+    [ "resdb::Miner", "da/dea/classresdb_1_1Miner.html", null ],
+    [ "resdb::MinerManager", "dd/d85/classresdb_1_1MinerManager.html", null ],
     [ "object", null, [
       [ "resdb_validator.lib.ResDB", "de/d4d/classresdb__validator_1_1lib_1_1ResDB.html", null ],
       [ "resdb_validator.transaction.Input", "dc/dbc/classresdb__validator_1_1transaction_1_1Input.html", null ],
@@ -75,6 +81,7 @@ var hierarchy =
       [ "resdb_validator.transaction.TransactionLink", "d1/d5b/classresdb__validator_1_1transaction_1_1TransactionLink.html", null ]
     ] ],
     [ "resdb::PerformanceManager", "d1/d89/classresdb_1_1PerformanceManager.html", null ],
+    [ "resdb::PoWManager", "d8/dbf/classresdb_1_1PoWManager.html", null ],
     [ "resdb::PrometheusHandler", "df/dcf/classresdb_1_1PrometheusHandler.html", null ],
     [ "resdb::PYVerificator", "d2/d59/classresdb_1_1PYVerificator.html", null ],
     [ "resdb::Query", "de/d6d/classresdb_1_1Query.html", null ],
@@ -93,7 +100,9 @@ var hierarchy =
         [ "resdb::utxo::UTXOClient", "d0/dfe/classresdb_1_1utxo_1_1UTXOClient.html", null ]
       ] ]
     ] ],
-    [ "resdb::ResDBConfig", "db/ddb/classresdb_1_1ResDBConfig.html", null ],
+    [ "resdb::ResDBConfig", "db/ddb/classresdb_1_1ResDBConfig.html", [
+      [ "resdb::ResDBPoCConfig", "da/d86/classresdb_1_1ResDBPoCConfig.html", null ]
+    ] ],
     [ "resdb::ResDBReplicaClient", "d1/d1b/classresdb_1_1ResDBReplicaClient.html", [
       [ "resdb::MockResDBReplicaClient", "d6/d79/classresdb_1_1MockResDBReplicaClient.html", null ]
     ] ],
@@ -101,8 +110,10 @@ var hierarchy =
     [ "resdb::ResDBService", "d0/d8d/classresdb_1_1ResDBService.html", [
       [ "resdb::ConsensusService", "d6/d83/classresdb_1_1ConsensusService.html", [
         [ "resdb::ConsensusServicePBFT", "d0/dde/classresdb_1_1ConsensusServicePBFT.html", [
-          [ "resdb::ConsensusServiceGeoPBFT", "de/d17/classresdb_1_1ConsensusServiceGeoPBFT.html", null ]
-        ] ]
+          [ "resdb::ConsensusServiceGeoPBFT", "de/d17/classresdb_1_1ConsensusServiceGeoPBFT.html", null ],
+          [ "resdb::poc::TransactionConsensor", "d3/d86/classresdb_1_1poc_1_1TransactionConsensor.html", null ]
+        ] ],
+        [ "resdb::ConsensusServicePoW", "da/d36/classresdb_1_1ConsensusServicePoW.html", null ]
       ] ],
       [ "resdb::MockResDBService", "d9/d96/classresdb_1_1MockResDBService.html", null ]
     ] ],
@@ -114,6 +125,7 @@ var hierarchy =
     [ "RocksDurable", "d5/d5b/classRocksDurable.html", null ],
     [ "resdb::SDKTransaction", "df/dbb/structresdb_1_1SDKTransaction.html", null ],
     [ "resdb::ServerFactory", "da/d3b/classresdb_1_1ServerFactory.html", null ],
+    [ "resdb::ShiftManager", "d9/d33/classresdb_1_1ShiftManager.html", null ],
     [ "resdb::SignatureVerifier", "d4/d30/classresdb_1_1SignatureVerifier.html", [
       [ "resdb::MockSignatureVerifier", "de/d05/classresdb_1_1MockSignatureVerifier.html", null ]
     ] ],
@@ -129,6 +141,9 @@ var hierarchy =
     ] ],
     [ "resdb_validator.memoize.ToDictWrapper", "d1/df5/classresdb__validator_1_1memoize_1_1ToDictWrapper.html", null ],
     [ "resdb::utxo::Transaction", "d8/d15/classresdb_1_1utxo_1_1Transaction.html", null ],
+    [ "resdb::TransactionAccessor", "de/d0b/classresdb_1_1TransactionAccessor.html", [
+      [ "resdb::MockTransactionAccessor", "d2/d1c/classresdb_1_1MockTransactionAccessor.html", null ]
+    ] ],
     [ "resdb::TransactionCollector", "d7/d95/classresdb_1_1TransactionCollector.html", null ],
     [ "resdb::TransactionExecutor", "da/dfa/classresdb_1_1TransactionExecutor.html", null ],
     [ "resdb::TransactionExecutorImpl", "dc/dd6/classresdb_1_1TransactionExecutorImpl.html", [
@@ -140,8 +155,11 @@ var hierarchy =
       ] ],
       [ "resdb::ResDBTestExecutor", "df/d3b/classresdb_1_1ResDBTestExecutor.html", null ],
       [ "resdb::contract::ContractExecutor", "db/d88/classresdb_1_1contract_1_1ContractExecutor.html", null ],
+      [ "resdb::poc::PoCTransactionManager", "d0/d05/classresdb_1_1poc_1_1PoCTransactionManager.html", null ],
+      [ "resdb::poc::TransactionExecutor", "d8/d38/classresdb_1_1poc_1_1TransactionExecutor.html", null ],
       [ "resdb::utxo::UTXOExecutor", "de/de8/classresdb_1_1utxo_1_1UTXOExecutor.html", null ]
     ] ],
+    [ "resdb::poc::TransactionManager", "d4/d29/classresdb_1_1poc_1_1TransactionManager.html", null ],
     [ "resdb::TransactionManager", "df/d01/classresdb_1_1TransactionManager.html", null ],
     [ "resdb::utxo::TxMempool", "d7/d32/classresdb_1_1utxo_1_1TxMempool.html", null ],
     [ "resdb::TxnMemoryDB", "dd/dd3/classresdb_1_1TxnMemoryDB.html", null ],

@@ -17,11 +17,14 @@ var searchData=
   ['addrequest_14',['AddRequest',['../d7/d95/classresdb_1_1TransactionCollector.html#aa9c277665e1925b3d183f9c5da4dd2e3',1,'resdb::TransactionCollector']]],
   ['addressmanager_15',['AddressManager',['../d4/d26/classresdb_1_1contract_1_1AddressManager.html#adb1616cf40a86be693185895d8a88366',1,'resdb::contract::AddressManager']]],
   ['addresstohex_16',['AddressToHex',['../d4/d26/classresdb_1_1contract_1_1AddressManager.html#a0d01711b9de8cc5a03d2bb14603b3f73',1,'resdb::contract::AddressManager']]],
-  ['addtransaction_17',['AddTransaction',['../d8/d15/classresdb_1_1utxo_1_1Transaction.html#a4905ab43d66b58cb9ef5bafc3594153d',1,'resdb::utxo::Transaction::AddTransaction(const std::string &amp;utxo_string)'],['../d8/d15/classresdb_1_1utxo_1_1Transaction.html#a8f9a773d8da46dc0e48c69a148924328',1,'resdb::utxo::Transaction::AddTransaction(const UTXO &amp;utxo)']]],
-  ['addutxo_18',['AddUTXO',['../d7/d32/classresdb_1_1utxo_1_1TxMempool.html#a8521c367b09970ba9fd375ee45aff6eb',1,'resdb::utxo::TxMempool']]],
-  ['appendargtoinput_19',['AppendArgToInput',['../d8/d28/namespaceresdb_1_1contract.html#ad626573e06276a6bac45fe004bf35893',1,'resdb::contract::AppendArgToInput(std::vector&lt; uint8_t &gt; &amp;code, const uint256_t &amp;arg)'],['../d8/d28/namespaceresdb_1_1contract.html#a842551e9a44f87505458d7359964d78a',1,'resdb::contract::AppendArgToInput(std::vector&lt; uint8_t &gt; &amp;code, const std::string &amp;arg)']]],
-  ['assignnextseq_20',['AssignNextSeq',['../df/d01/classresdb_1_1TransactionManager.html#ac29df8c5bf9b13185e73c81bf5537f50',1,'resdb::TransactionManager']]],
-  ['asyncacceptor_21',['AsyncAcceptor',['../d3/d77/classresdb_1_1AsyncAcceptor.html#a704938a76f5f5fe69f63e14492357e63',1,'resdb::AsyncAcceptor']]],
-  ['asyncreplicaclient_22',['AsyncReplicaClient',['../d8/d9d/classresdb_1_1AsyncReplicaClient.html#ac37f58b2a37fc114f1c9396edf565de8',1,'resdb::AsyncReplicaClient']]],
-  ['atomicuniqueptr_23',['AtomicUniquePtr',['../db/d71/classresdb_1_1AtomicUniquePtr.html#a89da16eadc0421812b34f681f62c1804',1,'resdb::AtomicUniquePtr']]]
+  ['addshiftmsg_17',['AddShiftMsg',['../d8/dbf/classresdb_1_1PoWManager.html#a5fab0009ad5729aad7be3b9673b3c410',1,'resdb::PoWManager']]],
+  ['addsliceinfo_18',['AddSliceInfo',['../d9/d33/classresdb_1_1ShiftManager.html#a29baa65e0412eeaeacd8351e795ecf62',1,'resdb::ShiftManager']]],
+  ['addtransaction_19',['AddTransaction',['../d8/d15/classresdb_1_1utxo_1_1Transaction.html#a4905ab43d66b58cb9ef5bafc3594153d',1,'resdb::utxo::Transaction::AddTransaction(const std::string &amp;utxo_string)'],['../d8/d15/classresdb_1_1utxo_1_1Transaction.html#a8f9a773d8da46dc0e48c69a148924328',1,'resdb::utxo::Transaction::AddTransaction(const UTXO &amp;utxo)']]],
+  ['addtransactionrequest_20',['AddTransactionRequest',['../d4/d29/classresdb_1_1poc_1_1TransactionManager.html#a9ea76e7e0b6a42f1b4b945eebd925b3b',1,'resdb::poc::TransactionManager']]],
+  ['addutxo_21',['AddUTXO',['../d7/d32/classresdb_1_1utxo_1_1TxMempool.html#a8521c367b09970ba9fd375ee45aff6eb',1,'resdb::utxo::TxMempool']]],
+  ['appendargtoinput_22',['AppendArgToInput',['../d8/d28/namespaceresdb_1_1contract.html#ad626573e06276a6bac45fe004bf35893',1,'resdb::contract::AppendArgToInput(std::vector&lt; uint8_t &gt; &amp;code, const uint256_t &amp;arg)'],['../d8/d28/namespaceresdb_1_1contract.html#a842551e9a44f87505458d7359964d78a',1,'resdb::contract::AppendArgToInput(std::vector&lt; uint8_t &gt; &amp;code, const std::string &amp;arg)']]],
+  ['assignnextseq_23',['AssignNextSeq',['../df/d01/classresdb_1_1TransactionManager.html#ac29df8c5bf9b13185e73c81bf5537f50',1,'resdb::TransactionManager']]],
+  ['asyncacceptor_24',['AsyncAcceptor',['../d3/d77/classresdb_1_1AsyncAcceptor.html#a704938a76f5f5fe69f63e14492357e63',1,'resdb::AsyncAcceptor']]],
+  ['asyncreplicaclient_25',['AsyncReplicaClient',['../d8/d9d/classresdb_1_1AsyncReplicaClient.html#ac37f58b2a37fc114f1c9396edf565de8',1,'resdb::AsyncReplicaClient']]],
+  ['atomicuniqueptr_26',['AtomicUniquePtr',['../db/d71/classresdb_1_1AtomicUniquePtr.html#a89da16eadc0421812b34f681f62c1804',1,'resdb::AtomicUniquePtr']]]
 ];

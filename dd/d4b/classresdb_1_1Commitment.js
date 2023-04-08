@@ -4,7 +4,7 @@ var classresdb_1_1Commitment =
     [ "~Commitment", "dd/d4b/classresdb_1_1Commitment.html#a88083294ed66b6e6446a1cd0b8f01392", null ],
     [ "PostProcessExecutedMsg", "dd/d4b/classresdb_1_1Commitment.html#a61fcfbed3b1725f9f11da4e31feae68c", null ],
     [ "ProcessCommitMsg", "dd/d4b/classresdb_1_1Commitment.html#a26030536e901f2304479d8b01b5ea487", null ],
-    [ "ProcessNewRequest", "dd/d4b/classresdb_1_1Commitment.html#ac80751893c1dce87afd0775a2f6dae6b", null ],
+    [ "ProcessNewRequest", "dd/d4b/classresdb_1_1Commitment.html#a5070819fc39f2f6bdf3dac50d123a99d", null ],
     [ "ProcessPrepareMsg", "dd/d4b/classresdb_1_1Commitment.html#adb234288fea60305f6b79b683d549e9b", null ],
     [ "ProcessProposeMsg", "dd/d4b/classresdb_1_1Commitment.html#ac8dd7375f1f720e0ab48e8e45433c27a", null ],
     [ "SetNeedCommitQC", "dd/d4b/classresdb_1_1Commitment.html#af002bd04a7e7829599181d50f97df84b", null ],

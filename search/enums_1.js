@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['metricname_0',['MetricName',['../d5/d10/namespaceresdb.html#a903a063ebd51c5fd151a96b7324b62f6',1,'resdb']]]
+  ['collectorresultcode_0',['CollectorResultCode',['../d5/d10/namespaceresdb.html#affdec049917742284c2ba9216d5ae83f',1,'resdb']]]
 ];

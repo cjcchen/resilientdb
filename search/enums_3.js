@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['viewchangestatus_0',['ViewChangeStatus',['../d1/db2/classresdb_1_1ViewChangeManager.html#acd229d978d381feb3b0301faf83b0c81',1,'resdb::ViewChangeManager']]]
+  ['tablename_0',['TableName',['../d5/d10/namespaceresdb.html#a7889f61314683fc5e6fb5eaa2f2a9bee',1,'resdb']]],
+  ['transactionstatue_1',['TransactionStatue',['../d5/d10/namespaceresdb.html#a9365b7af8267b084d545559cc0f87cb0',1,'resdb']]]
 ];

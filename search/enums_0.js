@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['collectorresultcode_0',['CollectorResultCode',['../d5/d10/namespaceresdb.html#affdec049917742284c2ba9216d5ae83f',1,'resdb']]]
+  ['blockstatus_0',['BlockStatus',['../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59',1,'resdb::PoWManager']]]
 ];

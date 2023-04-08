@@ -14,6 +14,7 @@ var classresdb_1_1ConsensusServicePBFT =
     [ "GetVersion", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#abf513a6bf0cb8c8c246e56eff11da218", null ],
     [ "InternalConsensusCommit", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a72bdc6697b1131410bfc141a2548134b", null ],
     [ "PopPendingRequest", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a10804fca333559010958a3bfec961517", null ],
+    [ "SelfPropose", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#abd33a508ac5c840dd7a8bfb991acab9e", null ],
     [ "SetNeedCommitQC", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#ae92e7d7fdcd0d03b3218f3cf055cd753", null ],
     [ "SetPreVerifyFunc", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#a25f5aa3fecad6fbd61209a72a23bdee6", null ],
     [ "SetPrimary", "d0/dde/classresdb_1_1ConsensusServicePBFT.html#ad5e33c5fc799430799b3050cf6c1a92d", null ],

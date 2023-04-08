@@ -2,7 +2,7 @@ var searchData=
 [
   ['utils_2ecpp_0',['utils.cpp',['../de/d06/utils_8cpp.html',1,'']]],
   ['utils_2eh_1',['utils.h',['../d4/d6e/application_2contract_2manager_2utils_8h.html',1,'(Global Namespace)'],['../d4/d71/common_2utils_2utils_8h.html',1,'(Global Namespace)']]],
-  ['utils_2epy_2',['utils.py',['../d9/d9f/utils_8py.html',1,'']]],
+  ['utils_2epy_2',['utils.py',['../d8/da4/oracle__script_2comm_2utils_8py.html',1,'(Global Namespace)'],['../db/dc4/sdk__validator_2resdb__validator_2utils_8py.html',1,'(Global Namespace)']]],
   ['utxo_5fclient_2ecpp_3',['utxo_client.cpp',['../d4/dc2/utxo__client_8cpp.html',1,'']]],
   ['utxo_5fclient_2eh_4',['utxo_client.h',['../d6/d18/utxo__client_8h.html',1,'']]],
   ['utxo_5fclient_5ftools_2ecpp_5',['utxo_client_tools.cpp',['../d3/d81/utxo__client__tools_8cpp.html',1,'']]],

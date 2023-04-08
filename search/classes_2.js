@@ -6,11 +6,12 @@ var searchData=
   ['consensusservice_3',['ConsensusService',['../d6/d83/classresdb_1_1ConsensusService.html',1,'resdb']]],
   ['consensusservicegeopbft_4',['ConsensusServiceGeoPBFT',['../de/d17/classresdb_1_1ConsensusServiceGeoPBFT.html',1,'resdb']]],
   ['consensusservicepbft_5',['ConsensusServicePBFT',['../d0/dde/classresdb_1_1ConsensusServicePBFT.html',1,'resdb']]],
-  ['context_6',['Context',['../d8/d18/structresdb_1_1Context.html',1,'resdb']]],
-  ['contractclient_7',['ContractClient',['../d9/dfa/classresdb_1_1contract_1_1ContractClient.html',1,'resdb::contract']]],
-  ['contractexecutor_8',['ContractExecutor',['../db/d88/classresdb_1_1contract_1_1ContractExecutor.html',1,'resdb::contract']]],
-  ['contractmanager_9',['ContractManager',['../d6/d7d/classresdb_1_1contract_1_1ContractManager.html',1,'resdb::contract']]],
-  ['crowservice_10',['CrowService',['../d1/df3/classresdb_1_1CrowService.html',1,'resdb']]],
-  ['customquery_11',['CustomQuery',['../d6/dd9/classresdb_1_1CustomQuery.html',1,'resdb']]],
-  ['cyclicblockchainerror_12',['CyclicBlockchainError',['../d9/db4/classresdb__validator_1_1exceptions_1_1CyclicBlockchainError.html',1,'resdb_validator::exceptions']]]
+  ['consensusservicepow_6',['ConsensusServicePoW',['../da/d36/classresdb_1_1ConsensusServicePoW.html',1,'resdb']]],
+  ['context_7',['Context',['../d8/d18/structresdb_1_1Context.html',1,'resdb']]],
+  ['contractclient_8',['ContractClient',['../d9/dfa/classresdb_1_1contract_1_1ContractClient.html',1,'resdb::contract']]],
+  ['contractexecutor_9',['ContractExecutor',['../db/d88/classresdb_1_1contract_1_1ContractExecutor.html',1,'resdb::contract']]],
+  ['contractmanager_10',['ContractManager',['../d6/d7d/classresdb_1_1contract_1_1ContractManager.html',1,'resdb::contract']]],
+  ['crowservice_11',['CrowService',['../d1/df3/classresdb_1_1CrowService.html',1,'resdb']]],
+  ['customquery_12',['CustomQuery',['../d6/dd9/classresdb_1_1CustomQuery.html',1,'resdb']]],
+  ['cyclicblockchainerror_13',['CyclicBlockchainError',['../d9/db4/classresdb__validator_1_1exceptions_1_1CyclicBlockchainError.html',1,'resdb_validator::exceptions']]]
 ];
