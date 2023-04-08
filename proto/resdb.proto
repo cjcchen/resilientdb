@@ -38,7 +38,9 @@ message Request {
         TYPE_NEWVIEW= 17;
         TYPE_CUSTOM_QUERY = 18;
 
-        NUM_OF_TYPE = 19; // the total number of types.
+	TYPE_GEO_MINING_RESULT = 19;
+
+        NUM_OF_TYPE = 20; // the total number of types.
                        // Used to create the collector.
     };
     int32 type = 1;
@@ -88,6 +90,8 @@ message BatchClientRequest {
   Certs committed_certs= 5;
   bytes hash = 6;
   int32 proxy_id = 7;
+  bytes ex_data = 8;
+  bool system_data = 9;
 }
 
 message BatchClientResponse {
@@ -162,6 +166,10 @@ message QueryRequest {
 
 message QueryResponse {
   repeated Request transactions = 1;
+}
+
+message CustomQueryRequest {
+  bytes request_str = 1;
 }
 
 message CustomQueryResponse {
