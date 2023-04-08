@@ -20,8 +20,8 @@ std::unique_ptr<Request> NewRequest(PoWRequest type,
 
 
 PoWManager::PoWManager(const ResDBPoCConfig& config,
-		ResDBReplicaClient* client
-		) : config_(config),bc_client_(client){
+		ResDBReplicaClient* client, TransactionExecutorImpl * executor
+		) : config_(config),bc_client_(client), executor_(executor){
 Reset();
 self_id_ = config_.GetSelfInfo().id();
   is_stop_ = false;
@@ -48,7 +48,7 @@ std::unique_ptr<ShiftManager> PoWManager::GetShiftManager(const ResDBPoCConfig& 
 }
 
 std::unique_ptr<BlockManager> PoWManager::GetBlockManager(const ResDBPoCConfig& config){
-  return std::make_unique<BlockManager>(config);
+  return std::make_unique<BlockManager>(config, executor_);
 }
 
 void PoWManager::Commit(std::unique_ptr<Block> block){

@@ -19,7 +19,8 @@ cc_library(
     deps = [
         "//execution:transaction_executor",
         "//execution:transaction_executor_impl",
-      "//ordering/poc/proto:pow_cc_proto"
+      "//ordering/poc/proto:pow_cc_proto",
+      "//proto:transaction_cc_proto"
     ],
 )
 

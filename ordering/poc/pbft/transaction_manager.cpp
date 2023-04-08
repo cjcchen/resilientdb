@@ -26,6 +26,7 @@
 #include "ordering/poc/pbft/transaction_manager.h"
 
 #include <glog/logging.h>
+#include "proto/transaction.pb.h"
 
 namespace resdb {
 namespace poc {
@@ -71,7 +72,13 @@ std::unique_ptr<std::string> TransactionManager::GetTransactionRequest(uint64_t 
     std::unique_lock<std::mutex> lck(txn_mutex_);
     auto it = txn_.find(seq);
     if(it == txn_.end()) {
-      *str = std::string(1000,'c');
+      BatchClientRequest client_request;
+      auto * request = client_request.add_client_requests();
+      Transaction txn;
+      txn.set_uid(seq);
+      txn.SerializeToString(request->mutable_request()->mutable_data());
+
+      client_request.SerializeToString(str.get());
       return str;
     }
     it->second->SerializeToString(str.get());

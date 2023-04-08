@@ -136,3 +136,14 @@ cc_library(
         ":custom_query",
     ],
 )
+
+cc_library(
+    name = "poc_transaction_manager",
+    srcs = ["poc_transaction_manager.cpp"],
+    hdrs = ["poc_transaction_manager.h"],
+    deps = [
+        ":transaction_executor",
+        "//ordering/poc/proto:transaction_cc_proto",
+        "//proto:transaction_cc_proto",
+    ],
+)

@@ -11,7 +11,8 @@
 
 namespace resdb {
 
-BlockManager::BlockManager(const ResDBPoCConfig& config) : config_(config){
+BlockManager::BlockManager(const ResDBPoCConfig& config,
+    TransactionExecutorImpl* executor) : config_(config), executor_(executor){
   miner_ = std::make_unique<Miner>(config);
   global_stats_ = Stats::GetGlobalStats();
   last_update_time_ = 0;
@@ -155,60 +156,18 @@ BatchClientTransactions batch_client_request;
   if(!batch_client_request.ParseFromString(block.transaction_data())){
 	  LOG(ERROR)<<"parse client transaction fail";
   }
-  /*
-  uint64_t current_time = get_sys_clock();
-	if(last_update_time_>0){
-		  LOG(ERROR)<<" update block:"<<(current_time - last_update_time_);
-	}
-	last_update_time_ = current_time;
-	*/
 
   LOG(ERROR)<<" execute seq:["<<batch_client_request.min_seq()<<","<<batch_client_request.max_seq()<<"]";	
-  uint64_t lat = 0;
-  int num = 0;
-  uint64_t total_tx = 0;
-	    uint64_t run_time = GetCurrentTime();
-   for(const ClientTransactions& client_tx : batch_client_request.transactions()){
-	 
+  for(const ClientTransactions& client_tx : batch_client_request.transactions()){
 	  BatchClientRequest batch_request;
 	  if (!batch_request.ParseFromString(client_tx.transaction_data())) {
 		  LOG(ERROR) << "parse data fail";
 	  }
-	  total_tx += batch_request.client_requests_size();
-	  //global_stats_->IncTotalRequest(batch_request.client_requests_size()); 
-	
-	    if(block.miner() == config_.GetSelfInfo().id()){
-		    uint64_t create_time = create_time_[client_tx.seq()];
-		    uint64_t latency = run_time-create_time;
-		    lat += latency;
-		    num++;
-		    //global_stats_->AddLatency(latency);
-		    //LOG(ERROR)<<"get latency:"<<latency/1000000000.0<<" create time:"<<create_time<<" now:"<<run_time << " current time:"<<GetCurrentTime();
-	  /*
-	  if(create_time>0){
-		  lat += latency;
-		  num++;
-		  global_stats_->AddLatency(latency);
-	  }
-	  */
-	    }
+	  global_stats_->IncTotalRequest(batch_request.client_requests_size()); 
+    if(executor_){
+      executor_->ExecuteBatch(batch_request);
+    }
   }
-   if(total_tx>0){
-	   uint64_t current_time = GetCurrentTime();
-	   if(last_update_time_>0){
-		   LOG(ERROR)<<" tps:"<<total_tx/((current_time - last_update_time_)/1000000.0)<< " wait:"<<((current_time - last_update_time_)/1000000.0);
-	    	//prometheus_handler_->SetValue(THROUGHPUT, total_tx/((current_time - last_update_time_)/1000000.0));
-	   }
-	   last_update_time_ = current_time;
-   }
-   if(lat>0){
-	    //prometheus_handler_->SetValue(TRANSACTION_LATENCY, lat/1000000.0/num);
-	  LOG(ERROR)<<" execute seq:["<<batch_client_request.min_seq()<<","<<batch_client_request.max_seq()<<"]:"<<" total:"<<total_tx<<" lat:"<<(lat/1000000.0/num);	
-   }
-   else {
-	  LOG(ERROR)<<" execute seq:["<<batch_client_request.min_seq()<<","<<batch_client_request.max_seq()<<"]:"" total:"<<total_tx;
-   }
-
 }
 
 bool BlockManager::VerifyBlock(const BlockMiningInfo &block_info) {

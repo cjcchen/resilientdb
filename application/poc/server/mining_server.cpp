@@ -68,9 +68,11 @@ int main(int argc, char** argv) {
   pow_config_ptr->SetMaxNonceBit(42);
   pow_config_ptr->SetDifficulty(28);
   //pow_config_ptr->SetDifficulty(32);
+
+  poc::PoCTransactionManager manager(*pow_config_ptr);
   
   ResDBServer server(*pow_config_ptr,
-                     std::make_unique<ConsensusServicePoW>(*pow_config_ptr));
+                     std::make_unique<ConsensusServicePoW>(*pow_config_ptr, &manager));
   server.Run();
 }
 

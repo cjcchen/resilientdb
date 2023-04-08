@@ -4,11 +4,12 @@
 #include "glog/logging.h"
 
 namespace resdb {
+using poc::PoCTransactionManager;
 
-ConsensusServicePoW::ConsensusServicePoW(const ResDBPoCConfig& config)
-    : ConsensusService(config) {
+ConsensusServicePoW::ConsensusServicePoW(const ResDBPoCConfig& config, PoCTransactionManager * manager)
+    : ConsensusService(config), txn_manager_(manager) {
   miner_manager_ = std::make_unique<MinerManager>(config);
-  pow_manager_ = std::make_unique<PoWManager>(config,GetBroadCastClient());
+  pow_manager_ = std::make_unique<PoWManager>(config,GetBroadCastClient(), txn_manager_);
 }
 
 void ConsensusServicePoW::Start() {
@@ -56,10 +57,18 @@ int ConsensusServicePoW::ConsensusCommit(std::unique_ptr<Context> context,
       }
       break;
     }
-
+    case Request::TYPE_CLIENT_REQUEST:
+      return ClientQuery(std::move(context), std::move(request));
   }
 
   return 0;
 }
 
+int ConsensusServicePoW::ClientQuery(std::unique_ptr<Context> context,
+                                         std::unique_ptr<Request> request) {
+      std::unique_ptr<std::string> resp = txn_manager_->ClientQuery(request->data());
+      return context->client->SendRawMessageData(*resp);
+}
+
 }  // namespace resdb
+

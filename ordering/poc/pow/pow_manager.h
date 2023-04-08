@@ -7,13 +7,14 @@
 #include "ordering/poc/pow/miner_manager.h"
 #include "ordering/poc/pow/shift_manager.h"
 #include "ordering/poc/pow/transaction_accessor.h"
+#include "execution/transaction_executor_impl.h"
 #include "ordering/poc/proto/pow.pb.h"
 
 namespace resdb {
 
 class PoWManager {
  public:
-  PoWManager(const ResDBPoCConfig& config, ResDBReplicaClient * bc_client);
+  PoWManager(const ResDBPoCConfig& config, ResDBReplicaClient * bc_client, TransactionExecutorImpl * executor);
   virtual ~PoWManager();
 
   void Start();
@@ -92,6 +93,7 @@ void SetSent(uint64_t seq);
 	
   std::atomic<uint64_t> last_done_seq_;
   std::set<uint64_t> sent_list_;
+  TransactionExecutorImpl * executor_;
 };
 
 }  // namespace resdb

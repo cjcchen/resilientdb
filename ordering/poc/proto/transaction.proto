@@ -4,9 +4,15 @@ import "proto/signature_info.proto";
 
 package resdb;
 
+/*
 message Transaction {
   bytes data = 1;
   KeyInfo public_key = 2;
   bytes signature = 3;  
 }
+*/
 
+
+message TransactionQuery {
+  repeated uint64 uids = 1;
+}

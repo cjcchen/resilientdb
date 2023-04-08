@@ -84,6 +84,7 @@ cc_library(
         "//ordering/poc/proto:pow_cc_proto",
         "//statistic:stats",
 	"//proto:resdb_cc_proto",
+  "//execution:transaction_executor_impl",
     ],
 )
 
@@ -146,6 +147,7 @@ cc_library(
         "//common/utils",
         "//ordering/poc/proto:pow_cc_proto",
         "//server:consensus_service",
+        "//execution:poc_transaction_manager",
     ],
 )
 

@@ -6,6 +6,7 @@
 #include "config/resdb_poc_config.h"
 #include "ordering/poc/pow/miner.h"
 #include "ordering/poc/proto/pow.pb.h"
+#include "execution/transaction_executor_impl.h"
 #include "statistic/stats.h"
 
 namespace resdb {
@@ -13,7 +14,7 @@ namespace resdb {
 // Manager all the blocks and mine the new blocks.
 class BlockManager {
  public:
-  BlockManager(const ResDBPoCConfig& config);
+  BlockManager(const ResDBPoCConfig& config, TransactionExecutorImpl * executor);
  virtual ~BlockManager() = default;
   // ================ mining a new block ============================
   // All the mining functions below are not thread safe.
@@ -93,6 +94,7 @@ ResDBPoCConfig config_;
   std::atomic<uint64_t> last_update_time_;
   PrometheusHandler * prometheus_handler_;
   std::queue<std::unique_ptr<BlockMiningInfo>> pending_queue_;
+  TransactionExecutorImpl * executor_;
 };
 
 }  // namespace resdb
