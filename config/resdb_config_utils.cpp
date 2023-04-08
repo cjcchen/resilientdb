@@ -133,6 +133,7 @@ std::unique_ptr<ResDBConfig> GenerateResDBConfig(
     const std::string& cert_file, std::optional<ReplicaInfo> self_info,
     std::optional<ConfigGenFunc> gen_func) {
   ResConfigData config_data = ReadConfigFromFile(config_file);
+
   KeyInfo private_key = ReadKey(private_key_file);
   CertificateInfo cert_info = ReadCert(cert_file);
 
@@ -153,6 +154,12 @@ std::unique_ptr<ResDBConfig> GenerateResDBConfig(
   }
   return std::make_unique<ResDBConfig>(config_data, self_info.value(),
                                        private_key, cert_info);
+}
+
+std::unique_ptr<ResDBConfig> GenerateResDBConfigFromJson(const std::string& config_file) {
+  ResConfigData config_data = ReadConfigFromFile(config_file);
+  return std::make_unique<ResDBConfig>(config_data, ReplicaInfo(),
+                                       KeyInfo(), CertificateInfo());
 }
 
 ResDBConfig GenerateResDBConfig(const std::string& config_file) {

@@ -45,5 +45,7 @@ std::unique_ptr<ResDBConfig> GenerateResDBConfig(
     std::optional<ReplicaInfo> self_info = std::nullopt,
     std::optional<ConfigGenFunc> = std::nullopt);
 
+std::unique_ptr<ResDBConfig> GenerateResDBConfigFromJson(const std::string& config_file);
 ResDBConfig GenerateResDBConfig(const std::string& config_file);
+
 }  // namespace resdb
