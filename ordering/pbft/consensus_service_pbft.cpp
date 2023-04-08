@@ -32,6 +32,13 @@
 
 namespace resdb {
 
+bool IsClient(const ResDBConfig& config){
+    return config.GetPublicKeyCertificateInfo()
+      .public_key()
+      .public_key_info()
+      .type() == CertificateKeyInfo::CLIENT;
+}
+
 ConsensusServicePBFT::ConsensusServicePBFT(
     const ResDBConfig& config,
     std::unique_ptr<TransactionExecutorImpl> executor,
@@ -48,7 +55,7 @@ ConsensusServicePBFT::ConsensusServicePBFT(
           GetSignatureVerifier())),
       query_(std::make_unique<Query>(config_, transaction_manager_.get(),
                                      std::move(query_executor))),
-      response_manager_(config_.IsPerformanceRunning()
+      response_manager_((config_.IsPerformanceRunning() || !IsClient(config_))
                             ? nullptr
                             : std::make_unique<ResponseManager>(
                                   config_, GetBroadCastClient(),
@@ -67,7 +74,9 @@ ConsensusServicePBFT::ConsensusServicePBFT(
 }
 
 void ConsensusServicePBFT::SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func){
-    response_manager_->SetSocketCallBack(func);
+    if(response_manager_){
+      response_manager_->SetSocketCallBack(func);
+    }
 }
 
 void ConsensusServicePBFT::SetNeedCommitQC(bool need_qc) {
@@ -155,15 +164,15 @@ int ConsensusServicePBFT::InternalConsensusCommit(
       if (config_.IsPerformanceRunning()) {
         return performance_manager_->StartEval();
       }
-      return response_manager_->NewClientRequest(std::move(context),
-                                                 std::move(request));
+      return response_manager_?response_manager_->NewClientRequest(std::move(context),
+                                                 std::move(request)):-2;
     case Request::TYPE_RESPONSE:
       if (config_.IsPerformanceRunning()) {
         return performance_manager_->ProcessResponseMsg(std::move(context),
                                                         std::move(request));
       }
-      return response_manager_->ProcessResponseMsg(std::move(context),
-                                                   std::move(request));
+      return response_manager_?response_manager_->ProcessResponseMsg(std::move(context),
+                                                   std::move(request)):-2;
     case Request::TYPE_NEW_TXNS:
       return commitment_->ProcessNewRequest(std::move(context),
                                             std::move(request));
@@ -204,6 +213,10 @@ void ConsensusServicePBFT::SetupPerformanceDataFunc(
 void ConsensusServicePBFT::SetPreVerifyFunc(
     std::function<bool(const Request&)> func) {
   commitment_->SetPreVerifyFunc(func);
+}
+
+int ConsensusServicePBFT::SelfPropose(std::unique_ptr<Request> request) {
+      return commitment_->ProcessNewRequest(nullptr, std::move(request), true);
 }
 
 }  // namespace resdb

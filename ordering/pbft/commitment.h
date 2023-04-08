@@ -41,7 +41,7 @@ class Commitment {
   virtual ~Commitment();
 
   virtual int ProcessNewRequest(std::unique_ptr<Context> context,
-                                std::unique_ptr<Request> client_request);
+                                std::unique_ptr<Request> client_request, bool self_call=false);
 
   virtual int ProcessProposeMsg(std::unique_ptr<Context> context,
                                 std::unique_ptr<Request> request);

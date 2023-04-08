@@ -63,16 +63,18 @@ void Commitment::SetNeedCommitQC(bool need_qc) { need_qc_ = need_qc; }
 // Handle the client request and send a pre-prepare message to others.
 // TODO if not a primary, redicet to the primary replica.
 int Commitment::ProcessNewRequest(std::unique_ptr<Context> context,
-                                  std::unique_ptr<Request> client_request) {
-  if (context == nullptr || context->signature.signature().empty()) {
-    LOG(ERROR) << "client request doesn't contain signature, reject";
-    return -2;
-  }
+                                  std::unique_ptr<Request> client_request, bool self_call) {
+	if(!self_call){
+		if (context == nullptr || context->signature.signature().empty()) {
+			LOG(ERROR) << "client request doesn't contain signature, reject";
+			return -2;
+		}
+	}
 
   if (config_.GetSelfInfo().id() != transaction_manager_->GetCurrentPrimary()) {
     LOG(ERROR) << "current node is not primary. primary:"
                << transaction_manager_->GetCurrentPrimary()
-               << " seq:" << client_request->seq();
+               << " seq:" << client_request->seq()<<" my id:"<<config_.GetSelfInfo().id();
     return -2;
   }
 
@@ -126,8 +128,6 @@ int Commitment::ProcessProposeMsg(std::unique_ptr<Context> context,
     BatchClientRequest batch_request;
     batch_request.ParseFromString(request->data());
     batch_request.clear_createtime();
-    std::string data;
-    batch_request.SerializeToString(&data);
     // check signatures
     bool valid =
         verifier_->VerifyMessage(request->data(), request->data_signature());

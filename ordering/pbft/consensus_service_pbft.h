@@ -71,6 +71,9 @@ class ConsensusServicePBFT : public ConsensusService {
   PopPendingRequest();
 
  protected:
+  int SelfPropose(std::unique_ptr<Request> request);
+
+ protected:
   std::unique_ptr<SystemInfo> system_info_;
   std::unique_ptr<CheckPointManager> checkpoint_manager_;
   std::unique_ptr<TransactionManager> transaction_manager_;
