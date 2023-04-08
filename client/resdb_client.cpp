@@ -39,6 +39,10 @@ ResDBClient::ResDBClient(const std::string& ip, int port)
   socket_->SetRecvTimeout(read_timeouts_);
 }
 
+std::string ResDBClient::GetIp(){
+return ip_;
+}
+
 void ResDBClient::SetRecvTimeout(int microseconds) {
   read_timeouts_ = microseconds;
   socket_->SetRecvTimeout(read_timeouts_);

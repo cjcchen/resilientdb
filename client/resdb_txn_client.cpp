@@ -119,4 +119,82 @@ ResDBTxnClient::GetTxn(uint64_t min_seq, uint64_t max_seq) {
   return txn_resp;
 }
 
+
+absl::StatusOr<std::string> ResDBTxnClient::GetCustomQuery(const std::string& request_str) {
+  LOG(ERROR)<<"get query";
+  std::vector<std::unique_ptr<ResDBClient>> clients;
+  std::vector<std::thread> ths;
+  std::string final_str;
+  std::mutex mtx;
+  std::condition_variable resp_cv;
+  bool success = false;
+  std::map<std::string, int> recv_count;
+  for (const auto& replica : replicas_) {
+    std::unique_ptr<ResDBClient> client =
+        GetResDBClient(replica.ip(), replica.port());
+    ResDBClient* client_ptr = client.get();
+    clients.push_back(std::move(client));
+
+    ths.push_back(std::thread(
+        [&](ResDBClient* client) {
+          std::string response_str;
+          Request request;
+          request.set_type(Request::TYPE_CUSTOM_QUERY);
+          request.set_need_response(false);
+          request.set_data(request_str);
+
+          int ret = client->SendRawMessage(request);
+          if (ret) {
+            return;
+          }
+          client->SetRecvTimeout(1000000);
+          ret = client->RecvRawMessageStr(&response_str);
+          //LOG(ERROR)<<"recv fail:"<<ret<<" from client:"<<client->GetIp();
+          if (ret == 0) {
+            std::unique_lock<std::mutex> lck(mtx);
+            recv_count[response_str]++;
+            //LOG(ERROR)<<"receive str:"<<response_str.size()<<" count:"<<recv_count[response_str]<<" from:"<<client->GetIp();
+            // receive f+1 count.
+            if (recv_count[response_str] == config_.GetMinClientReceiveNum()) {
+              final_str = response_str;
+              success = true;
+              // notify the main thread.
+              resp_cv.notify_all();
+            }
+          }
+          return;
+        },
+        client_ptr));
+  }
+
+  {
+    std::unique_lock<std::mutex> lck(mtx);
+    resp_cv.wait_for(lck, std::chrono::seconds(recv_timeout_));
+    // Time out or done, close all the client.
+    for (auto& client : clients) {
+      client->Close();
+    }
+  }
+
+  // wait for all theads done.
+  for (auto& th : ths) {
+    if (th.joinable()) {
+      th.join();
+    }
+  }
+
+  CustomQueryResponse resp;
+  if (success && final_str.empty()) {
+    return "";
+  }
+
+  if (final_str.empty() || !resp.ParseFromString(final_str)) {
+    LOG(ERROR) << "parse fail len:" << final_str.size();
+    return absl::InternalError("recv data fail.");
+  }
+  LOG(ERROR)<<"get resp";
+  return resp.resp_str();
+}
+
+
 }  // namespace resdb

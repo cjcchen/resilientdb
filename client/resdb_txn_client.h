@@ -43,6 +43,8 @@ class ResDBTxnClient {
   virtual absl::StatusOr<std::vector<std::pair<uint64_t, std::string>>> GetTxn(
       uint64_t min_seq, uint64_t max_seq);
 
+  virtual absl::StatusOr<std::string> GetCustomQuery(const std::string& request);
+
  protected:
   virtual std::unique_ptr<ResDBClient> GetResDBClient(const std::string& ip,
                                                       int port);

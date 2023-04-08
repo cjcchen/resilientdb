@@ -57,6 +57,7 @@ class ResDBClient {
   // Use the provided socket to send data. If the socket has been connect to
   // the server, it won't connect again.
   ResDBClient(std::unique_ptr<Socket> socket, bool connected = false);
+  std::string GetIp();
 
   std::unique_ptr<Socket> FetchSocket();
 
