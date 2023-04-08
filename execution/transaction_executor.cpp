@@ -218,9 +218,8 @@ void TransactionExecutor::Execute(std::unique_ptr<Request> request,
 
     response->set_createtime(batch_request.createtime());
     response->set_local_id(batch_request.local_id());
-
-    post_exec_func_(std::move(request), std::move(response));
   }
+  post_exec_func_(std::move(request), std::move(response));
 
   global_stats_->IncExecuteDone();
 }
