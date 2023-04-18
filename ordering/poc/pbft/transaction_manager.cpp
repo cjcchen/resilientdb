@@ -72,6 +72,7 @@ std::unique_ptr<std::string> TransactionManager::GetTransactionRequest(uint64_t 
     std::unique_lock<std::mutex> lck(txn_mutex_);
     auto it = txn_.find(seq);
     if(it == txn_.end()) {
+    /*
       BatchClientRequest client_request;
       auto * request = client_request.add_client_requests();
       Transaction txn;
@@ -80,6 +81,8 @@ std::unique_ptr<std::string> TransactionManager::GetTransactionRequest(uint64_t 
 
       client_request.SerializeToString(str.get());
       return str;
+      */
+      return nullptr;
     }
     it->second->SerializeToString(str.get());
   }
