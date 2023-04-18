@@ -77,12 +77,14 @@ std::vector<std::unique_ptr<Context>> ResponseManager::FetchContextList(
 int ResponseManager::NewClientRequest(std::unique_ptr<Context> context,
                                       std::unique_ptr<Request> client_request) {
   if (!client_request->need_response()) {
+    if( socket_call_back_ != nullptr ){
+      socket_call_back_(std::move(context->client->FetchSocket()));
+    }
     context->client = nullptr;
   }
 
   global_stats_->IncClientRequest();
 
-  //LOG(ERROR)<<"get new request:";
   std::unique_ptr<QueueItem> queue_item = std::make_unique<QueueItem>();
   queue_item->context = std::move(context);
   queue_item->client_request = std::move(client_request);

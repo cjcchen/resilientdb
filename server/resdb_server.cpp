@@ -183,11 +183,11 @@ void ResDBServer::Run() {
             LOG(ERROR)<<"recv data fail:";
             continue;
           }
-          //LOG(ERROR)<<"receive from :"<<client_socket->Fd();
+          //LOG(ERROR)<<"receive from :"<<client_socket->Fd()<<((bool)((char *)request_info->buff)[0]);
           Request request;
           request.set_type(Request::TYPE_CLIENT_REQUEST);
-          request.set_need_response(true);
-          request.set_data(request_info->buff, request_info->data_len);
+          request.set_need_response(!((char *)request_info->buff)[0]);
+          request.set_data((char *)request_info->buff+1, request_info->data_len-1);
 
           ResDBMessage message;
           if (!request.SerializeToString(message.mutable_data())) {
