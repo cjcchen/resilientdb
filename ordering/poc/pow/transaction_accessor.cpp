@@ -79,6 +79,14 @@ void TransactionAccessor::TransactionFetching() {
       client_txn->set_create_time(GetCurrentTime());
       queue_.Push(std::move(client_txn));
       cur_seq = std::max(cur_seq, response.seq(i));
+      /*
+       BatchClientRequest req;
+       if(!req.ParseFromString(response.data(i))){
+        LOG(ERROR)<<"parse fail";
+       }
+       LOG(ERROR)<<"get req txn:"<<req.DebugString();
+       */
+
       //LOG(ERROR)<<"obtain txn seq:"<<response.seq(i);
     }
 
