@@ -285,11 +285,11 @@ $(document).ready(function(){initNavTree('de/daf/resdb__server_8cpp_source.html'
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;recv data fail:&quot;</span>;</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            <span class="keywordflow">continue</span>;</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>          }</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>          <span class="comment">//LOG(ERROR)&lt;&lt;&quot;receive from :&quot;&lt;&lt;client_socket-&gt;Fd();</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>          <span class="comment">//LOG(ERROR)&lt;&lt;&quot;receive from :&quot;&lt;&lt;client_socket-&gt;Fd()&lt;&lt;((bool)((char *)request_info-&gt;buff)[0]);</span></div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>          Request request;</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>          request.set_type(Request::TYPE_CLIENT_REQUEST);</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>          request.set_need_response(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>          request.set_data(request_info-&gt;buff, request_info-&gt;data_len);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>          request.set_need_response(!((<span class="keywordtype">char</span> *)request_info-&gt;buff)[0]);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>          request.set_data((<span class="keywordtype">char</span> *)request_info-&gt;buff+1, request_info-&gt;data_len-1);</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>          ResDBMessage message;</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>          <span class="keywordflow">if</span> (!request.SerializeToString(message.mutable_data())) {</div>
