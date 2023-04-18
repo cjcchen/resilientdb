@@ -174,23 +174,26 @@ $(document).ready(function(){initNavTree('df/de8/poc_2pbft_2transaction__manager
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    std::unique_lock&lt;std::mutex&gt; lck(txn_mutex_);</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">auto</span> it = txn_.find(seq);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">if</span>(it == txn_.end()) {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      BatchClientRequest client_request;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      <span class="keyword">auto</span> * request = client_request.add_client_requests();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      Transaction txn;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      txn.set_uid(seq);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      txn.SerializeToString(request-&gt;mutable_request()-&gt;mutable_data());</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      client_request.SerializeToString(str.get());</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keywordflow">return</span> str;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    it-&gt;second-&gt;SerializeToString(str.get());</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordflow">return</span> str;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">      BatchClientRequest client_request;</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">      auto * request = client_request.add_client_requests();</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">      Transaction txn;</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">      txn.set_uid(seq);</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">      txn.SerializeToString(request-&gt;mutable_request()-&gt;mutable_data());</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment"></span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">      client_request.SerializeToString(str.get());</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">      return str;</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">      */</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    it-&gt;second-&gt;SerializeToString(str.get());</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordflow">return</span> str;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}  <span class="comment">// namespace resdb</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}  <span class="comment">// namespace resdb</span></div>
 <div class="ttc" id="aclassresdb_1_1poc_1_1TransactionManager_html_a2d827b0c7f9666bba33f8701816b7dde"><div class="ttname"><a href="../../d4/d29/classresdb_1_1poc_1_1TransactionManager.html#a2d827b0c7f9666bba33f8701816b7dde">resdb::poc::TransactionManager::TransactionManager</a></div><div class="ttdeci">TransactionManager()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/de8/poc_2pbft_2transaction__manager_8cpp_source.html#l00034">transaction_manager.cpp:34</a></div></div>
 <div class="ttc" id="aclassresdb_1_1poc_1_1TransactionManager_html_a70931581e043fe72566e439cad86ed05"><div class="ttname"><a href="../../d4/d29/classresdb_1_1poc_1_1TransactionManager.html#a70931581e043fe72566e439cad86ed05">resdb::poc::TransactionManager::~TransactionManager</a></div><div class="ttdeci">virtual ~TransactionManager()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/de8/poc_2pbft_2transaction__manager_8cpp_source.html#l00038">transaction_manager.cpp:38</a></div></div>
 <div class="ttc" id="aclassresdb_1_1poc_1_1TransactionManager_html_a9ea76e7e0b6a42f1b4b945eebd925b3b"><div class="ttname"><a href="../../d4/d29/classresdb_1_1poc_1_1TransactionManager.html#a9ea76e7e0b6a42f1b4b945eebd925b3b">resdb::poc::TransactionManager::AddTransactionRequest</a></div><div class="ttdeci">void AddTransactionRequest(const BatchClientRequest &amp;request)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/de8/poc_2pbft_2transaction__manager_8cpp_source.html#l00041">transaction_manager.cpp:41</a></div></div>
