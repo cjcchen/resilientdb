@@ -149,7 +149,7 @@ $(document).ready(function(){initNavTree('d8/dc5/transaction__query_8cpp_source.
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  uint64_t min_seq = request.min_seq();</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  uint64_t max_seq = request.max_seq();</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;query:[&quot;</span>&lt;&lt;min_seq&lt;&lt;<span class="stringliteral">&quot;-&quot;</span>&lt;&lt;max_seq&lt;&lt;<span class="stringliteral">&quot;]&quot;</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">//LOG(ERROR)&lt;&lt;&quot;query:[&quot;&lt;&lt;min_seq&lt;&lt;&quot;-&quot;&lt;&lt;max_seq&lt;&lt;&quot;]&quot;;</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = min_seq; i &lt;= max_seq; ++i){</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::unique_ptr&lt;std::string&gt; ret = manager_-&gt;<a class="code hl_function" href="../../d4/d29/classresdb_1_1poc_1_1TransactionManager.html#afa9337b65312ac0114e0e3d7d3a54a20">GetTransactionRequest</a>(i, request.is_query_results());</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">if</span>(ret == <span class="keyword">nullptr</span>){</div>
@@ -157,7 +157,7 @@ $(document).ready(function(){initNavTree('d8/dc5/transaction__query_8cpp_source.
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    response.add_data(*ret);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    response.add_seq(i);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;query get seq:&quot;</span>&lt;&lt;i&lt;&lt;<span class="stringliteral">&quot; is result:&quot;</span>&lt;&lt;request.is_query_results();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">//LOG(ERROR)&lt;&lt;&quot;query get seq:&quot;&lt;&lt;i&lt;&lt;&quot; is result:&quot;&lt;&lt;request.is_query_results();</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  std::unique_ptr&lt;std::string&gt; ret = std::make_unique&lt;std::string&gt;();</div>
