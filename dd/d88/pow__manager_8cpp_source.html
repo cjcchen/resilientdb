@@ -156,353 +156,351 @@ $(document).ready(function(){initNavTree('dd/d88/pow__manager_8cpp_source.html',
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a8bfd641d8e955e92450953ee0b7685df">   54</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a8bfd641d8e955e92450953ee0b7685df">PoWManager::Commit</a>(std::unique_ptr&lt;Block&gt; block){</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>       std::unique_lock&lt;std::mutex&gt; lck(tx_mutex_);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">if</span>(block_manager_-&gt;Commit(std::move(block))==0){</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;commit block succ&quot;</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="comment">//LOG(ERROR)&lt;&lt;&quot;commit block succ&quot;;</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">NotifyNextBlock</a>();</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;commit block done&quot;</span>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">   63</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">PoWManager::NotifyNextBlock</a>(){</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    std::unique_lock&lt;std::mutex&gt; lk(mutex_);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    cv_.notify_one();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">if</span>(current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59abf7f3f68de613b6c9d693399151eeba2">GENERATE_NEW</a>){</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        current_status_ = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;notify block:&quot;</span>&lt;&lt;current_status_;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a96372fbee7868ea5aa2f25745a592c5f">   72</a></span><a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59">PoWManager::BlockStatus</a> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a96372fbee7868ea5aa2f25745a592c5f">PoWManager::GetBlockStatus</a>() {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> current_status_;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">   76</a></span>absl::Status <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">PoWManager::WaitBlockDone</a>(){</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;wait block:&quot;</span>&lt;&lt;current_status_;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">//int timeout_ms = config_.GetMiningTime();</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">//60000000;</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">int</span> timeout_ms = 300000000;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    std::unique_lock&lt;std::mutex&gt; lk(mutex_);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    cv_.wait_for(lk, std::chrono::microseconds(timeout_ms), [&amp;] {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">return</span> current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            });</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;wait block done:&quot;</span> &lt;&lt; current_status_&lt;&lt;<span class="stringliteral">&quot; next block?:&quot;</span>&lt;&lt;(current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">if</span> (current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>){</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> absl::OkStatus();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> absl::NotFoundError(<span class="stringliteral">&quot;No new transaction.&quot;</span>);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a8fe2d5733aa51ca376762fbfa0cf394f">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a8fe2d5733aa51ca376762fbfa0cf394f">PoWManager::Reset</a>(){</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  transaction_accessor_ = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac6704450925c63c46f0347fb5404cfe1">GetTransactionAccessor</a>(config_);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  shift_manager_ = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a6c3cb46d428fc078ba26d2a99ee66962">GetShiftManager</a>(config_);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  block_manager_ = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a61a127e26d9af5048c602b727d570ac2">GetBlockManager</a>(config_);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;reset:&quot;</span>&lt;&lt;transaction_accessor_.get();</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#afa64ba99cf514150a4c937385c0afdc4">   99</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#afa64ba99cf514150a4c937385c0afdc4">PoWManager::Start</a>() {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  miner_thread_ = std::thread(&amp;<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">PoWManager::MiningProcess</a>, <span class="keyword">this</span>);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  fetch_thread_ = std::thread(&amp;<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">PoWManager::MiningResultsProcess</a>, <span class="keyword">this</span>);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  verify_thread_ = std::thread(&amp;<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">PoWManager::ResultsVerifyProcess</a>, <span class="keyword">this</span>);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  is_stop_ = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>}</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#affa578cd85d3d756e887efbfb4befcb0">  106</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#affa578cd85d3d756e887efbfb4befcb0">PoWManager::Stop</a>() {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    is_stop_ = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">  110</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">PoWManager::IsRunning</a>() {</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">return</span> !is_stop_;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a5fab0009ad5729aad7be3b9673b3c410">  114</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a5fab0009ad5729aad7be3b9673b3c410">PoWManager::AddShiftMsg</a>(<span class="keyword">const</span> SliceInfo&amp; slice_info) {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    shift_manager_-&gt;AddSliceInfo(slice_info);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1c0667db6817467a24367da39c4325e3">  118</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1c0667db6817467a24367da39c4325e3">PoWManager::ReceiveMiningResult</a>(std::unique_ptr&lt;BlockMiningInfo&gt; info) {</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;receive mining result from:&quot;</span>&lt;&lt;info-&gt;miner()&lt;&lt;<span class="stringliteral">&quot; seq:&quot;</span>&lt;&lt;info-&gt;header().min_seq();</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>       std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    result_candidate_.insert(std::make_pair(info-&gt;header().min_seq(), std::move(info)));</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">  124</a></span>uint64_t <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">PoWManager::GetFirstResultSeq</a>(){</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>       std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>       <span class="keywordflow">if</span>(result_candidate_.empty()){</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>           <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>       }</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">return</span> result_candidate_.begin()-&gt;first;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">  132</a></span>std::unique_ptr&lt;BlockMiningInfo&gt; <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">PoWManager::GetResultInfo</a>(uint64_t seq) {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>       <span class="keyword">auto</span> it = result_candidate_.find(seq);</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>       <span class="keywordflow">if</span>(it == result_candidate_.end()){</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>           <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>       }</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>       <span class="keyword">auto</span> ret = std::move(it-&gt;second);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>       result_candidate_.erase(it);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>       <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>}</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">  143</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">PoWManager::RemoveResult</a>(uint64_t seq){</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>       std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>       <span class="keywordflow">if</span>(result_candidate_.empty()){</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>           return ;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>       }</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>       <span class="keyword">auto</span> it = result_candidate_.find(seq);</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>       <span class="keywordflow">if</span>(it == result_candidate_.end()){</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>           <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>       }</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>       result_candidate_.erase(it);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>}</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa2bd1bfd382458f312e98c76a91ba233">  156</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa2bd1bfd382458f312e98c76a91ba233">PoWManager::IsSent</a>(uint64_t seq){</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">if</span>(seq &lt;= last_done_seq_){</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">return</span> sent_list_.find(seq) != sent_list_.end();</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a2404b88485d9f6207bb8e6f7e462f9b7">  163</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a2404b88485d9f6207bb8e6f7e462f9b7">PoWManager::SetSent</a>(uint64_t seq){</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    sent_list_.insert(seq);</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">  168</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">PoWManager::GetShiftMsg</a>(<span class="keyword">const</span> SliceInfo&amp; slice_info) {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;check shift msg:&quot;</span>&lt;&lt;slice_info.DebugString();</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">if</span>(!shift_manager_-&gt;Check(slice_info)){</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    }</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;slice info is ok:&quot;</span>&lt;&lt;slice_info.DebugString();</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keywordflow">if</span>(block_manager_-&gt;SetSliceIdx(slice_info)==1){</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    }</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">  180</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">PoWManager::GetMiningTxn</a>(<a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5">MiningType</a> type){</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>       std::unique_lock&lt;std::mutex&gt; lck(tx_mutex_);</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>       <span class="comment">//LOG(ERROR)&lt;&lt;&quot;get mining txn status:&quot;&lt;&lt;current_status_;</span></div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">if</span>(current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>){</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">if</span>(type == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">NEWBLOCK</a>){</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        uint64_t max_seq = std::max(block_manager_-&gt;GetLastSeq(), block_manager_-&gt;GetLastCandidateSeq());</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="comment">//LOG(ERROR)&lt;&lt;&quot;get block last max:&quot;&lt;&lt;block_manager_-&gt;GetLastSeq()&lt;&lt;&quot; &quot;&lt;&lt;block_manager_-&gt;GetLastCandidateSeq();</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keyword">auto</span> client_tx = transaction_accessor_-&gt;ConsumeTransactions(max_seq+1);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keywordflow">if</span>(client_tx == <span class="keyword">nullptr</span>){</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>          <span class="keywordflow">return</span> -2;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        }</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        block_manager_-&gt;SetNewMiningBlock(std::move(client_tx));</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    }</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>            <span class="comment">//prometheus_handler_-&gt;Inc(SHIFT_MSG, 1);</span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordtype">int</span> ret = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">GetShiftMsg</a>(need_slice_info_);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="comment">//LOG(ERROR)&lt;&lt;&quot;get shift msg ret:&quot;&lt;&lt;ret;</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keywordflow">if</span>(ret==1){</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            <span class="comment">// no solution after enought shift.</span></div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        }</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="keywordflow">if</span> (ret !=0){</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>          <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">BroadCastShiftMsg</a>(need_slice_info_);</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>          <span class="keywordflow">return</span> -2;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        }</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;get shift msg:&quot;</span>&lt;&lt;need_slice_info_.DebugString();</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    }</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">  212</a></span><a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3">PoWManager::MiningStatus</a> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">PoWManager::Wait</a>(){</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    current_status_ = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59abf7f3f68de613b6c9d693399151eeba2">GENERATE_NEW</a>;</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;wait mining&quot;</span>;</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">auto</span> mining_thread = std::thread([&amp;](){</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;start to mine&quot;</span>;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        absl::Status status = block_manager_-&gt;Mine();</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="keywordflow">if</span>(status.ok()){</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;mine done get info&quot;</span>;</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            std::unique_ptr&lt;BlockMiningInfo&gt; info= block_manager_-&gt;GetPendingBlockInfo();</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            <span class="keywordflow">if</span>(info !=<span class="keyword">nullptr</span>){</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>                LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send to pbft:&quot;</span>&lt;&lt;info-&gt;header().min_seq();</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>                transaction_accessor_-&gt;SendMiningResult(*info);</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">BroadCastMiningResult</a>(*info);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>            }</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>            LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;done mine&quot;</span>;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        }</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;mine:&quot;</span>&lt;&lt;status.ok();</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    });</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keyword">auto</span> status = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">WaitBlockDone</a>();</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordflow">if</span>(mining_thread.joinable()){</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        mining_thread.join();</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    }</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;success:&quot;</span>&lt;&lt;status.ok()&lt;&lt;<span class="stringliteral">&quot; status:&quot;</span>&lt;&lt;current_status_;</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordflow">if</span>(status.ok()||current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>){</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a32b6cd48a1f19a9126432976f8e00e74">MiningStatus::OK</a>;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    }</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a80ab548ae486a515e14e9543c6ee969b">MiningStatus::TIMEOUT</a>;</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>}</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">// receive a block before send and after need send</span></div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">  243</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">PoWManager::SendShiftMsg</a>(){</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send shift&quot;</span>;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    SliceInfo slice_info;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    slice_info.set_shift_idx(block_manager_-&gt;GetSliceIdx()+1);</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    slice_info.set_height(</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            block_manager_-&gt;GetNewMiningBlock()-&gt;header().height());</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    slice_info.set_sender(config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">BroadCastShiftMsg</a>(slice_info);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    need_slice_info_ = slice_info;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send shift msg&quot;</span>;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>}</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">  256</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">PoWManager::BroadCastShiftMsg</a>(<span class="keyword">const</span> SliceInfo&amp; slice_info) {</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  <span class="keyword">auto</span> request = <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a26e13db44e53ac446f5fc96fb4cf4848">NewRequest</a>(PoWRequest::TYPE_SHIFT_MSG, slice_info,</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                            config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  bc_client_-&gt;<a class="code hl_function" href="../../d1/d1b/classresdb_1_1ResDBReplicaClient.html#a0f69bcd0b25ccc022fa57258a84c19fc">BroadCast</a>(*request);</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>}</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">  263</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">PoWManager::BroadCastMiningResult</a>(<span class="keyword">const</span> BlockMiningInfo&amp; info) {</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="keyword">auto</span> request = <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a26e13db44e53ac446f5fc96fb4cf4848">NewRequest</a>(PoWRequest::TYPE_MINING_RESULTS, info,</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                            config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;bc result:&quot;</span>&lt;&lt;info.header().min_seq();</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  bc_client_-&gt;<a class="code hl_function" href="../../d1/d1b/classresdb_1_1ResDBReplicaClient.html#a0f69bcd0b25ccc022fa57258a84c19fc">BroadCast</a>(*request);</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>}</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">// Broadcast the new block if once it is committed.</span></div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">  272</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">PoWManager::MiningResultsProcess</a>() {</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  uint64_t current_seq = 0;</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  <span class="keywordflow">while</span> (<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()) {</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>      uint64_t last_seq = block_manager_-&gt;GetLastSeq();</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordflow">if</span>(last_seq+1 &lt;= current_seq){</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      sleep(1);</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    }</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>      <span class="keywordflow">while</span>(<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()){</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>          absl::StatusOr&lt;BlockMiningInfo&gt; resp = transaction_accessor_-&gt;FetchingResult(last_seq+1);</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>      <span class="keywordflow">if</span>(resp.ok()){</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordflow">while</span>(<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()){</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>          <span class="keywordtype">int</span> ret = block_manager_-&gt;Confirm(*resp);</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>          <span class="keywordflow">if</span>(ret == 0) {</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">NotifyNextBlock</a>();</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>            current_seq = last_seq+1;</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>          }</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>          <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ret==-1){</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>            LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;block not ready&quot;</span>;</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>            sleep(1);</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>          }</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>          <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>          }</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        }</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>          }</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>          <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>              <span class="comment">//LOG(ERROR)&lt;&lt;&quot;no result, continue query&quot;;</span></div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>              sleep(1);</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>          }</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      }</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  }</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>}</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa52c66c2ada4a26e18c01e22b2261983">  310</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa52c66c2ada4a26e18c01e22b2261983">PoWManager::NotifyBroadCast</a>() {</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  std::unique_lock&lt;std::mutex&gt; lck(broad_cast_mtx_);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>  broad_cast_cv_.notify_all();</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>}</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">  315</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">PoWManager::ResultsVerifyProcess</a>() {</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  <span class="keywordflow">while</span> (<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()) {</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      uint64_t seq = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">GetFirstResultSeq</a>();</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>      <span class="keywordflow">if</span>(seq == 0){</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>          sleep(1);</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>      }</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>      uint64_t current_seq = block_manager_-&gt;GetLastSeq();</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      <span class="keywordflow">if</span>(seq &lt;= current_seq){</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>          <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">RemoveResult</a>(seq);</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;get result seq invalid:&quot;</span>&lt;&lt;seq;</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>      }</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>      Block * block = block_manager_-&gt;GetCurrentBlock();</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>      <span class="keywordflow">if</span>(block == <span class="keyword">nullptr</span>){</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;no mining block&quot;</span>;</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>          sleep(1);</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>      }</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>      <span class="keywordflow">if</span>(block-&gt;header().min_seq() != seq){</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;result not equal to the mining block:&quot;</span>&lt;&lt;seq&lt;&lt;<span class="stringliteral">&quot; block:&quot;</span>&lt;&lt;block-&gt;header().min_seq();</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>          sleep(1);</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>      }</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      std::unique_ptr&lt;BlockMiningInfo&gt; block_info = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">GetResultInfo</a>(seq);</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>      LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;block info miner:&quot;</span>&lt;&lt;block_info-&gt;miner();</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>      <span class="keywordflow">if</span>(block_info == <span class="keyword">nullptr</span>){</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      }</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      <span class="keywordflow">if</span>(block_info-&gt;miner() == self_id_){</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>          sleep(1);</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>      }</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>      </div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>      <span class="keywordflow">if</span>(!block_manager_-&gt;VerifyBlock(*block_info)){</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;varify block fail&quot;</span>;</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>      }</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>      LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send to pbft&quot;</span>;</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>      transaction_accessor_-&gt;SendMiningResult(*block_info);</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>  }</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>}</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment">// Mining the new blocks got from PBFT cluster.</span></div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">  362</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">PoWManager::MiningProcess</a>() {</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keywordflow">if</span>(config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id() &gt; 8 &amp;&amp; config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id() &lt; 13){</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>        <span class="comment">//return;</span></div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    }</div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;start&quot;</span>;</div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5">MiningType</a> type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="keywordflow">while</span> (<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()) {</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <span class="keywordtype">int</span> ret = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">GetMiningTxn</a>(type);</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="keywordflow">if</span>(ret&lt;0){</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>              usleep(10000);</div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        }</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ret&gt;0){</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>            type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        }</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        <span class="keyword">auto</span> mining_status = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">Wait</a>();</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        <span class="keywordflow">if</span>(mining_status == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a80ab548ae486a515e14e9543c6ee969b">MiningStatus::TIMEOUT</a>){</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>            type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a3e8f982f6bac3daadcd8d6f966b4aa81">MiningType::SHIFTING</a>;</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>            <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">SendShiftMsg</a>();</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        }</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>        <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>            type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>            <span class="comment">//LOG(ERROR)&lt;&lt;&quot;done&quot;;</span></div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>                <span class="comment">//NotifyBroadCast();</span></div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>            <span class="comment">//SendResults();</span></div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>        }</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">   62</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">PoWManager::NotifyNextBlock</a>(){</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::unique_lock&lt;std::mutex&gt; lk(mutex_);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    cv_.notify_one();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">if</span>(current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59abf7f3f68de613b6c9d693399151eeba2">GENERATE_NEW</a>){</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        current_status_ = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">//LOG(ERROR)&lt;&lt;&quot;notify block:&quot;&lt;&lt;current_status_;</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a96372fbee7868ea5aa2f25745a592c5f">   71</a></span><a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59">PoWManager::BlockStatus</a> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a96372fbee7868ea5aa2f25745a592c5f">PoWManager::GetBlockStatus</a>() {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> current_status_;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">   75</a></span>absl::Status <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">PoWManager::WaitBlockDone</a>(){</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;wait block:&quot;</span>&lt;&lt;current_status_;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">//int timeout_ms = config_.GetMiningTime();</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">//60000000;</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">int</span> timeout_ms = 300000000;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    std::unique_lock&lt;std::mutex&gt; lk(mutex_);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    cv_.wait_for(lk, std::chrono::microseconds(timeout_ms), [&amp;] {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            <span class="keywordflow">return</span> current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            });</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">//LOG(ERROR)&lt;&lt;&quot;wait block done:&quot; &lt;&lt; current_status_&lt;&lt;&quot; next block?:&quot;&lt;&lt;(current_status_ == NEXT_NEWBLOCK);</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">if</span> (current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>){</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">return</span> absl::OkStatus();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> absl::NotFoundError(<span class="stringliteral">&quot;No new transaction.&quot;</span>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a8fe2d5733aa51ca376762fbfa0cf394f">   91</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a8fe2d5733aa51ca376762fbfa0cf394f">PoWManager::Reset</a>(){</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  transaction_accessor_ = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac6704450925c63c46f0347fb5404cfe1">GetTransactionAccessor</a>(config_);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  shift_manager_ = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a6c3cb46d428fc078ba26d2a99ee66962">GetShiftManager</a>(config_);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  block_manager_ = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a61a127e26d9af5048c602b727d570ac2">GetBlockManager</a>(config_);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#afa64ba99cf514150a4c937385c0afdc4">   97</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#afa64ba99cf514150a4c937385c0afdc4">PoWManager::Start</a>() {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  miner_thread_ = std::thread(&amp;<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">PoWManager::MiningProcess</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  fetch_thread_ = std::thread(&amp;<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">PoWManager::MiningResultsProcess</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  verify_thread_ = std::thread(&amp;<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">PoWManager::ResultsVerifyProcess</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  is_stop_ = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#affa578cd85d3d756e887efbfb4befcb0">  104</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#affa578cd85d3d756e887efbfb4befcb0">PoWManager::Stop</a>() {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    is_stop_ = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">  108</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">PoWManager::IsRunning</a>() {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">return</span> !is_stop_;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a5fab0009ad5729aad7be3b9673b3c410">  112</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a5fab0009ad5729aad7be3b9673b3c410">PoWManager::AddShiftMsg</a>(<span class="keyword">const</span> SliceInfo&amp; slice_info) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    shift_manager_-&gt;AddSliceInfo(slice_info);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>}</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1c0667db6817467a24367da39c4325e3">  116</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1c0667db6817467a24367da39c4325e3">PoWManager::ReceiveMiningResult</a>(std::unique_ptr&lt;BlockMiningInfo&gt; info) {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;receive mining result from:&quot;</span>&lt;&lt;info-&gt;miner()&lt;&lt;<span class="stringliteral">&quot; seq:&quot;</span>&lt;&lt;info-&gt;header().min_seq();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>       std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    result_candidate_.insert(std::make_pair(info-&gt;header().min_seq(), std::move(info)));</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">  122</a></span>uint64_t <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">PoWManager::GetFirstResultSeq</a>(){</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>       std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>       <span class="keywordflow">if</span>(result_candidate_.empty()){</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>           <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>       }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">return</span> result_candidate_.begin()-&gt;first;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>}</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">  130</a></span>std::unique_ptr&lt;BlockMiningInfo&gt; <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">PoWManager::GetResultInfo</a>(uint64_t seq) {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>       <span class="keyword">auto</span> it = result_candidate_.find(seq);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>       <span class="keywordflow">if</span>(it == result_candidate_.end()){</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>           <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>       }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>       <span class="keyword">auto</span> ret = std::move(it-&gt;second);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>       result_candidate_.erase(it);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>       <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>}</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">  141</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">PoWManager::RemoveResult</a>(uint64_t seq){</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>       std::unique_lock&lt;std::mutex&gt; lck(block_result_mutex_);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>       <span class="keywordflow">if</span>(result_candidate_.empty()){</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>           return ;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>       }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>       <span class="keyword">auto</span> it = result_candidate_.find(seq);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>       <span class="keywordflow">if</span>(it == result_candidate_.end()){</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>           <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>       }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>       result_candidate_.erase(it);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa2bd1bfd382458f312e98c76a91ba233">  154</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa2bd1bfd382458f312e98c76a91ba233">PoWManager::IsSent</a>(uint64_t seq){</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">if</span>(seq &lt;= last_done_seq_){</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">return</span> sent_list_.find(seq) != sent_list_.end();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a2404b88485d9f6207bb8e6f7e462f9b7">  161</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a2404b88485d9f6207bb8e6f7e462f9b7">PoWManager::SetSent</a>(uint64_t seq){</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    sent_list_.insert(seq);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">  166</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">PoWManager::GetShiftMsg</a>(<span class="keyword">const</span> SliceInfo&amp; slice_info) {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;check shift msg:&quot;</span>&lt;&lt;slice_info.DebugString();</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordflow">if</span>(!shift_manager_-&gt;Check(slice_info)){</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    }</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;slice info is ok:&quot;</span>&lt;&lt;slice_info.DebugString();</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <span class="keywordflow">if</span>(block_manager_-&gt;SetSliceIdx(slice_info)==1){</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>}</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">  178</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">PoWManager::GetMiningTxn</a>(<a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5">MiningType</a> type){</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>       std::unique_lock&lt;std::mutex&gt; lck(tx_mutex_);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>       <span class="comment">//LOG(ERROR)&lt;&lt;&quot;get mining txn status:&quot;&lt;&lt;current_status_;</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordflow">if</span>(current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>){</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    }</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keywordflow">if</span>(type == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">NEWBLOCK</a>){</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        uint64_t max_seq = std::max(block_manager_-&gt;GetLastSeq(), block_manager_-&gt;GetLastCandidateSeq());</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="comment">//LOG(ERROR)&lt;&lt;&quot;get block last max:&quot;&lt;&lt;block_manager_-&gt;GetLastSeq()&lt;&lt;&quot; &quot;&lt;&lt;block_manager_-&gt;GetLastCandidateSeq();</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keyword">auto</span> client_tx = transaction_accessor_-&gt;ConsumeTransactions(max_seq+1);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keywordflow">if</span>(client_tx == <span class="keyword">nullptr</span>){</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>          <span class="keywordflow">return</span> -2;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        block_manager_-&gt;SetNewMiningBlock(std::move(client_tx));</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <span class="comment">//prometheus_handler_-&gt;Inc(SHIFT_MSG, 1);</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordtype">int</span> ret = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">GetShiftMsg</a>(need_slice_info_);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="comment">//LOG(ERROR)&lt;&lt;&quot;get shift msg ret:&quot;&lt;&lt;ret;</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordflow">if</span>(ret==1){</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <span class="comment">// no solution after enought shift.</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="keywordflow">if</span> (ret !=0){</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>          <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">BroadCastShiftMsg</a>(need_slice_info_);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>          <span class="keywordflow">return</span> -2;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;get shift msg:&quot;</span>&lt;&lt;need_slice_info_.DebugString();</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>}</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">  210</a></span><a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3">PoWManager::MiningStatus</a> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">PoWManager::Wait</a>(){</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    current_status_ = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59abf7f3f68de613b6c9d693399151eeba2">GENERATE_NEW</a>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;wait mining&quot;</span>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keyword">auto</span> mining_thread = std::thread([&amp;](){</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;start to mine&quot;</span>;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        absl::Status status = block_manager_-&gt;Mine();</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">if</span>(status.ok()){</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;mine done get info&quot;</span>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            std::unique_ptr&lt;BlockMiningInfo&gt; info= block_manager_-&gt;GetPendingBlockInfo();</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            <span class="keywordflow">if</span>(info !=<span class="keyword">nullptr</span>){</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send to pbft:&quot;</span>&lt;&lt;info-&gt;header().min_seq();</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                transaction_accessor_-&gt;SendMiningResult(*info);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>                <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">BroadCastMiningResult</a>(*info);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>            LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;done mine&quot;</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;mine:&quot;</span>&lt;&lt;status.ok();</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    });</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keyword">auto</span> status = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">WaitBlockDone</a>();</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">if</span>(mining_thread.joinable()){</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        mining_thread.join();</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    }</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;success:&quot;</span>&lt;&lt;status.ok()&lt;&lt;<span class="stringliteral">&quot; status:&quot;</span>&lt;&lt;current_status_;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordflow">if</span>(status.ok()||current_status_ == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">NEXT_NEWBLOCK</a>){</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a32b6cd48a1f19a9126432976f8e00e74">MiningStatus::OK</a>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a80ab548ae486a515e14e9543c6ee969b">MiningStatus::TIMEOUT</a>;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>}</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">// receive a block before send and after need send</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">  241</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">PoWManager::SendShiftMsg</a>(){</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send shift&quot;</span>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    SliceInfo slice_info;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    slice_info.set_shift_idx(block_manager_-&gt;GetSliceIdx()+1);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    slice_info.set_height(</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            block_manager_-&gt;GetNewMiningBlock()-&gt;header().height());</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    slice_info.set_sender(config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">BroadCastShiftMsg</a>(slice_info);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    need_slice_info_ = slice_info;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send shift msg&quot;</span>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>}</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">  254</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">PoWManager::BroadCastShiftMsg</a>(<span class="keyword">const</span> SliceInfo&amp; slice_info) {</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <span class="keyword">auto</span> request = <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a26e13db44e53ac446f5fc96fb4cf4848">NewRequest</a>(PoWRequest::TYPE_SHIFT_MSG, slice_info,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                            config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  bc_client_-&gt;<a class="code hl_function" href="../../d1/d1b/classresdb_1_1ResDBReplicaClient.html#a0f69bcd0b25ccc022fa57258a84c19fc">BroadCast</a>(*request);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>}</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">  261</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">PoWManager::BroadCastMiningResult</a>(<span class="keyword">const</span> BlockMiningInfo&amp; info) {</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  <span class="keyword">auto</span> request = <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a26e13db44e53ac446f5fc96fb4cf4848">NewRequest</a>(PoWRequest::TYPE_MINING_RESULTS, info,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                            config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;bc result:&quot;</span>&lt;&lt;info.header().min_seq();</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  bc_client_-&gt;<a class="code hl_function" href="../../d1/d1b/classresdb_1_1ResDBReplicaClient.html#a0f69bcd0b25ccc022fa57258a84c19fc">BroadCast</a>(*request);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>}</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">// Broadcast the new block if once it is committed.</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">  270</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">PoWManager::MiningResultsProcess</a>() {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  uint64_t current_seq = 0;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  <span class="keywordflow">while</span> (<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()) {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      uint64_t last_seq = block_manager_-&gt;GetLastSeq();</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordflow">if</span>(last_seq+1 &lt;= current_seq){</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>      sleep(1);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    }</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      <span class="keywordflow">while</span>(<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()){</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>          absl::StatusOr&lt;BlockMiningInfo&gt; resp = transaction_accessor_-&gt;FetchingResult(last_seq+1);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>      <span class="keywordflow">if</span>(resp.ok()){</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="keywordflow">while</span>(<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()){</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>          <span class="keywordtype">int</span> ret = block_manager_-&gt;Confirm(*resp);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>          <span class="keywordflow">if</span>(ret == 0) {</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>            <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">NotifyNextBlock</a>();</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>            current_seq = last_seq+1;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>          }</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>          <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ret==-1){</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>            LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;block not ready&quot;</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>            sleep(1);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>          }</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>          <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>          }</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        }</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>          }</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>          <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>              <span class="comment">//LOG(ERROR)&lt;&lt;&quot;no result, continue query&quot;;</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>              sleep(1);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>          }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      }</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  }</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>}</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa52c66c2ada4a26e18c01e22b2261983">  308</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa52c66c2ada4a26e18c01e22b2261983">PoWManager::NotifyBroadCast</a>() {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>  std::unique_lock&lt;std::mutex&gt; lck(broad_cast_mtx_);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>  broad_cast_cv_.notify_all();</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>}</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">  313</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">PoWManager::ResultsVerifyProcess</a>() {</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>  <span class="keywordflow">while</span> (<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()) {</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>      uint64_t seq = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">GetFirstResultSeq</a>();</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>      <span class="keywordflow">if</span>(seq == 0){</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>          sleep(1);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>      }</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>      uint64_t current_seq = block_manager_-&gt;GetLastSeq();</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>      <span class="keywordflow">if</span>(seq &lt;= current_seq){</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>          <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">RemoveResult</a>(seq);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;get result seq invalid:&quot;</span>&lt;&lt;seq;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>      }</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>      Block * block = block_manager_-&gt;GetCurrentBlock();</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>      <span class="keywordflow">if</span>(block == <span class="keyword">nullptr</span>){</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;no mining block&quot;</span>;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>          sleep(1);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>      }</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>      <span class="keywordflow">if</span>(block-&gt;header().min_seq() != seq){</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;result not equal to the mining block:&quot;</span>&lt;&lt;seq&lt;&lt;<span class="stringliteral">&quot; block:&quot;</span>&lt;&lt;block-&gt;header().min_seq();</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>          sleep(1);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>      }</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>      std::unique_ptr&lt;BlockMiningInfo&gt; block_info = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">GetResultInfo</a>(seq);</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>      LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;block info miner:&quot;</span>&lt;&lt;block_info-&gt;miner();</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      <span class="keywordflow">if</span>(block_info == <span class="keyword">nullptr</span>){</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>      }</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      <span class="keywordflow">if</span>(block_info-&gt;miner() == self_id_){</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>          sleep(1);</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>      }</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>      </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>      <span class="keywordflow">if</span>(!block_manager_-&gt;VerifyBlock(*block_info)){</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>          LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;varify block fail&quot;</span>;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>      }</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>      LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;send to pbft&quot;</span>;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>      transaction_accessor_-&gt;SendMiningResult(*block_info);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>  }</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>}</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment">// Mining the new blocks got from PBFT cluster.</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">  360</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">PoWManager::MiningProcess</a>() {</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    <span class="keywordflow">if</span>(config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id() &gt; 8 &amp;&amp; config_.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id() &lt; 13){</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        <span class="comment">//return;</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    }</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;start&quot;</span>;</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <a class="code hl_enumeration" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5">MiningType</a> type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="keywordflow">while</span> (<a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">IsRunning</a>()) {</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        <span class="keywordtype">int</span> ret = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">GetMiningTxn</a>(type);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        <span class="keywordflow">if</span>(ret&lt;0){</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>              usleep(10000);</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        }</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ret&gt;0){</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>            type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>        }</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        <span class="keyword">auto</span> mining_status = <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">Wait</a>();</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>        <span class="keywordflow">if</span>(mining_status == <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a80ab548ae486a515e14e9543c6ee969b">MiningStatus::TIMEOUT</a>){</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>            type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a3e8f982f6bac3daadcd8d6f966b4aa81">MiningType::SHIFTING</a>;</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>            <a class="code hl_function" href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">SendShiftMsg</a>();</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        }</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>            type = <a class="code hl_enumvalue" href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">MiningType::NEWBLOCK</a>;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            <span class="comment">//LOG(ERROR)&lt;&lt;&quot;done&quot;;</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>                <span class="comment">//NotifyBroadCast();</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>            <span class="comment">//SendResults();</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        }</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    }</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>}</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>}</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>}</div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a1546e15dce65d62cccd50be32592260b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">resdb::PoWManager::RemoveResult</a></div><div class="ttdeci">void RemoveResult(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00143">pow_manager.cpp:143</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a15cdfbc020fb85189944befcaf22afe8"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">resdb::PoWManager::Wait</a></div><div class="ttdeci">virtual MiningStatus Wait()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00212">pow_manager.cpp:212</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a19bd42d1b2d41d6122ff7d28a5b04cb4"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">resdb::PoWManager::GetMiningTxn</a></div><div class="ttdeci">int GetMiningTxn(MiningType type)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00180">pow_manager.cpp:180</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a1c0667db6817467a24367da39c4325e3"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a1c0667db6817467a24367da39c4325e3">resdb::PoWManager::ReceiveMiningResult</a></div><div class="ttdeci">void ReceiveMiningResult(std::unique_ptr&lt; BlockMiningInfo &gt; info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00118">pow_manager.cpp:118</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a23c47459c5fd1e11530bb04659aed9a2"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">resdb::PoWManager::BroadCastShiftMsg</a></div><div class="ttdeci">int BroadCastShiftMsg(const SliceInfo &amp;slice_info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00256">pow_manager.cpp:256</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a2404b88485d9f6207bb8e6f7e462f9b7"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a2404b88485d9f6207bb8e6f7e462f9b7">resdb::PoWManager::SetSent</a></div><div class="ttdeci">void SetSent(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00163">pow_manager.cpp:163</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a1546e15dce65d62cccd50be32592260b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a1546e15dce65d62cccd50be32592260b">resdb::PoWManager::RemoveResult</a></div><div class="ttdeci">void RemoveResult(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00141">pow_manager.cpp:141</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a15cdfbc020fb85189944befcaf22afe8"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a15cdfbc020fb85189944befcaf22afe8">resdb::PoWManager::Wait</a></div><div class="ttdeci">virtual MiningStatus Wait()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00210">pow_manager.cpp:210</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a19bd42d1b2d41d6122ff7d28a5b04cb4"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a19bd42d1b2d41d6122ff7d28a5b04cb4">resdb::PoWManager::GetMiningTxn</a></div><div class="ttdeci">int GetMiningTxn(MiningType type)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00178">pow_manager.cpp:178</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a1c0667db6817467a24367da39c4325e3"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a1c0667db6817467a24367da39c4325e3">resdb::PoWManager::ReceiveMiningResult</a></div><div class="ttdeci">void ReceiveMiningResult(std::unique_ptr&lt; BlockMiningInfo &gt; info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00116">pow_manager.cpp:116</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a23c47459c5fd1e11530bb04659aed9a2"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2">resdb::PoWManager::BroadCastShiftMsg</a></div><div class="ttdeci">int BroadCastShiftMsg(const SliceInfo &amp;slice_info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00254">pow_manager.cpp:254</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a2404b88485d9f6207bb8e6f7e462f9b7"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a2404b88485d9f6207bb8e6f7e462f9b7">resdb::PoWManager::SetSent</a></div><div class="ttdeci">void SetSent(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00161">pow_manager.cpp:161</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_a304d60a6ff6d6e871584d8366ef8fefd"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a304d60a6ff6d6e871584d8366ef8fefd">resdb::PoWManager::PoWManager</a></div><div class="ttdeci">PoWManager(const ResDBPoCConfig &amp;config, ResDBReplicaClient *bc_client, TransactionExecutorImpl *executor)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00022">pow_manager.cpp:22</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a4db07fed591a6c1ba19886ab02cbb6af"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">resdb::PoWManager::ResultsVerifyProcess</a></div><div class="ttdeci">void ResultsVerifyProcess()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00315">pow_manager.cpp:315</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a584bd7978f343ddb8a13b76ef81b1a8b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">resdb::PoWManager::GetFirstResultSeq</a></div><div class="ttdeci">uint64_t GetFirstResultSeq()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00124">pow_manager.cpp:124</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a5fab0009ad5729aad7be3b9673b3c410"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a5fab0009ad5729aad7be3b9673b3c410">resdb::PoWManager::AddShiftMsg</a></div><div class="ttdeci">void AddShiftMsg(const SliceInfo &amp;slice_info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00114">pow_manager.cpp:114</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a4db07fed591a6c1ba19886ab02cbb6af"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a4db07fed591a6c1ba19886ab02cbb6af">resdb::PoWManager::ResultsVerifyProcess</a></div><div class="ttdeci">void ResultsVerifyProcess()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00313">pow_manager.cpp:313</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a584bd7978f343ddb8a13b76ef81b1a8b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a584bd7978f343ddb8a13b76ef81b1a8b">resdb::PoWManager::GetFirstResultSeq</a></div><div class="ttdeci">uint64_t GetFirstResultSeq()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00122">pow_manager.cpp:122</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a5fab0009ad5729aad7be3b9673b3c410"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a5fab0009ad5729aad7be3b9673b3c410">resdb::PoWManager::AddShiftMsg</a></div><div class="ttdeci">void AddShiftMsg(const SliceInfo &amp;slice_info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00112">pow_manager.cpp:112</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_a61a127e26d9af5048c602b727d570ac2"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a61a127e26d9af5048c602b727d570ac2">resdb::PoWManager::GetBlockManager</a></div><div class="ttdeci">virtual std::unique_ptr&lt; BlockManager &gt; GetBlockManager(const ResDBPoCConfig &amp;config)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00050">pow_manager.cpp:50</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_a632ed157b00c88bf2e4e9f19c599e7c3"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3">resdb::PoWManager::MiningStatus</a></div><div class="ttdeci">MiningStatus</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00028">pow_manager.h:28</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_a632ed157b00c88bf2e4e9f19c599e7c3a32b6cd48a1f19a9126432976f8e00e74"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a32b6cd48a1f19a9126432976f8e00e74">resdb::PoWManager::OK</a></div><div class="ttdeci">@ OK</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00029">pow_manager.h:29</a></div></div>
@@ -510,28 +508,28 @@ $(document).ready(function(){initNavTree('dd/d88/pow__manager_8cpp_source.html',
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_a6c3cb46d428fc078ba26d2a99ee66962"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a6c3cb46d428fc078ba26d2a99ee66962">resdb::PoWManager::GetShiftManager</a></div><div class="ttdeci">virtual std::unique_ptr&lt; ShiftManager &gt; GetShiftManager(const ResDBPoCConfig &amp;config)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00046">pow_manager.cpp:46</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_a8794ef362cb6a728bcc7abb53da99ba7"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a8794ef362cb6a728bcc7abb53da99ba7">resdb::PoWManager::~PoWManager</a></div><div class="ttdeci">virtual ~PoWManager()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00032">pow_manager.cpp:32</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_a8bfd641d8e955e92450953ee0b7685df"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a8bfd641d8e955e92450953ee0b7685df">resdb::PoWManager::Commit</a></div><div class="ttdeci">void Commit(std::unique_ptr&lt; Block &gt; block)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00054">pow_manager.cpp:54</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a8fe2d5733aa51ca376762fbfa0cf394f"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a8fe2d5733aa51ca376762fbfa0cf394f">resdb::PoWManager::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00092">pow_manager.cpp:92</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_a96372fbee7868ea5aa2f25745a592c5f"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a96372fbee7868ea5aa2f25745a592c5f">resdb::PoWManager::GetBlockStatus</a></div><div class="ttdeci">BlockStatus GetBlockStatus()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00072">pow_manager.cpp:72</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_aa2bd1bfd382458f312e98c76a91ba233"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aa2bd1bfd382458f312e98c76a91ba233">resdb::PoWManager::IsSent</a></div><div class="ttdeci">bool IsSent(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00156">pow_manager.cpp:156</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_aa3d6e164e7724ee1828ffa91dfc1959c"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">resdb::PoWManager::MiningProcess</a></div><div class="ttdeci">void MiningProcess()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00362">pow_manager.cpp:362</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_aa52c66c2ada4a26e18c01e22b2261983"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aa52c66c2ada4a26e18c01e22b2261983">resdb::PoWManager::NotifyBroadCast</a></div><div class="ttdeci">virtual void NotifyBroadCast()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00310">pow_manager.cpp:310</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_ab5cb8e3912a0f5f2870dac12731ef0e2"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">resdb::PoWManager::NotifyNextBlock</a></div><div class="ttdeci">void NotifyNextBlock()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00063">pow_manager.cpp:63</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_ab6aa44fa14343584167b9710a611cb69"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">resdb::PoWManager::WaitBlockDone</a></div><div class="ttdeci">absl::Status WaitBlockDone()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00076">pow_manager.cpp:76</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_abe8c1d166aba5642d0da0a466c61ff85"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">resdb::PoWManager::GetShiftMsg</a></div><div class="ttdeci">virtual int GetShiftMsg(const SliceInfo &amp;slice_info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00168">pow_manager.cpp:168</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_ac53da7af664da93b81f708f835cdbc0b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">resdb::PoWManager::SendShiftMsg</a></div><div class="ttdeci">void SendShiftMsg()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00243">pow_manager.cpp:243</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a8fe2d5733aa51ca376762fbfa0cf394f"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a8fe2d5733aa51ca376762fbfa0cf394f">resdb::PoWManager::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00091">pow_manager.cpp:91</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_a96372fbee7868ea5aa2f25745a592c5f"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#a96372fbee7868ea5aa2f25745a592c5f">resdb::PoWManager::GetBlockStatus</a></div><div class="ttdeci">BlockStatus GetBlockStatus()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00071">pow_manager.cpp:71</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_aa2bd1bfd382458f312e98c76a91ba233"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aa2bd1bfd382458f312e98c76a91ba233">resdb::PoWManager::IsSent</a></div><div class="ttdeci">bool IsSent(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00154">pow_manager.cpp:154</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_aa3d6e164e7724ee1828ffa91dfc1959c"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aa3d6e164e7724ee1828ffa91dfc1959c">resdb::PoWManager::MiningProcess</a></div><div class="ttdeci">void MiningProcess()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00360">pow_manager.cpp:360</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_aa52c66c2ada4a26e18c01e22b2261983"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aa52c66c2ada4a26e18c01e22b2261983">resdb::PoWManager::NotifyBroadCast</a></div><div class="ttdeci">virtual void NotifyBroadCast()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00308">pow_manager.cpp:308</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_ab5cb8e3912a0f5f2870dac12731ef0e2"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ab5cb8e3912a0f5f2870dac12731ef0e2">resdb::PoWManager::NotifyNextBlock</a></div><div class="ttdeci">void NotifyNextBlock()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00062">pow_manager.cpp:62</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_ab6aa44fa14343584167b9710a611cb69"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ab6aa44fa14343584167b9710a611cb69">resdb::PoWManager::WaitBlockDone</a></div><div class="ttdeci">absl::Status WaitBlockDone()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00075">pow_manager.cpp:75</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_abe8c1d166aba5642d0da0a466c61ff85"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#abe8c1d166aba5642d0da0a466c61ff85">resdb::PoWManager::GetShiftMsg</a></div><div class="ttdeci">virtual int GetShiftMsg(const SliceInfo &amp;slice_info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00166">pow_manager.cpp:166</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_ac53da7af664da93b81f708f835cdbc0b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ac53da7af664da93b81f708f835cdbc0b">resdb::PoWManager::SendShiftMsg</a></div><div class="ttdeci">void SendShiftMsg()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00241">pow_manager.cpp:241</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_ac6704450925c63c46f0347fb5404cfe1"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ac6704450925c63c46f0347fb5404cfe1">resdb::PoWManager::GetTransactionAccessor</a></div><div class="ttdeci">virtual std::unique_ptr&lt; TransactionAccessor &gt; GetTransactionAccessor(const ResDBPoCConfig &amp;config)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00042">pow_manager.cpp:42</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_ac71928cc8f691d0d013bb9572a58bdb4"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">resdb::PoWManager::IsRunning</a></div><div class="ttdeci">bool IsRunning()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00110">pow_manager.cpp:110</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_aca0ce48f29626f51bede17f726175c6b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">resdb::PoWManager::GetResultInfo</a></div><div class="ttdeci">std::unique_ptr&lt; BlockMiningInfo &gt; GetResultInfo(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00132">pow_manager.cpp:132</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_ac71928cc8f691d0d013bb9572a58bdb4"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ac71928cc8f691d0d013bb9572a58bdb4">resdb::PoWManager::IsRunning</a></div><div class="ttdeci">bool IsRunning()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00108">pow_manager.cpp:108</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_aca0ce48f29626f51bede17f726175c6b"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aca0ce48f29626f51bede17f726175c6b">resdb::PoWManager::GetResultInfo</a></div><div class="ttdeci">std::unique_ptr&lt; BlockMiningInfo &gt; GetResultInfo(uint64_t seq)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00130">pow_manager.cpp:130</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_acc4425128a7e2be8c289eecd7e330a59"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59">resdb::PoWManager::BlockStatus</a></div><div class="ttdeci">BlockStatus</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00034">pow_manager.h:34</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_acc4425128a7e2be8c289eecd7e330a59abf7f3f68de613b6c9d693399151eeba2"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59abf7f3f68de613b6c9d693399151eeba2">resdb::PoWManager::GENERATE_NEW</a></div><div class="ttdeci">@ GENERATE_NEW</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00035">pow_manager.h:35</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59adb22d890110d3b1742dcdf106d0cae20">resdb::PoWManager::NEXT_NEWBLOCK</a></div><div class="ttdeci">@ NEXT_NEWBLOCK</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00036">pow_manager.h:36</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_ad99fc3c2e40dfe26cc8890a2aefe73e5"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5">resdb::PoWManager::MiningType</a></div><div class="ttdeci">MiningType</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00039">pow_manager.h:39</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_ad99fc3c2e40dfe26cc8890a2aefe73e5a3e8f982f6bac3daadcd8d6f966b4aa81"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a3e8f982f6bac3daadcd8d6f966b4aa81">resdb::PoWManager::SHIFTING</a></div><div class="ttdeci">@ SHIFTING</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00041">pow_manager.h:41</a></div></div>
 <div class="ttc" id="aclassresdb_1_1PoWManager_html_ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#ad99fc3c2e40dfe26cc8890a2aefe73e5a4c1a3c87ddeb02f8c9cd489bcb59df6a">resdb::PoWManager::NEWBLOCK</a></div><div class="ttdeci">@ NEWBLOCK</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d6d/pow__manager_8h_source.html#l00040">pow_manager.h:40</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_adfd6eb6075662f2a5a3bf39f7e3276f5"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">resdb::PoWManager::MiningResultsProcess</a></div><div class="ttdeci">void MiningResultsProcess()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00272">pow_manager.cpp:272</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_aefc9c51c49a5a25fef2c2e44e53c73b0"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">resdb::PoWManager::BroadCastMiningResult</a></div><div class="ttdeci">int BroadCastMiningResult(const BlockMiningInfo &amp;info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00263">pow_manager.cpp:263</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_afa64ba99cf514150a4c937385c0afdc4"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#afa64ba99cf514150a4c937385c0afdc4">resdb::PoWManager::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00099">pow_manager.cpp:99</a></div></div>
-<div class="ttc" id="aclassresdb_1_1PoWManager_html_affa578cd85d3d756e887efbfb4befcb0"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#affa578cd85d3d756e887efbfb4befcb0">resdb::PoWManager::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00106">pow_manager.cpp:106</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_adfd6eb6075662f2a5a3bf39f7e3276f5"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#adfd6eb6075662f2a5a3bf39f7e3276f5">resdb::PoWManager::MiningResultsProcess</a></div><div class="ttdeci">void MiningResultsProcess()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00270">pow_manager.cpp:270</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_aefc9c51c49a5a25fef2c2e44e53c73b0"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0">resdb::PoWManager::BroadCastMiningResult</a></div><div class="ttdeci">int BroadCastMiningResult(const BlockMiningInfo &amp;info)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00261">pow_manager.cpp:261</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_afa64ba99cf514150a4c937385c0afdc4"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#afa64ba99cf514150a4c937385c0afdc4">resdb::PoWManager::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00097">pow_manager.cpp:97</a></div></div>
+<div class="ttc" id="aclassresdb_1_1PoWManager_html_affa578cd85d3d756e887efbfb4befcb0"><div class="ttname"><a href="../../d8/dbf/classresdb_1_1PoWManager.html#affa578cd85d3d756e887efbfb4befcb0">resdb::PoWManager::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d88/pow__manager_8cpp_source.html#l00104">pow_manager.cpp:104</a></div></div>
 <div class="ttc" id="aclassresdb_1_1ResDBConfig_html_a8c6b178bc0fd3efd488456907dbecbd6"><div class="ttname"><a href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">resdb::ResDBConfig::GetSelfInfo</a></div><div class="ttdeci">const ReplicaInfo &amp; GetSelfInfo() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d41/resdb__config_8cpp_source.html#l00116">resdb_config.cpp:116</a></div></div>
 <div class="ttc" id="aclassresdb_1_1ResDBPoCConfig_html"><div class="ttname"><a href="../../da/d86/classresdb_1_1ResDBPoCConfig.html">resdb::ResDBPoCConfig</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d88/resdb__poc__config_8h_source.html#l00008">resdb_poc_config.h:8</a></div></div>
 <div class="ttc" id="aclassresdb_1_1ResDBReplicaClient_html"><div class="ttname"><a href="../../d1/d1b/classresdb_1_1ResDBReplicaClient.html">resdb::ResDBReplicaClient</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d04/resdb__replica__client_8h_source.html#l00040">resdb_replica_client.h:40</a></div></div>
