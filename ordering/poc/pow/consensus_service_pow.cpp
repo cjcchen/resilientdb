@@ -26,9 +26,9 @@ std::vector<ReplicaInfo> ConsensusServicePoW::GetReplicas() {
 
 int ConsensusServicePoW::ConsensusCommit(std::unique_ptr<Context> context,
                                          std::unique_ptr<Request> request) {
-  LOG(ERROR) << "recv impl type:" << request->type() << " "
-            << request->client_info().DebugString()
-           << "sender id:" << request->sender_id();
+  //LOG(ERROR) << "recv impl type:" << request->type() << " "
+  //          << request->client_info().DebugString()
+  //         << "sender id:" << request->sender_id();
   switch (request->type()) {
     case PoWRequest::TYPE_COMMITTED_BLOCK: {
       std::unique_ptr<Block> block = std::make_unique<Block>();
@@ -66,9 +66,14 @@ int ConsensusServicePoW::ConsensusCommit(std::unique_ptr<Context> context,
 
 int ConsensusServicePoW::ClientQuery(std::unique_ptr<Context> context,
                                          std::unique_ptr<Request> request) {
-                                         LOG(ERROR)<<"get client rquest size:"<<request->data().size();
+      //LOG(ERROR)<<"get client rquest size:"<<request->data().size();
       std::unique_ptr<std::string> resp = txn_manager_->ClientQuery(request->data());
-      return context->client->SendRawMessageData(*resp);
+      context->client->SendRawMessageData(*resp);
+      //LOG(ERROR)<<"send resp";
+      if( socket_call_back_ != nullptr ){
+        socket_call_back_(std::move(context->client->FetchSocket()));
+      }
+    return 0;
 }
 
 }  // namespace resdb
