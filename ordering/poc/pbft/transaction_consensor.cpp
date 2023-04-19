@@ -57,7 +57,7 @@ int TransactionConsensor::SaveResult(std::unique_ptr<Request> request){
   }
 
   uint64_t seq = mining_result->header().min_seq();
-  LOG(ERROR)<<"get result seq:"<<seq;
+  //LOG(ERROR)<<"get result seq:"<<seq;
   std::string hash = GetHashDigest(mining_result->hash());
   {
     std::unique_lock<std::mutex> lck(mutex_);
