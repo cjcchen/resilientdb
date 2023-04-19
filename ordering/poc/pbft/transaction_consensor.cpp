@@ -48,7 +48,7 @@ int TransactionConsensor::ConsensusCommit(std::unique_ptr<Context> context,
 
 int TransactionConsensor::SaveResult(std::unique_ptr<Request> request){
   int received_size = 0;
-  LOG(ERROR)<<"receive result";
+  //LOG(ERROR)<<"receive result";
   std::unique_ptr<BlockMiningInfo> mining_result = std::make_unique<BlockMiningInfo>();
 
   if(!mining_result->ParseFromString(request->data())){
@@ -57,13 +57,14 @@ int TransactionConsensor::SaveResult(std::unique_ptr<Request> request){
   }
 
   uint64_t seq = mining_result->header().min_seq();
+  LOG(ERROR)<<"get result seq:"<<seq;
   std::string hash = GetHashDigest(mining_result->hash());
   {
     std::unique_lock<std::mutex> lck(mutex_);
     results_[std::make_pair(seq, hash)].push_back(std::move(mining_result));
     received_size = results_[std::make_pair(seq, hash)].size();
   }
-  LOG(ERROR)<<"receive seq:"<<seq<<" size:"<<received_size;
+  //LOG(ERROR)<<"receive seq:"<<seq<<" size:"<<received_size;
 
   if(received_size != 3){
     return 0;
@@ -84,7 +85,6 @@ int TransactionConsensor::SaveResult(std::unique_ptr<Request> request){
       return -2;
     }
     *new_request->mutable_data_signature() = *signature_or;
-    LOG(ERROR)<<"sign";
   }
 
   new_request->set_hash(SignatureVerifier::CalculateHash(new_request->data()));
