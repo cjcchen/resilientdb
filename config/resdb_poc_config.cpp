@@ -16,12 +16,9 @@ ResDBPoCConfig::ResDBPoCConfig(const ResDBConfig& bft_config,
   
   for (const auto& region : config_data.region()) {
     if (region.region_id() == config_data.self_region_id()) {
-      LOG(INFO) << "get region info:" << region.DebugString();
       for (const auto& replica : region.replica_info()) {
         bft_replicas_.push_back(replica);
       }
-      LOG(INFO) << "get region config server size???:"
-                << region.replica_info_size();
       break;
     }
   }

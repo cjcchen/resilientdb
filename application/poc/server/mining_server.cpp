@@ -47,6 +47,14 @@ int main(int argc, char** argv) {
   std::string pow_config_file = argv[2];
   std::string private_key_file = argv[3];
   std::string cert_file = argv[4];
+  int batch_size = 0;
+  int max_bit = 0;
+  int difficulty = 0;
+  if(argc >5){
+    batch_size = atoi(argv[5]);
+    max_bit = atoi(argv[6]);
+    difficulty = atoi(argv[7]);
+  }
   LOG(ERROR) << "pow_config:" << pow_config_file;
 
   std::unique_ptr<ResDBConfig> transaction_server_config = GenerateResDBConfigFromJson(bft_config_file);
@@ -60,13 +68,23 @@ int main(int argc, char** argv) {
             *transaction_server_config, replicas, self_info, private_key, public_key_cert_info);
       });
 
-  LOG(ERROR)<<"elf ip:"<<mining_config->GetSelfInfo().ip();
-  //Stats::InitGlobalPrometheus("0.0.0.0:8091");
   ResDBPoCConfig* pow_config_ptr =
       static_cast<ResDBPoCConfig*>(mining_config.get());
 
   pow_config_ptr->SetMaxNonceBit(42);
   pow_config_ptr->SetDifficulty(28);
+  if(batch_size>0){
+    LOG(ERROR)<<"set batch size:"<<batch_size;
+    pow_config_ptr->SetBatchTransactionNum(batch_size);
+  }
+  if(max_bit>0){
+    LOG(ERROR)<<"set max bit:"<<max_bit;
+    pow_config_ptr->SetMaxNonceBit(max_bit);
+  }
+  if(difficulty>0){
+    LOG(ERROR)<<"set difficulty:"<<difficulty;
+    pow_config_ptr->SetDifficulty(difficulty);
+  }
   //pow_config_ptr->SetDifficulty(32);
 
   poc::PoCTransactionManager manager(*pow_config_ptr);
