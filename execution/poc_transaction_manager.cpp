@@ -38,7 +38,6 @@ PoCTransactionManager::PoCTransactionManager(const ResDBConfig& config) : Transa
 std::unique_ptr<BatchClientResponse> PoCTransactionManager::ExecuteBatch(
     const BatchClientRequest& request) {
 
-  //LOG(ERROR)<<"batch:"<<request.DebugString();
   for (auto& sub_request : request.client_requests()) {
         ExecuteOne(sub_request.request().data());
   }
@@ -53,7 +52,6 @@ void PoCTransactionManager::ExecuteOne(const std::string& request){
    return;
  }
  for(const Transaction& txn: txn_request.transactions()){
-    LOG(ERROR)<<"execute txn :"<<txn.DebugString();
      done_.insert(txn.uid());
  }
 }
@@ -64,14 +62,12 @@ std::unique_ptr<std::string> PoCTransactionManager::ClientQuery(const std::strin
 
   request.ParseFromString(str);
 
-//LOG(ERROR)<<"client query:"<<request.DebugString();
   for(uint64_t uid : request.uids()){
     if(done_.find(uid) == done_.end()){
       break;
     }
     response.add_uids(uid);
   }
-  //LOG(ERROR)<<"get resp:"<<response.DebugString();
   auto ret = std::make_unique<std::string>();
   response.SerializeToString(ret.get());
   return ret;
