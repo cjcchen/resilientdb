@@ -31,7 +31,7 @@ namespace resdb {
 namespace poc {
 
 TransactionExecutor::TransactionExecutor(const ResDBConfig& config, TransactionManager * manager)
-    : TransactionExecutorImpl(false, false), manager_(manager){
+    : TransactionExecutorImpl(), manager_(manager){
 }
 
 std::unique_ptr<BatchClientResponse> TransactionExecutor::ExecuteBatch(
