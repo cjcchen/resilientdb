@@ -64,7 +64,7 @@ std::unique_ptr<std::string> PoCTransactionManager::ClientQuery(const std::strin
   TransactionQuery response; 
 
   request.ParseFromString(str);
-  LOG(ERROR)<<"query uid size:"<<request.uids_size();
+  //LOG(ERROR)<<"query uid size:"<<request.uids_size();
 
   for(uint64_t uid : request.uids()){
     global_stats_->IncCommit();
