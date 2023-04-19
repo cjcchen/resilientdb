@@ -47,7 +47,7 @@ std::unique_ptr<std::string> TransactionQuery::Query(const std::string& request_
 
   uint64_t min_seq = request.min_seq();
   uint64_t max_seq = request.max_seq();
-  LOG(ERROR)<<"query:["<<min_seq<<"-"<<max_seq<<"]";
+  //LOG(ERROR)<<"query:["<<min_seq<<"-"<<max_seq<<"]";
   for(int i = min_seq; i <= max_seq; ++i){
     std::unique_ptr<std::string> ret = manager_->GetTransactionRequest(i, request.is_query_results());
     if(ret == nullptr){
@@ -55,7 +55,7 @@ std::unique_ptr<std::string> TransactionQuery::Query(const std::string& request_
     }
     response.add_data(*ret);
     response.add_seq(i);
-    LOG(ERROR)<<"query get seq:"<<i<<" is result:"<<request.is_query_results();
+    //LOG(ERROR)<<"query get seq:"<<i<<" is result:"<<request.is_query_results();
   }
 
   std::unique_ptr<std::string> ret = std::make_unique<std::string>();
