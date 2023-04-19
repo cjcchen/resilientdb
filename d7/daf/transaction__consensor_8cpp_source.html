@@ -150,7 +150,7 @@ $(document).ready(function(){initNavTree('d7/daf/transaction__consensor_8cpp_sou
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keywordtype">int</span> TransactionConsensor::SaveResult(std::unique_ptr&lt;Request&gt; request){</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordtype">int</span> received_size = 0;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;receive result&quot;</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">//LOG(ERROR)&lt;&lt;&quot;receive result&quot;;</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::unique_ptr&lt;BlockMiningInfo&gt; mining_result = std::make_unique&lt;BlockMiningInfo&gt;();</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordflow">if</span>(!mining_result-&gt;ParseFromString(request-&gt;data())){</div>
@@ -159,34 +159,34 @@ $(document).ready(function(){initNavTree('d7/daf/transaction__consensor_8cpp_sou
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  }</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  uint64_t seq = mining_result-&gt;header().min_seq();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  std::string hash = <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a8510e14ba762007feb023c31de34351e">GetHashDigest</a>(mining_result-&gt;hash());</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::unique_lock&lt;std::mutex&gt; lck(mutex_);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    results_[std::make_pair(seq, hash)].push_back(std::move(mining_result));</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    received_size = results_[std::make_pair(seq, hash)].size();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;receive seq:&quot;</span>&lt;&lt;seq&lt;&lt;<span class="stringliteral">&quot; size:&quot;</span>&lt;&lt;received_size;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordflow">if</span>(received_size != 3){</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  BatchClientRequest batch_request;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  batch_request.set_ex_data(request-&gt;data());</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  batch_request.set_system_data(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">auto</span> new_request =</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a26e13db44e53ac446f5fc96fb4cf4848">NewRequest</a>(Request::TYPE_NEW_TXNS, Request(), <a class="code hl_variable" href="../../d6/d83/classresdb_1_1ConsensusService.html#ad26c6d037a5b8d5dcb63d1020c564864">config_</a>.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  batch_request.SerializeToString(new_request-&gt;mutable_data());</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="../../d6/d83/classresdb_1_1ConsensusService.html#aa875c249f8e5acfb6718410949934f0c">verifier_</a>) {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">auto</span> signature_or = <a class="code hl_variable" href="../../d6/d83/classresdb_1_1ConsensusService.html#aa875c249f8e5acfb6718410949934f0c">verifier_</a>-&gt;SignMessage(new_request-&gt;data());</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">if</span> (!signature_or.ok()) {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      LOG(ERROR) &lt;&lt; <span class="stringliteral">&quot;Sign message fail&quot;</span>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keywordflow">return</span> -2;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    *new_request-&gt;mutable_data_signature() = *signature_or;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;sign&quot;</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;get result seq:&quot;</span>&lt;&lt;seq;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  std::string hash = <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a8510e14ba762007feb023c31de34351e">GetHashDigest</a>(mining_result-&gt;hash());</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::unique_lock&lt;std::mutex&gt; lck(mutex_);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    results_[std::make_pair(seq, hash)].push_back(std::move(mining_result));</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    received_size = results_[std::make_pair(seq, hash)].size();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">//LOG(ERROR)&lt;&lt;&quot;receive seq:&quot;&lt;&lt;seq&lt;&lt;&quot; size:&quot;&lt;&lt;received_size;</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">if</span>(received_size != 3){</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  BatchClientRequest batch_request;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  batch_request.set_ex_data(request-&gt;data());</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  batch_request.set_system_data(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keyword">auto</span> new_request =</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_function" href="../../d5/d10/namespaceresdb.html#a26e13db44e53ac446f5fc96fb4cf4848">NewRequest</a>(Request::TYPE_NEW_TXNS, Request(), <a class="code hl_variable" href="../../d6/d83/classresdb_1_1ConsensusService.html#ad26c6d037a5b8d5dcb63d1020c564864">config_</a>.<a class="code hl_function" href="../../db/ddb/classresdb_1_1ResDBConfig.html#a8c6b178bc0fd3efd488456907dbecbd6">GetSelfInfo</a>().id());</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  batch_request.SerializeToString(new_request-&gt;mutable_data());</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="../../d6/d83/classresdb_1_1ConsensusService.html#aa875c249f8e5acfb6718410949934f0c">verifier_</a>) {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">auto</span> signature_or = <a class="code hl_variable" href="../../d6/d83/classresdb_1_1ConsensusService.html#aa875c249f8e5acfb6718410949934f0c">verifier_</a>-&gt;SignMessage(new_request-&gt;data());</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">if</span> (!signature_or.ok()) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      LOG(ERROR) &lt;&lt; <span class="stringliteral">&quot;Sign message fail&quot;</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keywordflow">return</span> -2;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    *new_request-&gt;mutable_data_signature() = *signature_or;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  }</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  new_request-&gt;set_hash(<a class="code hl_function" href="../../d4/d30/classresdb_1_1SignatureVerifier.html#acf7b6e124421e09d9f13155a3daea5f5">SignatureVerifier::CalculateHash</a>(new_request-&gt;data()));</div>
