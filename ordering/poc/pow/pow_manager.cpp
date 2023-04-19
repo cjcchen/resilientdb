@@ -54,10 +54,9 @@ std::unique_ptr<BlockManager> PoWManager::GetBlockManager(const ResDBPoCConfig& 
 void PoWManager::Commit(std::unique_ptr<Block> block){
        std::unique_lock<std::mutex> lck(tx_mutex_);
 	if(block_manager_->Commit(std::move(block))==0){
-		LOG(ERROR)<<"commit block succ";
+		//LOG(ERROR)<<"commit block succ";
 		NotifyNextBlock();
 	}
-	LOG(ERROR)<<"commit block done";
 }
 
 void PoWManager::NotifyNextBlock(){
@@ -66,7 +65,7 @@ void PoWManager::NotifyNextBlock(){
 	if(current_status_ == GENERATE_NEW){
 		current_status_ = NEXT_NEWBLOCK;
 	}
-	LOG(ERROR)<<"notify block:"<<current_status_;
+	//LOG(ERROR)<<"notify block:"<<current_status_;
 }
 
 PoWManager::BlockStatus PoWManager::GetBlockStatus() {
@@ -82,7 +81,7 @@ absl::Status PoWManager::WaitBlockDone(){
 	cv_.wait_for(lk, std::chrono::microseconds(timeout_ms), [&] {
 			return current_status_ == NEXT_NEWBLOCK;
 			});
-	LOG(ERROR)<<"wait block done:" << current_status_<<" next block?:"<<(current_status_ == NEXT_NEWBLOCK);
+	//LOG(ERROR)<<"wait block done:" << current_status_<<" next block?:"<<(current_status_ == NEXT_NEWBLOCK);
 	if (current_status_ == NEXT_NEWBLOCK){
 		return absl::OkStatus();
 	}
@@ -93,7 +92,6 @@ void PoWManager::Reset(){
   transaction_accessor_ = GetTransactionAccessor(config_);
   shift_manager_ = GetShiftManager(config_);
   block_manager_ = GetBlockManager(config_);
-  LOG(ERROR)<<"reset:"<<transaction_accessor_.get();
 }
 
 void PoWManager::Start() {
@@ -171,7 +169,7 @@ int PoWManager::GetShiftMsg(const SliceInfo& slice_info) {
 	  return -1;
 	}
 	LOG(ERROR)<<"slice info is ok:"<<slice_info.DebugString();
-        if(block_manager_->SetSliceIdx(slice_info)==1){
+  if(block_manager_->SetSliceIdx(slice_info)==1){
 		return 1;
 	}
 	return 0;
