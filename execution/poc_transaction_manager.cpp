@@ -33,6 +33,7 @@ namespace resdb {
 namespace poc {
 
 PoCTransactionManager::PoCTransactionManager(const ResDBConfig& config) : TransactionExecutorImpl(false, false) {
+  global_stats_ = Stats::GetGlobalStats();
 }
 
 std::unique_ptr<BatchClientResponse> PoCTransactionManager::ExecuteBatch(
@@ -51,7 +52,9 @@ void PoCTransactionManager::ExecuteOne(const std::string& request){
    LOG(ERROR)<<"parse txn fail";
    return;
  }
+ //LOG(ERROR)<<"execute:"<<txn_request.transactions_size();
  for(const Transaction& txn: txn_request.transactions()){
+     global_stats_->IncExecute();
      done_.insert(txn.uid());
  }
 }
@@ -61,11 +64,14 @@ std::unique_ptr<std::string> PoCTransactionManager::ClientQuery(const std::strin
   TransactionQuery response; 
 
   request.ParseFromString(str);
+  LOG(ERROR)<<"query uid size:"<<request.uids_size();
 
   for(uint64_t uid : request.uids()){
+    global_stats_->IncCommit();
     if(done_.find(uid) == done_.end()){
-      break;
+      continue;
     }
+    global_stats_->IncExecuteDone();
     response.add_uids(uid);
   }
   auto ret = std::make_unique<std::string>();

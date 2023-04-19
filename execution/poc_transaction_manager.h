@@ -26,6 +26,7 @@
 #pragma once
 #include "config/resdb_config.h"
 #include "execution/transaction_executor_impl.h"
+#include "statistic/stats.h"
 
 namespace resdb {
 namespace poc {
@@ -43,8 +44,10 @@ class PoCTransactionManager : public TransactionExecutorImpl {
 
 private:
   void ExecuteOne(const std::string& request);
+
   private:
     std::set<uint64_t> done_;
+  Stats* global_stats_;
 };
 
 }
