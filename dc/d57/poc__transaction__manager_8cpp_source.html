@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('dc/d57/poc__transaction__manager_8cpp_
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <a class="code hl_class" href="../../d0/d06/classresdb_1_1poc_1_1TransactionQuery.html">TransactionQuery</a> response; </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  request.ParseFromString(str);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  LOG(ERROR)&lt;&lt;<span class="stringliteral">&quot;query uid size:&quot;</span>&lt;&lt;request.uids_size();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">//LOG(ERROR)&lt;&lt;&quot;query uid size:&quot;&lt;&lt;request.uids_size();</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">for</span>(uint64_t uid : request.uids()){</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    global_stats_-&gt;<a class="code hl_function" href="../../de/d0d/classresdb_1_1Stats.html#aa1142bd90e709d6ef4320abe5c1d8e4d">IncCommit</a>();</div>
