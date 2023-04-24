@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
       static_cast<ResDBPoCConfig*>(mining_config.get());
 
   pow_config_ptr->SetMaxNonceBit(42);
-  pow_config_ptr->SetDifficulty(28);
+  pow_config_ptr->SetDifficulty(20);
   if(batch_size>0){
     LOG(ERROR)<<"set batch size:"<<batch_size;
     pow_config_ptr->SetBatchTransactionNum(batch_size);
