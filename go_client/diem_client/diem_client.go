@@ -11,6 +11,7 @@ import (
 type PollblkTransactionConfirmer struct {
 	client   diemclient.Client
   data map[uint64]*resdb.Transaction
+	lock     sync.Mutex
   min_v uint64
 }
 
@@ -41,11 +42,13 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
 }
 
 func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transaction) {
+	this.lock.Lock()
   _,ok := this.data[seq]
   if (ok) {
-    return this.data[seq]
+    tx = this.data[seq]
   }
-  return nil
+	this.lock.Unlock()
+  return
 }
 
 func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.Transaction) bool {
@@ -75,7 +78,9 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
   //log.Print("get txn:",tx)
   //log.Print("event:",tx.Events)
   //log.Print("metadata:",tx.Transaction.Script.Type)
+	this.lock.Lock()
   this.data[version-this.min_v] = newTransaction(sender, receiver, version, seq,amount)
+	this.lock.Unlock()
   return true
 }
 
