@@ -115,23 +115,35 @@ TransactionAccessor::ConsumeTransactions(uint64_t seq) {
 
     return nullptr;
   }
+  /*
   while(seq > next_consume_){
-    *queue_.Pop();
+    queue_.Pop();
     next_consume_++;
   }
   if (seq != next_consume_) {
     LOG(ERROR) << "next should consume:" << next_consume_;
     return nullptr;
   }
+  */
 
   std::unique_ptr<BatchClientTransactions> batch_transactions =
       std::make_unique<BatchClientTransactions>();
   for (uint32_t i = 0; i < config_.BatchTransactionNum(); ++i) {
-    *batch_transactions->add_transactions() = *queue_.Pop();
+    auto ptr = queue_.Pop();
+    if(ptr == nullptr){
+      LOG(ERROR)<<"get null";
+      continue;
+    }
+    int64_t seq = ptr->seq();
+    if(seq <= next_consume_){
+      continue;
+    }
+    batch_transactions->set_max_seq(seq);
+    *batch_transactions->add_transactions() = *ptr;
   }
   batch_transactions->set_min_seq(seq);
-  batch_transactions->set_max_seq(seq + config_.BatchTransactionNum() - 1);
-  next_consume_ = next_consume_ + config_.BatchTransactionNum();
+  //batch_transactions->set_max_seq(seq + config_.BatchTransactionNum() - 1);
+  next_consume_ = batch_transactions->max_seq()+1;
   LOG(ERROR)<<"get batch from "<<batch_transactions->max_seq()<<" to "<<batch_transactions->min_seq();
   return batch_transactions;
 }
