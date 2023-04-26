@@ -30,6 +30,8 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
 	var this PollblkTransactionConfirmer
 
 	this.client = diemclient.New(chainId, endpoint)
+  log.Print("chainid:",chainId)
+  log.Print("endpoint:",endpoint)
   this.data = make(map[uint64]*resdb.Transaction)
   this.min_v = 0
 
@@ -46,7 +48,7 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
   return nil
 }
 
-func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.Transaction) {
+func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.Transaction) bool {
 	var sender string
   var receiver string
   var amount uint64
@@ -58,13 +60,23 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
   amount = tx.Transaction.Script.Amount
   seq = tx.Transaction.SequenceNumber
   version = tx.Version
+  if (len(receiver) == 0) {
+    return false
+  }
+  if(sender == "000000000000000000000000000000dd"){
+    return false
+  }
   //log.Print("get txn:",sender)
   //log.Print("get receiver:",receiver)
   //log.Print("get amount:", amount)
   //log.Print("get seq:", seq)
   //log.Print("version:",version)
   //log.Print("min v:",this.min_v)
+  //log.Print("get txn:",tx)
+  //log.Print("event:",tx.Events)
+  //log.Print("metadata:",tx.Transaction.Script.Type)
   this.data[version-this.min_v] = newTransaction(sender, receiver, version, seq,amount)
+  return true
 }
 
 func (this *PollblkTransactionConfirmer) run() {
@@ -73,6 +85,7 @@ func (this *PollblkTransactionConfirmer) run() {
 	var meta *diemjsonrpctypes.Metadata
 	var v, version uint64
 	var err error
+  var ok bool
 
   log.Print("run diem")
 
@@ -83,9 +96,6 @@ func (this *PollblkTransactionConfirmer) run() {
 	}
 
 	v = meta.Version
-  if ( this.min_v == 0){
-    this.min_v = v
-  }
 
 	for {
 		meta, err = this.client.GetMetadata()
@@ -113,7 +123,12 @@ func (this *PollblkTransactionConfirmer) run() {
 					continue
 				}
 
-				this.parseTransaction(tx)
+				ok = this.parseTransaction(tx)
+        if (ok){
+          if ( this.min_v == 0){
+            this.min_v = tx.Version
+          }
+        }
 			}
 		}
 	}

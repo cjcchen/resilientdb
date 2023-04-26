@@ -14,12 +14,17 @@ import (
 type Service struct {
   result_list map[uint64]resdb.BlockMiningInfo
   confirmer *ndiem.PollblkTransactionConfirmer
+  confirmer1 *ndiem.PollblkTransactionConfirmer
+  confirmer2 *ndiem.PollblkTransactionConfirmer
 }
 
 func MakeService() *Service{
   return &Service{
     result_list: make(map[uint64]resdb.BlockMiningInfo),
-    confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
+    //confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9000"),
+    confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9000"),
+    confirmer1: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
+    confirmer2: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
     //confirmer: ndiem.NewPollblkTransactionConfirmer("http://172.31.23.46:9002"),
   }
 }
