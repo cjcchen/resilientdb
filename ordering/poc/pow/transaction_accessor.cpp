@@ -40,7 +40,7 @@ void TransactionAccessor::TransactionFetching() {
   assert(client != nullptr);
 
   while (!stop_) {
-    if( max_received_seq_ > next_consume_ && max_received_seq_ - next_consume_ < 2 * config_.BatchTransactionNum() ){
+    if( max_received_seq_ > next_consume_ && max_received_seq_ - next_consume_ > 2 * config_.BatchTransactionNum() ){
       LOG(ERROR)<<"max received :"<<max_received_seq_<<" next consume:"<<next_consume_<<" skip";
       sleep(1);
       continue;
