@@ -191,6 +191,7 @@ func (s*Service) GetData(seq uint64) (tx *resdb.Transaction) {
   if(tx !=nil) {
     return
   }
+  return
 }
 
 func (s*Service) GetClientRequest(seq uint64) (buf []byte){
