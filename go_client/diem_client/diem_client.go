@@ -2,6 +2,7 @@ package ndiem
 
 import (
   "log"
+  "sync"
 
   "github.com/resilientdb/go-resilientdb-sdk/proto"
 	"github.com/diem/client-sdk-go/diemclient"
