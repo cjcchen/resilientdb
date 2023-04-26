@@ -178,6 +178,20 @@ func (s*Service) GetResult(seq uint64) ([]byte){
   return data;
 }
 
+func (s*Service) GetData(seq uint64) (tx *resdb.Transaction) {
+  tx = s.confirmer.GetData(seq)
+  if(tx !=nil) {
+    return
+  }
+  tx = s.confirmer1.GetData(seq)
+  if(tx !=nil) {
+    return
+  }
+  tx = s.confirmer2.GetData(seq)
+  if(tx !=nil) {
+    return
+  }
+}
 
 func (s*Service) GetClientRequest(seq uint64) (buf []byte){
   var data []byte
@@ -186,7 +200,7 @@ func (s*Service) GetClientRequest(seq uint64) (buf []byte){
   var txns resdb.TransactionsRequest
   var txn *resdb.Transaction
 
-  txn = s.confirmer.GetData(seq)
+  txn = s.GetData(seq)
   if (txn == nil){
     return nil
   }
