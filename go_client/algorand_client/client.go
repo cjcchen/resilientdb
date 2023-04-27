@@ -10,7 +10,6 @@ import (
   "github.com/resilientdb/go-resilientdb-sdk/proto"
 	"github.com/algorand/go-algorand-sdk/client/v2/algod"
 	"github.com/algorand/go-algorand-sdk/client/v2/common/models"
-	"github.com/algorand/go-algorand-sdk/types"
 )
 
 func noteToUid(note []byte) (uint64, bool) {
@@ -62,24 +61,11 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
   return
 }
 
-func (this *PollblkTransactionConfirmer) parseBlock(block types.Block) {
-	var tx types.SignedTxnInBlock
-	var ok bool
-  var uid uint64
-
-	for _, tx = range block.Payset {
-		uid, ok = noteToUid(tx.Txn.Note)
-		if !ok {
-			continue
-		}
-    if (this.min_v == 0){
-      this.min_v = uid
-    }
+func (this *PollblkTransactionConfirmer) parseBlock(round uint64) {
+  
 	  this.lock.Lock()
-    this.data[uid-this.min_v] = newTransaction(uid)
+    this.data[uint64(round)] = newTransaction(uint64(round))
 	  this.lock.Unlock()
-  return
-	}
 
 	return
 }
@@ -87,7 +73,6 @@ func (this *PollblkTransactionConfirmer) parseBlock(block types.Block) {
 func (this *PollblkTransactionConfirmer) run() {
 	var client *algod.Client = this.client
 	var status models.NodeStatus
-	var block types.Block
 	var round uint64
 	var err error
 
@@ -99,13 +84,7 @@ func (this *PollblkTransactionConfirmer) run() {
 		}
 
 		for round < status.LastRound {
-			block, err =client.Block(round).Do(context.Background())
-			if err != nil {
-				log.Printf("block polling failed: %s", err.Error())
-				continue
-			}
-
-			this.parseBlock(block)
+			this.parseBlock(round)
 			round += 1
 		}
 	}

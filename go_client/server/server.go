@@ -139,6 +139,7 @@ func (s*Service) GetTransaction(min_seq uint64, max_seq uint64) (buf []byte){
   for i := 0; i < num; i++ {
     data = s.GetClientRequest(uint64(i) + min_seq)
     if( data == nil ){
+      break;
       continue;
     }
     resp.Data[idx] = data
