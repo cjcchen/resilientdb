@@ -55,6 +55,7 @@ void PoCTransactionManager::ExecuteOne(const std::string& request){
  //LOG(ERROR)<<"execute:"<<txn_request.transactions_size();
  for(const Transaction& txn: txn_request.transactions()){
      global_stats_->IncExecute();
+     LOG(ERROR)<<"set uid:"<<txn.uid();
      done_.insert(txn.uid());
  }
 }

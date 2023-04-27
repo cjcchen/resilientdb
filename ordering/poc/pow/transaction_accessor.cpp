@@ -135,7 +135,7 @@ TransactionAccessor::ConsumeTransactions(uint64_t seq) {
       continue;
     }
     int64_t seq = ptr->seq();
-    if(seq <= next_consume_){
+    if(seq < next_consume_){
       continue;
     }
     batch_transactions->set_max_seq(seq);
