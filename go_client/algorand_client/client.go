@@ -75,8 +75,10 @@ func (this *PollblkTransactionConfirmer) parseBlock(block types.Block) {
     if (this.min_v == 0){
       this.min_v = uid
     }
-    log.Print("get uid:",uid)
+	  this.lock.Lock()
     this.data[uid-this.min_v] = newTransaction(uid)
+	  this.lock.Unlock()
+  return
 	}
 
 	return
