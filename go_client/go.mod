@@ -9,11 +9,15 @@ require (
 )
 
 require (
+	github.com/algorand/avm-abi v0.1.1 // indirect
+	github.com/algorand/go-algorand-sdk v1.24.0 // indirect
+	github.com/algorand/go-codec/codec v1.1.8 // indirect
 	github.com/avast/retry-go v3.0.0+incompatible // indirect
 	github.com/diem/client-sdk-go v1.2.1 // indirect
+	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/novifinancial/serde-reflection/serde-generate/runtime/golang v0.0.0-20201214184956-1fd02a932898 // indirect
-	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de // indirect
-	golang.org/x/sys v0.0.0-20200812155832-6a926be9bd1d // indirect
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
+	golang.org/x/sys v0.0.0-20211019181941-9d821ace8654 // indirect
 )
 
 replace github.com/resilientdb/go-resilientdb-sdk => ./
