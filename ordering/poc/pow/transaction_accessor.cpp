@@ -132,10 +132,13 @@ TransactionAccessor::ConsumeTransactions(uint64_t seq) {
     auto ptr = queue_.Pop();
     if(ptr == nullptr){
       LOG(ERROR)<<"get null";
+      i--;
       continue;
     }
     int64_t seq = ptr->seq();
+    //LOG(ERROR)<<"get seq:"<<seq<<" next consume:"<<next_consume_;
     if(seq < next_consume_){
+      i--;
       continue;
     }
     batch_transactions->set_max_seq(seq);

@@ -7,8 +7,9 @@ import (
     "encoding/binary"
 
     "github.com/resilientdb/go-resilientdb-sdk/proto"
-    "github.com/resilientdb/go-resilientdb-sdk/diem_client"
+    //"github.com/resilientdb/go-resilientdb-sdk/diem_client"
     //"github.com/resilientdb/go-resilientdb-sdk/algorand_client"
+    "github.com/resilientdb/go-resilientdb-sdk/eth_client"
     "github.com/golang/protobuf/proto"
 )
 
@@ -17,22 +18,24 @@ type Service struct {
   //confirmer *algorand_client.PollblkTransactionConfirmer
   //confirmer1 *algorand_client.PollblkTransactionConfirmer
   //confirmer2 *algorand_client.PollblkTransactionConfirmer
-  confirmer *ndiem.PollblkTransactionConfirmer
-  confirmer1 *ndiem.PollblkTransactionConfirmer
-  confirmer2 *ndiem.PollblkTransactionConfirmer
-  confirmer3 *ndiem.PollblkTransactionConfirmer
+  //confirmer *ndiem.PollblkTransactionConfirmer
+  //confirmer1 *ndiem.PollblkTransactionConfirmer
+  //confirmer2 *ndiem.PollblkTransactionConfirmer
+  //confirmer3 *ndiem.PollblkTransactionConfirmer
+  confirmer *eth_client.PollblkTransactionConfirmer
 }
 
 func MakeService() *Service{
   return &Service{
     result_list: make(map[uint64]resdb.BlockMiningInfo),
-    confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9000"),
-    confirmer1: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
-    confirmer2: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
-    confirmer3: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9003"),
+    //confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9000"),
+    //confirmer1: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
+    //confirmer2: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
+    //confirmer3: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9003"),
     //confirmer: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
     //confirmer1: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
     //confirmer2: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9003"),
+    confirmer: eth_client.NewPollblkTransactionConfirmer("ws://127.0.0.1:9001"),
   }
 }
 
@@ -199,6 +202,7 @@ func (s*Service) GetData(seq uint64) (tx *resdb.Transaction) {
   if(tx !=nil) {
     return
   }
+  /*
   tx = s.confirmer1.GetData(seq)
   if(tx !=nil) {
     return
@@ -211,6 +215,7 @@ func (s*Service) GetData(seq uint64) (tx *resdb.Transaction) {
   if(tx !=nil) {
     return
   }
+  */
   return
 }
 
