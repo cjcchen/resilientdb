@@ -86,7 +86,7 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
   //log.Print("event:",tx.Events)
   //log.Print("metadata:",tx.Transaction.Script.Type)
 	this.lock.Lock()
-  this.data[version-this.min_v] = newTransaction(sender, receiver, version, seq,amount)
+  this.data[version-this.min_v+1] = newTransaction(sender, receiver, version, seq,amount)
 	this.lock.Unlock()
   return true
 }
