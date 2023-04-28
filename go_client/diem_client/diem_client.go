@@ -80,12 +80,15 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
   //log.Print("get receiver:",receiver)
   //log.Print("get amount:", amount)
   //log.Print("get seq:", seq)
-  //log.Print("push version:",version)
-  //log.Print("min v:",this.min_v)
   //log.Print("get txn:",tx)
   //log.Print("event:",tx.Events)
   //log.Print("metadata:",tx.Transaction.Script.Type)
 	this.lock.Lock()
+  if ( this.min_v == 0){
+    this.min_v = tx.Version
+  }
+  log.Print("push version:",version)
+  log.Print("min v:",this.min_v, version-this.min_v+1)
   this.data[version-this.min_v+1] = newTransaction(sender, receiver, version, seq,amount)
 	this.lock.Unlock()
   return true
@@ -138,9 +141,6 @@ func (this *PollblkTransactionConfirmer) run() {
         //log.Print("get version:",tx.Version)
 				ok = this.parseTransaction(tx)
         if (ok){
-          if ( this.min_v == 0){
-            this.min_v = tx.Version
-          }
         }
 			}
 		}
