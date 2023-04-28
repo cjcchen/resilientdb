@@ -65,16 +65,22 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
   seq = tx.Transaction.SequenceNumber
   version = tx.Version
   if (len(receiver) == 0) {
+    if(this.min_v>0){
+      log.Print("get skip version:",version)
+    }
     return false
   }
   if(sender == "000000000000000000000000000000dd"){
+    if(this.min_v>0){
+      log.Print("get skip version:",version)
+    }
     return false
   }
   //log.Print("get txn:",sender)
   //log.Print("get receiver:",receiver)
   //log.Print("get amount:", amount)
   //log.Print("get seq:", seq)
-  //log.Print("version:",version)
+  //log.Print("push version:",version)
   //log.Print("min v:",this.min_v)
   //log.Print("get txn:",tx)
   //log.Print("event:",tx.Events)
@@ -115,7 +121,7 @@ func (this *PollblkTransactionConfirmer) run() {
 		for v < version {
 			v += 1
 
-			txs, err = this.client.GetTransactions(v, 10, true)
+			txs, err = this.client.GetTransactions(v, 100, true)
 			if err != nil {
 				continue
 			}
@@ -129,6 +135,7 @@ func (this *PollblkTransactionConfirmer) run() {
 					continue
 				}
 
+        //log.Print("get version:",tx.Version)
 				ok = this.parseTransaction(tx)
         if (ok){
           if ( this.min_v == 0){

@@ -7,30 +7,32 @@ import (
     "encoding/binary"
 
     "github.com/resilientdb/go-resilientdb-sdk/proto"
-    //"github.com/resilientdb/go-resilientdb-sdk/diem_client"
-    "github.com/resilientdb/go-resilientdb-sdk/algorand_client"
+    "github.com/resilientdb/go-resilientdb-sdk/diem_client"
+    //"github.com/resilientdb/go-resilientdb-sdk/algorand_client"
     "github.com/golang/protobuf/proto"
 )
 
 type Service struct {
   result_list map[uint64]resdb.BlockMiningInfo
-  confirmer *algorand_client.PollblkTransactionConfirmer
-  confirmer1 *algorand_client.PollblkTransactionConfirmer
-  confirmer2 *algorand_client.PollblkTransactionConfirmer
-  //confirmer *ndiem.PollblkTransactionConfirmer
-  //confirmer1 *ndiem.PollblkTransactionConfirmer
-  //confirmer2 *ndiem.PollblkTransactionConfirmer
+  //confirmer *algorand_client.PollblkTransactionConfirmer
+  //confirmer1 *algorand_client.PollblkTransactionConfirmer
+  //confirmer2 *algorand_client.PollblkTransactionConfirmer
+  confirmer *ndiem.PollblkTransactionConfirmer
+  confirmer1 *ndiem.PollblkTransactionConfirmer
+  confirmer2 *ndiem.PollblkTransactionConfirmer
+  confirmer3 *ndiem.PollblkTransactionConfirmer
 }
 
 func MakeService() *Service{
   return &Service{
     result_list: make(map[uint64]resdb.BlockMiningInfo),
-    //confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9000"),
-    //confirmer1: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
-    //confirmer2: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
-    confirmer: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
-    confirmer1: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
-    confirmer2: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9003"),
+    confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9000"),
+    confirmer1: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
+    confirmer2: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
+    confirmer3: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9003"),
+    //confirmer: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
+    //confirmer1: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
+    //confirmer2: algorand_client.NewPollblkTransactionConfirmer("http://127.0.0.1:9003"),
   }
 }
 
@@ -53,7 +55,6 @@ func (s* Service) Process(buf []byte) ([]byte, error) {
     return nil, err
   }
 
-  log.Printf("get request data, cmd %d", request.Type)
   data, err = s.Dispatch(request.Data, request.Type)
   if (err !=nil) {
     return nil, err
@@ -119,7 +120,6 @@ func (s*Service) SaveResult(buf []byte){
     log.Fatalln("UnMashal request error:", err)
     return
   }
-  log.Print("recv result:",result)
   s.result_list[result.Header.MinSeq]=result
 }
 
@@ -172,7 +172,6 @@ func (s*Service) GetResult(seq uint64) ([]byte){
     return nil
   }
 
-  log.Print("get result:",result)
   resp.Data = make([][]byte, 1)
   resp.Seq = make([]uint64, 1)
 
@@ -194,6 +193,10 @@ func (s*Service) GetData(seq uint64) (tx *resdb.Transaction) {
     return
   }
   tx = s.confirmer2.GetData(seq)
+  if(tx !=nil) {
+    return
+  }
+  tx = s.confirmer3.GetData(seq)
   if(tx !=nil) {
     return
   }
@@ -283,7 +286,6 @@ func ReadData(conn net.Conn) ([]byte, error){
     //fmt.Println("Error reading", err.Error())
       return nil, err
   }
-  log.Printf("read len %d",length)
 
   buf := make([]byte, length)
   length, err = conn.Read(buf)
