@@ -78,30 +78,40 @@ func (this *PollblkTransactionConfirmer) processBlock(number *big.Int) error {
 	//var i int
   var num_int int
   var seq uint64
+  var start uint64
 
   log.Print("number:",number)
-
-	block, err = this.client.BlockByNumber(this.ctx, number)
-	if err != nil {
-		return err
-	}
-
-	stxs = block.Transactions()
-  if(len(stxs) == 0){
-    return nil
+  num_int, _ = strconv.Atoi(number.String())
+  if(this.min_v==0){
+    start = uint64(1)
+  } else {
+    start = uint64(num_int)
   }
-  this.lock.Lock()
-  for _, stx = range stxs {
-      num_int, _ = strconv.Atoi(number.String())
+
+  for i:=start; i <= uint64(num_int); i++{
+    a := big.NewInt(int64(i))
+    block, err = this.client.BlockByNumber(this.ctx, a)
+    if err != nil {
+      return err
+    }
+
+    stxs = block.Transactions()
+    if(len(stxs) == 0){
+      continue
+    }
+
+    this.lock.Lock()
+    for _, stx = range stxs {
       if (this.min_v == 0) {
-        this.min_v = uint64(num_int)
+        this.min_v = i
       }
-      seq = uint64(num_int) - this.min_v+1
-    log.Print("txn:",len(stxs), number, seq)
-      this.data[seq] = newTransaction(GetTransactionMessage(stx).From().Hex(), stx.To().Hex(), uint64(num_int), 1)
+      seq = i - this.min_v+1
+      log.Print("txn:",len(stxs), a, seq)
+      this.data[seq] = newTransaction(GetTransactionMessage(stx).From().Hex(), stx.To().Hex(), i, 1)
       break
+    }
+    this.lock.Unlock()
   }
-	this.lock.Unlock()
 
 	return nil
 }
