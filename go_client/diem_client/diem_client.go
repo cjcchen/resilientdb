@@ -43,12 +43,39 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
 }
 
 func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transaction) {
+
 	this.lock.Lock()
   _,ok := this.data[seq]
   if (ok) {
     tx = this.data[seq]
   }
 	this.lock.Unlock()
+  if (tx == nil ){
+      if(this.min_v>0){
+        var txs []*diemjsonrpctypes.Transaction
+
+        txs, _ = this.client.GetTransactions(seq+this.min_v-1, 1, true)
+        if (len(txs) > 0 ) {
+
+          var sender string
+          var receiver string
+          var amount uint64
+          var seq uint64
+          var version uint64
+          var rtx *diemjsonrpctypes.Transaction
+
+          rtx = txs[0]
+          sender = rtx.Transaction.Sender
+          receiver = rtx.Transaction.Script.Receiver
+          amount = rtx.Transaction.Script.Amount
+          seq = rtx.Transaction.SequenceNumber
+          version = rtx.Version
+          if( version == seq+this.min_v-1 ){
+            tx = newTransaction(sender, receiver, version, seq,amount)
+          }
+        }
+      }
+  }
   return
 }
 
