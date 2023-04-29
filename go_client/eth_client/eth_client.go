@@ -95,16 +95,20 @@ func (this *PollblkTransactionConfirmer) processBlock(number *big.Int) error {
       return err
     }
 
+    if (this.min_v == 0) {
+       this.min_v = i
+    }
+
     stxs = block.Transactions()
     if(len(stxs) == 0){
+      seq = i - this.min_v+1
+      log.Print("txn:",len(stxs), a, seq)
+      this.data[seq] = newTransaction("", "", i, 1)
       continue
     }
 
     this.lock.Lock()
     for _, stx = range stxs {
-      if (this.min_v == 0) {
-        this.min_v = i
-      }
       seq = i - this.min_v+1
       log.Print("txn:",len(stxs), a, seq)
       this.data[seq] = newTransaction(GetTransactionMessage(stx).From().Hex(), stx.To().Hex(), i, 1)
