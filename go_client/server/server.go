@@ -153,8 +153,8 @@ func (s*Service) GetTransaction(min_seq uint64, max_seq uint64) (buf []byte){
           t = t+1
         }
       }
-      log.Print("check data",uint64(i) + min_seq," num:",t)
-      if t == 10 {
+      //log.Print("check data",uint64(i) + min_seq," num:",t)
+      if t >= 8 {
         log.Print("no data:",uint64(i) + min_seq)
         continue
       }
