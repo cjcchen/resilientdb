@@ -3,6 +3,7 @@ package ndiem
 import (
   "log"
   "sync"
+  "time"
 
   "github.com/resilientdb/go-resilientdb-sdk/proto"
 	"github.com/diem/client-sdk-go/diemclient"
@@ -14,6 +15,7 @@ type PollblkTransactionConfirmer struct {
   data map[uint64]*resdb.Transaction
 	lock     sync.Mutex
   min_v uint64
+  max_v uint64
 }
 
 const chainId = 4
@@ -36,6 +38,7 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
   log.Print("endpoint:",endpoint)
   this.data = make(map[uint64]*resdb.Transaction)
   this.min_v = 0
+  this.max_v = 0
 
 	go this.run()
 
@@ -50,6 +53,9 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
     tx = this.data[seq]
   }
 	this.lock.Unlock()
+  if (seq > this.max_v){
+    this.max_v = seq
+  }
   if (tx == nil ){
       return 
       if(this.min_v>0){
@@ -172,6 +178,11 @@ func (this *PollblkTransactionConfirmer) run() {
 		version = meta.Version
 
 		for v < version {
+      if ( this.max_v > 0 && v - this.max_v > 3000 ){
+        log.Print("skip getting data, max v:",this.max_v, " cur v:",v)
+        time.Sleep(time.Second)
+        continue
+      }
 			v += 1
 
 			txs, err = this.client.GetTransactions(v, 500, true)
