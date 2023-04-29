@@ -5,6 +5,7 @@ import (
     "net"
     "log"
     "encoding/binary"
+    "sync"
 
     "github.com/resilientdb/go-resilientdb-sdk/proto"
     //"github.com/resilientdb/go-resilientdb-sdk/diem_client"
@@ -23,6 +24,7 @@ type Service struct {
   //confirmer2 *ndiem.PollblkTransactionConfirmer
   //confirmer3 *ndiem.PollblkTransactionConfirmer
   confirmer *eth_client.PollblkTransactionConfirmer
+	lock     sync.Mutex
 }
 
 func MakeService() *Service{
@@ -123,7 +125,9 @@ func (s*Service) SaveResult(buf []byte){
     log.Fatalln("UnMashal request error:", err)
     return
   }
+	s.lock.Lock()
   s.result_list[result.Header.MinSeq]=result
+	s.lock.Unlock()
 }
 
 func (s*Service) GetTransaction(min_seq uint64, max_seq uint64) (buf []byte){
@@ -179,12 +183,15 @@ func (s*Service) GetResult(seq uint64) ([]byte){
   var resp resdb.TxnQueryResponse
   var result resdb.BlockMiningInfo
 
+	s.lock.Lock()
   _,ok := s.result_list[seq];
   if(ok) {
     result = s.result_list[seq]
   } else {
+    s.lock.Unlock()
     return nil
   }
+	s.lock.Unlock()
 
   resp.Data = make([][]byte, 1)
   resp.Seq = make([]uint64, 1)
