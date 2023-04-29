@@ -90,7 +90,6 @@ func (this *PollblkTransactionConfirmer) processBlock(number *big.Int) error {
   if(len(stxs) == 0){
     return nil
   }
-  log.Print("txn:",len(stxs), number)
   this.lock.Lock()
   for _, stx = range stxs {
       num_int, _ = strconv.Atoi(number.String())
@@ -98,7 +97,8 @@ func (this *PollblkTransactionConfirmer) processBlock(number *big.Int) error {
         this.min_v = uint64(num_int)
       }
       seq = uint64(num_int) - this.min_v+1
-      this.data[seq] = newTransaction(GetTransactionMessage(stx).From().Hex(), stx.To().Hex(), seq, 1)
+    log.Print("txn:",len(stxs), number, seq)
+      this.data[seq] = newTransaction(GetTransactionMessage(stx).From().Hex(), stx.To().Hex(), uint64(num_int), 1)
       break
   }
 	this.lock.Unlock()
