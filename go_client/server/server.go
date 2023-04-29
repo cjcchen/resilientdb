@@ -50,13 +50,13 @@ func (s* Service) Process(buf []byte) ([]byte, error) {
 
   err = proto.Unmarshal(buf, &resdb_message)
   if err != nil{
-    log.Fatalln("UnMashal data error:", err)
+    log.Print("UnMashal data error:", err)
     return nil, err
   }
 
   err = proto.Unmarshal(resdb_message.Data, &request)
   if err != nil{
-    log.Fatalln("UnMashal data error:", err)
+    log.Print("UnMashal data error:", err)
     return nil, err
   }
 
@@ -80,7 +80,7 @@ func (s* Service) Dispatch(buf []byte, request_type int32)([]byte, error){
 
     err = proto.Unmarshal(buf, &query)
     if err != nil{
-      log.Fatalln("UnMashal request error:", err)
+      log.Print("UnMashal request error:", err)
         return nil, err
     }
 
@@ -122,7 +122,7 @@ func (s*Service) SaveResult(buf []byte){
 
   err = proto.Unmarshal(buf, &result)
   if err != nil{
-    log.Fatalln("UnMashal request error:", err)
+    log.Print("UnMashal request error:", err)
     return
   }
 	s.lock.Lock()
