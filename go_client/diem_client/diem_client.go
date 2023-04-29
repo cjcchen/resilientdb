@@ -70,7 +70,7 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
           seq = rtx.Transaction.SequenceNumber
 
           if rtx.Transaction.Type != "user" {
-            log.Print("get version user type:", version)
+            //log.Print("get version user type:", version)
             tx = newTransaction(sender, "", version, seq, 1)
             return
           }
@@ -78,7 +78,7 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
           amount = rtx.Transaction.Script.Amount
           if( version == seq+this.min_v-1 ){
             tx = newTransaction(sender, receiver, version, seq,amount)
-            log.Print("reget version:",version)
+            //log.Print("reget version:",version)
           }
         }
       }
@@ -127,8 +127,8 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
   if ( this.min_v == 0){
     this.min_v = tx.Version
   }
-  log.Print("push version:",version)
-  log.Print("min v:",this.min_v, version-this.min_v+1)
+  //log.Print("push version:",version)
+  //log.Print("min v:",this.min_v, version-this.min_v+1)
   this.data[version-this.min_v+1] = newTransaction(sender, receiver, version, seq,amount)
 	this.lock.Unlock()
   return true
