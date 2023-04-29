@@ -72,6 +72,7 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
           version = rtx.Version
           if( version == seq+this.min_v-1 ){
             tx = newTransaction(sender, receiver, version, seq,amount)
+            log.Print("reget version:",version)
           }
         }
       }
