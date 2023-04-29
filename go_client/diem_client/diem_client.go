@@ -178,14 +178,14 @@ func (this *PollblkTransactionConfirmer) run() {
 		version = meta.Version
 
 		for v < version {
-      if ( this.max_v > 0 && v - this.max_v > 3000 ){
+      if ( this.max_v > 0 && v - this.max_v > 1000 ){
         log.Print("skip getting data, max v:",this.max_v, " cur v:",v)
         time.Sleep(time.Second)
         continue
       }
 			v += 1
 
-			txs, err = this.client.GetTransactions(v, 500, true)
+			txs, err = this.client.GetTransactions(v, 10, true)
 			if err != nil {
 				continue
 			}
