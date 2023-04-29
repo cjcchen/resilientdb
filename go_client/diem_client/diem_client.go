@@ -66,10 +66,16 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
 
           rtx = txs[0]
           sender = rtx.Transaction.Sender
+          version = rtx.Version
+          seq = rtx.Transaction.SequenceNumber
+
+          if rtx.Transaction.Type != "user" {
+            log.Print("get version user type:", version)
+            tx = newTransaction(sender, "", version, seq, 1)
+            return
+          }
           receiver = rtx.Transaction.Script.Receiver
           amount = rtx.Transaction.Script.Amount
-          seq = rtx.Transaction.SequenceNumber
-          version = rtx.Version
           if( version == seq+this.min_v-1 ){
             tx = newTransaction(sender, receiver, version, seq,amount)
             log.Print("reget version:",version)
