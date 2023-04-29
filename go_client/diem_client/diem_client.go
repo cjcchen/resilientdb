@@ -51,6 +51,7 @@ func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transacti
   }
 	this.lock.Unlock()
   if (tx == nil ){
+      return 
       if(this.min_v>0){
         var txs []*diemjsonrpctypes.Transaction
 
@@ -94,8 +95,14 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
   var version uint64
 
   sender = tx.Transaction.Sender
-  receiver = tx.Transaction.Script.Receiver
-  amount = tx.Transaction.Script.Amount
+
+  if tx.Transaction.Type != "user" {
+    receiver = ""
+    amount = 1
+  } else {
+    receiver = tx.Transaction.Script.Receiver
+  }
+
   seq = tx.Transaction.SequenceNumber
   version = tx.Version
   if (this.min_v == 0){
@@ -109,6 +116,9 @@ func (this *PollblkTransactionConfirmer) parseTransaction(tx *diemjsonrpctypes.T
       if(this.min_v>0){
         log.Print("get skip version:",version)
       }
+      return false
+    }
+    if tx.Transaction.Type != "user" {
       return false
     }
   } else  {
@@ -174,9 +184,9 @@ func (this *PollblkTransactionConfirmer) run() {
 					v = tx.Version
 				}
 
-				if tx.Transaction.Type != "user" {
-					continue
-				}
+				//if tx.Transaction.Type != "user" {
+			//		continue
+			//	}
 
         //log.Print("get version:",tx.Version)
 				ok = this.parseTransaction(tx)
