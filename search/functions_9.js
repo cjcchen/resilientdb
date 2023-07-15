@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['id_0',['id',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#a002fa359373b008d680b32c3dd2a8b3d',1,'resdb_validator.transaction.Transaction.id()'],['../d8/dfa/classresdb__validator_1_1models_1_1FastTransaction.html#af801cfadaee6579b75c1231b90ecdaaa',1,'resdb_validator.models.FastTransaction.id()']]],
+  ['id_0',['id',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#aad0d9fe200c90405fd33bc3240b9d8a4',1,'resdb_validator.transaction.Transaction.id()'],['../d8/dfa/classresdb__validator_1_1models_1_1FastTransaction.html#a893fd8af2bc1d00125d83f74e28a2885',1,'resdb_validator.models.FastTransaction.id()']]],
   ['inc_1',['Inc',['../df/dcf/classresdb_1_1PrometheusHandler.html#a22f8993b00dbfea349e441c5a0aa8690',1,'resdb::PrometheusHandler']]],
   ['incclientcall_2',['IncClientCall',['../de/d0d/classresdb_1_1Stats.html#af710ffd1c7bb30359385e55da7965099',1,'resdb::Stats']]],
   ['incclientrequest_3',['IncClientRequest',['../de/d0d/classresdb_1_1Stats.html#a334b60b9e70a30b4b851c747ec279160',1,'resdb::Stats']]],
@@ -14,10 +14,10 @@ var searchData=
   ['incsocketrecv_11',['IncSocketRecv',['../de/d0d/classresdb_1_1Stats.html#a3f8cf6964624bdafa8f41af2baedc84f',1,'resdb::Stats']]],
   ['inctotalgeorequest_12',['IncTotalGeoRequest',['../de/d0d/classresdb_1_1Stats.html#a1b1b788ce003d563d7e27b418a559910',1,'resdb::Stats']]],
   ['inctotalrequest_13',['IncTotalRequest',['../de/d0d/classresdb_1_1Stats.html#a4a22b02b623ed9bd874f9fc84d2b72fa',1,'resdb::Stats']]],
-  ['inputs_5fvalid_14',['inputs_valid',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#aaf1f3c7f89eb8b8eefda37da393a49de',1,'resdb_validator::transaction::Transaction']]],
+  ['inputs_5fvalid_14',['inputs_valid',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#ab34bf99937c6bc55f582d335f24f1a30',1,'resdb_validator::transaction::Transaction']]],
   ['internalconsensuscommit_15',['InternalConsensusCommit',['../d0/dde/classresdb_1_1ConsensusServicePBFT.html#a72bdc6697b1131410bfc141a2548134b',1,'resdb::ConsensusServicePBFT']]],
-  ['is_5fcommitted_16',['is_committed',['../de/d4d/classresdb__validator_1_1lib_1_1ResDB.html#af248c364dc6982917b9ce8eeab9d3a01',1,'resdb_validator::lib::ResDB']]],
-  ['is_5fvalid_5ftransaction_17',['is_valid_transaction',['../de/d4d/classresdb__validator_1_1lib_1_1ResDB.html#abca702be8c99d0a3fd6f1c9446f10301',1,'resdb_validator::lib::ResDB']]],
+  ['is_5fcommitted_16',['is_committed',['../de/d4d/classresdb__validator_1_1lib_1_1ResDB.html#a5910d58a353b5352e23104e06fb96d75',1,'resdb_validator::lib::ResDB']]],
+  ['is_5fvalid_5ftransaction_17',['is_valid_transaction',['../de/d4d/classresdb__validator_1_1lib_1_1ResDB.html#a6dc290e2ec3b21728dcab9fb51106d8c',1,'resdb_validator::lib::ResDB']]],
   ['is_5fvalid_5ftx_18',['is_valid_tx',['../d6/d3b/namespacevalidator.html#ac99538d12d2d45ca70ae031e47a21525',1,'validator']]],
   ['ischeckpointenabled_19',['IsCheckPointEnabled',['../db/ddb/classresdb_1_1ResDBConfig.html#a93e9f3bfda0a9ab731c01e506f7e0031',1,'resdb::ResDBConfig']]],
   ['isclient_20',['IsClient',['../d5/d10/namespaceresdb.html#abdaf5016ad43ec7f011a3be5fae3d104',1,'resdb']]],

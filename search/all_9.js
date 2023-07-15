@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['backend_0',['backend',['../de/d4d/classresdb__validator_1_1lib_1_1ResDB.html#a9a5b9b0c2f592217e283649ca46eb733',1,'resdb_validator::lib::ResDB']]],
-  ['balanced_2dmatch_1',['balanced-match',['../d7/d44/md__github_workspace_node_modules_balanced_match_README.html',1,'']]],
+  ['backend_0',['backend',['../de/d4d/classresdb__validator_1_1lib_1_1ResDB.html#a62f0b79ad51161ff2a4ca9784a084450',1,'resdb_validator::lib::ResDB']]],
+  ['balanced_2dmatch_1',['balanced-match',['../de/d15/md__2github_2workspace_2node__modules_2balanced-match_2README.html',1,'']]],
   ['batch_5fqueue_2eh_2',['batch_queue.h',['../db/da7/batch__queue_8h.html',1,'']]],
   ['batch_5fqueue_5ftest_2ecpp_3',['batch_queue_test.cpp',['../df/dba/batch__queue__test_8cpp.html',1,'']]],
   ['batch_5fsize_4',['BATCH_SIZE',['../dc/d7e/rocksdb__performance_8cpp.html#ac1d895cb4479f043958ccc5cb92d630f',1,'rocksdb_performance.cpp']]],
@@ -9,12 +9,12 @@ var searchData=
   ['batchqueue_6',['BatchQueue',['../d5/db6/classresdb_1_1BatchQueue.html#a59c7d747ec003c63b0db086a596121b3',1,'resdb::BatchQueue::BatchQueue(const std::string &amp;name, int batch_size)'],['../d5/db6/classresdb_1_1BatchQueue.html#a98aee07f8e10dde14363176142808d63',1,'resdb::BatchQueue::BatchQueue()=default'],['../d5/db6/classresdb_1_1BatchQueue.html',1,'resdb::BatchQueue&lt; T &gt;']]],
   ['batchqueue_3c_20std_3a_3aunique_5fptr_3c_20queueitem_20_3e_20_3e_7',['BatchQueue&lt; std::unique_ptr&lt; QueueItem &gt; &gt;',['../d5/db6/classresdb_1_1BatchQueue.html',1,'resdb']]],
   ['batchtransactionnum_8',['BatchTransactionNum',['../da/d86/classresdb_1_1ResDBPoCConfig.html#a77e6e6c8046ecf11a2a3da5966cba84d',1,'resdb::ResDBPoCConfig']]],
-  ['benchmark_9',['Benchmark',['../d5/dab/md__github_workspace_go_client_pkg_mod_google_golang_org_grpc_v1_54_0_Documentation_benchmark.html',1,'']]],
+  ['benchmark_9',['Benchmark',['../d5/d2e/md__2github_2workspace_2go__client_2pkg_2mod_2google_8golang_8org_2grpc_0dv1_854_80_2Documentation_2benchmark.html',1,'']]],
   ['benchmark_2emd_10',['benchmark.md',['../d2/dd8/benchmark_8md.html',1,'']]],
   ['benchmark_5fresult_11',['benchmark_result',['../d0/d07/namespacebenchmark__result.html',1,'']]],
   ['benchmark_5fresult_2epy_12',['benchmark_result.py',['../d3/dd8/hotstuff_2script_2benchmark__result_8py.html',1,'(Global Namespace)'],['../d1/d35/hotstuff_2benchmark__result_8py.html',1,'(Global Namespace)'],['../df/ddb/geo__pbft_2script_2benchmark__result_8py.html',1,'(Global Namespace)'],['../df/d67/tendermint_2script_2benchmark__result_8py.html',1,'(Global Namespace)'],['../da/dbc/pow_2pbft_2script_2benchmark__result_8py.html',1,'(Global Namespace)'],['../d2/dea/pow_2benchmark__result_8py.html',1,'(Global Namespace)'],['../d2/dcc/poe__mac_2benchmark__result_8py.html',1,'(Global Namespace)'],['../d7/d1c/poe_2benchmark__result_8py.html',1,'(Global Namespace)'],['../d1/d22/pbft_2script_2benchmark__result_8py.html',1,'(Global Namespace)'],['../de/d45/pow_2script_2benchmark__result_8py.html',1,'(Global Namespace)'],['../d2/d82/pbft_2benchmark__result_8py.html',1,'(Global Namespace)']]],
-  ['bft_5fconfig_5f_13',['bft_config_',['../d2/d7a/block__manager__test_8cpp.html#acbb695b8344454bc73e8c0ddf1d21062',1,'bft_config_():&#160;block_manager_test.cpp'],['../d6/d76/consensus__service__pow__test_8cpp.html#acbb695b8344454bc73e8c0ddf1d21062',1,'bft_config_():&#160;consensus_service_pow_test.cpp'],['../dc/d43/pow__manager__test_8cpp.html#acbb695b8344454bc73e8c0ddf1d21062',1,'bft_config_():&#160;pow_manager_test.cpp']]],
-  ['block_14',['Block',['../dc/d0c/namespaceresdb__validator_1_1lib.html#abdb198ef68ef6f41b4cd9f2042e7e9e9',1,'resdb_validator::lib']]],
+  ['bft_5fconfig_5f_13',['bft_config_',['../d2/d7a/block__manager__test_8cpp.html#acbb695b8344454bc73e8c0ddf1d21062',1,'bft_config_:&#160;block_manager_test.cpp'],['../d6/d76/consensus__service__pow__test_8cpp.html#acbb695b8344454bc73e8c0ddf1d21062',1,'bft_config_:&#160;consensus_service_pow_test.cpp'],['../dc/d43/pow__manager__test_8cpp.html#acbb695b8344454bc73e8c0ddf1d21062',1,'bft_config_:&#160;pow_manager_test.cpp']]],
+  ['block_14',['Block',['../dc/d0c/namespaceresdb__validator_1_1lib.html#aa26ff11cb72167475144c4101188daa2',1,'resdb_validator::lib']]],
   ['block_5fmanager_2ecpp_15',['block_manager.cpp',['../d3/df4/block__manager_8cpp.html',1,'']]],
   ['block_5fmanager_2eh_16',['block_manager.h',['../dc/d4d/block__manager_8h.html',1,'']]],
   ['block_5fmanager_5ftest_2ecpp_17',['block_manager_test.cpp',['../d2/d7a/block__manager__test_8cpp.html',1,'']]],
@@ -22,8 +22,8 @@ var searchData=
   ['blockingqueue_19',['BlockingQueue',['../dd/d88/classresdb_1_1BlockingQueue.html#a04adeb2029c51848bcdd82cf58122387',1,'resdb::BlockingQueue::BlockingQueue()=default'],['../dd/d88/classresdb_1_1BlockingQueue.html#ada793a9c402e73526c4a825b3861c6f3',1,'resdb::BlockingQueue::BlockingQueue(const std::string &amp;name)'],['../dd/d88/classresdb_1_1BlockingQueue.html',1,'resdb::BlockingQueue&lt; T &gt;']]],
   ['blockmanager_20',['BlockManager',['../de/d46/classresdb_1_1BlockManager.html#a86879d9969229035fc291cf812a9b5d4',1,'resdb::BlockManager::BlockManager()'],['../de/d46/classresdb_1_1BlockManager.html',1,'resdb::BlockManager']]],
   ['blockstatus_21',['BlockStatus',['../d8/dbf/classresdb_1_1PoWManager.html#acc4425128a7e2be8c289eecd7e330a59',1,'resdb::PoWManager']]],
-  ['body_2dparser_22',['body-parser',['../d7/dd9/md__github_workspace_node_modules_body_parser_README.html',1,'']]],
-  ['brace_2dexpansion_23',['brace-expansion',['../d6/d97/md__github_workspace_node_modules_brace_expansion_README.html',1,'(Global Namespace)'],['../d7/dcc/md__github_workspace_node_modules_filelist_node_modules_brace_expansion_README.html',1,'(Global Namespace)']]],
+  ['body_2dparser_22',['body-parser',['../dd/d30/md__2github_2workspace_2node__modules_2body-parser_2README.html',1,'']]],
+  ['brace_2dexpansion_23',['brace-expansion',['../d1/d44/md__2github_2workspace_2node__modules_2brace-expansion_2README.html',1,'(Global Namespace)'],['../d6/db3/md__2github_2workspace_2node__modules_2filelist_2node__modules_2brace-expansion_2README.html',1,'(Global Namespace)']]],
   ['broad_5fcast_24',['BROAD_CAST',['../d5/d10/namespaceresdb.html#a903a063ebd51c5fd151a96b7324b62f6ae5a039349fcc8f8d968133949cc0223d',1,'resdb']]],
   ['broadcast_25',['BroadCast',['../d1/d1b/classresdb_1_1ResDBReplicaClient.html#a0f69bcd0b25ccc022fa57258a84c19fc',1,'resdb::ResDBReplicaClient::BroadCast()'],['../d6/d83/classresdb_1_1ConsensusService.html#a24834670124a61dfff0f5f3c80f7c0a0',1,'resdb::ConsensusService::BroadCast()']]],
   ['broadcastminingresult_26',['BroadCastMiningResult',['../d8/dbf/classresdb_1_1PoWManager.html#aefc9c51c49a5a25fef2c2e44e53c73b0',1,'resdb::PoWManager']]],
@@ -31,6 +31,6 @@ var searchData=
   ['broadcastnewblock_28',['BroadCastNewBlock',['../d8/dbf/classresdb_1_1PoWManager.html#ae3d85e1f06960a03bffd3c4309a5aa2e',1,'resdb::PoWManager']]],
   ['broadcastshiftmsg_29',['BroadCastShiftMsg',['../d8/dbf/classresdb_1_1PoWManager.html#a23c47459c5fd1e11530bb04659aed9a2',1,'resdb::PoWManager']]],
   ['buff_30',['buff',['../dd/dd6/structresdb_1_1DataInfo.html#a7f39b19f8d8d6456e5d6f8a1959ec222',1,'resdb::DataInfo']]],
-  ['building_20a_20nft_20market_20with_20resdb_31',['Building a NFT market with resdb',['../de/d1f/md__github_workspace_sdk_validator_docs_nft_market.html',1,'']]],
-  ['bytes_20utility_32',['Bytes utility',['../df/dd7/md__github_workspace_node_modules_bytes_Readme.html',1,'']]]
+  ['building_20a_20nft_20market_20with_20resdb_31',['Building a NFT market with resdb',['../dc/de2/md__2github_2workspace_2sdk__validator_2docs_2nft__market.html',1,'']]],
+  ['bytes_20utility_32',['Bytes utility',['../df/d80/md__2github_2workspace_2node__modules_2bytes_2Readme.html',1,'']]]
 ];

@@ -2,8 +2,8 @@ var searchData=
 [
   ['accept_0',['Accept',['../d4/de5/classresdb_1_1TcpSocket.html#ac3bda64e159fa9b5146a16b10009543f',1,'resdb::TcpSocket::Accept()'],['../d0/d29/classresdb_1_1Socket.html#a824c596c8df6a91609381032e2840ec6',1,'resdb::Socket::Accept()']]],
   ['add_1',['add',['../d4/d35/classresdb_1_1SpinLockSet.html#aecfc18020bbadcc137b7f258e9d233e7',1,'resdb::SpinLockSet']]],
-  ['add_5finput_2',['add_input',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#a92242e5eceec6bf942f80344cb8edcdc',1,'resdb_validator::transaction::Transaction']]],
-  ['add_5foutput_3',['add_output',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#a188174b680e06272b24136d923d543bd',1,'resdb_validator::transaction::Transaction']]],
+  ['add_5finput_2',['add_input',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#aae78c41cf204a6ce4c264a0c157c0475',1,'resdb_validator::transaction::Transaction']]],
+  ['add_5foutput_3',['add_output',['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#a4521c5b2eeed7630a9469e9166b80304',1,'resdb_validator::transaction::Transaction']]],
   ['addcoin_4',['AddCoin',['../df/ddc/classresdb_1_1utxo_1_1Wallet.html#ad9a03cf31bdf5d0b7baf8b4e7a7d0734',1,'resdb::utxo::Wallet']]],
   ['addcommitdata_5',['AddCommitData',['../dc/db0/classresdb_1_1CheckPointManager.html#ad7417f8126c6b8fa9c0f7c85a21e2568',1,'resdb::CheckPointManager']]],
   ['addconsensusmsg_6',['AddConsensusMsg',['../df/d01/classresdb_1_1TransactionManager.html#abc1cb41203c65a782e74b8bde8b83bc5',1,'resdb::TransactionManager']]],

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['ok_0',['OK',['../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a32b6cd48a1f19a9126432976f8e00e74',1,'resdb::PoWManager::OK()'],['../d5/d10/namespaceresdb.html#affdec049917742284c2ba9216d5ae83facb7bac5f94befc7f130f511f04320cf1',1,'resdb::OK()']]],
-  ['on_2dfinished_1',['on-finished',['../db/d54/md__github_workspace_node_modules_on_finished_README.html',1,'']]],
-  ['once_2',['once',['../dd/d28/md__github_workspace_node_modules_once_README.html',1,'']]],
-  ['operation_3',['operation',['../d9/d68/classresdb__validator_1_1models_1_1Transaction.html#a1cded8cfdb458b534cb3e39bde748f90',1,'resdb_validator.models.Transaction.operation()'],['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#ae8abb6dcbf565c83561d188bcbec1fbb',1,'resdb_validator.transaction.Transaction.operation()']]],
+  ['ok_0',['OK',['../d8/dbf/classresdb_1_1PoWManager.html#a632ed157b00c88bf2e4e9f19c599e7c3a32b6cd48a1f19a9126432976f8e00e74',1,'resdb::PoWManager::OK'],['../d5/d10/namespaceresdb.html#affdec049917742284c2ba9216d5ae83facb7bac5f94befc7f130f511f04320cf1',1,'resdb::OK']]],
+  ['on_2dfinished_1',['on-finished',['../df/da6/md__2github_2workspace_2node__modules_2on-finished_2README.html',1,'']]],
+  ['once_2',['once',['../d2/d5e/md__2github_2workspace_2node__modules_2once_2README.html',1,'']]],
+  ['operation_3',['operation',['../d9/d68/classresdb__validator_1_1models_1_1Transaction.html#a1cded8cfdb458b534cb3e39bde748f90',1,'resdb_validator.models.Transaction.operation'],['../d5/d13/classresdb__validator_1_1transaction_1_1Transaction.html#ae8abb6dcbf565c83561d188bcbec1fbb',1,'resdb_validator.transaction.Transaction.operation']]],
   ['operationerror_4',['OperationError',['../d1/df4/classresdb__validator_1_1exceptions_1_1OperationError.html',1,'resdb_validator::exceptions']]],
   ['operator_3c_5',['operator&lt;',['../d5/d10/namespaceresdb.html#acdbee99699558e96502ff01edb488804',1,'resdb']]],
   ['operator_3c_3d_6',['operator&lt;=',['../d5/d10/namespaceresdb.html#a1ac518a10d8bd351a6e03bac8c1b23ca',1,'resdb']]],
