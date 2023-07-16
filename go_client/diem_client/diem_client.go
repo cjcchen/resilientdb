@@ -5,7 +5,7 @@ import (
   "sync"
   "time"
 
-  "github.com/resilientdb/go-resilientdb-sdk/proto"
+  "github.com/xdb/go-xdb-sdk/proto"
 	"github.com/diem/client-sdk-go/diemclient"
 	"github.com/diem/client-sdk-go/diemjsonrpctypes"
 )

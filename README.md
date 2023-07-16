@@ -1,18 +1,18 @@
-# ResilientDB: Global-Scale Sustainable Blockchain Fabric
+# XDB: Global-Scale Sustainable Blockchain Fabric
 
 ## OS Requirements
 Ubuntu 20.*
 
 ---
 
-## Build and Deploy ResilientDB
+## Build and Deploy XDB
 
 Install dependencies:
 
     ./INSTALL.sh
 
 
-Run ResilientDB (Providing a Key-Value Service):
+Run XDB (Providing a Key-Value Service):
 
     ./example/start_kv_server.sh
     

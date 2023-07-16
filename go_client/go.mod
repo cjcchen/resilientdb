@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/golang/protobuf v1.5.3
-	github.com/resilientdb/go-resilientdb-sdk v0.0.0
+	github.com/xdb/go-xdb-sdk v0.0.0
 	google.golang.org/protobuf v1.30.0
 )
 
@@ -31,4 +31,4 @@ require (
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 )
 
-replace github.com/resilientdb/go-resilientdb-sdk => ./
+replace github.com/xdb/go-xdb-sdk => ./

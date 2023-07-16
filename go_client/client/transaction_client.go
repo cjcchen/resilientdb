@@ -6,7 +6,7 @@ import (
   "log"
     "encoding/binary"
 
-  "github.com/resilientdb/go-resilientdb-sdk/proto"
+  "github.com/xdb/go-xdb-sdk/proto"
   "github.com/golang/protobuf/proto"
 )
 

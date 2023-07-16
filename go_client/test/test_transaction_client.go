@@ -3,8 +3,8 @@ package main
 import (
   "log"
 
-  "github.com/resilientdb/go-resilientdb-sdk/client"
-  "github.com/resilientdb/go-resilientdb-sdk/proto"
+  "github.com/xdb/go-xdb-sdk/client"
+  "github.com/xdb/go-xdb-sdk/proto"
 )
 
 func main() {

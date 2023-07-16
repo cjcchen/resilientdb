@@ -7,10 +7,10 @@ import (
     "encoding/binary"
     "sync"
 
-    "github.com/resilientdb/go-resilientdb-sdk/proto"
-    "github.com/resilientdb/go-resilientdb-sdk/diem_client"
-    //"github.com/resilientdb/go-resilientdb-sdk/algorand_client"
-    //"github.com/resilientdb/go-resilientdb-sdk/eth_client"
+    "github.com/xdb/go-xdb-sdk/proto"
+    "github.com/xdb/go-xdb-sdk/diem_client"
+    //"github.com/xdb/go-xdb-sdk/algorand_client"
+    //"github.com/xdb/go-xdb-sdk/eth_client"
     "github.com/golang/protobuf/proto"
 )
 

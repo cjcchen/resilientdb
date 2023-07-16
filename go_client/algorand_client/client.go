@@ -7,7 +7,7 @@ import (
 	"encoding/binary"
 	"context"
 
-  "github.com/resilientdb/go-resilientdb-sdk/proto"
+  "github.com/xdb/go-xdb-sdk/proto"
 	"github.com/algorand/go-algorand-sdk/client/v2/algod"
 	"github.com/algorand/go-algorand-sdk/client/v2/common/models"
 )

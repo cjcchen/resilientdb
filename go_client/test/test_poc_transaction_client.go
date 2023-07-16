@@ -3,12 +3,10 @@ package main
 import (
   "log"
 
-  "github.com/resilientdb/go-resilientdb-sdk/client"
+  "github.com/xdb/go-xdb-sdk/client"
 )
 
 func main() {
-  log.Printf("???")
-
   var client *resdb_client.PoCTransactionClient
   var resp map[uint64]int32
   var req []uint64
