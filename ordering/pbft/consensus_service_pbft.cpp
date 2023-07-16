@@ -32,7 +32,7 @@
 
 namespace resdb {
 
-bool IsClient(const ResDBConfig& config){
+bool IsClient(const XDBConfig& config){
     return config.GetPublicKeyCertificateInfo()
       .public_key()
       .public_key_info()
@@ -40,7 +40,7 @@ bool IsClient(const ResDBConfig& config){
 }
 
 ConsensusServicePBFT::ConsensusServicePBFT(
-    const ResDBConfig& config,
+    const XDBConfig& config,
     std::unique_ptr<TransactionExecutorImpl> executor,
     std::unique_ptr<CustomQuery> query_executor)
     : ConsensusService(config),

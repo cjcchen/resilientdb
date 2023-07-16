@@ -32,8 +32,8 @@
 namespace resdb {
 
 GeoTransactionExecutor::GeoTransactionExecutor(
-    const ResDBConfig& config, std::unique_ptr<SystemInfo> system_info,
-    std::unique_ptr<ResDBReplicaClient> replica_client,
+    const XDBConfig& config, std::unique_ptr<SystemInfo> system_info,
+    std::unique_ptr<XDBReplicaClient> replica_client,
     std::unique_ptr<TransactionExecutorImpl> geo_executor_impl)
     : TransactionExecutorImpl(false, false),
       config_(config),

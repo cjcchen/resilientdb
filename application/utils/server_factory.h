@@ -35,96 +35,96 @@ namespace resdb {
 
 class ServerFactory {
  public:
-  std::unique_ptr<ResDBServer> CreateResDBServer(
+  std::unique_ptr<XDBServer> CreateXDBServer(
       char* config_file, char* private_key_file, char* cert_file,
       std::unique_ptr<TransactionExecutorImpl> executor, char* logging_dir,
-      std::function<void(ResDBConfig* config)> config_handler);
+      std::function<void(XDBConfig* config)> config_handler);
 
   template <typename ConsensusProtocol = ConsensusServicePBFT>
-  std::unique_ptr<ResDBServer> CustomCreateResDBServer(
+  std::unique_ptr<XDBServer> CustomCreateXDBServer(
       char* config_file, char* private_key_file, char* cert_file,
       std::unique_ptr<TransactionExecutorImpl> executor, char* logging_dir,
-      std::function<void(ResDBConfig* config)> config_handler);
+      std::function<void(XDBConfig* config)> config_handler);
 
   template <typename ConsensusProtocol = ConsensusServicePBFT>
-  std::unique_ptr<ResDBServer> CustomCreateResDBServer(
+  std::unique_ptr<XDBServer> CustomCreateXDBServer(
       char* config_file, char* private_key_file, char* cert_file,
       std::unique_ptr<TransactionExecutorImpl> executor,
       std::unique_ptr<CustomQuery> query_executor,
-      std::function<void(ResDBConfig* config)> config_handler);
+      std::function<void(XDBConfig* config)> config_handler);
 };
 
-std::unique_ptr<ResDBServer> GenerateResDBServer(
+std::unique_ptr<XDBServer> GenerateXDBServer(
     char* config_file, char* private_key_file, char* cert_file,
     std::unique_ptr<TransactionExecutorImpl> executor,
     char* logging_dir = nullptr,
-    std::function<void(ResDBConfig* config)> config_handler = nullptr);
+    std::function<void(XDBConfig* config)> config_handler = nullptr);
 
 template <typename ConsensusProtocol>
-std::unique_ptr<ResDBServer> CustomGenerateResDBServer(
+std::unique_ptr<XDBServer> CustomGenerateXDBServer(
     char* config_file, char* private_key_file, char* cert_file,
     std::unique_ptr<TransactionExecutorImpl> executor,
     char* logging_dir = nullptr,
-    std::function<void(ResDBConfig* config)> config_handler = nullptr);
+    std::function<void(XDBConfig* config)> config_handler = nullptr);
 
 template <typename ConsensusProtocol>
-std::unique_ptr<ResDBServer> CustomGenerateResDBServer(
+std::unique_ptr<XDBServer> CustomGenerateXDBServer(
     char* config_file, char* private_key_file, char* cert_file,
     std::unique_ptr<TransactionExecutorImpl> executor,
     std::unique_ptr<CustomQuery> query_executor,
-    std::function<void(ResDBConfig* config)> config_handler = nullptr);
+    std::function<void(XDBConfig* config)> config_handler = nullptr);
 
 // ===================================================================
 template <typename ConsensusProtocol>
-std::unique_ptr<ResDBServer> ServerFactory::CustomCreateResDBServer(
+std::unique_ptr<XDBServer> ServerFactory::CustomCreateXDBServer(
     char* config_file, char* private_key_file, char* cert_file,
     std::unique_ptr<TransactionExecutorImpl> executor, char* logging_dir,
-    std::function<void(ResDBConfig* config)> config_handler) {
-  std::unique_ptr<ResDBConfig> config =
-      GenerateResDBConfig(config_file, private_key_file, cert_file);
+    std::function<void(XDBConfig* config)> config_handler) {
+  std::unique_ptr<XDBConfig> config =
+      GenerateXDBConfig(config_file, private_key_file, cert_file);
 
   if (config_handler) {
     config_handler(config.get());
   }
-  return std::make_unique<ResDBServer>(
+  return std::make_unique<XDBServer>(
       *config,
       std::make_unique<ConsensusProtocol>(*config, std::move(executor)));
 }
 
 template <typename ConsensusProtocol>
-std::unique_ptr<ResDBServer> ServerFactory::CustomCreateResDBServer(
+std::unique_ptr<XDBServer> ServerFactory::CustomCreateXDBServer(
     char* config_file, char* private_key_file, char* cert_file,
     std::unique_ptr<TransactionExecutorImpl> executor,
     std::unique_ptr<CustomQuery> query_executor,
-    std::function<void(ResDBConfig* config)> config_handler) {
-  std::unique_ptr<ResDBConfig> config =
-      GenerateResDBConfig(config_file, private_key_file, cert_file);
+    std::function<void(XDBConfig* config)> config_handler) {
+  std::unique_ptr<XDBConfig> config =
+      GenerateXDBConfig(config_file, private_key_file, cert_file);
 
   if (config_handler) {
     config_handler(config.get());
   }
-  return std::make_unique<ResDBServer>(
+  return std::make_unique<XDBServer>(
       *config, std::make_unique<ConsensusProtocol>(*config, std::move(executor),
                                                    std::move(query_executor)));
 }
 
 template <typename ConsensusProtocol>
-std::unique_ptr<ResDBServer> CustomGenerateResDBServer(
+std::unique_ptr<XDBServer> CustomGenerateXDBServer(
     char* config_file, char* private_key_file, char* cert_file,
     std::unique_ptr<TransactionExecutorImpl> executor, char* logging_dir,
-    std::function<void(ResDBConfig* config)> config_handler) {
-  return ServerFactory().CustomCreateResDBServer<ConsensusProtocol>(
+    std::function<void(XDBConfig* config)> config_handler) {
+  return ServerFactory().CustomCreateXDBServer<ConsensusProtocol>(
       config_file, private_key_file, cert_file, std::move(executor),
       logging_dir, config_handler);
 }
 
 template <typename ConsensusProtocol>
-std::unique_ptr<ResDBServer> CustomGenerateResDBServer(
+std::unique_ptr<XDBServer> CustomGenerateXDBServer(
     char* config_file, char* private_key_file, char* cert_file,
     std::unique_ptr<TransactionExecutorImpl> executor,
     std::unique_ptr<CustomQuery> query_executor,
-    std::function<void(ResDBConfig* config)> config_handler) {
-  return ServerFactory().CustomCreateResDBServer<ConsensusProtocol>(
+    std::function<void(XDBConfig* config)> config_handler) {
+  return ServerFactory().CustomCreateXDBServer<ConsensusProtocol>(
       config_file, private_key_file, cert_file, std::move(executor),
       std::move(query_executor), config_handler);
 }

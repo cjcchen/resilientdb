@@ -30,8 +30,8 @@
 
 using resdb::GenerateReplicaInfo;
 using resdb::ReplicaInfo;
-using resdb::ResDBConfig;
-using resdb::ResDBStateClient;
+using resdb::XDBConfig;
+using resdb::XDBStateClient;
 
 int main(int argc, char** argv) {
   if (argc < 4) {
@@ -44,10 +44,10 @@ int main(int argc, char** argv) {
 
   ReplicaInfo self_info = GenerateReplicaInfo(0, "127.0.0.1", 88888);
 
-  std::unique_ptr<ResDBConfig> config =
-      GenerateResDBConfig(config_file, private_key_file, cert_file, self_info);
+  std::unique_ptr<XDBConfig> config =
+      GenerateXDBConfig(config_file, private_key_file, cert_file, self_info);
 
-  ResDBStateClient client(*config);
+  XDBStateClient client(*config);
   auto states = client.GetReplicaStates();
   if (!states.ok()) {
     LOG(ERROR) << "get replica state fail";

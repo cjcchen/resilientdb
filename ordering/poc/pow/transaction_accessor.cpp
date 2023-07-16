@@ -5,7 +5,7 @@
 
 namespace resdb {
 
-TransactionAccessor::TransactionAccessor(const ResDBPoCConfig& config,
+TransactionAccessor::TransactionAccessor(const XDBPoCConfig& config,
                                          bool auto_start)
     : config_(config) {
   stop_ = false;
@@ -17,8 +17,8 @@ TransactionAccessor::TransactionAccessor(const ResDBPoCConfig& config,
   }
   
   std::vector<ReplicaInfo> replicas = config.GetBFTConfig()->GetReplicaInfos();
-  replica_client_ = std::make_unique<ResDBReplicaClient>(replicas);
-	//txn_client_ = GetResDBTxnClient();
+  replica_client_ = std::make_unique<XDBReplicaClient>(replicas);
+	//txn_client_ = GetXDBTxnClient();
 
   //prometheus_handler_ = Stats::GetGlobalPrometheus();
 }
@@ -36,7 +36,7 @@ void TransactionAccessor::Start() {
 }
 
 void TransactionAccessor::TransactionFetching() {
-  std::unique_ptr<ResDBTxnClient> client = GetResDBTxnClient();
+  std::unique_ptr<XDBTxnClient> client = GetXDBTxnClient();
   assert(client != nullptr);
 
   while (!stop_) {
@@ -98,8 +98,8 @@ void TransactionAccessor::TransactionFetching() {
   return;
 }
 
-std::unique_ptr<ResDBTxnClient> TransactionAccessor::GetResDBTxnClient() {
-  return std::make_unique<ResDBTxnClient>(*config_.GetBFTConfig());
+std::unique_ptr<XDBTxnClient> TransactionAccessor::GetXDBTxnClient() {
+  return std::make_unique<XDBTxnClient>(*config_.GetBFTConfig());
 }
 
 // obtain [seq, seq+batch_num-1] transactions
@@ -161,7 +161,7 @@ void TransactionAccessor::SendMiningResult(const BlockMiningInfo& mining_result)
 }
 
 absl::StatusOr<BlockMiningInfo> TransactionAccessor::FetchingResult(uint64_t seq) {
-	auto txn_client = GetResDBTxnClient();
+	auto txn_client = GetXDBTxnClient();
   LOG(ERROR)<<"fetch result:"<<seq;
 
   TxnQueryRequest request;

@@ -33,7 +33,7 @@ namespace poc {
 
 class PoCTransactionManager : public TransactionExecutorImpl {
  public:
-  PoCTransactionManager(const ResDBConfig& config);
+  PoCTransactionManager(const XDBConfig& config);
 
   virtual ~PoCTransactionManager() = default;
 

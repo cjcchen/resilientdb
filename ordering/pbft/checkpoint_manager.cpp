@@ -31,8 +31,8 @@
 
 namespace resdb {
 
-CheckPointManager::CheckPointManager(const ResDBConfig& config,
-                                     ResDBReplicaClient* replica_client,
+CheckPointManager::CheckPointManager(const XDBConfig& config,
+                                     XDBReplicaClient* replica_client,
                                      SignatureVerifier* verifier)
     : config_(config),
       replica_client_(replica_client),

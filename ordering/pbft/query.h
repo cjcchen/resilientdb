@@ -33,7 +33,7 @@ namespace resdb {
 
 class Query {
  public:
-  Query(const ResDBConfig& config, TransactionManager* transaction_manager,
+  Query(const XDBConfig& config, TransactionManager* transaction_manager,
         std::unique_ptr<CustomQuery> executor = nullptr);
   virtual ~Query();
 
@@ -46,7 +46,7 @@ class Query {
                                  std::unique_ptr<Request> request);
 
  protected:
-  ResDBConfig config_;
+  XDBConfig config_;
   TransactionManager* transaction_manager_;
   std::unique_ptr<CustomQuery> custom_query_executor_;
 };

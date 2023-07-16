@@ -35,8 +35,8 @@
 
 namespace resdb {
 
-ResDBServer::ResDBServer(const ResDBConfig& config,
-                         std::unique_ptr<ResDBService> service)
+XDBServer::XDBServer(const XDBConfig& config,
+                         std::unique_ptr<XDBService> service)
     : socket_(std::make_unique<TcpSocket>()),
       socket2_(std::make_unique<TcpSocket>()),
       service_(std::move(service)),
@@ -66,15 +66,15 @@ ResDBServer::ResDBServer(const ResDBConfig& config,
   async_acceptor_ = std::make_unique<AsyncAcceptor>(
       config.GetSelfInfo().ip(), config_.GetSelfInfo().port() + 10000,
       config.GetInputWorkerNum(),
-      std::bind(&ResDBServer::AcceptorHandler, this, std::placeholders::_1,
+      std::bind(&XDBServer::AcceptorHandler, this, std::placeholders::_1,
                 std::placeholders::_2));
   async_acceptor_->StartAccept();
   global_stats_ = Stats::GetGlobalStats();
 }
 
-ResDBServer::~ResDBServer() {}
+XDBServer::~XDBServer() {}
 
-void ResDBServer::AcceptorHandler(const char* buffer, size_t data_len) {
+void XDBServer::AcceptorHandler(const char* buffer, size_t data_len) {
   BroadcastData data;
   if (!data.ParseFromArray(buffer, data_len)) {
     LOG(ERROR) << "parse broad cast fail:" << data_len;
@@ -96,7 +96,7 @@ void ResDBServer::AcceptorHandler(const char* buffer, size_t data_len) {
   }
 }
 
-void ResDBServer::InputProcess() {
+void XDBServer::InputProcess() {
   std::vector<std::thread> threads;
 
   int woker_num = config_.GetWorkerNum();
@@ -121,10 +121,10 @@ void ResDBServer::InputProcess() {
   }
 }
 
-void ResDBServer::Run() {
+void XDBServer::Run() {
   service_->Start();
 
-  auto input_th = std::thread(&ResDBServer::InputProcess, this);
+  auto input_th = std::thread(&XDBServer::InputProcess, this);
 
   LockFreeQueue<Socket> socket_queue("server"), socket_queue2("server2");
   
@@ -189,7 +189,7 @@ void ResDBServer::Run() {
           request.set_need_response(!((char *)request_info->buff)[0]);
           request.set_data((char *)request_info->buff+1, request_info->data_len-1);
 
-          ResDBMessage message;
+          XDBMessage message;
           if (!request.SerializeToString(message.mutable_data())) {
             LOG(ERROR) << "serialize data";
             continue;
@@ -231,7 +231,7 @@ void ResDBServer::Run() {
 }
 
 // Receive a message from network and pass it to service to process.
-void ResDBServer::Process(std::unique_ptr<QueueItem> item) {
+void XDBServer::Process(std::unique_ptr<QueueItem> item) {
   auto client_socket =
       item->socket == nullptr ? nullptr : std::move(item->socket);
   auto request_info = std::move(item->data);
@@ -239,7 +239,7 @@ void ResDBServer::Process(std::unique_ptr<QueueItem> item) {
     client_socket->SetSendTimeout(1000000);
   }
   std::unique_ptr<Context> context = std::make_unique<Context>();
-  context->client = std::make_unique<ResDBClient>(std::move(client_socket),
+  context->client = std::make_unique<XDBClient>(std::move(client_socket),
                                                   /*connected=*/true);
   if (request_info) {
     service_->Process(std::move(context), std::move(request_info));
@@ -247,13 +247,13 @@ void ResDBServer::Process(std::unique_ptr<QueueItem> item) {
   return;
 }
 
-bool ResDBServer::IsRunning() { return service_->IsRunning(); }
+bool XDBServer::IsRunning() { return service_->IsRunning(); }
 
-void ResDBServer::Stop() {
+void XDBServer::Stop() {
   socket_->Close();
   service_->Stop();
 }
 
-bool ResDBServer::ServiceIsReady() const { return service_->IsReady(); }
+bool XDBServer::ServiceIsReady() const { return service_->IsReady(); }
 
 }  // namespace resdb

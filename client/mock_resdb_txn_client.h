@@ -30,10 +30,10 @@
 
 namespace resdb {
 
-// A mock class for ResDBClient.
-class MockResDBTxnClient : public ResDBTxnClient {
+// A mock class for XDBClient.
+class MockXDBTxnClient : public XDBTxnClient {
  public:
-  MockResDBTxnClient(const ResDBConfig& config) : ResDBTxnClient(config) {}
+  MockXDBTxnClient(const XDBConfig& config) : XDBTxnClient(config) {}
 
   MOCK_METHOD((absl::StatusOr<std::vector<std::pair<uint64_t, std::string>>>),
               GetTxn, (uint64_t, uint64_t), (override));

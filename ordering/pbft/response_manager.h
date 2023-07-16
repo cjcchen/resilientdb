@@ -35,7 +35,7 @@ namespace resdb {
 
 class ResponseManager {
  public:
-  ResponseManager(const ResDBConfig& config, ResDBReplicaClient* replica_client,
+  ResponseManager(const XDBConfig& config, XDBReplicaClient* replica_client,
                   SystemInfo* system_info, SignatureVerifier* verifier);
 
   ~ResponseManager();
@@ -73,8 +73,8 @@ class ResponseManager {
 
 
  private:
-  ResDBConfig config_;
-  ResDBReplicaClient* replica_client_;
+  XDBConfig config_;
+  XDBReplicaClient* replica_client_;
   std::unique_ptr<LockFreeCollectorPool> collector_pool_, context_pool_;
   LockFreeQueue<QueueItem> batch_queue_;
   std::thread client_req_thread_;

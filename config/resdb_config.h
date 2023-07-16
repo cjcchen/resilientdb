@@ -31,17 +31,17 @@
 namespace resdb {
 
 // TODO read from a proto json file.
-class ResDBConfig {
+class XDBConfig {
  public:
-  ResDBConfig(const std::vector<ReplicaInfo>& replicas,
+  XDBConfig(const std::vector<ReplicaInfo>& replicas,
               const ReplicaInfo& self_info,
               ResConfigData config_data = ResConfigData());
 
-  ResDBConfig(const std::vector<ReplicaInfo>& replicas,
+  XDBConfig(const std::vector<ReplicaInfo>& replicas,
               const ReplicaInfo& self_info, const KeyInfo& private_key,
               const CertificateInfo& public_key_cert_info);
 
-  ResDBConfig(const ResConfigData& config_data, const ReplicaInfo& self_info,
+  XDBConfig(const ResConfigData& config_data, const ReplicaInfo& self_info,
               const KeyInfo& private_key,
               const CertificateInfo& public_key_cert_info);
 

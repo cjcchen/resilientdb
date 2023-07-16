@@ -58,7 +58,7 @@ ReplicaInfo GenerateReplicaInfo(const std::string& ip, int port) {
   return info;
 }
 
-TEST(TcpSocket, ResDBConfig) {
+TEST(TcpSocket, XDBConfig) {
   ReplicaInfo self_info = GenerateReplicaInfo("127.0.0.1", 1234);
 
   std::vector<ReplicaInfo> replicas;
@@ -67,7 +67,7 @@ TEST(TcpSocket, ResDBConfig) {
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1237));
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1238));
 
-  ResDBConfig config(replicas, self_info);
+  XDBConfig config(replicas, self_info);
 
   EXPECT_THAT(config.GetReplicaInfos(), EqualsReplicas(replicas));
   EXPECT_THAT(config.GetSelfInfo(), EqualsProto(self_info));
@@ -75,7 +75,7 @@ TEST(TcpSocket, ResDBConfig) {
   EXPECT_EQ(config.GetMinDataReceiveNum(), 3);
 }
 
-TEST(TcpSocket, ResDBConfigWith5Replicas) {
+TEST(TcpSocket, XDBConfigWith5Replicas) {
   ReplicaInfo self_info = GenerateReplicaInfo("127.0.0.1", 1234);
 
   std::vector<ReplicaInfo> replicas;
@@ -85,7 +85,7 @@ TEST(TcpSocket, ResDBConfigWith5Replicas) {
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1238));
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1239));
 
-  ResDBConfig config(replicas, self_info);
+  XDBConfig config(replicas, self_info);
 
   EXPECT_THAT(config.GetReplicaInfos(), EqualsReplicas(replicas));
   EXPECT_THAT(config.GetSelfInfo(), EqualsProto(self_info));
@@ -93,7 +93,7 @@ TEST(TcpSocket, ResDBConfigWith5Replicas) {
   EXPECT_EQ(config.GetMinDataReceiveNum(), 3);
 }
 
-TEST(TcpSocket, ResDBConfigWith6Replicas) {
+TEST(TcpSocket, XDBConfigWith6Replicas) {
   ReplicaInfo self_info = GenerateReplicaInfo("127.0.0.1", 1234);
 
   std::vector<ReplicaInfo> replicas;
@@ -104,7 +104,7 @@ TEST(TcpSocket, ResDBConfigWith6Replicas) {
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1239));
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1240));
 
-  ResDBConfig config(replicas, self_info);
+  XDBConfig config(replicas, self_info);
 
   EXPECT_THAT(config.GetReplicaInfos(), EqualsReplicas(replicas));
   EXPECT_THAT(config.GetSelfInfo(), EqualsProto(self_info));
@@ -112,14 +112,14 @@ TEST(TcpSocket, ResDBConfigWith6Replicas) {
   EXPECT_EQ(config.GetMinDataReceiveNum(), 3);
 }
 
-TEST(TcpSocket, ResDBConfigWith2Replicas) {
+TEST(TcpSocket, XDBConfigWith2Replicas) {
   ReplicaInfo self_info = GenerateReplicaInfo("127.0.0.1", 1234);
 
   std::vector<ReplicaInfo> replicas;
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1235));
   replicas.push_back(GenerateReplicaInfo("127.0.0,1", 1236));
 
-  ResDBConfig config(replicas, self_info);
+  XDBConfig config(replicas, self_info);
 
   EXPECT_THAT(config.GetReplicaInfos(), EqualsReplicas(replicas));
   EXPECT_THAT(config.GetSelfInfo(), EqualsProto(self_info));

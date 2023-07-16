@@ -50,7 +50,7 @@ MATCHER_P(SendMessageMatcher, replica, "") { return true; }
 
 TEST(LocalExecutorTest, PushToQueue) {
   auto mock_executor = std::make_unique<MockTransactionExecutorImpl>();
-  auto replica_client = std::make_unique<MockResDBReplicaClient>();
+  auto replica_client = std::make_unique<MockXDBReplicaClient>();
   ResConfigData config_data_ = ResConfigData();
   config_data_.set_self_region_id(1);
 
@@ -70,8 +70,8 @@ TEST(LocalExecutorTest, PushToQueue) {
   *region->add_replica_info() = GenerateReplicaInfo(8, "127.0.0.1", 10008);
   *region->add_replica_info() = GenerateReplicaInfo(9, "127.0.0.1", 10009);
 
-  ResDBConfig config_ =
-      ResDBConfig(config_data_, GenerateReplicaInfo(1, "127.0.0.1", 10001),
+  XDBConfig config_ =
+      XDBConfig(config_data_, GenerateReplicaInfo(1, "127.0.0.1", 10001),
                   KeyInfo(), CertificateInfo());
   auto system_info_ = std::make_unique<SystemInfo>(config_);
   // primary node id: 2
@@ -100,7 +100,7 @@ TEST(LocalExecutorTest, PushToQueue) {
 
 TEST(LocalExecutorTest, PrimaryNodeBroadcast) {
   auto mock_executor = std::make_unique<MockTransactionExecutorImpl>();
-  auto replica_client = std::make_unique<MockResDBReplicaClient>();
+  auto replica_client = std::make_unique<MockXDBReplicaClient>();
   ResConfigData config_data_ = ResConfigData();
   config_data_.set_self_region_id(1);
 
@@ -120,8 +120,8 @@ TEST(LocalExecutorTest, PrimaryNodeBroadcast) {
   *region->add_replica_info() = GenerateReplicaInfo(8, "127.0.0.1", 10008);
   *region->add_replica_info() = GenerateReplicaInfo(9, "127.0.0.1", 10009);
 
-  ResDBConfig config_ =
-      ResDBConfig(config_data_, GenerateReplicaInfo(1, "127.0.0.1", 10001),
+  XDBConfig config_ =
+      XDBConfig(config_data_, GenerateReplicaInfo(1, "127.0.0.1", 10001),
                   KeyInfo(), CertificateInfo());
   auto system_info_ = std::make_unique<SystemInfo>(config_);
   // primary node id: 1

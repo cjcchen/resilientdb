@@ -5,7 +5,7 @@
 
 namespace resdb {
 
-MinerManager::MinerManager(const ResDBPoCConfig& config) : config_(config) {}
+MinerManager::MinerManager(const XDBPoCConfig& config) : config_(config) {}
 
 std::vector<ReplicaInfo> MinerManager::GetReplicas() { return replicas_; }
 

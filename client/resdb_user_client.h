@@ -31,9 +31,9 @@
 
 namespace resdb {
 
-// ResDBUserClient to send data to one server located in the config replicas
+// XDBUserClient to send data to one server located in the config replicas
 // and receive data from it.
-// Inside ResDBUserClient, it does two things:
+// Inside XDBUserClient, it does two things:
 // 1. Broadcast the public key obtained from the config
 //    and receive the public keys of each replicas and the up-to-date replica
 //    list.
@@ -41,10 +41,10 @@ namespace resdb {
 //    private key and receive the response if needed. Each response contains
 //    at least f+1 valid sub response from distinct replicas (can be verified
 //    by the public keys obtained from 1).
-class ResDBUserClient : public ResDBClient {
+class XDBUserClient : public XDBClient {
  public:
-  ResDBUserClient(const ResDBConfig& config);
-  virtual ~ResDBUserClient() = default;
+  XDBUserClient(const XDBConfig& config);
+  virtual ~XDBUserClient() = default;
 
   // Send request with a command.
   int SendRequest(const google::protobuf::Message& message,
@@ -61,7 +61,7 @@ class ResDBUserClient : public ResDBClient {
   absl::StatusOr<std::string> GetResponseData(const Response& response);
 
  private:
-  ResDBConfig config_;
+  XDBConfig config_;
   int64_t timeout_ms_;  // microsecond for timeout.
   bool is_check_signature_;
 };

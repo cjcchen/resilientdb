@@ -11,7 +11,7 @@
 
 namespace resdb {
 
-BlockManager::BlockManager(const ResDBPoCConfig& config,
+BlockManager::BlockManager(const XDBPoCConfig& config,
     TransactionExecutorImpl* executor) : config_(config), executor_(executor){
   miner_ = std::make_unique<Miner>(config);
   global_stats_ = Stats::GetGlobalStats();

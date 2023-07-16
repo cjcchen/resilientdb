@@ -7,7 +7,7 @@ namespace resdb {
 
 class MockTransactionAccessor : public TransactionAccessor {
  public:
-	 MockTransactionAccessor(const ResDBPoCConfig& config):TransactionAccessor(config, false){}
+	 MockTransactionAccessor(const XDBPoCConfig& config):TransactionAccessor(config, false){}
   MOCK_METHOD(std::unique_ptr<BatchClientTransactions>, ConsumeTransactions, (uint64_t seq),
               (override));
 };

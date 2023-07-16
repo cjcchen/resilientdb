@@ -30,7 +30,7 @@
 namespace resdb {
 namespace poc {
 
-TransactionExecutor::TransactionExecutor(const ResDBConfig& config, TransactionManager * manager)
+TransactionExecutor::TransactionExecutor(const XDBConfig& config, TransactionManager * manager)
     : TransactionExecutorImpl(), manager_(manager){
 }
 

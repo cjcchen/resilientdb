@@ -11,7 +11,7 @@
 
 namespace resdb {
 
-Miner::Miner(const ResDBPoCConfig& config) : config_(config) {
+Miner::Miner(const XDBPoCConfig& config) : config_(config) {
   // the number of zeros ahead of the binary value.
   difficulty_ = config_.GetDifficulty();
   worker_num_ = config_.GetWokerNum();

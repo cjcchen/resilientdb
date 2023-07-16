@@ -32,12 +32,12 @@
 
 namespace resdb {
 
-// ResDBTxnClient used to obtain the server state of each replica in ResDB.
+// XDBTxnClient used to obtain the server state of each replica in XDB.
 // The addresses of each replica are provided from the config.
-class ResDBTxnClient {
+class XDBTxnClient {
  public:
-  ResDBTxnClient(const ResDBConfig& config);
-  virtual ~ResDBTxnClient() = default;
+  XDBTxnClient(const XDBConfig& config);
+  virtual ~XDBTxnClient() = default;
 
   // Obtain ReplicaState of each replica.
   virtual absl::StatusOr<std::vector<std::pair<uint64_t, std::string>>> GetTxn(
@@ -46,11 +46,11 @@ class ResDBTxnClient {
   virtual absl::StatusOr<std::string> GetCustomQuery(const std::string& request);
 
  protected:
-  virtual std::unique_ptr<ResDBClient> GetResDBClient(const std::string& ip,
+  virtual std::unique_ptr<XDBClient> GetXDBClient(const std::string& ip,
                                                       int port);
 
  private:
-  ResDBConfig config_;
+  XDBConfig config_;
   std::vector<ReplicaInfo> replicas_;
   int recv_timeout_ = 1;
 };

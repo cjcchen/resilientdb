@@ -33,9 +33,9 @@
 
 namespace resdb {
 
-Commitment::Commitment(const ResDBConfig& config,
+Commitment::Commitment(const XDBConfig& config,
                        TransactionManager* transaction_manager,
-                       ResDBReplicaClient* replica_client,
+                       XDBReplicaClient* replica_client,
                        SignatureVerifier* verifier)
     : config_(config),
       transaction_manager_(transaction_manager),

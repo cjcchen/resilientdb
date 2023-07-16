@@ -32,7 +32,7 @@
 namespace resdb {
 namespace poc {
 
-PoCTransactionManager::PoCTransactionManager(const ResDBConfig& config) : TransactionExecutorImpl(false, false) {
+PoCTransactionManager::PoCTransactionManager(const XDBConfig& config) : TransactionExecutorImpl(false, false) {
   global_stats_ = Stats::GetGlobalStats();
 }
 

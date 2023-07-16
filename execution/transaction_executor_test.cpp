@@ -39,15 +39,15 @@ namespace {
 using ::resdb::testing::EqualsProto;
 using ::testing::Invoke;
 
-ResDBConfig GetResDBConfig() {
-  return ResDBConfig({ReplicaInfo()}, ReplicaInfo());
+XDBConfig GetXDBConfig() {
+  return XDBConfig({ReplicaInfo()}, ReplicaInfo());
 }
 
 TEST(TransactionExecutorTest, ExecuteOne) {
   std::promise<bool> done;
   std::future<bool> done_future = done.get_future();
 
-  ResDBConfig config = GetResDBConfig();
+  XDBConfig config = GetXDBConfig();
   Request request;
   request.set_seq(1);
 
@@ -77,7 +77,7 @@ TEST(TransactionExecutorTest, ExecuteOne) {
 
 TEST(TransactionExecutorTest, MaxPendingExecuteSeq) {
   Stats::GetGlobalStats()->Stop();
-  ResDBConfig config = GetResDBConfig();
+  XDBConfig config = GetXDBConfig();
 
   Request request;
   request.set_seq(1);
@@ -124,7 +124,7 @@ TEST(TransactionExecutorTest, MaxPendingExecuteSeq) {
 
 TEST(TransactionExecutorTest, MaxPendingExecuteSeqOnOutOfOrder) {
   Stats::GetGlobalStats()->Stop();
-  ResDBConfig config = GetResDBConfig();
+  XDBConfig config = GetXDBConfig();
 
   Request request;
   request.set_seq(1);
@@ -173,7 +173,7 @@ TEST(TransactionExecutorTest, ExecuteWaitInOrder) {
   std::promise<bool> done;
   std::future<bool> done_future = done.get_future();
 
-  ResDBConfig config = GetResDBConfig();
+  XDBConfig config = GetXDBConfig();
 
   SystemInfo system_info(config);
   auto mock_executor = std::make_unique<MockTransactionExecutorDataImpl>();
@@ -215,7 +215,7 @@ TEST(TransactionExecutorTest, ExecuteWaitOutOfOrder) {
   std::promise<bool> done;
   std::future<bool> done_future = done.get_future();
 
-  ResDBConfig config = GetResDBConfig();
+  XDBConfig config = GetXDBConfig();
 
   SystemInfo system_info(config);
   auto mock_executor = std::make_unique<MockTransactionExecutorImpl>(true);
@@ -257,7 +257,7 @@ TEST(TransactionExecutorTest, CallBack) {
   std::promise<bool> done;
   std::future<bool> done_future = done.get_future();
 
-  ResDBConfig config = GetResDBConfig();
+  XDBConfig config = GetXDBConfig();
 
   Request request;
   request.set_seq(1);

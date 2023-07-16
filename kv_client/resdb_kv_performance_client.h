@@ -29,9 +29,9 @@
 
 namespace resdb {
 
-class ResDBKVPerformanceClient : public ResDBKVClient {
+class XDBKVPerformanceClient : public XDBKVClient {
  public:
-  ResDBKVPerformanceClient(const ResDBConfig& config);
+  XDBKVPerformanceClient(const XDBConfig& config);
   int Start();
 };
 

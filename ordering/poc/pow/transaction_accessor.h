@@ -18,7 +18,7 @@ namespace resdb {
 class TransactionAccessor {
  public:
   // For test, it is started by the tester.
-  TransactionAccessor(const ResDBPoCConfig& config, bool auto_start = true);
+  TransactionAccessor(const XDBPoCConfig& config, bool auto_start = true);
   virtual ~TransactionAccessor();
 
   // consume the transaction between [seq, seq+batch_num-1]
@@ -33,10 +33,10 @@ class TransactionAccessor {
 
  protected:
   void TransactionFetching();
-  virtual std::unique_ptr<ResDBTxnClient> GetResDBTxnClient();
+  virtual std::unique_ptr<XDBTxnClient> GetXDBTxnClient();
 
  private:
-  ResDBPoCConfig config_;
+  XDBPoCConfig config_;
   std::atomic<bool> stop_;
   std::thread fetching_thread_;
   std::atomic<uint64_t> max_received_seq_;
@@ -49,8 +49,8 @@ class TransactionAccessor {
 
   PrometheusHandler * prometheus_handler_;
 
-  std::unique_ptr<ResDBReplicaClient> replica_client_;
-	std::unique_ptr<ResDBTxnClient> txn_client_;
+  std::unique_ptr<XDBReplicaClient> replica_client_;
+	std::unique_ptr<XDBTxnClient> txn_client_;
 };
 
 }  // namespace resdb

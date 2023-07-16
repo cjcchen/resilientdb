@@ -57,19 +57,19 @@ int main(int argc, char** argv) {
   }
   LOG(ERROR) << "pow_config:" << pow_config_file;
 
-  std::unique_ptr<ResDBConfig> transaction_server_config = GenerateResDBConfigFromJson(bft_config_file);
+  std::unique_ptr<XDBConfig> transaction_server_config = GenerateXDBConfigFromJson(bft_config_file);
 
-  std::unique_ptr<ResDBConfig> mining_config = GenerateResDBConfig(
+  std::unique_ptr<XDBConfig> mining_config = GenerateXDBConfig(
       pow_config_file, private_key_file, cert_file, std::nullopt,
       [&](const ResConfigData& replicas,
           const ReplicaInfo& self_info, const KeyInfo& private_key,
           const CertificateInfo& public_key_cert_info) {
-        return std::make_unique<ResDBPoCConfig>(
+        return std::make_unique<XDBPoCConfig>(
             *transaction_server_config, replicas, self_info, private_key, public_key_cert_info);
       });
 
-  ResDBPoCConfig* pow_config_ptr =
-      static_cast<ResDBPoCConfig*>(mining_config.get());
+  XDBPoCConfig* pow_config_ptr =
+      static_cast<XDBPoCConfig*>(mining_config.get());
 
   pow_config_ptr->SetMaxNonceBit(42);
   pow_config_ptr->SetDifficulty(20);
@@ -89,7 +89,7 @@ int main(int argc, char** argv) {
 
   poc::PoCTransactionManager manager(*pow_config_ptr);
   
-  ResDBServer server(*pow_config_ptr,
+  XDBServer server(*pow_config_ptr,
                      std::make_unique<ConsensusServicePoW>(*pow_config_ptr, &manager));
   server.Run();
 }

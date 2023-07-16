@@ -36,14 +36,14 @@
 
 namespace resdb {
 
-// ResDBReplicaClient is used for replicas to broadcast messages.
-class ResDBReplicaClient {
+// XDBReplicaClient is used for replicas to broadcast messages.
+class XDBReplicaClient {
  public:
-  ResDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
+  XDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
                      SignatureVerifier* verifier = nullptr,
                      bool is_use_long_conn = false, int epoll_num = 1,
                      int tcp_batch = 100);
-  virtual ~ResDBReplicaClient();
+  virtual ~XDBReplicaClient();
 
   // HeartBeat message is used to broadcast public keys.
   // It doesn't need the signature.
@@ -64,7 +64,7 @@ class ResDBReplicaClient {
   std::vector<ReplicaInfo> GetClientReplicas();
 
  protected:
-  virtual std::unique_ptr<ResDBClient> GetClient(const std::string& ip,
+  virtual std::unique_ptr<XDBClient> GetClient(const std::string& ip,
                                                  int port);
   virtual AsyncReplicaClient* GetClientFromPool(const std::string& ip,
                                                 int port);

@@ -33,7 +33,7 @@ namespace poc {
 
 class TransactionConsensor : public ConsensusServicePBFT {
  public:
-  TransactionConsensor(const ResDBConfig& config, 
+  TransactionConsensor(const XDBConfig& config, 
       std::unique_ptr<TransactionExecutorImpl> executor, 
       std::unique_ptr<CustomQuery> custom_query);
 

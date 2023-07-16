@@ -116,10 +116,10 @@ class CommitmentTest : public Test {
 
  protected:
   Stats* global_stats_;
-  ResDBConfig config_;
+  XDBConfig config_;
   SystemInfo system_info_;
   CheckPointManager checkpoint_manager_;
-  MockResDBReplicaClient replica_client_;
+  MockXDBReplicaClient replica_client_;
   MockSignatureVerifier verifier_;
   std::unique_ptr<TransactionManager> transaction_manager_;
   std::unique_ptr<Commitment> commitment_;
@@ -178,8 +178,8 @@ TEST_F(CommitmentTest, SeqConsumeAll) {
   std::promise<bool> done;
   std::future<bool> done_future = done.get_future();
   for (int i = 0; i < 3; ++i) {
-    std::unique_ptr<MockResDBClient> resp_client =
-        std::make_unique<MockResDBClient>("127.0.0.1", 0);
+    std::unique_ptr<MockXDBClient> resp_client =
+        std::make_unique<MockXDBClient>("127.0.0.1", 0);
     auto context = std::make_unique<Context>();
     context->signature.set_signature("signature");
     if (i < 2) {

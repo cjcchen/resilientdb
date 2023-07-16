@@ -51,7 +51,7 @@ TEST(SystemInfoTest, GetReplicas) {
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1234, 1));
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1235, 2));
 
-  ResDBConfig config(replicas, GenerateReplicaInfo("127.0.0.1", 1111, 0),
+  XDBConfig config(replicas, GenerateReplicaInfo("127.0.0.1", 1111, 0),
                      KeyInfo(), CertificateInfo());
 
   SystemInfo system(config);

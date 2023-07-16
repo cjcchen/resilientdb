@@ -42,9 +42,9 @@ func MakeService() *Service{
 }
 
 func (s* Service) Process(buf []byte) ([]byte, error) {
-  var resdb_message resdb.ResDBMessage
+  var resdb_message resdb.XDBMessage
   var request resdb.Request
-  var resp resdb.ResDBMessage
+  var resp resdb.XDBMessage
   var data []byte
   var err error
 

@@ -49,7 +49,7 @@ class AsyncReplicaClient {
 
  private:
   LockFreeQueue<std::string> queue_;
-  std::unique_ptr<ResDBClient> client_;
+  std::unique_ptr<XDBClient> client_;
   boost::asio::ip::tcp::socket socket_;
   boost::asio::ip::tcp::endpoint endpoint_;
   std::mutex mutex_;

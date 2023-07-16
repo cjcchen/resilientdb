@@ -83,8 +83,8 @@ class BlockManagerTest : public Test {
     return expected_block;
   }
 
-  ResDBConfig bft_config_;
-  ResDBPoCConfig config_;
+  XDBConfig bft_config_;
+  XDBPoCConfig config_;
 };
 
 TEST_F(BlockManagerTest, GenerateNewBlock) {

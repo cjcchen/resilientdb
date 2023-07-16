@@ -10,7 +10,7 @@ namespace resdb {
 
 class ConsensusServicePoW : public ConsensusService {
  public:
-  ConsensusServicePoW(const ResDBPoCConfig& config, poc::PoCTransactionManager* txn_manager);
+  ConsensusServicePoW(const XDBPoCConfig& config, poc::PoCTransactionManager* txn_manager);
   virtual ~ConsensusServicePoW();
 
   // Start the service.

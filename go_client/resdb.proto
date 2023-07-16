@@ -3,7 +3,7 @@ syntax = "proto3";
 package resdb;
 
 // Network message used to deliver Requests between replicas and client.
-message ResDBMessage {
+message XDBMessage {
     bytes data = 1;
 }
 

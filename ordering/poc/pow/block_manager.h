@@ -14,7 +14,7 @@ namespace resdb {
 // Manager all the blocks and mine the new blocks.
 class BlockManager {
  public:
-  BlockManager(const ResDBPoCConfig& config, TransactionExecutorImpl * executor);
+  BlockManager(const XDBPoCConfig& config, TransactionExecutorImpl * executor);
  virtual ~BlockManager() = default;
   // ================ mining a new block ============================
   // All the mining functions below are not thread safe.
@@ -78,7 +78,7 @@ class BlockManager {
   void SaveClientTransactions(std::unique_ptr<BatchClientTransactions> client_request);
 
  private:
-ResDBPoCConfig config_;
+XDBPoCConfig config_;
   std::mutex mtx_;
   std::unique_ptr<Miner> miner_;
   // Blocks that have been committed.

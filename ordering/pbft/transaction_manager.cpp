@@ -30,7 +30,7 @@
 namespace resdb {
 
 TransactionManager::TransactionManager(
-    const ResDBConfig& config,
+    const XDBConfig& config,
     std::unique_ptr<TransactionExecutorImpl> executor_impl,
     CheckPointManager* checkpoint_manager, SystemInfo* system_info)
     : config_(config),

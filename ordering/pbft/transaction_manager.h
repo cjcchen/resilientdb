@@ -49,7 +49,7 @@ namespace resdb {
 
 class TransactionManager {
  public:
-  TransactionManager(const ResDBConfig& config,
+  TransactionManager(const XDBConfig& config,
                      std::unique_ptr<TransactionExecutorImpl> data_impl,
                      CheckPointManager* checkpoint_manager,
                      SystemInfo* system_info);
@@ -106,7 +106,7 @@ class TransactionManager {
                                 std::atomic<TransactionStatue>* status);
 
  private:
-  ResDBConfig config_;
+  XDBConfig config_;
   uint64_t next_seq_ = 1;
 
   LockFreeQueue<BatchClientResponse> queue_;

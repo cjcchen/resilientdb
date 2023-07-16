@@ -4,12 +4,12 @@
 
 namespace resdb {
 
-ResDBPoCConfig::ResDBPoCConfig(const ResDBConfig& bft_config,
+XDBPoCConfig::XDBPoCConfig(const XDBConfig& bft_config,
                                const ResConfigData& config_data,
                                const ReplicaInfo& self_info,
                                const KeyInfo& private_key,
                                const CertificateInfo& public_key_cert_info)
-    : ResDBConfig(config_data, self_info, private_key, public_key_cert_info),
+    : XDBConfig(config_data, self_info, private_key, public_key_cert_info),
       bft_config_(bft_config) {
   SetHeartBeatEnabled(false);
   SetSignatureVerifierEnabled(false);
@@ -25,43 +25,43 @@ ResDBPoCConfig::ResDBPoCConfig(const ResDBConfig& bft_config,
 
 }
 
-const ResDBConfig* ResDBPoCConfig::GetBFTConfig() const { return &bft_config_; }
+const XDBConfig* XDBPoCConfig::GetBFTConfig() const { return &bft_config_; }
 
-void ResDBPoCConfig::SetMaxNonceBit(uint32_t bit) { max_nonce_bit_ = bit; }
+void XDBPoCConfig::SetMaxNonceBit(uint32_t bit) { max_nonce_bit_ = bit; }
 
-uint32_t ResDBPoCConfig::GetMaxNonceBit() const { return max_nonce_bit_; }
+uint32_t XDBPoCConfig::GetMaxNonceBit() const { return max_nonce_bit_; }
 
-void ResDBPoCConfig::SetDifficulty(uint32_t difficulty) {
+void XDBPoCConfig::SetDifficulty(uint32_t difficulty) {
   difficulty_ = difficulty;
 }
 
-uint32_t ResDBPoCConfig::GetDifficulty() const { return difficulty_; }
+uint32_t XDBPoCConfig::GetDifficulty() const { return difficulty_; }
 
-uint32_t ResDBPoCConfig::GetTargetValue() const { return target_value_; }
+uint32_t XDBPoCConfig::GetTargetValue() const { return target_value_; }
 
-void ResDBPoCConfig::SetTargetValue(uint32_t target_value) {
+void XDBPoCConfig::SetTargetValue(uint32_t target_value) {
   target_value_ = target_value;
 }
 
-std::vector<ReplicaInfo> ResDBPoCConfig::GetBFTReplicas() {
+std::vector<ReplicaInfo> XDBPoCConfig::GetBFTReplicas() {
   return bft_replicas_;
 }
 
-void ResDBPoCConfig::SetBFTReplicas(const std::vector<ReplicaInfo>& replicas) {
+void XDBPoCConfig::SetBFTReplicas(const std::vector<ReplicaInfo>& replicas) {
   bft_replicas_ = replicas;
 }
 
 // Batch
-uint32_t ResDBPoCConfig::BatchTransactionNum() const { 
+uint32_t XDBPoCConfig::BatchTransactionNum() const { 
 	return batch_num_; }
 
-void ResDBPoCConfig::SetBatchTransactionNum(uint32_t batch_num) {
+void XDBPoCConfig::SetBatchTransactionNum(uint32_t batch_num) {
   batch_num_ = batch_num;
 }
 
-uint32_t ResDBPoCConfig::GetWokerNum() { return worker_num_; }
+uint32_t XDBPoCConfig::GetWokerNum() { return worker_num_; }
 
-void ResDBPoCConfig::SetWorkerNum(uint32_t worker_num) {
+void XDBPoCConfig::SetWorkerNum(uint32_t worker_num) {
   worker_num_ = worker_num;
 }
 

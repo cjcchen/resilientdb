@@ -47,11 +47,11 @@ void AddReplicaToList(const std::string& ip, int port,
   replica->push_back(info);
 }
 
-class MockResDBStateClient : public ResDBStateClient {
+class MockXDBStateClient : public XDBStateClient {
  public:
-  MockResDBStateClient(const ResDBConfig& config) : ResDBStateClient(config) {}
+  MockXDBStateClient(const XDBConfig& config) : XDBStateClient(config) {}
 
-  MOCK_METHOD(std::unique_ptr<ResDBClient>, GetResDBClient,
+  MOCK_METHOD(std::unique_ptr<XDBClient>, GetXDBClient,
               (const std::string&, int), (override));
 };
 
@@ -68,18 +68,18 @@ class StateClientTest : public Test {
 
     KeyInfo private_key;
     private_key.set_key("private_key");
-    config_ = std::make_unique<ResDBConfig>(replicas_, self_info_, private_key,
+    config_ = std::make_unique<XDBConfig>(replicas_, self_info_, private_key,
                                             CertificateInfo());
   }
 
  protected:
   ReplicaInfo self_info_;
   std::vector<ReplicaInfo> replicas_;
-  std::unique_ptr<ResDBConfig> config_;
+  std::unique_ptr<XDBConfig> config_;
 };
 
 TEST_F(StateClientTest, GetAllReplicaState) {
-  MockResDBStateClient client(*config_);
+  MockXDBStateClient client(*config_);
 
   std::vector<ReplicaState> replica_states;
   for (auto replica : replicas_) {
@@ -89,10 +89,10 @@ TEST_F(StateClientTest, GetAllReplicaState) {
   }
 
   std::atomic<int> idx = 0;
-  EXPECT_CALL(client, GetResDBClient)
+  EXPECT_CALL(client, GetXDBClient)
       .Times(4)
       .WillRepeatedly(Invoke([&](const std::string& ip, int port) {
-        auto client = std::make_unique<MockResDBClient>(ip, port);
+        auto client = std::make_unique<MockXDBClient>(ip, port);
         EXPECT_CALL(*client, RecvRawMessage)
             .WillRepeatedly(Invoke([&](google::protobuf::Message* message) {
               *reinterpret_cast<ReplicaState*>(message) = replica_states[idx++];
@@ -116,7 +116,7 @@ TEST_F(StateClientTest, GetAllReplicaState) {
 }
 
 TEST_F(StateClientTest, GetAllReplicaStateButOneFail) {
-  MockResDBStateClient client(*config_);
+  MockXDBStateClient client(*config_);
 
   std::vector<ReplicaState> replica_states;
   for (auto replica : replicas_) {
@@ -127,10 +127,10 @@ TEST_F(StateClientTest, GetAllReplicaStateButOneFail) {
 
   std::mutex mutex;
   std::atomic<int> idx = 0;
-  EXPECT_CALL(client, GetResDBClient)
+  EXPECT_CALL(client, GetXDBClient)
       .Times(4)
       .WillRepeatedly(Invoke([&](const std::string& ip, int port) {
-        auto client = std::make_unique<MockResDBClient>(ip, port);
+        auto client = std::make_unique<MockXDBClient>(ip, port);
         EXPECT_CALL(*client, RecvRawMessage)
             .WillRepeatedly(Invoke([&](google::protobuf::Message* message) {
               std::unique_lock<std::mutex> lk(mutex);

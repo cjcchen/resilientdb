@@ -31,7 +31,7 @@ namespace resdb {
 
 GeoGlobalExecutor::GeoGlobalExecutor(
     std::unique_ptr<TransactionExecutorImpl> geo_executor_impl,
-    const ResDBConfig& config)
+    const XDBConfig& config)
     : geo_executor_impl_(std::move(geo_executor_impl)),
       config_(config),
       is_stop_(false) {

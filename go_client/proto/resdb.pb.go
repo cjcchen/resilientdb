@@ -101,39 +101,39 @@ func (Request_Type) EnumDescriptor() ([]byte, []int) {
 }
 
 // Network message used to deliver Requests between replicas and client.
-type ResDBMessage struct {
+type XDBMessage struct {
 	Data                 []byte   `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ResDBMessage) Reset()         { *m = ResDBMessage{} }
-func (m *ResDBMessage) String() string { return proto.CompactTextString(m) }
-func (*ResDBMessage) ProtoMessage()    {}
-func (*ResDBMessage) Descriptor() ([]byte, []int) {
+func (m *XDBMessage) Reset()         { *m = XDBMessage{} }
+func (m *XDBMessage) String() string { return proto.CompactTextString(m) }
+func (*XDBMessage) ProtoMessage()    {}
+func (*XDBMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0a81bd5ef5ef03a2, []int{0}
 }
 
-func (m *ResDBMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResDBMessage.Unmarshal(m, b)
+func (m *XDBMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_XDBMessage.Unmarshal(m, b)
 }
-func (m *ResDBMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResDBMessage.Marshal(b, m, deterministic)
+func (m *XDBMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_XDBMessage.Marshal(b, m, deterministic)
 }
-func (m *ResDBMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResDBMessage.Merge(m, src)
+func (m *XDBMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_XDBMessage.Merge(m, src)
 }
-func (m *ResDBMessage) XXX_Size() int {
-	return xxx_messageInfo_ResDBMessage.Size(m)
+func (m *XDBMessage) XXX_Size() int {
+	return xxx_messageInfo_XDBMessage.Size(m)
 }
-func (m *ResDBMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResDBMessage.DiscardUnknown(m)
+func (m *XDBMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_XDBMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResDBMessage proto.InternalMessageInfo
+var xxx_messageInfo_XDBMessage proto.InternalMessageInfo
 
-func (m *ResDBMessage) GetData() []byte {
+func (m *XDBMessage) GetData() []byte {
 	if m != nil {
 		return m.Data
 	}
@@ -483,7 +483,7 @@ func (m *CustomQueryResponse) GetRespStr() []byte {
 
 func init() {
 	proto.RegisterEnum("resdb.Request_Type", Request_Type_name, Request_Type_value)
-	proto.RegisterType((*ResDBMessage)(nil), "resdb.ResDBMessage")
+	proto.RegisterType((*XDBMessage)(nil), "resdb.XDBMessage")
 	proto.RegisterType((*Request)(nil), "resdb.Request")
 	proto.RegisterType((*BatchClientRequest)(nil), "resdb.BatchClientRequest")
 	proto.RegisterType((*BatchClientRequest_ClientRequest)(nil), "resdb.BatchClientRequest.ClientRequest")

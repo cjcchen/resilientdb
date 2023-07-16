@@ -34,7 +34,7 @@ class MockGeoGlobalExecutor : public GeoGlobalExecutor {
  public:
   MockGeoGlobalExecutor(
       std::unique_ptr<TransactionExecutorImpl> geo_executor_impl,
-      const ResDBConfig& config)
+      const XDBConfig& config)
       : GeoGlobalExecutor(std::move(geo_executor_impl), config){};
   MOCK_METHOD(void, Execute, (std::unique_ptr<Request>), (override));
   ~MockGeoGlobalExecutor() { Stop(); }

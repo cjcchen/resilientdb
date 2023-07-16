@@ -29,8 +29,8 @@
 
 namespace resdb {
 
-ResDBUserClient::ResDBUserClient(const ResDBConfig& config)
-    : ResDBClient("", 0),
+XDBUserClient::XDBUserClient(const XDBConfig& config)
+    : XDBClient("", 0),
       config_(config),
       timeout_ms_(
           config.GetClientTimeoutMs()),  // default 2s for process timeout
@@ -38,9 +38,9 @@ ResDBUserClient::ResDBUserClient(const ResDBConfig& config)
   socket_->SetRecvTimeout(timeout_ms_);
 }
 
-void ResDBUserClient::DisableSignatureCheck() { is_check_signature_ = false; }
+void XDBUserClient::DisableSignatureCheck() { is_check_signature_ = false; }
 
-absl::StatusOr<std::string> ResDBUserClient::GetResponseData(
+absl::StatusOr<std::string> XDBUserClient::GetResponseData(
     const Response& response) {
   std::string hash_;
   std::set<int64_t> hash_counter;
@@ -69,21 +69,21 @@ absl::StatusOr<std::string> ResDBUserClient::GetResponseData(
   return absl::InvalidArgumentError("data not enough");
 }
 
-int ResDBUserClient::SendRequest(const google::protobuf::Message& message,
+int XDBUserClient::SendRequest(const google::protobuf::Message& message,
                                  Request::Type type) {
   // Use the replica obtained from the server.
-  ResDBClient::SetDestReplicaInfo(config_.GetReplicaInfos()[0]);
-  return ResDBClient::SendRequest(message, type, false);
+  XDBClient::SetDestReplicaInfo(config_.GetReplicaInfos()[0]);
+  return XDBClient::SendRequest(message, type, false);
 }
 
-int ResDBUserClient::SendRequest(const google::protobuf::Message& message,
+int XDBUserClient::SendRequest(const google::protobuf::Message& message,
                                  google::protobuf::Message* response,
                                  Request::Type type) {
-  ResDBClient::SetDestReplicaInfo(config_.GetReplicaInfos()[0]);
-  int ret = ResDBClient::SendRequest(message, type, true);
+  XDBClient::SetDestReplicaInfo(config_.GetReplicaInfos()[0]);
+  int ret = XDBClient::SendRequest(message, type, true);
   if (ret == 0) {
     std::string resp_str;
-    int ret = ResDBClient::RecvRawMessageData(&resp_str);
+    int ret = XDBClient::RecvRawMessageData(&resp_str);
     if (ret >= 0) {
       if (!response->ParseFromString(resp_str)) {
         LOG(ERROR) << "parse response fail:" << resp_str.size();

@@ -32,24 +32,24 @@
 
 namespace resdb {
 
-ResDBTxnClient::ResDBTxnClient(const ResDBConfig& config)
+XDBTxnClient::XDBTxnClient(const XDBConfig& config)
     : config_(config),
       replicas_(config.GetReplicaInfos()),
       recv_timeout_(1) /*1s*/ {}
 
-std::unique_ptr<ResDBClient> ResDBTxnClient::GetResDBClient(
+std::unique_ptr<XDBClient> XDBTxnClient::GetXDBClient(
     const std::string& ip, int port) {
-  return std::make_unique<ResDBClient>(ip, port);
+  return std::make_unique<XDBClient>(ip, port);
 }
 
 // Obtain ReplicaState of each replica.
 absl::StatusOr<std::vector<std::pair<uint64_t, std::string>>>
-ResDBTxnClient::GetTxn(uint64_t min_seq, uint64_t max_seq) {
+XDBTxnClient::GetTxn(uint64_t min_seq, uint64_t max_seq) {
   QueryRequest request;
   request.set_min_seq(min_seq);
   request.set_max_seq(max_seq);
 
-  std::vector<std::unique_ptr<ResDBClient>> clients;
+  std::vector<std::unique_ptr<XDBClient>> clients;
   std::vector<std::thread> ths;
   std::string final_str;
   std::mutex mtx;
@@ -57,13 +57,13 @@ ResDBTxnClient::GetTxn(uint64_t min_seq, uint64_t max_seq) {
   bool success = false;
   std::map<std::string, int> recv_count;
   for (const auto& replica : replicas_) {
-    std::unique_ptr<ResDBClient> client =
-        GetResDBClient(replica.ip(), replica.port());
-    ResDBClient* client_ptr = client.get();
+    std::unique_ptr<XDBClient> client =
+        GetXDBClient(replica.ip(), replica.port());
+    XDBClient* client_ptr = client.get();
     clients.push_back(std::move(client));
 
     ths.push_back(std::thread(
-        [&](ResDBClient* client) {
+        [&](XDBClient* client) {
           std::string response_str;
           int ret = client->SendRequest(request, Request::TYPE_QUERY);
           if (ret) {
@@ -120,8 +120,8 @@ ResDBTxnClient::GetTxn(uint64_t min_seq, uint64_t max_seq) {
 }
 
 
-absl::StatusOr<std::string> ResDBTxnClient::GetCustomQuery(const std::string& request_str) {
-  std::vector<std::unique_ptr<ResDBClient>> clients;
+absl::StatusOr<std::string> XDBTxnClient::GetCustomQuery(const std::string& request_str) {
+  std::vector<std::unique_ptr<XDBClient>> clients;
   std::vector<std::thread> ths;
   std::string final_str;
   std::mutex mtx;
@@ -129,13 +129,13 @@ absl::StatusOr<std::string> ResDBTxnClient::GetCustomQuery(const std::string& re
   bool success = false;
   std::map<std::string, int> recv_count;
   for (const auto& replica : replicas_) {
-    std::unique_ptr<ResDBClient> client =
-        GetResDBClient(replica.ip(), replica.port());
-    ResDBClient* client_ptr = client.get();
+    std::unique_ptr<XDBClient> client =
+        GetXDBClient(replica.ip(), replica.port());
+    XDBClient* client_ptr = client.get();
     clients.push_back(std::move(client));
 
     ths.push_back(std::thread(
-        [&](ResDBClient* client) {
+        [&](XDBClient* client) {
           std::string response_str;
           Request request;
           request.set_type(Request::TYPE_CUSTOM_QUERY);

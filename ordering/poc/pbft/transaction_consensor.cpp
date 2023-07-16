@@ -31,7 +31,7 @@
 namespace resdb {
 namespace poc {
 
-TransactionConsensor::TransactionConsensor(const ResDBConfig& config, 
+TransactionConsensor::TransactionConsensor(const XDBConfig& config, 
   std::unique_ptr<TransactionExecutorImpl> executor, std::unique_ptr<CustomQuery> query)
     : ConsensusServicePBFT(config, std::move(executor), std::move(query)) {
 }

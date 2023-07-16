@@ -32,16 +32,16 @@
 
 namespace resdb {
 
-ResDBStateClient::ResDBStateClient(const ResDBConfig& config)
+XDBStateClient::XDBStateClient(const XDBConfig& config)
     : config_(config) {}
 
-std::unique_ptr<ResDBClient> ResDBStateClient::GetResDBClient(
+std::unique_ptr<XDBClient> XDBStateClient::GetXDBClient(
     const std::string& ip, int port) {
-  return std::make_unique<ResDBClient>(ip, port);
+  return std::make_unique<XDBClient>(ip, port);
 }
 
 // Obtain ReplicaState of each replica.
-absl::StatusOr<std::vector<ReplicaState>> ResDBStateClient::GetReplicaStates() {
+absl::StatusOr<std::vector<ReplicaState>> XDBStateClient::GetReplicaStates() {
   std::vector<std::thread> ths;
   Request request;
   std::vector<std::future<std::unique_ptr<ReplicaState>>> resp_future;
@@ -52,8 +52,8 @@ absl::StatusOr<std::vector<ReplicaState>> ResDBStateClient::GetReplicaStates() {
     resp_future.push_back(state_prom.get_future());
     ths.push_back(std::thread(
         [&](std::promise<std::unique_ptr<ReplicaState>> state_prom) {
-          std::unique_ptr<ResDBClient> client =
-              GetResDBClient(replica.ip(), replica.port());
+          std::unique_ptr<XDBClient> client =
+              GetXDBClient(replica.ip(), replica.port());
           client->SetRecvTimeout(1000000);  // 1s for recv timeout.
 
           int ret = client->SendRequest(request, Request::TYPE_REPLICA_STATE);

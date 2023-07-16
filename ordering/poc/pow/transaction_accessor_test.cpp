@@ -21,21 +21,21 @@ using ::testing::Return;
 
 class MockTransactionAccessor : public TransactionAccessor {
  public:
-  MockTransactionAccessor(const ResDBPoCConfig& config)
+  MockTransactionAccessor(const XDBPoCConfig& config)
       : TransactionAccessor(config, false) {}
-  MOCK_METHOD(std::unique_ptr<ResDBTxnClient>, GetResDBTxnClient, (),
+  MOCK_METHOD(std::unique_ptr<XDBTxnClient>, GetXDBTxnClient, (),
               (override));
 };
 
-ResDBPoCConfig GetConfig() {
-  ResDBConfig bft_config({GenerateReplicaInfo(1, "127.0.0.1", 2001),
+XDBPoCConfig GetConfig() {
+  XDBConfig bft_config({GenerateReplicaInfo(1, "127.0.0.1", 2001),
                           GenerateReplicaInfo(2, "127.0.0.1", 2002),
                           GenerateReplicaInfo(3, "127.0.0.1", 2003),
                           GenerateReplicaInfo(4, "127.0.0.1", 2004)},
                          GenerateReplicaInfo(1, "127.0.0.1", 2001), KeyInfo(),
                          CertificateInfo());
 
-  return ResDBPoCConfig(bft_config,
+  return XDBPoCConfig(bft_config,
                         {GenerateReplicaInfo(1, "127.0.0.1", 1234),
                          GenerateReplicaInfo(2, "127.0.0.1", 1235),
                          GenerateReplicaInfo(3, "127.0.0.1", 1236),
@@ -48,14 +48,14 @@ TEST(TransactionAccessorTest, GetTransactionsFail) {
   std::promise<bool> cli_done;
   std::future<bool> cli_done_future = cli_done.get_future();
 
-  ResDBPoCConfig config = GetConfig();
+  XDBPoCConfig config = GetConfig();
   config.SetBatchTransactionNum(1);
   QueryRequest request;
   request.set_min_seq(1);
   request.set_max_seq(1);
   MockTransactionAccessor accessor(config);
-  EXPECT_CALL(accessor, GetResDBTxnClient).WillRepeatedly(Invoke([&]() {
-    auto client = std::make_unique<MockResDBTxnClient>(*config.GetBFTConfig());
+  EXPECT_CALL(accessor, GetXDBTxnClient).WillRepeatedly(Invoke([&]() {
+    auto client = std::make_unique<MockXDBTxnClient>(*config.GetBFTConfig());
     EXPECT_CALL(*client, GetTxn(1, 1)).WillOnce(Invoke([&]() {
       cli_done.set_value(true);
       return absl::InternalError("recv data fail.");
@@ -72,7 +72,7 @@ TEST(TransactionAccessorTest, GetTransactionsFail) {
 TEST(TransactionAccessorTest, GetTransactions) {
   std::promise<bool> cli_done;
   std::future<bool> cli_done_future = cli_done.get_future();
-  ResDBPoCConfig config = GetConfig();
+  XDBPoCConfig config = GetConfig();
   config.SetBatchTransactionNum(1);
 
   ClientTransactions expected_resp;
@@ -88,8 +88,8 @@ TEST(TransactionAccessorTest, GetTransactions) {
   request.set_min_seq(1);
   request.set_max_seq(1);
   MockTransactionAccessor accessor(config);
-  EXPECT_CALL(accessor, GetResDBTxnClient).WillRepeatedly(Invoke([&]() {
-    auto client = std::make_unique<MockResDBTxnClient>(*config.GetBFTConfig());
+  EXPECT_CALL(accessor, GetXDBTxnClient).WillRepeatedly(Invoke([&]() {
+    auto client = std::make_unique<MockXDBTxnClient>(*config.GetBFTConfig());
     ON_CALL(*client, GetTxn(1, 1)).WillByDefault(Invoke([&]() {
       std::vector<std::pair<uint64_t, std::string>> resp;
       resp.push_back(std::make_pair(expected_resp.seq(),

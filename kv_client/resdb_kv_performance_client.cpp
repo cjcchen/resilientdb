@@ -29,10 +29,10 @@
 
 namespace resdb {
 
-ResDBKVPerformanceClient::ResDBKVPerformanceClient(const ResDBConfig& config)
-    : ResDBKVClient(config) {}
+XDBKVPerformanceClient::XDBKVPerformanceClient(const XDBConfig& config)
+    : XDBKVClient(config) {}
 
-int ResDBKVPerformanceClient::Start() {
+int XDBKVPerformanceClient::Start() {
   KVRequest request;
   return SendRequest(request);
 }

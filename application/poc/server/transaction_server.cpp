@@ -49,13 +49,13 @@ int main(int argc, char** argv) {
   char* private_key_file = argv[2];
   char* cert_file = argv[3];
 
-  std::unique_ptr<ResDBConfig> config =
-      GenerateResDBConfig(config_file, private_key_file, cert_file);
+  std::unique_ptr<XDBConfig> config =
+      GenerateXDBConfig(config_file, private_key_file, cert_file);
   ResConfigData config_data = config->GetConfigData();
 
   resdb::poc::TransactionManager manager;
 
-  auto server = CustomGenerateResDBServer<TransactionConsensor>(
+  auto server = CustomGenerateXDBServer<TransactionConsensor>(
 		  config_file, private_key_file, cert_file,
 		  std::make_unique<resdb::poc::TransactionExecutor>(*config, &manager), std::make_unique<TransactionQuery>(*config, &manager));
 

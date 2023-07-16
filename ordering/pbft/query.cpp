@@ -31,7 +31,7 @@
 
 namespace resdb {
 
-Query::Query(const ResDBConfig& config, TransactionManager* transaction_manager,
+Query::Query(const XDBConfig& config, TransactionManager* transaction_manager,
              std::unique_ptr<CustomQuery> executor)
     : config_(config),
       transaction_manager_(transaction_manager),

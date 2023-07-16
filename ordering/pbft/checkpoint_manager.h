@@ -37,8 +37,8 @@ namespace resdb {
 
 class CheckPointManager {
  public:
-  CheckPointManager(const ResDBConfig& config,
-                    ResDBReplicaClient* replica_client,
+  CheckPointManager(const XDBConfig& config,
+                    XDBReplicaClient* replica_client,
                     SignatureVerifier* verifier);
   virtual ~CheckPointManager();
 
@@ -67,8 +67,8 @@ class CheckPointManager {
   bool Wait();
 
  protected:
-  ResDBConfig config_;
-  ResDBReplicaClient* replica_client_;
+  XDBConfig config_;
+  XDBReplicaClient* replica_client_;
   std::unique_ptr<TxnMemoryDB> txn_db_;
   std::thread checkpoint_thread_, stable_checkpoint_thread_;
   SignatureVerifier* verifier_;

@@ -33,10 +33,10 @@
 
 namespace resdb {
 
-class ResDBService {
+class XDBService {
  public:
-  ResDBService() : is_running_(false) {}
-  virtual ~ResDBService() = default;
+  XDBService() : is_running_(false) {}
+  virtual ~XDBService() = default;
 
   virtual int Process(std::unique_ptr<Context> context,
                       std::unique_ptr<DataInfo> request_info);

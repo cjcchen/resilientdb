@@ -29,10 +29,10 @@
 
 namespace resdb {
 
-// ResDBKVClient to send data to the kv server.
-class ResDBKVClient : public ResDBUserClient {
+// XDBKVClient to send data to the kv server.
+class XDBKVClient : public XDBUserClient {
  public:
-  ResDBKVClient(const ResDBConfig& config);
+  XDBKVClient(const XDBConfig& config);
 
   int Set(const std::string& key, const std::string& data);
   std::unique_ptr<std::string> Get(const std::string& key);

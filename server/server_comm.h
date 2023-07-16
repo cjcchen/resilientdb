@@ -31,7 +31,7 @@
 namespace resdb {
 
 struct Context {
-  std::unique_ptr<ResDBClient> client;
+  std::unique_ptr<XDBClient> client;
   SignatureInfo signature;
 };
 

@@ -30,10 +30,10 @@
 
 namespace resdb {
 
-// A mock class for ResDBClient.
-class MockResDBClient : public ResDBClient {
+// A mock class for XDBClient.
+class MockXDBClient : public XDBClient {
  public:
-  MockResDBClient(const std::string& ip, int port) : ResDBClient(ip, port) {}
+  MockXDBClient(const std::string& ip, int port) : XDBClient(ip, port) {}
 
   MOCK_METHOD(int, SendRequest,
               (const google::protobuf::Message&, Request::Type, bool),

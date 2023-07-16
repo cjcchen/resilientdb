@@ -46,30 +46,30 @@ ReplicaInfo GenerateReplicaInfo(const std::string& ip, int port) {
   return replica_info;
 }
 
-class MockResDBReplicaClient : public ResDBReplicaClient {
+class MockXDBReplicaClient : public XDBReplicaClient {
  public:
-  MockResDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
+  MockXDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
                          bool use_lonn_conn = false)
-      : ResDBReplicaClient(replicas, nullptr, use_lonn_conn){};
-  MOCK_METHOD(std::unique_ptr<ResDBClient>, GetClient,
+      : XDBReplicaClient(replicas, nullptr, use_lonn_conn){};
+  MOCK_METHOD(std::unique_ptr<XDBClient>, GetClient,
               (const std::string&, int), (override));
   MOCK_METHOD(AsyncReplicaClient*, GetClientFromPool, (const std::string&, int),
               (override));
 };
 
-TEST(ResDBReplicaClientTest, SendMessage) {
+TEST(XDBReplicaClientTest, SendMessage) {
   std::vector<ReplicaInfo> replicas;
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1234));
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1235));
 
-  MockResDBReplicaClient client(replicas);
+  MockXDBReplicaClient client(replicas);
   EXPECT_CALL(client, GetClient("127.0.0.1", 1234))
       .WillOnce(Invoke([&](const std::string& ip, int port) {
-        return std::make_unique<MockResDBClient>(ip, port);
+        return std::make_unique<MockXDBClient>(ip, port);
       }));
   EXPECT_CALL(client, GetClient("127.0.0.1", 1235))
       .WillOnce(Invoke([&](const std::string& ip, int port) {
-        return std::make_unique<MockResDBClient>(ip, port);
+        return std::make_unique<MockXDBClient>(ip, port);
       }));
 
   Request expected_request;
@@ -77,12 +77,12 @@ TEST(ResDBReplicaClientTest, SendMessage) {
   EXPECT_EQ(client.SendMessage(expected_request), 2);
 }
 
-TEST(ResDBReplicaClientTest, SendMessageToClient) {
+TEST(XDBReplicaClientTest, SendMessageToClient) {
   std::vector<ReplicaInfo> replicas;
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1234));
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1235));
 
-  MockResDBReplicaClient client(replicas);
+  MockXDBReplicaClient client(replicas);
 
   std::vector<ReplicaInfo> client_replicas;
   client_replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1236));
@@ -92,7 +92,7 @@ TEST(ResDBReplicaClientTest, SendMessageToClient) {
 
   EXPECT_CALL(client, GetClient("127.0.0.1", 1236))
       .WillOnce(Invoke([&](const std::string& ip, int port) {
-        return std::make_unique<MockResDBClient>(ip, port);
+        return std::make_unique<MockXDBClient>(ip, port);
       }));
 
   Request expected_request;
@@ -100,15 +100,15 @@ TEST(ResDBReplicaClientTest, SendMessageToClient) {
   client.SendMessage(expected_request, 3);
 }
 
-TEST(ResDBReplicaClientTest, PartialSendMessage) {
+TEST(XDBReplicaClientTest, PartialSendMessage) {
   std::vector<ReplicaInfo> replicas;
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1234));
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1235));
 
-  MockResDBReplicaClient client(replicas);
+  MockXDBReplicaClient client(replicas);
   EXPECT_CALL(client, GetClient("127.0.0.1", 1234))
       .WillOnce(Invoke([&](const std::string& ip, int port) {
-        return std::make_unique<MockResDBClient>(ip, port);
+        return std::make_unique<MockXDBClient>(ip, port);
       }));
   EXPECT_CALL(client, GetClient("127.0.0.1", 1235))
       .WillOnce(
@@ -119,7 +119,7 @@ TEST(ResDBReplicaClientTest, PartialSendMessage) {
   EXPECT_EQ(client.SendMessage(expected_request), 1);
 }
 
-TEST(ResDBReplicaClientTest, Lonnconnection) {
+TEST(XDBReplicaClientTest, Lonnconnection) {
   std::promise<bool> bc;
   std::future<bool> bc_done = bc.get_future();
   std::vector<ReplicaInfo> replicas;
@@ -127,7 +127,7 @@ TEST(ResDBReplicaClientTest, Lonnconnection) {
 
   boost::asio::io_service io_service;
   auto resdb_client = std::make_unique<MockAsyncReplicaClient>(&io_service);
-  MockResDBReplicaClient client(replicas, true);
+  MockXDBReplicaClient client(replicas, true);
   EXPECT_CALL(client, GetClientFromPool("127.0.0.1", 1234))
       .WillOnce(Invoke([&](const std::string& ip, int port) {
         bc.set_value(true);

@@ -52,9 +52,9 @@ ReplicaInfo GenerateReplicaInfo(const std::string& ip, int port) {
 
 class MockConsensusService : public ConsensusService {
  public:
-  MockConsensusService(const ResDBConfig& config) : ConsensusService(config) {}
+  MockConsensusService(const XDBConfig& config) : ConsensusService(config) {}
 
-  MOCK_METHOD(std::unique_ptr<ResDBReplicaClient>, GetReplicaClient,
+  MOCK_METHOD(std::unique_ptr<XDBReplicaClient>, GetReplicaClient,
               (const std::vector<ReplicaInfo>&, bool), (override));
   MOCK_METHOD(int, ConsensusCommit,
               (std::unique_ptr<Context>, std::unique_ptr<Request>), (override));
@@ -69,7 +69,7 @@ class MockConsensusService : public ConsensusService {
     return ConsensusService::UpdateBroadCastClient();
   }
 
-  ResDBReplicaClient* GetBroadCastClient() {
+  XDBReplicaClient* GetBroadCastClient() {
     return ConsensusService::GetBroadCastClient();
   }
 
@@ -107,7 +107,7 @@ class ConsensusServiceTest : public Test {
  protected:
   std::vector<ReplicaInfo> replicas_;
   ReplicaInfo self_info_;
-  ResDBConfig config_;
+  XDBConfig config_;
   std::unique_ptr<MockConsensusService> impl_;
 };
 
@@ -118,7 +118,7 @@ TEST_F(ConsensusServiceTest, SendHB) {
       .Times(AtLeast(1))
       .WillRepeatedly(
           Invoke([&](const std::vector<ReplicaInfo>& replicas, bool) {
-            auto client = std::make_unique<MockResDBReplicaClient>(replicas);
+            auto client = std::make_unique<MockXDBReplicaClient>(replicas);
             EXPECT_CALL(*client, SendHeartBeat)
                 .WillRepeatedly(Invoke([&](const Request& hb_info) {
                   hb.set_value(true);
@@ -155,7 +155,7 @@ TEST_F(ConsensusServiceTest, SendHBToClient) {
               }
             }
             EXPECT_TRUE(find);
-            auto client = std::make_unique<MockResDBReplicaClient>(replicas);
+            auto client = std::make_unique<MockXDBReplicaClient>(replicas);
             EXPECT_CALL(*client, SendHeartBeat)
                 .WillRepeatedly(Invoke([&](const Request& hb_info) {
                   hb.set_value(true);
@@ -205,7 +205,7 @@ TEST_F(ConsensusServiceTest, SendHBToClientWithTworegion) {
               }
             }
             EXPECT_TRUE(find);
-            auto client = std::make_unique<MockResDBReplicaClient>(replicas);
+            auto client = std::make_unique<MockXDBReplicaClient>(replicas);
             EXPECT_CALL(*client, SendHeartBeat)
                 .WillRepeatedly(Invoke([&](const Request& hb_info) {
                   hb.set_value(true);
@@ -224,7 +224,7 @@ TEST_F(ConsensusServiceTest, BroadCast) {
       .WillRepeatedly(
           Invoke([&](const std::vector<ReplicaInfo>& replicas, bool long_conn) {
             EXPECT_EQ(replicas.size(), replicas_.size());
-            auto client = std::make_unique<MockResDBReplicaClient>(replicas);
+            auto client = std::make_unique<MockXDBReplicaClient>(replicas);
             EXPECT_CALL(*client, SendMessage(_))
                 .WillRepeatedly(
                     Invoke([&](const google::protobuf::Message& request) {
@@ -252,7 +252,7 @@ TEST_F(ConsensusServiceTest, DiscoverNewClient) {
       .WillRepeatedly(
           Invoke([&](const std::vector<ReplicaInfo>& replicas, bool long_conn) {
             EXPECT_EQ(replicas.size(), replicas_.size());
-            auto client = std::make_unique<MockResDBReplicaClient>(replicas);
+            auto client = std::make_unique<MockXDBReplicaClient>(replicas);
             return client;
           }));
 
@@ -271,7 +271,7 @@ TEST_F(ConsensusServiceTest, DiscoverNewClient) {
   EXPECT_EQ(impl_->Dispatch(std::make_unique<Context>(), std::move(request)),
             0);
 
-  ResDBReplicaClient* bc_client = impl_->GetBroadCastClient();
+  XDBReplicaClient* bc_client = impl_->GetBroadCastClient();
   EXPECT_NE(bc_client, nullptr);
 
   std::vector<ReplicaInfo> client_infos = bc_client->GetClientReplicas();

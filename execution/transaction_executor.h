@@ -45,7 +45,7 @@ class TransactionExecutor {
   typedef std::function<void(Request*)> PreExecuteFunc;
   typedef std::function<void(uint64_t seq)> SeqUpdateNotifyFunc;
 
-  TransactionExecutor(const ResDBConfig& config, PostExecuteFunc post_exec_func,
+  TransactionExecutor(const XDBConfig& config, PostExecuteFunc post_exec_func,
                       SystemInfo* system_info,
                       std::unique_ptr<TransactionExecutorImpl> executor_impl);
   ~TransactionExecutor();
@@ -80,7 +80,7 @@ class TransactionExecutor {
   void UpdateMaxExecutedSeq(uint64_t seq);
 
  protected:
-  ResDBConfig config_;
+  XDBConfig config_;
 
  private:
   std::atomic<uint64_t> next_execute_seq_ = 1;

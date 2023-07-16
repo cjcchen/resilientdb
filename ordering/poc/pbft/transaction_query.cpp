@@ -32,7 +32,7 @@
 namespace resdb {
 namespace poc {
 
-TransactionQuery::TransactionQuery(const ResDBConfig& config, TransactionManager * manager)
+TransactionQuery::TransactionQuery(const XDBConfig& config, TransactionManager * manager)
     :manager_(manager){
 }
 

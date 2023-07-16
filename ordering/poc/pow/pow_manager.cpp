@@ -19,8 +19,8 @@ std::unique_ptr<Request> NewRequest(PoWRequest type,
 }  // namespace
 
 
-PoWManager::PoWManager(const ResDBPoCConfig& config,
-		ResDBReplicaClient* client, TransactionExecutorImpl * executor
+PoWManager::PoWManager(const XDBPoCConfig& config,
+		XDBReplicaClient* client, TransactionExecutorImpl * executor
 		) : config_(config),bc_client_(client), executor_(executor){
 Reset();
 self_id_ = config_.GetSelfInfo().id();
@@ -39,15 +39,15 @@ PoWManager::~PoWManager() {
   }
 }
 
-std::unique_ptr<TransactionAccessor> PoWManager::GetTransactionAccessor(const ResDBPoCConfig& config){
+std::unique_ptr<TransactionAccessor> PoWManager::GetTransactionAccessor(const XDBPoCConfig& config){
   return std::make_unique<TransactionAccessor>(config);
 }
 
-std::unique_ptr<ShiftManager> PoWManager::GetShiftManager(const ResDBPoCConfig& config){
+std::unique_ptr<ShiftManager> PoWManager::GetShiftManager(const XDBPoCConfig& config){
   return std::make_unique<ShiftManager>(config);
 }
 
-std::unique_ptr<BlockManager> PoWManager::GetBlockManager(const ResDBPoCConfig& config){
+std::unique_ptr<BlockManager> PoWManager::GetBlockManager(const XDBPoCConfig& config){
   return std::make_unique<BlockManager>(config, executor_);
 }
 

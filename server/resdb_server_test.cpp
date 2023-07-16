@@ -39,7 +39,7 @@ namespace resdb {
 using ::testing::Invoke;
 using ::testing::Return;
 
-ResDBConfig GenerateDBConfig() {
+XDBConfig GenerateDBConfig() {
   std::vector<ReplicaInfo> replicas;
   ReplicaInfo self_info;
   self_info.set_ip("127.0.0.1");
@@ -49,7 +49,7 @@ ResDBConfig GenerateDBConfig() {
   dest_info.set_port(1235);
   replicas.push_back(dest_info);
 
-  return ResDBConfig(replicas, self_info, KeyInfo(), CertificateInfo());
+  return XDBConfig(replicas, self_info, KeyInfo(), CertificateInfo());
 }
 
 void SendData(const std::string& data) {
@@ -60,15 +60,15 @@ void SendData(const std::string& data) {
   ASSERT_EQ(ret, 0);
 }
 
-TEST(ResDBServerTest, RecvData) {
+TEST(XDBServerTest, RecvData) {
   std::promise<bool> init;
   std::future<bool> init_done = init.get_future();
 
   std::promise<bool> recv;
   std::future<bool> recv_done = recv.get_future();
 
-  std::unique_ptr<MockResDBService> service =
-      std::make_unique<MockResDBService>();
+  std::unique_ptr<MockXDBService> service =
+      std::make_unique<MockXDBService>();
   bool finished = false;
   EXPECT_CALL(*service, IsRunning).WillRepeatedly(Invoke([&]() {
     return !finished;
@@ -85,7 +85,7 @@ TEST(ResDBServerTest, RecvData) {
       }));
 
   std::thread svr_thead2 = std::thread([&]() {
-    ResDBServer server(GenerateDBConfig(), std::move(service));
+    XDBServer server(GenerateDBConfig(), std::move(service));
     init.set_value(true);
     server.Run();
   });
@@ -96,9 +96,9 @@ TEST(ResDBServerTest, RecvData) {
   svr_thead2.join();
 }
 
-TEST(ResDBServerTest, RunningDone) {
-  std::unique_ptr<MockResDBService> service =
-      std::make_unique<MockResDBService>();
+TEST(XDBServerTest, RunningDone) {
+  std::unique_ptr<MockXDBService> service =
+      std::make_unique<MockXDBService>();
   bool finished = false;
   EXPECT_CALL(*service, IsRunning).WillRepeatedly(Invoke([&]() {
     return !finished;
@@ -110,7 +110,7 @@ TEST(ResDBServerTest, RunningDone) {
   std::future<bool> init_done = init.get_future();
 
   std::thread svr_thead2 = std::thread([&]() {
-    ResDBServer server(GenerateDBConfig(), std::move(service));
+    XDBServer server(GenerateDBConfig(), std::move(service));
     init.set_value(true);
     server.Run();
   });

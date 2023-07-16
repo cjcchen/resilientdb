@@ -6,7 +6,7 @@
 namespace resdb {
 using poc::PoCTransactionManager;
 
-ConsensusServicePoW::ConsensusServicePoW(const ResDBPoCConfig& config, PoCTransactionManager * manager)
+ConsensusServicePoW::ConsensusServicePoW(const XDBPoCConfig& config, PoCTransactionManager * manager)
     : ConsensusService(config), txn_manager_(manager) {
   miner_manager_ = std::make_unique<MinerManager>(config);
   pow_manager_ = std::make_unique<PoWManager>(config,GetBroadCastClient(), txn_manager_);

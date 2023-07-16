@@ -33,7 +33,7 @@ namespace poc {
 
 class TransactionQuery : public CustomQuery {
  public:
-  TransactionQuery(const ResDBConfig& config, TransactionManager * manager);
+  TransactionQuery(const XDBConfig& config, TransactionManager * manager);
 
   virtual ~TransactionQuery() = default;
 

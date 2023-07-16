@@ -52,7 +52,7 @@ class GlobalExecutorTest : public Test {
                 GenerateReplicaInfo(1, "127.0.0.1", 1234)) {}
 
  protected:
-  ResDBConfig config_;
+  XDBConfig config_;
 };
 
 TEST_F(GlobalExecutorTest, ExecuteSuccess) {

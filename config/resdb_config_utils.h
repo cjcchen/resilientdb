@@ -34,18 +34,18 @@ namespace resdb {
 std::vector<ReplicaInfo> ReadConfig(const std::string& file_name);
 ReplicaInfo GenerateReplicaInfo(int id, const std::string& ip, int port);
 
-typedef std::function<std::unique_ptr<ResDBConfig>(
+typedef std::function<std::unique_ptr<XDBConfig>(
     const ResConfigData& config_data, const ReplicaInfo& self_info,
     const KeyInfo& private_key, const CertificateInfo& public_key_cert_info)>
     ConfigGenFunc;
 
-std::unique_ptr<ResDBConfig> GenerateResDBConfig(
+std::unique_ptr<XDBConfig> GenerateXDBConfig(
     const std::string& config_file, const std::string& private_key_file,
     const std::string& cert_file,
     std::optional<ReplicaInfo> self_info = std::nullopt,
     std::optional<ConfigGenFunc> = std::nullopt);
 
-std::unique_ptr<ResDBConfig> GenerateResDBConfigFromJson(const std::string& config_file);
-ResDBConfig GenerateResDBConfig(const std::string& config_file);
+std::unique_ptr<XDBConfig> GenerateXDBConfigFromJson(const std::string& config_file);
+XDBConfig GenerateXDBConfig(const std::string& config_file);
 
 }  // namespace resdb

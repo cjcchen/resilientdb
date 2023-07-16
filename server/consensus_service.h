@@ -38,15 +38,15 @@
 namespace resdb {
 
 // ConsensusService is an consus algorithm implimentation of ConsensusService.
-// It receives the messages from ResDBServer and running a consus algorithm
+// It receives the messages from XDBServer and running a consus algorithm
 // like PBFT to commit.
 // It also handles the public key information exchanged from others.
-class ConsensusService : public ResDBService {
+class ConsensusService : public XDBService {
  public:
-  ConsensusService(const ResDBConfig& config);
+  ConsensusService(const XDBConfig& config);
   virtual ~ConsensusService();
 
-  // Process a request receied from ResDBServer.
+  // Process a request receied from XDBServer.
   // context contains the client socket and request_info contains the data
   // received from the network.
   virtual int Process(std::unique_ptr<Context> context,
@@ -76,7 +76,7 @@ class ConsensusService : public ResDBService {
                        std::unique_ptr<Request> request);
   // =======================================================
 
-  virtual std::unique_ptr<ResDBReplicaClient> GetReplicaClient(
+  virtual std::unique_ptr<XDBReplicaClient> GetReplicaClient(
       const std::vector<ReplicaInfo>& replicas, bool is_use_long_conn = false);
 
   virtual std::vector<ReplicaInfo> GetReplicas() = 0;
@@ -88,7 +88,7 @@ class ConsensusService : public ResDBService {
   virtual void SetPrimary(uint32_t primary, uint64_t version);
   void AddNewClient(const ReplicaInfo& info);
 
-  ResDBReplicaClient* GetBroadCastClient();
+  XDBReplicaClient* GetBroadCastClient();
   // Update broad cast client to reflush the replica list.
   void UpdateBroadCastClient();
 
@@ -99,7 +99,7 @@ class ConsensusService : public ResDBService {
   void BroadCastThread();
 
  protected:
-  ResDBConfig config_;
+  XDBConfig config_;
   std::unique_ptr<SignatureVerifier> verifier_;
   struct QueueItem {
     std::unique_ptr<Request> request;
@@ -109,7 +109,7 @@ class ConsensusService : public ResDBService {
  private:
   std::thread heartbeat_thread_;
   std::atomic<bool> is_ready_ = false;
-  std::unique_ptr<ResDBReplicaClient> bc_client_;
+  std::unique_ptr<XDBReplicaClient> bc_client_;
   std::vector<ReplicaInfo> clients_;
   Stats* global_stats_;
 };

@@ -43,15 +43,15 @@ using ::testing::Invoke;
 using ::testing::Pointee;
 using ::testing::Return;
 
-class MockResDBTxnClient : public ResDBTxnClient {
+class MockXDBTxnClient : public XDBTxnClient {
  public:
-  MockResDBTxnClient(const ResDBConfig& config) : ResDBTxnClient(config) {}
-  MOCK_METHOD(std::unique_ptr<ResDBClient>, GetResDBClient,
+  MockXDBTxnClient(const XDBConfig& config) : XDBTxnClient(config) {}
+  MOCK_METHOD(std::unique_ptr<XDBClient>, GetXDBClient,
               (const std::string&, int), (override));
 };
 
-TEST(ResDBTxnClientTest, GetTransactionsFail) {
-  ResDBConfig config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
+TEST(XDBTxnClientTest, GetTransactionsFail) {
+  XDBConfig config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
                       GenerateReplicaInfo(2, "127.0.0.1", 1235),
                       GenerateReplicaInfo(3, "127.0.0.1", 1236),
                       GenerateReplicaInfo(4, "127.0.0.1", 1237)},
@@ -60,11 +60,11 @@ TEST(ResDBTxnClientTest, GetTransactionsFail) {
   QueryRequest request;
   request.set_min_seq(0);
   request.set_max_seq(0);
-  MockResDBTxnClient client(config);
-  EXPECT_CALL(client, GetResDBClient)
+  MockXDBTxnClient client(config);
+  EXPECT_CALL(client, GetXDBClient)
       .Times(4)
       .WillRepeatedly(Invoke([&](const std::string& ip, int port) {
-        auto client = std::make_unique<MockResDBClient>(ip, port);
+        auto client = std::make_unique<MockXDBClient>(ip, port);
         EXPECT_CALL(*client,
                     SendRequest(EqualsProto(request), Request::TYPE_QUERY, _))
             .WillOnce(Return(0));
@@ -77,8 +77,8 @@ TEST(ResDBTxnClientTest, GetTransactionsFail) {
   EXPECT_FALSE(resp.ok());
 }
 
-TEST(ResDBTxnClientTest, GetTransactions) {
-  ResDBConfig config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
+TEST(XDBTxnClientTest, GetTransactions) {
+  XDBConfig config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
                       GenerateReplicaInfo(2, "127.0.0.1", 1235),
                       GenerateReplicaInfo(3, "127.0.0.1", 1236),
                       GenerateReplicaInfo(4, "127.0.0.1", 1237)},
@@ -92,11 +92,11 @@ TEST(ResDBTxnClientTest, GetTransactions) {
   QueryRequest request;
   request.set_min_seq(1);
   request.set_max_seq(1);
-  MockResDBTxnClient client(config);
-  EXPECT_CALL(client, GetResDBClient)
+  MockXDBTxnClient client(config);
+  EXPECT_CALL(client, GetXDBClient)
       .Times(4)
       .WillRepeatedly(Invoke([&](const std::string& ip, int port) {
-        auto client = std::make_unique<MockResDBClient>(ip, port);
+        auto client = std::make_unique<MockXDBClient>(ip, port);
         EXPECT_CALL(*client,
                     SendRequest(EqualsProto(request), Request::TYPE_QUERY, _))
             .WillOnce(Return(0));
@@ -115,8 +115,8 @@ TEST(ResDBTxnClientTest, GetTransactions) {
   EXPECT_THAT(*resp, ElementsAre(std::make_pair(1, "test_resp")));
 }
 
-TEST(ResDBTxnClientTest, GetTransactionsOneDelay) {
-  ResDBConfig config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
+TEST(XDBTxnClientTest, GetTransactionsOneDelay) {
+  XDBConfig config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
                       GenerateReplicaInfo(2, "127.0.0.1", 1235),
                       GenerateReplicaInfo(3, "127.0.0.1", 1236),
                       GenerateReplicaInfo(4, "127.0.0.1", 1237)},
@@ -130,11 +130,11 @@ TEST(ResDBTxnClientTest, GetTransactionsOneDelay) {
   QueryRequest request;
   request.set_min_seq(1);
   request.set_max_seq(1);
-  MockResDBTxnClient client(config);
-  EXPECT_CALL(client, GetResDBClient)
+  MockXDBTxnClient client(config);
+  EXPECT_CALL(client, GetXDBClient)
       .Times(4)
       .WillRepeatedly(Invoke([&](const std::string& ip, int port) {
-        auto client = std::make_unique<MockResDBClient>(ip, port);
+        auto client = std::make_unique<MockXDBClient>(ip, port);
         EXPECT_CALL(*client,
                     SendRequest(EqualsProto(request), Request::TYPE_QUERY, _))
             .WillOnce(Return(0));

@@ -40,17 +40,17 @@ struct QueueItem {
   std::unique_ptr<Socket> socket;
   std::unique_ptr<DataInfo> data;
 };
-// ResDBServer is a service running in BFT environment.
+// XDBServer is a service running in BFT environment.
 // It receives messages from other servers or clients and delivers them to
-// ResDBService to process.
+// XDBService to process.
 // service will be running in a multi-thread module.
-class ResDBServer {
+class XDBServer {
  public:
-  // While running ResDBServer, it will lisenten to ip:port.
-  ResDBServer(const ResDBConfig& config, std::unique_ptr<ResDBService> service);
-  virtual ~ResDBServer();
+  // While running XDBServer, it will lisenten to ip:port.
+  XDBServer(const XDBConfig& config, std::unique_ptr<XDBService> service);
+  virtual ~XDBServer();
 
-  // Run ResDBServer as background.
+  // Run XDBServer as background.
   void Run();
   void Stop();
   // Whether the service is ready to process the request.
@@ -65,11 +65,11 @@ class ResDBServer {
 
  private:
   std::unique_ptr<Socket> socket_, socket2_;
-  std::unique_ptr<ResDBService> service_;
+  std::unique_ptr<XDBService> service_;
   bool is_running = false;
   LockFreeQueue<QueueItem> input_queue_, resp_queue_;
   std::unique_ptr<AsyncAcceptor> async_acceptor_;
-  ResDBConfig config_;
+  XDBConfig config_;
   Stats* global_stats_;
 };
 

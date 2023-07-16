@@ -29,19 +29,19 @@
 
 namespace resdb {
 
-int ResDBService::Process(std::unique_ptr<Context> context,
+int XDBService::Process(std::unique_ptr<Context> context,
                           std::unique_ptr<DataInfo> request_info) {
   return 0;
 }
 
-bool ResDBService::IsRunning() const { return is_running_; }
+bool XDBService::IsRunning() const { return is_running_; }
 
-void ResDBService::SetRunning(bool is_running) { is_running_ = is_running; }
+void XDBService::SetRunning(bool is_running) { is_running_ = is_running; }
 
-void ResDBService::Start() { SetRunning(true); }
-void ResDBService::Stop() { SetRunning(false); }
+void XDBService::Start() { SetRunning(true); }
+void XDBService::Stop() { SetRunning(false); }
 
-void ResDBService::SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func) {
+void XDBService::SetSocketCallBack(std::function<void(std::unique_ptr<Socket> socket)> func) {
   socket_call_back_ = func;
 }
 

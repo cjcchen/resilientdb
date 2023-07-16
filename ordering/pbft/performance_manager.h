@@ -37,8 +37,8 @@ namespace resdb {
 
 class PerformanceManager {
  public:
-  PerformanceManager(const ResDBConfig& config,
-                     ResDBReplicaClient* replica_client,
+  PerformanceManager(const XDBConfig& config,
+                     XDBReplicaClient* replica_client,
                      SystemInfo* system_info, SignatureVerifier* verifier);
 
   ~PerformanceManager();
@@ -67,8 +67,8 @@ class PerformanceManager {
   std::unique_ptr<Request> GenerateClientRequest();
 
  private:
-  ResDBConfig config_;
-  ResDBReplicaClient* replica_client_;
+  XDBConfig config_;
+  XDBReplicaClient* replica_client_;
   LockFreeQueue<QueueItem> batch_queue_;
   std::thread client_req_thread_[16];
   std::atomic<bool> stop_;

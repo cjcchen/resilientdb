@@ -44,7 +44,7 @@ CertificateInfo GetCertInfo(int64_t node_id) {
 
 class MockConsensusServicePoW : public ConsensusServicePoW {
  public:
-  MockConsensusServicePoW(const ResDBPoCConfig& config)
+  MockConsensusServicePoW(const XDBPoCConfig& config)
       : ConsensusServicePoW(config) {}
 
   MOCK_METHOD(std::unique_ptr<BatchClientTransactions>, GetClientTransactions,
@@ -76,8 +76,8 @@ class ConsensusServicePoWTest : public Test {
   }
 
   Stats* stats_;
-  ResDBConfig bft_config_;
-  ResDBPoCConfig config_;
+  XDBConfig bft_config_;
+  XDBPoCConfig config_;
 };
 
 TEST_F(ConsensusServicePoWTest, MineOneBlock) {

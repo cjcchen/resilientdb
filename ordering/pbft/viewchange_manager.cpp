@@ -34,11 +34,11 @@ namespace resdb {
 // A manager to address View change process.
 // All stuff here will be addressed in sequential by using mutex
 // to make things simplier.
-ViewChangeManager::ViewChangeManager(const ResDBConfig& config,
+ViewChangeManager::ViewChangeManager(const XDBConfig& config,
                                      CheckPointManager* checkpoint_manager,
                                      TransactionManager* transaction_manager,
                                      SystemInfo* system_info,
-                                     ResDBReplicaClient* replica_client,
+                                     XDBReplicaClient* replica_client,
                                      SignatureVerifier* verifier)
     : config_(config),
       checkpoint_manager_(checkpoint_manager),

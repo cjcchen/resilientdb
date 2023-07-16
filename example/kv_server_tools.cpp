@@ -35,10 +35,10 @@
 #include "proto/signature_info.pb.h"
 
 using resdb::GenerateReplicaInfo;
-using resdb::GenerateResDBConfig;
+using resdb::GenerateXDBConfig;
 using resdb::ReplicaInfo;
-using resdb::ResDBConfig;
-using resdb::ResDBKVClient;
+using resdb::XDBConfig;
+using resdb::XDBKVClient;
 
 int main(int argc, char** argv) {
   if (argc < 3) {
@@ -63,11 +63,11 @@ int main(int argc, char** argv) {
     key2 = argv[4];
   }
 
-  ResDBConfig config = GenerateResDBConfig(client_config_file);
+  XDBConfig config = GenerateXDBConfig(client_config_file);
 
   config.SetClientTimeoutMs(100000);
 
-  ResDBKVClient client(config);
+  XDBKVClient client(config);
 
   if (cmd == "set") {
     int ret = client.Set(key, value);

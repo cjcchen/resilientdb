@@ -13,7 +13,7 @@ namespace resdb {
 // defined from the config and can be reset later.
 class Miner {
  public:
-  Miner(const ResDBPoCConfig& config);
+  Miner(const XDBPoCConfig& config);
 
   std::vector<std::pair<uint64_t, uint64_t>> GetMiningSlices();
 
@@ -32,7 +32,7 @@ class Miner {
   HashValue CalculatePoWHash(const Block* new_block);
 
  private:
-  ResDBPoCConfig config_;
+  XDBPoCConfig config_;
   HashValue target_value_;
   int shift_idx_ = 0;
   std::atomic<bool> stop_;

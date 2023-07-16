@@ -46,7 +46,7 @@ bool ReplicaExisted(const ReplicaInfo& replica_info,
 
 }  // namespace
 
-ConsensusService::ConsensusService(const ResDBConfig& config)
+ConsensusService::ConsensusService(const XDBConfig& config)
     : config_(config), global_stats_(Stats::GetGlobalStats()) {
   if (config_.SignatureVerifierEnabled()) {
     verifier_ = std::make_unique<SignatureVerifier>(
@@ -64,7 +64,7 @@ void ConsensusService::UpdateBroadCastClient() {
   bc_client_ = GetReplicaClient(GetReplicas(), true);
 }
 
-ResDBReplicaClient* ConsensusService::GetBroadCastClient() {
+XDBReplicaClient* ConsensusService::GetBroadCastClient() {
   return bc_client_.get();
 }
 
@@ -75,14 +75,14 @@ SignatureVerifier* ConsensusService::GetSignatureVerifier() {
 bool ConsensusService::IsReady() const { return is_ready_; }
 
 void ConsensusService::Stop() {
-  ResDBService::Stop();
+  XDBService::Stop();
   if (heartbeat_thread_.joinable()) {
     heartbeat_thread_.join();
   }
 }
 
 void ConsensusService::Start() {
-  ResDBService::Start();
+  XDBService::Start();
   if (config_.HeartBeatEnabled() && verifier_) {
     heartbeat_thread_ =
         std::thread(&ConsensusService::HeartBeat, this);  // pass by reference
@@ -158,7 +158,7 @@ int ConsensusService::Process(std::unique_ptr<Context> context,
                               std::unique_ptr<DataInfo> request_info) {
   global_stats_->IncClientCall();
   // Decode the whole message, it includes the certificate and data.
-  ResDBMessage message;
+  XDBMessage message;
   if (!message.ParseFromArray(request_info->buff, request_info->data_len)) {
     LOG(ERROR) << "parse data info fail";
     return -1;
@@ -324,9 +324,9 @@ void ConsensusService::SendMessage(const google::protobuf::Message& message,
   }
 }
 
-std::unique_ptr<ResDBReplicaClient> ConsensusService::GetReplicaClient(
+std::unique_ptr<XDBReplicaClient> ConsensusService::GetReplicaClient(
     const std::vector<ReplicaInfo>& replicas, bool is_use_long_conn) {
-  return std::make_unique<ResDBReplicaClient>(
+  return std::make_unique<XDBReplicaClient>(
       replicas,
       verifier_ == nullptr || config_.GetConfigData().not_need_signature()
           ? nullptr

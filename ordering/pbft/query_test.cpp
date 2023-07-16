@@ -133,12 +133,12 @@ class QueryTest : public Test {
 
  protected:
   Stats* global_stats_;
-  ResDBConfig config_;
+  XDBConfig config_;
   SystemInfo system_info_;
   CheckPointManager checkpoint_manager_;
   TransactionManager transaction_manager_;
   Query query_;
-  MockResDBReplicaClient replica_client_;
+  MockXDBReplicaClient replica_client_;
   MockSignatureVerifier verifier_;
   Commitment commitment_;
 };
@@ -150,8 +150,8 @@ TEST_F(QueryTest, QueryState) {
   replica_state.mutable_replica_info()->set_ip("127.0.0.1");
   replica_state.mutable_replica_info()->set_port(1234);
 
-  std::unique_ptr<MockResDBClient> resp_client =
-      std::make_unique<MockResDBClient>("127.0.0.1", 0);
+  std::unique_ptr<MockXDBClient> resp_client =
+      std::make_unique<MockXDBClient>("127.0.0.1", 0);
   EXPECT_CALL(*resp_client, SendRawMessage(EqualsProto(replica_state)))
       .Times(1);
 
@@ -170,8 +170,8 @@ TEST_F(QueryTest, QueryTxn) {
   auto txn = response.add_transactions();
   txn->set_seq(1);
 
-  std::unique_ptr<MockResDBClient> resp_client =
-      std::make_unique<MockResDBClient>("127.0.0.1", 0);
+  std::unique_ptr<MockXDBClient> resp_client =
+      std::make_unique<MockXDBClient>("127.0.0.1", 0);
   EXPECT_CALL(*resp_client, SendRawMessage(EqualsProto(response))).Times(1);
 
   auto context = std::make_unique<Context>();
@@ -194,8 +194,8 @@ TEST_F(QueryTest, CustomQuery) {
   CustomQueryResponse response;
   response.set_resp_str("custom_response");
 
-  std::unique_ptr<MockResDBClient> resp_client =
-      std::make_unique<MockResDBClient>("127.0.0.1", 0);
+  std::unique_ptr<MockXDBClient> resp_client =
+      std::make_unique<MockXDBClient>("127.0.0.1", 0);
   EXPECT_CALL(*resp_client, SendRawMessage(EqualsProto(response))).Times(1);
 
   auto context = std::make_unique<Context>();

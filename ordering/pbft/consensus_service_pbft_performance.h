@@ -39,7 +39,7 @@ namespace resdb {
 
 class ConsensusServicePBFT : public ConsensusService {
  public:
-  ConsensusServicePBFT(const ResDBConfig& config,
+  ConsensusServicePBFT(const XDBConfig& config,
                        std::unique_ptr<TransactionExecutorImpl> executor);
   virtual ~ConsensusServicePBFT() = default;
 

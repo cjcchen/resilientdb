@@ -34,8 +34,8 @@ namespace resdb {
 class GeoTransactionExecutor : public TransactionExecutorImpl {
  public:
   GeoTransactionExecutor(
-      const ResDBConfig& config, std::unique_ptr<SystemInfo> system_info,
-      std::unique_ptr<ResDBReplicaClient> replica_client,
+      const XDBConfig& config, std::unique_ptr<SystemInfo> system_info,
+      std::unique_ptr<XDBReplicaClient> replica_client,
       std::unique_ptr<TransactionExecutorImpl> geo_executor_impl);
 
   virtual ~GeoTransactionExecutor();
@@ -49,9 +49,9 @@ class GeoTransactionExecutor : public TransactionExecutorImpl {
       const std::vector<std::unique_ptr<Request>>& requests);
 
  protected:
-  ResDBConfig config_;
+  XDBConfig config_;
   std::unique_ptr<SystemInfo> system_info_;
-  std::unique_ptr<ResDBReplicaClient> replica_client_;
+  std::unique_ptr<XDBReplicaClient> replica_client_;
   std::unique_ptr<TransactionExecutorImpl> geo_executor_impl_ = nullptr;
   std::thread geo_thread_;
   size_t batch_size_ = 50;

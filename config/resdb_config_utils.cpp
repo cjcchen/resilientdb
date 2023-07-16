@@ -128,7 +128,7 @@ std::vector<ReplicaInfo> ReadConfig(const std::string& file_name) {
   return replicas;
 }
 
-std::unique_ptr<ResDBConfig> GenerateResDBConfig(
+std::unique_ptr<XDBConfig> GenerateXDBConfig(
     const std::string& config_file, const std::string& private_key_file,
     const std::string& cert_file, std::optional<ReplicaInfo> self_info,
     std::optional<ConfigGenFunc> gen_func) {
@@ -152,19 +152,19 @@ std::unique_ptr<ResDBConfig> GenerateResDBConfig(
   if (gen_func.has_value()) {
     return (*gen_func)(config_data, self_info.value(), private_key, cert_info);
   }
-  return std::make_unique<ResDBConfig>(config_data, self_info.value(),
+  return std::make_unique<XDBConfig>(config_data, self_info.value(),
                                        private_key, cert_info);
 }
 
-std::unique_ptr<ResDBConfig> GenerateResDBConfigFromJson(const std::string& config_file) {
+std::unique_ptr<XDBConfig> GenerateXDBConfigFromJson(const std::string& config_file) {
   ResConfigData config_data = ReadConfigFromFile(config_file);
-  return std::make_unique<ResDBConfig>(config_data, ReplicaInfo(),
+  return std::make_unique<XDBConfig>(config_data, ReplicaInfo(),
                                        KeyInfo(), CertificateInfo());
 }
 
-ResDBConfig GenerateResDBConfig(const std::string& config_file) {
+XDBConfig GenerateXDBConfig(const std::string& config_file) {
   std::vector<ReplicaInfo> replicas = ReadConfig(config_file);
-  return ResDBConfig(replicas, ReplicaInfo());
+  return XDBConfig(replicas, ReplicaInfo());
 }
 
 }  // namespace resdb

@@ -5,14 +5,14 @@
 namespace resdb {
 
 // TODO read from a proto json file.
-class ResDBPoCConfig : public ResDBConfig {
+class XDBPoCConfig : public XDBConfig {
  public:
-  ResDBPoCConfig(const ResDBConfig& bft_config,
+  XDBPoCConfig(const XDBConfig& bft_config,
                  const ResConfigData& replicas,
                  const ReplicaInfo& self_info, const KeyInfo& private_key,
                  const CertificateInfo& public_key_cert_info);
 
-  const ResDBConfig* GetBFTConfig() const;
+  const XDBConfig* GetBFTConfig() const;
 
   void SetMaxNonceBit(uint32_t bit);
   uint32_t GetMaxNonceBit() const;
@@ -46,7 +46,7 @@ class ResDBPoCConfig : public ResDBConfig {
   uint32_t worker_num_ = 16;
   uint32_t mining_time_ms_ = 60000; // 60s
   std::vector<ReplicaInfo> bft_replicas_;
-  ResDBConfig bft_config_;
+  XDBConfig bft_config_;
 };
 
 }  // namespace resdb

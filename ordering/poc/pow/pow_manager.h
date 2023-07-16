@@ -14,7 +14,7 @@ namespace resdb {
 
 class PoWManager {
  public:
-  PoWManager(const ResDBPoCConfig& config, ResDBReplicaClient * bc_client, TransactionExecutorImpl * executor);
+  PoWManager(const XDBPoCConfig& config, XDBReplicaClient * bc_client, TransactionExecutorImpl * executor);
   virtual ~PoWManager();
 
   void Start();
@@ -42,9 +42,9 @@ class PoWManager {
   };
 
  protected:
-  virtual std::unique_ptr<TransactionAccessor> GetTransactionAccessor(const ResDBPoCConfig& config);
-  virtual std::unique_ptr<ShiftManager> GetShiftManager(const ResDBPoCConfig& config);
-  virtual std::unique_ptr<BlockManager> GetBlockManager(const ResDBPoCConfig& config);
+  virtual std::unique_ptr<TransactionAccessor> GetTransactionAccessor(const XDBPoCConfig& config);
+  virtual std::unique_ptr<ShiftManager> GetShiftManager(const XDBPoCConfig& config);
+  virtual std::unique_ptr<BlockManager> GetBlockManager(const XDBPoCConfig& config);
 
   virtual MiningStatus Wait();
   virtual void NotifyBroadCast();
@@ -73,7 +73,7 @@ bool IsSent(uint64_t seq);
 void SetSent(uint64_t seq);
 
  private:
-  ResDBPoCConfig config_;
+  XDBPoCConfig config_;
   uint32_t self_id_;
   std::unique_ptr<BlockManager> block_manager_;
   std::unique_ptr<ShiftManager> shift_manager_;
@@ -84,7 +84,7 @@ void SetSent(uint64_t seq);
   std::mutex broad_cast_mtx_, mutex_, tx_mutex_, block_result_mutex_;
   std::condition_variable broad_cast_cv_,cv_;
   std::atomic<BlockStatus> current_status_ = BlockStatus::GENERATE_NEW;
-  ResDBReplicaClient* bc_client_;
+  XDBReplicaClient* bc_client_;
   SliceInfo need_slice_info_;
   PrometheusHandler * prometheus_handler_;
 

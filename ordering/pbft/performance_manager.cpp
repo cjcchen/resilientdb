@@ -30,8 +30,8 @@
 #include "common/utils/utils.h"
 
 namespace resdb {
-PerformanceManager::PerformanceManager(const ResDBConfig& config,
-                                       ResDBReplicaClient* replica_client,
+PerformanceManager::PerformanceManager(const XDBConfig& config,
+                                       XDBReplicaClient* replica_client,
                                        SystemInfo* system_info,
                                        SignatureVerifier* verifier)
     : config_(config),

@@ -33,11 +33,11 @@
 #include "statistic/stats.h"
 
 using resdb::ConsensusServicePBFT;
-using resdb::GenerateResDBConfig;
+using resdb::GenerateXDBConfig;
 using resdb::KVRequest;
 using resdb::KVServerExecutor;
-using resdb::ResDBConfig;
-using resdb::ResDBServer;
+using resdb::XDBConfig;
+using resdb::XDBServer;
 using resdb::Stats;
 
 void ShowUsage() {
@@ -68,8 +68,8 @@ int main(int argc, char** argv) {
     monitor_port->SetPrometheus(argv[4]);
   }
 
-  std::unique_ptr<ResDBConfig> config =
-      GenerateResDBConfig(config_file, private_key_file, cert_file);
+  std::unique_ptr<XDBConfig> config =
+      GenerateXDBConfig(config_file, private_key_file, cert_file);
 
   config->RunningPerformance(true);
 
@@ -87,6 +87,6 @@ int main(int argc, char** argv) {
   });
 
   auto server =
-      std::make_unique<ResDBServer>(*config, std::move(performance_consens));
+      std::make_unique<XDBServer>(*config, std::move(performance_consens));
   server->Run();
 }

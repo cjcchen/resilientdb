@@ -71,9 +71,9 @@ class ResponseManagerTest : public Test {
 
  protected:
   Stats* global_stats_;
-  ResDBConfig config_;
+  XDBConfig config_;
   SystemInfo system_info_;
-  MockResDBReplicaClient replica_client_;
+  MockXDBReplicaClient replica_client_;
   ResponseManager manager_;
 };
 
@@ -107,8 +107,8 @@ TEST_F(ResponseManagerTest, SendClientRequest) {
 }
 
 TEST_F(ResponseManagerTest, ProcessResponse) {
-  std::unique_ptr<MockResDBClient> resp_client =
-      std::make_unique<MockResDBClient>("127.0.0.1", 0);
+  std::unique_ptr<MockXDBClient> resp_client =
+      std::make_unique<MockXDBClient>("127.0.0.1", 0);
 
   EXPECT_CALL(*resp_client, SendRawMessageData).Times(1);
 
@@ -138,8 +138,8 @@ TEST_F(ResponseManagerTest, ProcessResponse) {
 }
 
 TEST_F(ResponseManagerTest, ProcessResponseWithMoreResp) {
-  std::unique_ptr<MockResDBClient> resp_client =
-      std::make_unique<MockResDBClient>("127.0.0.1", 0);
+  std::unique_ptr<MockXDBClient> resp_client =
+      std::make_unique<MockXDBClient>("127.0.0.1", 0);
 
   EXPECT_CALL(*resp_client, SendRawMessageData).Times(1);
 
@@ -171,8 +171,8 @@ TEST_F(ResponseManagerTest, ProcessResponseWithMoreResp) {
 }
 
 TEST_F(ResponseManagerTest, ProcessResponseWithSameSender) {
-  std::unique_ptr<MockResDBClient> resp_client =
-      std::make_unique<MockResDBClient>("127.0.0.1", 0);
+  std::unique_ptr<MockXDBClient> resp_client =
+      std::make_unique<MockXDBClient>("127.0.0.1", 0);
 
   EXPECT_CALL(*resp_client, SendRawMessageData).Times(0);
 

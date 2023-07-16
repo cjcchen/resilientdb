@@ -30,8 +30,8 @@
 
 using resdb::GenerateReplicaInfo;
 using resdb::ReplicaInfo;
-using resdb::ResDBConfig;
-using resdb::ResDBTxnClient;
+using resdb::XDBConfig;
+using resdb::XDBTxnClient;
 
 int main(int argc, char** argv) {
   if (argc < 6) {
@@ -47,10 +47,10 @@ int main(int argc, char** argv) {
 
   ReplicaInfo self_info = GenerateReplicaInfo(0, "127.0.0.1", 88888);
 
-  std::unique_ptr<ResDBConfig> config =
-      GenerateResDBConfig(config_file, private_key_file, cert_file, self_info);
+  std::unique_ptr<XDBConfig> config =
+      GenerateXDBConfig(config_file, private_key_file, cert_file, self_info);
 
-  ResDBTxnClient client(*config);
+  XDBTxnClient client(*config);
   auto resp = client.GetTxn(min_seq, max_seq);
   absl::StatusOr<std::vector<std::pair<uint64_t, std::string>>> GetTxn(
       uint64_t min_seq, uint64_t max_seq);

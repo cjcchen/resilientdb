@@ -4,7 +4,7 @@
 
 namespace resdb {
 
-ShiftManager::ShiftManager(const ResDBPoCConfig& config) : config_(config) {}
+ShiftManager::ShiftManager(const XDBPoCConfig& config) : config_(config) {}
 
 void ShiftManager::AddSliceInfo(const SliceInfo& slice_info) {
 	std::unique_lock<std::mutex> lk(mutex_);

@@ -38,11 +38,11 @@ using ::testing::Invoke;
 using ::testing::Return;
 using ::testing::Test;
 
-class ResDBClientTest : public Test {
+class XDBClientTest : public Test {
  protected:
-  ResDBMessage GetSendPackage(const google::protobuf::Message& message,
+  XDBMessage GetSendPackage(const google::protobuf::Message& message,
                               Request::Type type) {
-    ResDBMessage resdb_message;
+    XDBMessage resdb_message;
     Request request;
     request.set_type(type);
     EXPECT_TRUE(message.SerializeToString(request.mutable_data()));
@@ -52,32 +52,32 @@ class ResDBClientTest : public Test {
 
   std::string GetSendPackageString(const google::protobuf::Message& message,
                                    Request::Type type) {
-    ResDBMessage resdb_message = GetSendPackage(message, type);
+    XDBMessage resdb_message = GetSendPackage(message, type);
     std::string data;
     EXPECT_TRUE(resdb_message.SerializeToString(&data));
     return data;
   }
 
-  ResDBMessage GetSendPackage(const google::protobuf::Message& message) {
-    ResDBMessage resdb_message;
+  XDBMessage GetSendPackage(const google::protobuf::Message& message) {
+    XDBMessage resdb_message;
     EXPECT_TRUE(message.SerializeToString(resdb_message.mutable_data()));
     return resdb_message;
   }
 
   std::string GetSendPackageString(const google::protobuf::Message& message) {
-    ResDBMessage resdb_message = GetSendPackage(message);
+    XDBMessage resdb_message = GetSendPackage(message);
     std::string data;
     EXPECT_TRUE(resdb_message.SerializeToString(&data));
     return data;
   }
 };
 
-TEST_F(ResDBClientTest, ClientConnectFail) {
+TEST_F(XDBClientTest, ClientConnectFail) {
   std::unique_ptr<MockSocket> socket = std::make_unique<MockSocket>();
   EXPECT_CALL(*socket, Connect("127.0.0.1", 1234))
       .Times(3)
       .WillRepeatedly(Return(-1));
-  ResDBClient client("127.0.0.1", 1234);
+  XDBClient client("127.0.0.1", 1234);
 
   client.SetSocket(std::move(socket));
 
@@ -88,7 +88,7 @@ TEST_F(ResDBClientTest, ClientConnectFail) {
   EXPECT_LE(ret, 0);
 }
 
-TEST_F(ResDBClientTest, KeepAliveAndAsyncReConnect) {
+TEST_F(XDBClientTest, KeepAliveAndAsyncReConnect) {
   std::unique_ptr<MockSocket> socket = std::make_unique<MockSocket>();
   EXPECT_CALL(*socket, Connect("127.0.0.1", 1234))
       .Times(3)
@@ -96,7 +96,7 @@ TEST_F(ResDBClientTest, KeepAliveAndAsyncReConnect) {
 
   EXPECT_CALL(*socket, SetAsync(true)).Times(3).WillRepeatedly(Return(0));
 
-  ResDBClient client("127.0.0.1", 1234);
+  XDBClient client("127.0.0.1", 1234);
   client.SetAsyncSend(true);
   client.IsLongConnection(true);
 
@@ -109,7 +109,7 @@ TEST_F(ResDBClientTest, KeepAliveAndAsyncReConnect) {
   EXPECT_LE(ret, 0);
 }
 
-TEST_F(ResDBClientTest, SendRequest) {
+TEST_F(XDBClientTest, SendRequest) {
   std::string data = "test_data";
 
   ClientTestRequest client_request;
@@ -122,7 +122,7 @@ TEST_F(ResDBClientTest, SendRequest) {
   EXPECT_CALL(*socket, Connect("127.0.0.1", 1234)).WillOnce(Return(0));
   EXPECT_CALL(*socket, Send(expected_request_str)).WillOnce(Return(0));
 
-  ResDBClient client("127.0.0.1", 1234);
+  XDBClient client("127.0.0.1", 1234);
   client.SetSocket(std::move(socket));
   client.SetSignatureVerifier(nullptr);
 
@@ -130,7 +130,7 @@ TEST_F(ResDBClientTest, SendRequest) {
   EXPECT_EQ(ret, 0);
 }
 
-TEST_F(ResDBClientTest, SendRequestFail) {
+TEST_F(XDBClientTest, SendRequestFail) {
   std::string data = "test_data";
 
   ClientTestRequest client_request;
@@ -146,7 +146,7 @@ TEST_F(ResDBClientTest, SendRequestFail) {
       .Times(3)
       .WillRepeatedly(Return(-1));
 
-  ResDBClient client("127.0.0.1", 1234);
+  XDBClient client("127.0.0.1", 1234);
   client.SetSocket(std::move(socket));
   client.SetSignatureVerifier(nullptr);
 
@@ -154,7 +154,7 @@ TEST_F(ResDBClientTest, SendRequestFail) {
   EXPECT_NE(ret, 0);
 }
 
-TEST_F(ResDBClientTest, SendMessage) {
+TEST_F(XDBClientTest, SendMessage) {
   ClientTestRequest client_request;
   client_request.set_value("test_value");
 
@@ -164,14 +164,14 @@ TEST_F(ResDBClientTest, SendMessage) {
   EXPECT_CALL(*socket, Connect("127.0.0.1", 1234)).WillOnce(Return(0));
   EXPECT_CALL(*socket, Send(data)).WillOnce(Return(0));
 
-  ResDBClient client("127.0.0.1", 1234);
+  XDBClient client("127.0.0.1", 1234);
   client.SetSocket(std::move(socket));
   client.SetSignatureVerifier(nullptr);
 
   EXPECT_EQ(client.SendRawMessage(client_request), 0);
 }
 
-TEST_F(ResDBClientTest, SignMessage) {
+TEST_F(XDBClientTest, SignMessage) {
   SecretKey my_key = KeyGenerator ::GeneratorKeys(SignatureInfo::RSA);
   int64_t my_node_id = 1;
 
@@ -201,14 +201,14 @@ TEST_F(ResDBClientTest, SignMessage) {
   std::unique_ptr<MockSocket> socket = std::make_unique<MockSocket>();
   EXPECT_CALL(*socket, Connect("127.0.0.1", 1234)).WillOnce(Return(0));
   EXPECT_CALL(*socket, Send).WillOnce(Invoke([&](const std::string& data) {
-    ResDBMessage resdb_message;
+    XDBMessage resdb_message;
     EXPECT_TRUE(resdb_message.ParseFromString(data));
     EXPECT_TRUE(verifier.VerifyMessage(resdb_message.data(),
                                        resdb_message.signature()));
     return 0;
   }));
 
-  ResDBClient client("127.0.0.1", 1234);
+  XDBClient client("127.0.0.1", 1234);
   client.SetSocket(std::move(socket));
   client.SetSignatureVerifier(&verifier);
 

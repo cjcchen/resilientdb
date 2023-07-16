@@ -32,72 +32,72 @@
 
 namespace resdb {
 
-ResDBClient::ResDBClient(const std::string& ip, int port)
+XDBClient::XDBClient(const std::string& ip, int port)
     : ip_(ip), port_(port) {
   socket_ = std::make_unique<TcpSocket>();
   socket_->SetSendTimeout(300);
   socket_->SetRecvTimeout(read_timeouts_);
 }
 
-std::string ResDBClient::GetIp(){
+std::string XDBClient::GetIp(){
 return ip_;
 }
 
-void ResDBClient::SetRecvTimeout(int microseconds) {
+void XDBClient::SetRecvTimeout(int microseconds) {
   read_timeouts_ = microseconds;
   socket_->SetRecvTimeout(read_timeouts_);
 }
 
-void ResDBClient::SetAsyncSend(bool is_async_send) {
+void XDBClient::SetAsyncSend(bool is_async_send) {
   is_async_send_ = is_async_send;
 }
 
-ResDBClient::ResDBClient(std::unique_ptr<Socket> socket, bool connected) {
+XDBClient::XDBClient(std::unique_ptr<Socket> socket, bool connected) {
   SetSocket(std::move(socket));
   connected_ = connected;
 }
 
-std::unique_ptr<Socket> ResDBClient::FetchSocket() {
+std::unique_ptr<Socket> XDBClient::FetchSocket() {
   auto s = std::move(socket_);
   socket_ = nullptr;
   return s;
 }
 
-void ResDBClient::Close() { 
+void XDBClient::Close() { 
   if(socket_){
     socket_->Close(); 
   }
 }
 
-void ResDBClient::SetSignatureVerifier(SignatureVerifier* verifier) {
+void XDBClient::SetSignatureVerifier(SignatureVerifier* verifier) {
   verifier_ = verifier;
 }
 
-void ResDBClient::SetSocket(std::unique_ptr<Socket> socket) {
+void XDBClient::SetSocket(std::unique_ptr<Socket> socket) {
   socket_ = std::move(socket);
 }
 
-void ResDBClient::SetDestReplicaInfo(const ReplicaInfo& replica) {
+void XDBClient::SetDestReplicaInfo(const ReplicaInfo& replica) {
   ip_ = replica.ip();
   port_ = replica.port();
 }
 
-void ResDBClient::IsLongConnection(bool long_connect_tion) {
+void XDBClient::IsLongConnection(bool long_connect_tion) {
   long_connect_tion_ = long_connect_tion;
 }
 
-int ResDBClient::Connect() {
+int XDBClient::Connect() {
   socket_->ReInit();
   socket_->SetAsync(is_async_send_);
   return socket_->Connect(ip_, port_);
 }
 
-int ResDBClient::SendDataInternal(const std::string& data) {
+int XDBClient::SendDataInternal(const std::string& data) {
   return socket_->Send(data);
 }
 
 // Connect to the server if not connected and send data.
-int ResDBClient::SendFromKeepAlive(const std::string& data) {
+int XDBClient::SendFromKeepAlive(const std::string& data) {
   for (int i = 0; i < max_retry_time_; ++i) {
     if (!long_connecting_) {
       if (Connect() == 0) {
@@ -117,7 +117,7 @@ int ResDBClient::SendFromKeepAlive(const std::string& data) {
   return -1;
 }
 
-int ResDBClient::Send(const std::string& data) {
+int XDBClient::Send(const std::string& data) {
   if (long_connect_tion_) {
     return SendFromKeepAlive(data);
   }
@@ -139,7 +139,7 @@ int ResDBClient::Send(const std::string& data) {
 }
 
 // Receive data from the server.
-int ResDBClient::Recv(std::string* data) {
+int XDBClient::Recv(std::string* data) {
   std::unique_ptr<DataInfo> resp = std::make_unique<DataInfo>();
   int ret = socket_->Recv(&resp->buff, &resp->data_len);
   if (ret > 0) {
@@ -150,9 +150,9 @@ int ResDBClient::Recv(std::string* data) {
 
 // Sign the message if verifier has been provied and send the message to the
 // server.
-std::string ResDBClient::GetRawMessageString(
+std::string XDBClient::GetRawMessageString(
     const google::protobuf::Message& message, SignatureVerifier* verifier) {
-  ResDBMessage sig_message;
+  XDBMessage sig_message;
   if (!message.SerializeToString(sig_message.mutable_data())) {
     return "";
   }
@@ -175,16 +175,16 @@ std::string ResDBClient::GetRawMessageString(
   return message_str;
 }
 
-int ResDBClient::SendRawMessageData(const std::string& message_str) {
+int XDBClient::SendRawMessageData(const std::string& message_str) {
   return Send(message_str);
 }
 
-int ResDBClient::RecvRawMessageData(std::string* message_str) {
+int XDBClient::RecvRawMessageData(std::string* message_str) {
   return Recv(message_str);
 }
 
-int ResDBClient::SendRawMessage(const google::protobuf::Message& message) {
-  ResDBMessage sig_message;
+int XDBClient::SendRawMessage(const google::protobuf::Message& message) {
+  XDBMessage sig_message;
   if (!message.SerializeToString(sig_message.mutable_data())) {
     return -1;
   }
@@ -204,13 +204,13 @@ int ResDBClient::SendRawMessage(const google::protobuf::Message& message) {
   return Send(message_str);
 }
 
-int ResDBClient::RecvRawMessageStr(std::string* message) {
+int XDBClient::RecvRawMessageStr(std::string* message) {
   std::string recv_str;
   int ret = Recv(&recv_str);
   if (ret <= 0) {
     return ret;
   }
-  ResDBMessage sig_message;
+  XDBMessage sig_message;
   if (!sig_message.ParseFromString(recv_str)) {
     LOG(ERROR) << "parse to sig fail";
     return -1;
@@ -219,13 +219,13 @@ int ResDBClient::RecvRawMessageStr(std::string* message) {
   return 0;
 }
 
-int ResDBClient::RecvRawMessage(google::protobuf::Message* message) {
+int XDBClient::RecvRawMessage(google::protobuf::Message* message) {
   std::string resp_data;
   int ret = Recv(&resp_data);
   if (ret <= 0) {
     return -1;
   }
-  ResDBMessage sig_message;
+  XDBMessage sig_message;
   if (!sig_message.ParseFromString(resp_data)) {
     LOG(ERROR) << "parse sig msg fail";
     return -1;
@@ -237,7 +237,7 @@ int ResDBClient::RecvRawMessage(google::protobuf::Message* message) {
   return 0;
 }
 
-int ResDBClient::SendRequest(const google::protobuf::Message& message,
+int XDBClient::SendRequest(const google::protobuf::Message& message,
                              Request::Type type, bool need_response) {
   Request request;
   request.set_type(type);

@@ -38,7 +38,7 @@ namespace resdb {
 class GeoGlobalExecutor {
  public:
   GeoGlobalExecutor(std::unique_ptr<TransactionExecutorImpl> geo_executor_impl,
-                    const ResDBConfig& config);
+                    const XDBConfig& config);
   virtual ~GeoGlobalExecutor();
   virtual void Execute(std::unique_ptr<Request> request);
   virtual int OrderGeoRequest(std::unique_ptr<Request> request);
@@ -64,7 +64,7 @@ class GeoGlobalExecutor {
   uint64_t next_seq_ = 1;
   int next_region_ = 1;
   size_t region_size_;
-  ResDBConfig config_;
+  XDBConfig config_;
   std::atomic<bool> is_stop_;
   std::mutex mutex_;
   std::condition_variable cv_;

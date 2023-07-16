@@ -30,7 +30,7 @@
 namespace resdb {
 
 TransactionExecutor::TransactionExecutor(
-    const ResDBConfig& config, PostExecuteFunc post_exec_func,
+    const XDBConfig& config, PostExecuteFunc post_exec_func,
     SystemInfo* system_info,
     std::unique_ptr<TransactionExecutorImpl> executor_impl)
     : config_(config),

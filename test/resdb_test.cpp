@@ -44,9 +44,9 @@ using ::testing::Test;
 const std::string test_dir = std::string(getenv("TEST_SRCDIR")) + "/" +
                              std::string(getenv("TEST_WORKSPACE")) + "/test/";
 
-class ResDBTestClient : public ResDBUserClient {
+class XDBTestClient : public XDBUserClient {
  public:
-  ResDBTestClient(const ResDBConfig& config) : ResDBUserClient(config) {}
+  XDBTestClient(const XDBConfig& config) : XDBUserClient(config) {}
 
   int Set(int seq) {
     TestRequest request;
@@ -56,9 +56,9 @@ class ResDBTestClient : public ResDBUserClient {
   }
 };
 
-class ResDBTestExecutor : public TransactionExecutorImpl {
+class XDBTestExecutor : public TransactionExecutorImpl {
  public:
-  ResDBTestExecutor(const ResDBConfig& config) : config_(config) {}
+  XDBTestExecutor(const XDBConfig& config) : config_(config) {}
   std::vector<int> GetSeqs() { return seqs_; }
 
  protected:
@@ -73,24 +73,24 @@ class ResDBTestExecutor : public TransactionExecutorImpl {
     return nullptr;
   }
 
-  ResDBConfig config_;
+  XDBConfig config_;
   std::vector<int> seqs_;
 };
 
-class ResDBTest : public Test {
+class XDBTest : public Test {
  public:
   void StartServer() {}
 
   void StartOneServer(int server_id) {
-    ResDBConfig config = GetConfig(server_id);
+    XDBConfig config = GetConfig(server_id);
     config.SetTestMode(true);
-    auto executor = std::make_unique<ResDBTestExecutor>(config);
+    auto executor = std::make_unique<XDBTestExecutor>(config);
     executors_.push_back(executor.get());
-    server_.push_back(std::make_unique<ResDBServer>(
+    server_.push_back(std::make_unique<XDBServer>(
         config,
         std::make_unique<ConsensusServicePBFT>(config, std::move(executor))));
     server_thread_.push_back(std::thread(
-        [&](ResDBServer* server) { server->Run(); }, server_.back().get()));
+        [&](XDBServer* server) { server->Run(); }, server_.back().get()));
   }
 
   void WaitAllServerStarted() {
@@ -136,21 +136,21 @@ class ResDBTest : public Test {
 
   std::string GetConfiFile() { return test_dir + "test_data/server.config"; }
 
-  ResDBConfig GetConfig(
+  XDBConfig GetConfig(
       int id, std::optional<ReplicaInfo> replica_info = std::nullopt) {
-    return *GenerateResDBConfig(GetConfiFile(), GetPrivateKey(id),
+    return *GenerateXDBConfig(GetConfiFile(), GetPrivateKey(id),
                                 GetCertFile(id), replica_info);
   }
 
  protected:
   std::mutex mutex_;
   std::condition_variable cv_;
-  std::vector<ResDBTestExecutor*> executors_;
-  std::vector<std::unique_ptr<ResDBServer>> server_;
+  std::vector<XDBTestExecutor*> executors_;
+  std::vector<std::unique_ptr<XDBServer>> server_;
   std::vector<std::thread> server_thread_;
 };
 
-TEST_F(ResDBTest, TestPBFTService) {
+TEST_F(XDBTest, TestPBFTService) {
   for (int i = 1; i <= 4; ++i) {
     StartOneServer(i);
   }
@@ -158,7 +158,7 @@ TEST_F(ResDBTest, TestPBFTService) {
   int client_id = 5;
   ReplicaInfo client_info = GenerateReplicaInfo(client_id, "127.0.0.1", 80000);
   auto config = GetConfig(client_id, client_info);
-  ResDBTestClient client(config);
+  XDBTestClient client(config);
   EXPECT_EQ(client.Set(1), 0);
 
   WaitExecutorDone(1);

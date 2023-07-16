@@ -31,10 +31,10 @@
 
 namespace resdb {
 
-ResDBKVClient::ResDBKVClient(const ResDBConfig& config)
-    : ResDBUserClient(config) {}
+XDBKVClient::XDBKVClient(const XDBConfig& config)
+    : XDBUserClient(config) {}
 
-int ResDBKVClient::Set(const std::string& key, const std::string& data) {
+int XDBKVClient::Set(const std::string& key, const std::string& data) {
   KVRequest request;
   request.set_cmd(KVRequest::SET);
   request.set_key(key);
@@ -42,7 +42,7 @@ int ResDBKVClient::Set(const std::string& key, const std::string& data) {
   return SendRequest(request);
 }
 
-std::unique_ptr<std::string> ResDBKVClient::Get(const std::string& key) {
+std::unique_ptr<std::string> XDBKVClient::Get(const std::string& key) {
   KVRequest request;
   request.set_cmd(KVRequest::GET);
   request.set_key(key);
@@ -55,7 +55,7 @@ std::unique_ptr<std::string> ResDBKVClient::Get(const std::string& key) {
   return std::make_unique<std::string>(response.value());
 }
 
-std::unique_ptr<std::string> ResDBKVClient::GetValues() {
+std::unique_ptr<std::string> XDBKVClient::GetValues() {
   KVRequest request;
   request.set_cmd(KVRequest::GETVALUES);
   KVResponse response;
@@ -67,7 +67,7 @@ std::unique_ptr<std::string> ResDBKVClient::GetValues() {
   return std::make_unique<std::string>(response.value());
 }
 
-std::unique_ptr<std::string> ResDBKVClient::GetRange(
+std::unique_ptr<std::string> XDBKVClient::GetRange(
     const std::string& min_key, const std::string& max_key) {
   KVRequest request;
   request.set_cmd(KVRequest::GETRANGE);

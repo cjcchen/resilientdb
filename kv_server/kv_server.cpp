@@ -30,11 +30,11 @@
 #include "kv_server/kv_server_executor.h"
 #include "statistic/stats.h"
 
-using resdb::GenerateResDBConfig;
+using resdb::GenerateXDBConfig;
 using resdb::KVServerExecutor;
 using resdb::ResConfigData;
-using resdb::ResDBConfig;
-using resdb::ResDBServer;
+using resdb::XDBConfig;
+using resdb::XDBServer;
 using resdb::Stats;
 
 void ShowUsage() {
@@ -62,11 +62,11 @@ int main(int argc, char** argv) {
     LOG(ERROR) << "prot:" << argv[4];
   }
 
-  std::unique_ptr<ResDBConfig> config =
-      GenerateResDBConfig(config_file, private_key_file, cert_file);
+  std::unique_ptr<XDBConfig> config =
+      GenerateXDBConfig(config_file, private_key_file, cert_file);
   ResConfigData config_data = config->GetConfigData();
 
-  auto server = GenerateResDBServer(
+  auto server = GenerateXDBServer(
       config_file, private_key_file, cert_file,
       std::make_unique<KVServerExecutor>(config_data, cert_file), logging_dir);
   server->Run();

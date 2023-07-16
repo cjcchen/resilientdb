@@ -44,7 +44,7 @@ using ::testing::Test;
 
 std::string GenerateRequestData(const ClientTestRequest& client_request,
                                 bool need_resp = false) {
-  ResDBMessage message;
+  XDBMessage message;
 
   Request request;
   request.set_type(Request::TYPE_CLIENT_REQUEST);
@@ -76,7 +76,7 @@ class UserClientTest : public Test {
 
     KeyInfo private_key;
     private_key.set_key("private_key");
-    config_ = std::make_unique<ResDBConfig>(replicas_, self_info_, private_key,
+    config_ = std::make_unique<XDBConfig>(replicas_, self_info_, private_key,
                                             CertificateInfo());
     config_->SetClientTimeoutMs(10000);
   }
@@ -85,7 +85,7 @@ class UserClientTest : public Test {
   ReplicaInfo dest_info_;
   ReplicaInfo self_info_;
   std::vector<ReplicaInfo> replicas_;
-  std::unique_ptr<ResDBConfig> config_;
+  std::unique_ptr<XDBConfig> config_;
 };
 
 TEST_F(UserClientTest, OnlySendRequestOK) {
@@ -99,7 +99,7 @@ TEST_F(UserClientTest, OnlySendRequestOK) {
       .WillOnce(Return(0));
   EXPECT_CALL(*socket, Recv(_, _)).Times(0);
 
-  ResDBUserClient client(*config_);
+  XDBUserClient client(*config_);
   client.SetSocket(std::move(socket));
   client.SetSignatureVerifier(nullptr);
 
@@ -132,7 +132,7 @@ TEST_F(UserClientTest, GetResponse) {
         return *len;
       }));
 
-  ResDBUserClient client(*config_);
+  XDBUserClient client(*config_);
   client.SetSocket(std::move(socket));
   EXPECT_EQ(client.SendRequest(client_request, &client_response,
                                Request::TYPE_CLIENT_REQUEST),
@@ -153,7 +153,7 @@ TEST_F(UserClientTest, RecvResponseFail) {
       .WillOnce(Return(0));
   EXPECT_CALL(*socket, Recv(_, _)).WillOnce(Return(-1));
 
-  ResDBUserClient client(*config_);
+  XDBUserClient client(*config_);
   client.SetSocket(std::move(socket));
 
   EXPECT_NE(client.SendRequest(client_request, &client_response,

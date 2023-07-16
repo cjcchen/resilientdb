@@ -37,10 +37,10 @@ namespace resdb {
 
 class ViewChangeManager {
  public:
-  ViewChangeManager(const ResDBConfig& config,
+  ViewChangeManager(const XDBConfig& config,
                     CheckPointManager* checkpoint_manager,
                     TransactionManager* transaction_manager,
-                    SystemInfo* system_info, ResDBReplicaClient* replica_client,
+                    SystemInfo* system_info, XDBReplicaClient* replica_client,
                     SignatureVerifier* verifier);
   virtual ~ViewChangeManager();
 
@@ -72,11 +72,11 @@ class ViewChangeManager {
   bool ChangeStatue(ViewChangeStatus status);
 
  protected:
-  ResDBConfig config_;
+  XDBConfig config_;
   CheckPointManager* checkpoint_manager_;
   TransactionManager* transaction_manager_;
   SystemInfo* system_info_;
-  ResDBReplicaClient* replica_client_;
+  XDBReplicaClient* replica_client_;
   SignatureVerifier* verifier_;
   std::thread monitor_thread_;
   std::map<uint64_t, std::map<uint32_t, ViewChangeMessage>> viewchange_request_;

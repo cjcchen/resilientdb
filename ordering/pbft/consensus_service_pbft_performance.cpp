@@ -32,7 +32,7 @@
 namespace resdb {
 
 ConsensusServicePBFT::ConsensusServicePBFT(
-    const ResDBConfig& config,
+    const XDBConfig& config,
     std::unique_ptr<TransactionExecutorImpl> executor)
     : ConsensusService(config),
       system_info_(std::make_unique<SystemInfo>(config)),

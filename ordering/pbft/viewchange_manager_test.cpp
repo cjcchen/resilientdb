@@ -75,13 +75,13 @@ class ViewChangeManagerTest : public Test {
   }
 
  protected:
-  ResDBConfig config_;
+  XDBConfig config_;
   MockSignatureVerifier mock_verifier_;
   SystemInfo system_info_;
   std::unique_ptr<CheckPointManager> checkpoint_manager_;
   std::unique_ptr<TransactionManager> transaction_manager_;
   std::unique_ptr<ViewChangeManager> manager_;
-  MockResDBReplicaClient replica_client_;
+  MockXDBReplicaClient replica_client_;
 };
 
 TEST_F(ViewChangeManagerTest, SendViewChange) {

@@ -27,9 +27,9 @@
 #include "kv_client/resdb_kv_performance_client.h"
 
 using resdb::GenerateReplicaInfo;
-using resdb::GenerateResDBConfig;
-using resdb::ResDBConfig;
-using resdb::ResDBKVPerformanceClient;
+using resdb::GenerateXDBConfig;
+using resdb::XDBConfig;
+using resdb::XDBKVPerformanceClient;
 
 int main(int argc, char** argv) {
   if (argc < 2) {
@@ -38,11 +38,11 @@ int main(int argc, char** argv) {
   }
   std::string client_config_file = argv[1];
 
-  ResDBConfig config = GenerateResDBConfig(client_config_file);
+  XDBConfig config = GenerateXDBConfig(client_config_file);
 
   config.SetClientTimeoutMs(100000);
 
-  ResDBKVPerformanceClient client(config);
+  XDBKVPerformanceClient client(config);
   int ret = client.Start();
   printf("performance start ret %d\n", ret);
 }

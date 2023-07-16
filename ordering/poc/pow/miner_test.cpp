@@ -20,15 +20,15 @@ using ::testing::Test;
 
 class MinerTest : public Test {
  public:
-  ResDBPoCConfig GetConfig(int idx) {
-    ResDBConfig bft_config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
+  XDBPoCConfig GetConfig(int idx) {
+    XDBConfig bft_config({GenerateReplicaInfo(1, "127.0.0.1", 1234),
                             GenerateReplicaInfo(2, "127.0.0.1", 1235),
                             GenerateReplicaInfo(3, "127.0.0.1", 1236),
                             GenerateReplicaInfo(4, "127.0.0.1", 1237)},
                            GenerateReplicaInfo(idx, "127.0.0.1", 1234),
                            KeyInfo(), CertificateInfo());
 
-    return ResDBPoCConfig(bft_config,
+    return XDBPoCConfig(bft_config,
                           {GenerateReplicaInfo(1, "127.0.0.1", 1234),
                            GenerateReplicaInfo(2, "127.0.0.1", 1235),
                            GenerateReplicaInfo(3, "127.0.0.1", 1236),
@@ -37,16 +37,16 @@ class MinerTest : public Test {
                           KeyInfo(), CertificateInfo());
   }
 
-  ResDBPoCConfig GetConfig(int size, int idx) {
+  XDBPoCConfig GetConfig(int size, int idx) {
     std::vector<ReplicaInfo> replicas;
     for (int i = 0; i < size; ++i) {
       replicas.push_back(GenerateReplicaInfo(i + 1, "127.0.0.1", 1234 + i));
     }
-    ResDBConfig bft_config(replicas,
+    XDBConfig bft_config(replicas,
                            GenerateReplicaInfo(idx, "127.0.0.1", 1234),
                            KeyInfo(), CertificateInfo());
 
-    return ResDBPoCConfig(bft_config, replicas,
+    return XDBPoCConfig(bft_config, replicas,
                           GenerateReplicaInfo(idx, "127.0.0.1", 1234),
                           KeyInfo(), CertificateInfo());
   }
@@ -54,7 +54,7 @@ class MinerTest : public Test {
 
 TEST_F(MinerTest, Slices) {
   for (int i = 1; i <= 4; ++i) {
-    ResDBPoCConfig config = GetConfig(i);
+    XDBPoCConfig config = GetConfig(i);
     config.SetMaxNonceBit(3);
     config.SetDifficulty(1);
     Miner miner(config);
@@ -65,7 +65,7 @@ TEST_F(MinerTest, Slices) {
 }
 
 TEST_F(MinerTest, AddNewBlock) {
-  ResDBPoCConfig config = GetConfig(1, 1);
+  XDBPoCConfig config = GetConfig(1, 1);
   config.SetMaxNonceBit(30);
   config.SetDifficulty(7);
   Miner miner(config);
@@ -77,7 +77,7 @@ TEST_F(MinerTest, AddNewBlock) {
 }
 
 TEST_F(MinerTest, Mine) {
-  ResDBPoCConfig config = GetConfig(3);
+  XDBPoCConfig config = GetConfig(3);
   config.SetMaxNonceBit(20);
   config.SetDifficulty(2);
   config.SetWorkerNum(1);
@@ -104,7 +104,7 @@ TEST_F(MinerTest, Mine) {
 }
 
 TEST_F(MinerTest, MineFail) {
-  ResDBPoCConfig config = GetConfig(3);
+  XDBPoCConfig config = GetConfig(3);
   config.SetMaxNonceBit(3);
   config.SetDifficulty(2);
   Miner miner(config);
@@ -117,7 +117,7 @@ TEST_F(MinerTest, MineFail) {
 }
 
 TEST_F(MinerTest, HashValid) {
-  ResDBPoCConfig config = GetConfig(3);
+  XDBPoCConfig config = GetConfig(3);
   config.SetMaxNonceBit(3);
   config.SetDifficulty(2);
   Miner miner(config);
@@ -141,7 +141,7 @@ TEST_F(MinerTest, HashValid) {
 }
 
 TEST_F(MinerTest, HashNotValid) {
-  ResDBPoCConfig config = GetConfig(3);
+  XDBPoCConfig config = GetConfig(3);
   config.SetMaxNonceBit(3);
   config.SetDifficulty(2);
   Miner miner(config);

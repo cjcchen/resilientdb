@@ -29,7 +29,7 @@
 
 namespace resdb {
 
-SystemInfo::SystemInfo(const ResDBConfig& config)
+SystemInfo::SystemInfo(const XDBConfig& config)
     : primary_id_(config.GetReplicaInfos()[0].id()), view_(1) {
   SetReplicas(config.GetReplicaInfos());
 }

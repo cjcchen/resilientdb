@@ -33,10 +33,10 @@ namespace resdb {
 
 class MockCheckPointManager : public CheckPointManager {
  public:
-  MockCheckPointManager(const ResDBConfig& config, ResDBReplicaClient* client,
+  MockCheckPointManager(const XDBConfig& config, XDBReplicaClient* client,
                         SignatureVerifier* verifier);
   MockCheckPointManager(const std::vector<ReplicaInfo>& replicas)
-      : ResDBReplicaClient(replicas) {}
+      : XDBReplicaClient(replicas) {}
 
   MOCK_METHOD(int, SendHeartBeat, (const HeartBeatInfo&), (override));
   MOCK_METHOD(int, SendMessage, (const google::protobuf::Message&), (override));

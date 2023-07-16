@@ -36,7 +36,7 @@ namespace resdb {
 // has been agreed on, like the primary, the replicas,etc..
 class SystemInfo {
  public:
-  SystemInfo(const ResDBConfig& config);
+  SystemInfo(const XDBConfig& config);
   virtual ~SystemInfo() = default;
 
   std::vector<ReplicaInfo> GetReplicas() const;

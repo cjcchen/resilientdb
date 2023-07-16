@@ -50,8 +50,8 @@ using ::testing::Test;
 
 class MyCheckPointManager : public CheckPointManager {
  public:
-  MyCheckPointManager(const ResDBConfig& config,
-                      ResDBReplicaClient* replica_client,
+  MyCheckPointManager(const XDBConfig& config,
+                      XDBReplicaClient* replica_client,
                       SignatureVerifier* verifier,
                       std::function<void(int64_t)> call_back = nullptr)
       : CheckPointManager(config, replica_client, verifier),
@@ -79,8 +79,8 @@ class CheckPointManagerTest : public Test {
   }
 
  protected:
-  MockResDBReplicaClient replica_client_;
-  ResDBConfig config_;
+  MockXDBReplicaClient replica_client_;
+  XDBConfig config_;
 };
 
 TEST_F(CheckPointManagerTest, SendCheckPoint) {

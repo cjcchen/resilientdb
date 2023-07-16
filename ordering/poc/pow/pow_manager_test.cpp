@@ -23,10 +23,10 @@ using ::testing::Test;
 
 class MockPoWManager : public PoWManager {
 public:
-	MockPoWManager(const ResDBPoCConfig& config):PoWManager(config, &mock_replica_client_){
+	MockPoWManager(const XDBPoCConfig& config):PoWManager(config, &mock_replica_client_){
 	}
 
-  std::unique_ptr<TransactionAccessor> GetTransactionAccessor(const ResDBPoCConfig& config) override {
+  std::unique_ptr<TransactionAccessor> GetTransactionAccessor(const XDBPoCConfig& config) override {
 	  auto accessor = std::make_unique<MockTransactionAccessor>(config);
 	  mock_transaction_accessor_ = accessor.get();
 	  return accessor;
@@ -34,7 +34,7 @@ public:
   MOCK_METHOD(int, GetShiftMsg, (const SliceInfo& slice_info), (override));
   MOCK_METHOD(void, NotifyBroadCast, (), (override));
   MockTransactionAccessor * mock_transaction_accessor_;
-  MockResDBReplicaClient mock_replica_client_;
+  MockXDBReplicaClient mock_replica_client_;
 };
 
 class PoWManagerBaseTest: public Test {
@@ -58,8 +58,8 @@ class PoWManagerBaseTest: public Test {
 		    pow_manager_= std::make_unique<MockPoWManager>(config_);
   }
 
-  ResDBConfig bft_config_;
-  ResDBPoCConfig config_;
+  XDBConfig bft_config_;
+  XDBPoCConfig config_;
   std::unique_ptr<MockPoWManager> pow_manager_;
 };
 
@@ -214,33 +214,33 @@ TEST_F(PoWManagerBaseTest, RecvCommitMsg) {
 
 class MockBlockManager : public BlockManager {
 	public:
-		MockBlockManager(const ResDBPoCConfig& config):BlockManager(config){}
+		MockBlockManager(const XDBPoCConfig& config):BlockManager(config){}
   MOCK_METHOD(absl::Status, Mine, (), (override));
 };
 
 class MockShiftManager : public ShiftManager {
 	public:
-		MockShiftManager(const ResDBPoCConfig& config):ShiftManager(config){}
+		MockShiftManager(const XDBPoCConfig& config):ShiftManager(config){}
   MOCK_METHOD(bool, Check, (const SliceInfo& slice_info, int), (override));
 };
 
 class MockPoWManagerWithBC : public PoWManager {
 public:
-	MockPoWManagerWithBC(const ResDBPoCConfig& config):PoWManager(config, &mock_replica_client_){
+	MockPoWManagerWithBC(const XDBPoCConfig& config):PoWManager(config, &mock_replica_client_){
 	}
 
-  std::unique_ptr<TransactionAccessor> GetTransactionAccessor(const ResDBPoCConfig& config) override {
+  std::unique_ptr<TransactionAccessor> GetTransactionAccessor(const XDBPoCConfig& config) override {
 	  auto accessor = std::make_unique<MockTransactionAccessor>(config);
 	  mock_transaction_accessor_ = accessor.get();
 	  return accessor;
   }
   
-  std::unique_ptr<ShiftManager> GetShiftManager(const ResDBPoCConfig& config) override {
+  std::unique_ptr<ShiftManager> GetShiftManager(const XDBPoCConfig& config) override {
 	  auto manager = std::make_unique<MockShiftManager>(config);
 	  mock_shift_manager_= manager.get();
 	  return manager ;
   }
- std::unique_ptr<BlockManager> GetBlockManager(const ResDBPoCConfig& config) override {
+ std::unique_ptr<BlockManager> GetBlockManager(const XDBPoCConfig& config) override {
 	  auto manager = std::make_unique<MockBlockManager>(config);
 	  mock_block_manager_= manager.get();
 	  return manager ;
@@ -248,7 +248,7 @@ public:
 
 
   MockTransactionAccessor * mock_transaction_accessor_;
-  MockResDBReplicaClient mock_replica_client_;
+  MockXDBReplicaClient mock_replica_client_;
   MockShiftManager * mock_shift_manager_;
   MockBlockManager * mock_block_manager_;
 };
@@ -274,8 +274,8 @@ class PoWManagerTest: public Test {
 		    pow_manager_= std::make_unique<MockPoWManagerWithBC>(config_);
   }
 
-  ResDBConfig bft_config_;
-  ResDBPoCConfig config_;
+  XDBConfig bft_config_;
+  XDBPoCConfig config_;
   std::unique_ptr<MockPoWManagerWithBC> pow_manager_;
 };
 

@@ -31,11 +31,11 @@
 
 namespace resdb {
 
-class MockResDBReplicaClient : public ResDBReplicaClient {
+class MockXDBReplicaClient : public XDBReplicaClient {
  public:
-  MockResDBReplicaClient() : ResDBReplicaClient({}) {}
-  MockResDBReplicaClient(const std::vector<ReplicaInfo>& replicas)
-      : ResDBReplicaClient(replicas) {}
+  MockXDBReplicaClient() : XDBReplicaClient({}) {}
+  MockXDBReplicaClient(const std::vector<ReplicaInfo>& replicas)
+      : XDBReplicaClient(replicas) {}
 
   MOCK_METHOD(int, SendHeartBeat, (const Request&), (override));
   MOCK_METHOD(int, SendMessage, (const google::protobuf::Message&), (override));

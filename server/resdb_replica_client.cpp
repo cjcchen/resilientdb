@@ -33,7 +33,7 @@
 
 namespace resdb {
 
-ResDBReplicaClient::ResDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
+XDBReplicaClient::XDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
                                        SignatureVerifier* verifier,
                                        bool is_use_long_conn, int epoll_num,
                                        int tcp_batch)
@@ -61,7 +61,7 @@ ResDBReplicaClient::ResDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
   StartBroadcastInBackGround();
 }
 
-ResDBReplicaClient::~ResDBReplicaClient() {
+XDBReplicaClient::~XDBReplicaClient() {
   is_running_ = false;
   if (broadcast_thread_.joinable()) {
     broadcast_thread_.join();
@@ -81,7 +81,7 @@ ResDBReplicaClient::~ResDBReplicaClient() {
   }
 }
 
-bool ResDBReplicaClient::IsInPool(const ReplicaInfo& replica_info) {
+bool XDBReplicaClient::IsInPool(const ReplicaInfo& replica_info) {
   for (auto& replica : replicas_) {
     if (replica_info.ip() == replica.ip() &&
         replica_info.port() == replica.port()) {
@@ -91,21 +91,21 @@ bool ResDBReplicaClient::IsInPool(const ReplicaInfo& replica_info) {
   return false;
 }
 
-bool ResDBReplicaClient::IsRunning() const { return is_running_; }
+bool XDBReplicaClient::IsRunning() const { return is_running_; }
 
-void ResDBReplicaClient::UpdateClientReplicas(
+void XDBReplicaClient::UpdateClientReplicas(
     const std::vector<ReplicaInfo>& replicas) {
   clients_ = replicas;
 }
 
-std::vector<ReplicaInfo> ResDBReplicaClient::GetClientReplicas() {
+std::vector<ReplicaInfo> XDBReplicaClient::GetClientReplicas() {
   return clients_;
 }
 
-int ResDBReplicaClient::SendHeartBeat(const Request& hb_info) {
+int XDBReplicaClient::SendHeartBeat(const Request& hb_info) {
   int ret = 0;
   for (const auto& replica : replicas_) {
-    ResDBClient client(replica.ip(), replica.port());
+    XDBClient client(replica.ip(), replica.port());
     if (client.SendRawMessage(hb_info) == 0) {
       ret++;
     }
@@ -113,7 +113,7 @@ int ResDBReplicaClient::SendHeartBeat(const Request& hb_info) {
   return ret;
 }
 
-void ResDBReplicaClient::StartBroadcastInBackGround() {
+void XDBReplicaClient::StartBroadcastInBackGround() {
   is_running_ = true;
   broadcast_thread_ = std::thread([&]() {
     while (IsRunning()) {
@@ -136,11 +136,11 @@ void ResDBReplicaClient::StartBroadcastInBackGround() {
   });
 }
 
-int ResDBReplicaClient::SendMessage(const google::protobuf::Message& message) {
+int XDBReplicaClient::SendMessage(const google::protobuf::Message& message) {
   global_stats_->BroadCastMsg();
   if (is_use_long_conn_) {
     auto item = std::make_unique<QueueItem>();
-    item->data = ResDBClient::GetRawMessageString(message, verifier_);
+    item->data = XDBClient::GetRawMessageString(message, verifier_);
     batch_queue_.Push(std::move(item));
     return 0;
   } else {
@@ -149,10 +149,10 @@ int ResDBReplicaClient::SendMessage(const google::protobuf::Message& message) {
   }
 }
 
-int ResDBReplicaClient::SendMessage(const google::protobuf::Message& message,
+int XDBReplicaClient::SendMessage(const google::protobuf::Message& message,
                                     const ReplicaInfo& replica_info) {
   if (is_use_long_conn_) {
-    std::string data = ResDBClient::GetRawMessageString(message, verifier_);
+    std::string data = XDBClient::GetRawMessageString(message, verifier_);
     BroadcastData broadcast_data;
     broadcast_data.add_data()->swap(data);
     return SendMessageFromPool(broadcast_data, {replica_info});
@@ -161,13 +161,13 @@ int ResDBReplicaClient::SendMessage(const google::protobuf::Message& message,
   }
 }
 
-int ResDBReplicaClient::SendBatchMessage(
+int XDBReplicaClient::SendBatchMessage(
     const std::vector<std::unique_ptr<Request>>& messages,
     const ReplicaInfo& replica_info) {
   if (is_use_long_conn_) {
     BroadcastData broadcast_data;
     for (const auto& message : messages) {
-      std::string data = ResDBClient::GetRawMessageString(*message, verifier_);
+      std::string data = XDBClient::GetRawMessageString(*message, verifier_);
       broadcast_data.add_data()->swap(data);
     }
     return SendMessageFromPool(broadcast_data, {replica_info});
@@ -180,7 +180,7 @@ int ResDBReplicaClient::SendBatchMessage(
   }
 }
 
-int ResDBReplicaClient::SendMessageFromPool(
+int XDBReplicaClient::SendMessageFromPool(
     const google::protobuf::Message& message,
     const std::vector<ReplicaInfo>& replicas) {
   int ret = 0;
@@ -202,7 +202,7 @@ int ResDBReplicaClient::SendMessageFromPool(
   return ret;
 }
 
-int ResDBReplicaClient::SendMessageInternal(
+int XDBReplicaClient::SendMessageInternal(
     const google::protobuf::Message& message,
     const std::vector<ReplicaInfo>& replicas) {
   int ret = 0;
@@ -221,7 +221,7 @@ int ResDBReplicaClient::SendMessageInternal(
   return ret;
 }
 
-AsyncReplicaClient* ResDBReplicaClient::GetClientFromPool(const std::string& ip,
+AsyncReplicaClient* XDBReplicaClient::GetClientFromPool(const std::string& ip,
                                                           int port) {
   if (client_pools_.find(std::make_pair(ip, port)) == client_pools_.end()) {
     auto client = std::make_unique<AsyncReplicaClient>(
@@ -231,19 +231,19 @@ AsyncReplicaClient* ResDBReplicaClient::GetClientFromPool(const std::string& ip,
   return client_pools_[std::make_pair(ip, port)].get();
 }
 
-std::unique_ptr<ResDBClient> ResDBReplicaClient::GetClient(
+std::unique_ptr<XDBClient> XDBReplicaClient::GetClient(
     const std::string& ip, int port) {
-  return std::make_unique<ResDBClient>(ip, port);
+  return std::make_unique<XDBClient>(ip, port);
 }
 
-void ResDBReplicaClient::BroadCast(const google::protobuf::Message& message) {
+void XDBReplicaClient::BroadCast(const google::protobuf::Message& message) {
   int ret = SendMessage(message);
   if (ret < 0) {
     LOG(ERROR) << "broadcast request fail:";
   }
 }
 
-void ResDBReplicaClient::SendMessage(const google::protobuf::Message& message,
+void XDBReplicaClient::SendMessage(const google::protobuf::Message& message,
                                      int64_t node_id) {
   ReplicaInfo target_replica;
   for (const auto& replica : replicas_) {

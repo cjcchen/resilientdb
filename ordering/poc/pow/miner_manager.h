@@ -6,12 +6,12 @@ namespace resdb {
 
 class MinerManager {
  public:
-  MinerManager(const ResDBPoCConfig& config);
+  MinerManager(const XDBPoCConfig& config);
 
   std::vector<ReplicaInfo> GetReplicas();
 
  private:
-  ResDBPoCConfig config_;
+  XDBPoCConfig config_;
   std::vector<ReplicaInfo> replicas_;
 };
 

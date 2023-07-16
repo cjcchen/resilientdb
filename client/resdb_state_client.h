@@ -32,22 +32,22 @@
 
 namespace resdb {
 
-// ResDBStateClient used to obtain the server state of each replica in ResDB.
+// XDBStateClient used to obtain the server state of each replica in XDB.
 // The addresses of each replica are provided from the config.
-class ResDBStateClient {
+class XDBStateClient {
  public:
-  ResDBStateClient(const ResDBConfig& config);
-  virtual ~ResDBStateClient() = default;
+  XDBStateClient(const XDBConfig& config);
+  virtual ~XDBStateClient() = default;
 
   // Obtain ReplicaState of each replica.
   absl::StatusOr<std::vector<ReplicaState>> GetReplicaStates();
 
  protected:
-  virtual std::unique_ptr<ResDBClient> GetResDBClient(const std::string& ip,
+  virtual std::unique_ptr<XDBClient> GetXDBClient(const std::string& ip,
                                                       int port);
 
  private:
-  ResDBConfig config_;
+  XDBConfig config_;
 };
 
 }  // namespace resdb

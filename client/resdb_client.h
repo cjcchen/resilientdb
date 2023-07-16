@@ -32,14 +32,14 @@
 
 namespace resdb {
 
-// ResDBClient is used to send data to the server identified by ip:port or via
+// XDBClient is used to send data to the server identified by ip:port or via
 // the provided socket. If SignatureVerifier is provided, data will be signed.
 // The client will retry max_retry_time_ if the connection or sned process fail.
 // For a message with a command, it will be set inside a Request message.
-// Each Request will be put into the network message ResDBMessage and signed.
+// Each Request will be put into the network message XDBMessage and signed.
 //
 // Message structre:
-// ResDBMessage:
+// XDBMessage:
 //     Request:
 //        cmd
 //        user_message
@@ -47,21 +47,21 @@ namespace resdb {
 //
 // For a raw message, it will be set inside a Network Message directly.
 // Message structre:
-// ResDBMessage:
+// XDBMessage:
 //     user_message
 //     signature
 //
-class ResDBClient {
+class XDBClient {
  public:
-  ResDBClient(const std::string& ip, int port);
+  XDBClient(const std::string& ip, int port);
   // Use the provided socket to send data. If the socket has been connect to
   // the server, it won't connect again.
-  ResDBClient(std::unique_ptr<Socket> socket, bool connected = false);
+  XDBClient(std::unique_ptr<Socket> socket, bool connected = false);
   std::string GetIp();
 
   std::unique_ptr<Socket> FetchSocket();
 
-  virtual ~ResDBClient() = default;
+  virtual ~XDBClient() = default;
 
   void Close();
 
@@ -78,7 +78,7 @@ class ResDBClient {
   virtual int SendRawMessage(const google::protobuf::Message& message);
   virtual int SendRawMessageData(const std::string& message_str);
 
-  // Recv the data inside ResDBMessage.
+  // Recv the data inside XDBMessage.
   virtual int RecvRawMessageStr(std::string* message);
   virtual int RecvRawMessage(google::protobuf::Message* message);
 

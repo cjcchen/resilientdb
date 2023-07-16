@@ -31,7 +31,7 @@
 
 namespace resdb {
 
-class MockResDBService : public ResDBService {
+class MockXDBService : public XDBService {
  public:
   MOCK_METHOD(bool, IsRunning, (), (const override));
   MOCK_METHOD(void, SetRunning, (bool), (override));
