@@ -24,7 +24,7 @@
  */
 
 #pragma once
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "execution/transaction_executor_impl.h"
 #include "statistic/stats.h"
 

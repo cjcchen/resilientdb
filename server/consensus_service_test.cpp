@@ -30,7 +30,7 @@
 #include <future>
 
 #include "common/test/test_macros.h"
-#include "server/mock_resdb_replica_client.h"
+#include "server/mock_xxxx_replica_client.h"
 
 namespace resdb {
 namespace {

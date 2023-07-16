@@ -29,7 +29,7 @@
 #include <unordered_map>
 
 #include "common/queue/lock_free_queue.h"
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "execution/transaction_executor_impl.h"
 #include "statistic/stats.h"
 

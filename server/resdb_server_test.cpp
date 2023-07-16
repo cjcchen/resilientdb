@@ -23,7 +23,7 @@
  *
  */
 
-#include "server/resdb_server.h"
+#include "server/xxxx_server.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -32,7 +32,7 @@
 #include <thread>
 
 #include "common/network/tcp_socket.h"
-#include "server/mock_resdb_service.h"
+#include "server/mock_xxxx_service.h"
 
 namespace resdb {
 

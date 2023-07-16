@@ -7,7 +7,7 @@
 #include <boost/format.hpp>
 
 #include "common/test/test_macros.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "ordering/poc/pow/miner_utils.h"
 
 namespace resdb {

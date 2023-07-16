@@ -23,7 +23,7 @@
  *
  */
 
-#include "client/resdb_client.h"
+#include "client/xxxx_client.h"
 
 #include <gtest/gtest.h>
 
@@ -42,32 +42,32 @@ class XDBClientTest : public Test {
  protected:
   XDBMessage GetSendPackage(const google::protobuf::Message& message,
                               Request::Type type) {
-    XDBMessage resdb_message;
+    XDBMessage xxxx_message;
     Request request;
     request.set_type(type);
     EXPECT_TRUE(message.SerializeToString(request.mutable_data()));
-    EXPECT_TRUE(request.SerializeToString(resdb_message.mutable_data()));
-    return resdb_message;
+    EXPECT_TRUE(request.SerializeToString(xxxx_message.mutable_data()));
+    return xxxx_message;
   }
 
   std::string GetSendPackageString(const google::protobuf::Message& message,
                                    Request::Type type) {
-    XDBMessage resdb_message = GetSendPackage(message, type);
+    XDBMessage xxxx_message = GetSendPackage(message, type);
     std::string data;
-    EXPECT_TRUE(resdb_message.SerializeToString(&data));
+    EXPECT_TRUE(xxxx_message.SerializeToString(&data));
     return data;
   }
 
   XDBMessage GetSendPackage(const google::protobuf::Message& message) {
-    XDBMessage resdb_message;
-    EXPECT_TRUE(message.SerializeToString(resdb_message.mutable_data()));
-    return resdb_message;
+    XDBMessage xxxx_message;
+    EXPECT_TRUE(message.SerializeToString(xxxx_message.mutable_data()));
+    return xxxx_message;
   }
 
   std::string GetSendPackageString(const google::protobuf::Message& message) {
-    XDBMessage resdb_message = GetSendPackage(message);
+    XDBMessage xxxx_message = GetSendPackage(message);
     std::string data;
-    EXPECT_TRUE(resdb_message.SerializeToString(&data));
+    EXPECT_TRUE(xxxx_message.SerializeToString(&data));
     return data;
   }
 };
@@ -201,10 +201,10 @@ TEST_F(XDBClientTest, SignMessage) {
   std::unique_ptr<MockSocket> socket = std::make_unique<MockSocket>();
   EXPECT_CALL(*socket, Connect("127.0.0.1", 1234)).WillOnce(Return(0));
   EXPECT_CALL(*socket, Send).WillOnce(Invoke([&](const std::string& data) {
-    XDBMessage resdb_message;
-    EXPECT_TRUE(resdb_message.ParseFromString(data));
-    EXPECT_TRUE(verifier.VerifyMessage(resdb_message.data(),
-                                       resdb_message.signature()));
+    XDBMessage xxxx_message;
+    EXPECT_TRUE(xxxx_message.ParseFromString(data));
+    EXPECT_TRUE(verifier.VerifyMessage(xxxx_message.data(),
+                                       xxxx_message.signature()));
     return 0;
   }));
 

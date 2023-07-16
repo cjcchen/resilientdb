@@ -23,7 +23,7 @@
  *
  */
 
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 
 #include <google/protobuf/util/message_differencer.h>
 #include <gtest/gtest.h>

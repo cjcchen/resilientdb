@@ -29,9 +29,9 @@
 #include "common/data_comm/data_comm.h"
 #include "common/network/socket.h"
 #include "common/queue/lock_free_queue.h"
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "server/async_acceptor.h"
-#include "server/resdb_service.h"
+#include "server/xxxx_service.h"
 #include "statistic/stats.h"
 
 namespace resdb {

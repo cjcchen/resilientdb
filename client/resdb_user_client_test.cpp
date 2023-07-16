@@ -23,7 +23,7 @@
  *
  */
 
-#include "client/resdb_user_client.h"
+#include "client/xxxx_user_client.h"
 
 #include <glog/logging.h>
 #include <gtest/gtest.h>

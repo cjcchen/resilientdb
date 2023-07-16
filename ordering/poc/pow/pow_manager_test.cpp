@@ -5,9 +5,9 @@
 #include <gtest/gtest.h>
 
 #include "common/test/test_macros.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "ordering/poc/pow/mock_transaction_accessor.h"
-#include "server/mock_resdb_replica_client.h"
+#include "server/mock_xxxx_replica_client.h"
 
 namespace resdb {
 namespace {

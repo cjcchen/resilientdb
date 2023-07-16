@@ -23,7 +23,7 @@
  *
  */
 
-#include "server/resdb_server.h"
+#include "server/xxxx_server.h"
 
 #include <glog/logging.h>
 #include <signal.h>

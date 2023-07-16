@@ -1,8 +1,8 @@
 #pragma once
 
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 #include "common/queue/blocking_queue.h"
-#include "config/resdb_poc_config.h"
+#include "config/xxxx_poc_config.h"
 #include "ordering/poc/pow/block_manager.h"
 #include "ordering/poc/pow/miner_manager.h"
 #include "ordering/poc/pow/shift_manager.h"

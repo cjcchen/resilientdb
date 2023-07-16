@@ -25,11 +25,11 @@
 
 #pragma once
 
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "execution/custom_query.h"
 #include "execution/transaction_executor_impl.h"
 #include "ordering/pbft/consensus_service_pbft.h"
-#include "server/resdb_server.h"
+#include "server/xxxx_server.h"
 
 namespace resdb {
 

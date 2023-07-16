@@ -26,9 +26,9 @@
 #include <glog/logging.h>
 
 #include "application/utils/server_factory.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "ordering/poc/pow/consensus_service_pow.h"
-#include "server/resdb_server.h"
+#include "server/xxxx_server.h"
 #include "statistic/stats.h"
 
 using namespace resdb;

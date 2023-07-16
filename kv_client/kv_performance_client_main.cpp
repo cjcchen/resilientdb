@@ -23,8 +23,8 @@
  *
  */
 
-#include "config/resdb_config_utils.h"
-#include "kv_client/resdb_kv_performance_client.h"
+#include "config/xxxx_config_utils.h"
+#include "kv_client/xxxx_kv_performance_client.h"
 
 using resdb::GenerateReplicaInfo;
 using resdb::GenerateXDBConfig;

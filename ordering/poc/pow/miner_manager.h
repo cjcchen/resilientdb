@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config/resdb_poc_config.h"
+#include "config/xxxx_poc_config.h"
 
 namespace resdb {
 

@@ -27,7 +27,7 @@
 
 #include <gmock/gmock.h>
 
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 
 namespace resdb {
 

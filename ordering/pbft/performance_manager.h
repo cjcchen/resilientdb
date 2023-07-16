@@ -26,10 +26,10 @@
 #pragma once
 
 #include "common/data_comm/data_comm.h"
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "execution/system_info.h"
 #include "ordering/pbft/transaction_utils.h"
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 #include "server/server_comm.h"
 #include "statistic/stats.h"
 

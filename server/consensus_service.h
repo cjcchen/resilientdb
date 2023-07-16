@@ -28,11 +28,11 @@
 #include <thread>
 
 #include "common/queue/blocking_queue.h"
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "proto/replica_info.pb.h"
 #include "proto/resdb.pb.h"
-#include "server/resdb_replica_client.h"
-#include "server/resdb_service.h"
+#include "server/xxxx_replica_client.h"
+#include "server/xxxx_service.h"
 #include "statistic/stats.h"
 
 namespace resdb {

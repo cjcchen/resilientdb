@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config/resdb_poc_config.h"
+#include "config/xxxx_poc_config.h"
 #include "ordering/poc/pow/pow_manager.h"
 #include "ordering/poc/pow/miner_manager.h"
 #include "server/consensus_service.h"

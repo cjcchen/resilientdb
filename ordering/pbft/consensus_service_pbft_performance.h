@@ -25,7 +25,7 @@
 
 #pragma once
 
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "ordering/pbft/checkpoint.h"
 #include "ordering/pbft/commitment.h"
 #include "ordering/pbft/performance_manager.h"

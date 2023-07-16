@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 
 #include "common/test/test_macros.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "crypto/key_generator.h"
 #include "crypto/signature_verifier.h"
 #include "ordering/poc/pow/merkle.h"

@@ -25,7 +25,7 @@
 
 #pragma once
 
-#include "client/resdb_client.h"
+#include "client/xxxx_client.h"
 #include "gmock/gmock.h"
 
 namespace resdb {

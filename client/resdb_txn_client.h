@@ -26,8 +26,8 @@
 #pragma once
 
 #include "absl/status/statusor.h"
-#include "client/resdb_client.h"
-#include "config/resdb_config.h"
+#include "client/xxxx_client.h"
+#include "config/xxxx_config.h"
 #include "proto/replica_info.pb.h"
 
 namespace resdb {

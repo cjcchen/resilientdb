@@ -27,7 +27,7 @@
 
 #include <memory>
 
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "proto/resdb.pb.h"
 
 namespace resdb {

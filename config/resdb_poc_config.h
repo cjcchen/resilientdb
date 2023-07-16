@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 
 namespace resdb {
 

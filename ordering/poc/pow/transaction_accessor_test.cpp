@@ -6,9 +6,9 @@
 
 #include <future>
 
-#include "client/mock_resdb_txn_client.h"
+#include "client/mock_xxxx_txn_client.h"
 #include "common/test/test_macros.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 
 namespace resdb {
 namespace {

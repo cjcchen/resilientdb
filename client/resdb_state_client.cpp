@@ -23,7 +23,7 @@
  *
  */
 
-#include "client/resdb_state_client.h"
+#include "client/xxxx_state_client.h"
 
 #include <glog/logging.h>
 

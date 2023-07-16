@@ -23,13 +23,13 @@
  *
  */
 
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 
 #include <gtest/gtest.h>
 
 #include <future>
 
-#include "client/mock_resdb_client.h"
+#include "client/mock_xxxx_client.h"
 #include "common/network/mock_socket.h"
 #include "server/mock_async_replica_client.h"
 
@@ -126,12 +126,12 @@ TEST(XDBReplicaClientTest, Lonnconnection) {
   replicas.push_back(GenerateReplicaInfo("127.0.0.1", 1234));
 
   boost::asio::io_service io_service;
-  auto resdb_client = std::make_unique<MockAsyncReplicaClient>(&io_service);
+  auto xxxx_client = std::make_unique<MockAsyncReplicaClient>(&io_service);
   MockXDBReplicaClient client(replicas, true);
   EXPECT_CALL(client, GetClientFromPool("127.0.0.1", 1234))
       .WillOnce(Invoke([&](const std::string& ip, int port) {
         bc.set_value(true);
-        return resdb_client.get();
+        return xxxx_client.get();
       }));
 
   Request expected_request;

@@ -26,7 +26,7 @@
 #include <glog/logging.h>
 
 #include "application/utils/server_factory.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "statistic/stats.h"
 #include "ordering/poc/pbft/transaction_consensor.h"
 #include "ordering/poc/pbft/transaction_executor.h"

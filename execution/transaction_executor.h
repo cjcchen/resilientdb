@@ -28,7 +28,7 @@
 #include <thread>
 
 #include "common/queue/lock_free_queue.h"
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "execution/system_info.h"
 #include "execution/transaction_executor_impl.h"
 #include "proto/resdb.pb.h"

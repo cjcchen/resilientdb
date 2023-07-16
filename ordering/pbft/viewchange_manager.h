@@ -25,13 +25,13 @@
 
 #pragma once
 
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "crypto/signature_verifier.h"
 #include "execution/system_info.h"
 #include "ordering/pbft/checkpoint_manager.h"
 #include "ordering/pbft/transaction_manager.h"
 #include "proto/viewchange_message.pb.h"
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 
 namespace resdb {
 

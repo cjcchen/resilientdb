@@ -24,10 +24,10 @@
  */
 
 #pragma once
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "execution/system_info.h"
 #include "execution/transaction_executor_impl.h"
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 
 namespace resdb {
 

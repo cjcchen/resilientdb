@@ -24,7 +24,7 @@
  */
 
 #pragma once
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "execution/custom_query.h"
 #include "ordering/poc/pbft/transaction_manager.h"
 

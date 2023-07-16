@@ -32,7 +32,7 @@
 #include <future>
 
 #include "common/test/test_macros.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "mock_transaction_executor_impl.h"
 
 namespace resdb {

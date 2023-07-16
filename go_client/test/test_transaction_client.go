@@ -10,13 +10,13 @@ import (
 func main() {
   log.Printf("???")
 
-  var client *resdb_client.TransactionClient
+  var client *xxxx_client.TransactionClient
   var tx0 resdb.Transaction
   var tx []*resdb.Transaction
   var uid uint64
   var resp map[uint64]int32
 
-  client = resdb_client.MakeTransactionClient("127.0.0.1",10005)
+  client = xxxx_client.MakeTransactionClient("127.0.0.1",10005)
 
   uid, _ = client.SendRawTransaction(1, "I", "you", 100)
 

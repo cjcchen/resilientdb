@@ -1,4 +1,4 @@
-package resdb_client
+package xxxx_client
 
 import (
 	"fmt"

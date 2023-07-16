@@ -23,12 +23,12 @@
  *
  */
 
-#include "client/resdb_state_client.h"
+#include "client/xxxx_state_client.h"
 
 #include <glog/logging.h>
 #include <gtest/gtest.h>
 
-#include "client/mock_resdb_client.h"
+#include "client/mock_xxxx_client.h"
 #include "common/test/test_macros.h"
 
 namespace resdb {

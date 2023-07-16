@@ -42,19 +42,19 @@ func MakeService() *Service{
 }
 
 func (s* Service) Process(buf []byte) ([]byte, error) {
-  var resdb_message resdb.XDBMessage
+  var xxxx_message resdb.XDBMessage
   var request resdb.Request
   var resp resdb.XDBMessage
   var data []byte
   var err error
 
-  err = proto.Unmarshal(buf, &resdb_message)
+  err = proto.Unmarshal(buf, &xxxx_message)
   if err != nil{
     log.Print("UnMashal data error:", err)
     return nil, err
   }
 
-  err = proto.Unmarshal(resdb_message.Data, &request)
+  err = proto.Unmarshal(xxxx_message.Data, &request)
   if err != nil{
     log.Print("UnMashal data error:", err)
     return nil, err

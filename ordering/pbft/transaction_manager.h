@@ -33,7 +33,7 @@
 #include <set>
 
 #include "common/queue/lock_free_queue.h"
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "database/txn_memory_db.h"
 #include "execution/transaction_executor_impl.h"
 #include "ordering/pbft/checkpoint_manager.h"

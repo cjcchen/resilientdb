@@ -30,8 +30,8 @@
 
 #include <fstream>
 
-#include "application/kv_client/resdb_kv_client.h"
-#include "config/resdb_config_utils.h"
+#include "application/kv_client/xxxx_kv_client.h"
+#include "config/xxxx_config_utils.h"
 
 using resdb::GenerateXDBConfig;
 using resdb::XDBConfig;

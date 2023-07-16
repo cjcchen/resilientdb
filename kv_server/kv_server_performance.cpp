@@ -25,11 +25,11 @@
 
 #include <glog/logging.h>
 
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "kv_server/kv_server_executor.h"
 #include "ordering/pbft/consensus_service_pbft.h"
 #include "proto/kv_server.pb.h"
-#include "server/resdb_server.h"
+#include "server/xxxx_server.h"
 #include "statistic/stats.h"
 
 using resdb::ConsensusServicePBFT;

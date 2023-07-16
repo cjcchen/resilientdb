@@ -27,7 +27,7 @@
 
 #include <gmock/gmock.h>
 
-#include "server/resdb_service.h"
+#include "server/xxxx_service.h"
 
 namespace resdb {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config/resdb_poc_config.h"
+#include "config/xxxx_poc_config.h"
 #include "ordering/poc/proto/pow.pb.h"
 #include <condition_variable>
 

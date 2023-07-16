@@ -29,10 +29,10 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "client/mock_resdb_client.h"
+#include "client/mock_xxxx_client.h"
 #include "common/test/test_macros.h"
-#include "config/resdb_config_utils.h"
-#include "server/mock_resdb_replica_client.h"
+#include "config/xxxx_config_utils.h"
+#include "server/mock_xxxx_replica_client.h"
 
 namespace resdb {
 namespace {

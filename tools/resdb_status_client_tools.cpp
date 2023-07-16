@@ -25,8 +25,8 @@
 
 #include <glog/logging.h>
 
-#include "client/resdb_state_client.h"
-#include "config/resdb_config_utils.h"
+#include "client/xxxx_state_client.h"
+#include "config/xxxx_config_utils.h"
 
 using resdb::GenerateReplicaInfo;
 using resdb::ReplicaInfo;

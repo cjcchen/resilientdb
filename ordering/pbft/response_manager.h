@@ -25,10 +25,10 @@
 
 #pragma once
 
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "ordering/pbft/lock_free_collector_pool.h"
 #include "ordering/pbft/transaction_utils.h"
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 #include "statistic/stats.h"
 
 namespace resdb {

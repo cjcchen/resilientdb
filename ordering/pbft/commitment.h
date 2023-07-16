@@ -26,10 +26,10 @@
 #pragma once
 
 #include "common/queue/batch_queue.h"
-#include "config/resdb_config.h"
+#include "config/xxxx_config.h"
 #include "ordering/pbft/response_manager.h"
 #include "ordering/pbft/transaction_manager.h"
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 #include "statistic/stats.h"
 
 namespace resdb {

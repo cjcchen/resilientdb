@@ -32,13 +32,13 @@
 #include <future>
 
 #include "common/test/test_macros.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "crypto/mock_signature_verifier.h"
 #include "execution/system_info.h"
 #include "ordering/pbft/checkpoint_manager.h"
 #include "ordering/pbft/transaction_utils.h"
 #include "proto/checkpoint_info.pb.h"
-#include "server/mock_resdb_replica_client.h"
+#include "server/mock_xxxx_replica_client.h"
 
 namespace resdb {
 namespace {

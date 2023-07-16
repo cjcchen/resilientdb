@@ -28,7 +28,7 @@
 #include <optional>
 #include <string>
 
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "rocksdb/db.h"
 #include "rocksdb/env.h"
 #include "rocksdb/iterator.h"

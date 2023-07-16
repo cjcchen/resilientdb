@@ -25,8 +25,8 @@
 
 #include <glog/logging.h>
 
-#include "client/resdb_txn_client.h"
-#include "config/resdb_config_utils.h"
+#include "client/xxxx_txn_client.h"
+#include "config/xxxx_config_utils.h"
 #include "proto/kv_server.pb.h"
 
 using resdb::BatchClientRequest;

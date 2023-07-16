@@ -28,7 +28,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "proto/kv_server.pb.h"
 
 namespace resdb {

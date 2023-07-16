@@ -26,7 +26,7 @@
 #include <glog/logging.h>
 
 #include "application/utils/server_factory.h"
-#include "config/resdb_config_utils.h"
+#include "config/xxxx_config_utils.h"
 #include "kv_server/kv_server_executor.h"
 #include "statistic/stats.h"
 

@@ -2,12 +2,12 @@
 
 #include <thread>
 
-#include "client/resdb_txn_client.h"
+#include "client/xxxx_txn_client.h"
 #include "common/queue/lock_free_queue.h"
-#include "config/resdb_poc_config.h"
+#include "config/xxxx_poc_config.h"
 #include "ordering/poc/proto/pow.pb.h"
 #include "statistic/stats.h"
-#include "server/resdb_replica_client.h"
+#include "server/xxxx_replica_client.h"
 
 namespace resdb {
 
