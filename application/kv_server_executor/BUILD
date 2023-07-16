@@ -6,7 +6,7 @@ cc_library(
     hdrs = ["kv_server_executor.h"],
     deps = [
         "//common:comm",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//durable_layer:leveldb_durable",
         "//durable_layer:rocksdb_durable",
         "//execution:transaction_executor_impl",

@@ -4,27 +4,27 @@ cc_library(
     name = "server_comm",
     hdrs = ["server_comm.h"],
     deps = [
-        "//client:resdb_client",
-        "//proto:resdb_cc_proto",
+        "//client:xxxx_client",
+        "//proto:xxxx_cc_proto",
     ],
 )
 
 cc_library(
-    name = "resdb_service",
-    srcs = ["resdb_service.cpp"],
-    hdrs = ["resdb_service.h"],
+    name = "xxxx_service",
+    srcs = ["xxxx_service.cpp"],
+    hdrs = ["xxxx_service.h"],
     deps = [
         ":server_comm",
         "//common/data_comm",
-        "//config:resdb_config",
+        "//config:xxxx_config",
     ],
 )
 
 cc_library(
-    name = "mock_resdb_service",
-    hdrs = ["mock_resdb_service.h"],
+    name = "mock_xxxx_service",
+    hdrs = ["mock_xxxx_service.h"],
     deps = [
-        ":resdb_service",
+        ":xxxx_service",
         "//common/test",
     ],
 )
@@ -34,13 +34,13 @@ cc_library(
     srcs = ["consensus_service.cpp"],
     hdrs = ["consensus_service.h"],
     deps = [
-        ":resdb_replica_client",
-        ":resdb_service",
+        ":xxxx_replica_client",
+        ":xxxx_service",
         "//common:comm",
         "//common/queue:blocking_queue",
-        "//config:resdb_config",
+        "//config:xxxx_config",
         "//proto:broadcast_cc_proto",
-        "//proto:resdb_cc_proto",
+        "//proto:xxxx_cc_proto",
         "//statistic:stats",
     ],
 )
@@ -50,7 +50,7 @@ cc_test(
     srcs = ["consensus_service_test.cpp"],
     deps = [
         ":consensus_service",
-        ":mock_resdb_replica_client",
+        ":mock_xxxx_replica_client",
         "//common/test:test_main",
     ],
 )
@@ -62,7 +62,7 @@ cc_library(
     deps = [
         "//common:asio",
         "//common:comm",
-        "//config:resdb_config",
+        "//config:xxxx_config",
     ],
 )
 
@@ -77,12 +77,12 @@ cc_test(
 )
 
 cc_library(
-    name = "resdb_server",
-    srcs = ["resdb_server.cpp"],
-    hdrs = ["resdb_server.h"],
+    name = "xxxx_server",
+    srcs = ["xxxx_server.cpp"],
+    hdrs = ["xxxx_server.h"],
     deps = [
         ":async_acceptor",
-        ":resdb_service",
+        ":xxxx_service",
         "//common/data_comm",
         "//common/network:tcp_socket",
         "//common/queue:lock_free_queue",
@@ -92,11 +92,11 @@ cc_library(
 )
 
 cc_test(
-    name = "resdb_server_test",
-    srcs = ["resdb_server_test.cpp"],
+    name = "xxxx_server_test",
+    srcs = ["xxxx_server_test.cpp"],
     deps = [
-        ":mock_resdb_service",
-        ":resdb_server",
+        ":mock_xxxx_service",
+        ":xxxx_server",
         "//common/test:test_main",
     ],
 )
@@ -106,7 +106,7 @@ cc_library(
     srcs = ["async_replica_client.cpp"],
     hdrs = ["async_replica_client.h"],
     deps = [
-        "//client:resdb_client",
+        "//client:xxxx_client",
         "//common:asio",
         "//common/queue:blocking_queue",
         "//common/queue:lock_free_queue",
@@ -119,7 +119,7 @@ cc_test(
     srcs = ["async_replica_client_test.cpp"],
     deps = [
         ":async_replica_client",
-        "//client:mock_resdb_client",
+        "//client:mock_xxxx_client",
         "//common/network:mock_socket",
         "//common/network:tcp_socket",
         "//common/test:test_main",
@@ -137,12 +137,12 @@ cc_library(
 )
 
 cc_library(
-    name = "resdb_replica_client",
-    srcs = ["resdb_replica_client.cpp"],
-    hdrs = ["resdb_replica_client.h"],
+    name = "xxxx_replica_client",
+    srcs = ["xxxx_replica_client.cpp"],
+    hdrs = ["xxxx_replica_client.h"],
     deps = [
         ":async_replica_client",
-        "//client:resdb_client",
+        "//client:xxxx_client",
         "//common/queue:batch_queue",
         "//proto:broadcast_cc_proto",
         "//statistic:stats",
@@ -150,21 +150,21 @@ cc_library(
 )
 
 cc_library(
-    name = "mock_resdb_replica_client",
+    name = "mock_xxxx_replica_client",
     testonly = True,
-    hdrs = ["mock_resdb_replica_client.h"],
+    hdrs = ["mock_xxxx_replica_client.h"],
     deps = [
-        ":resdb_replica_client",
+        ":xxxx_replica_client",
     ],
 )
 
 cc_test(
-    name = "resdb_replica_client_test",
-    srcs = ["resdb_replica_client_test.cpp"],
+    name = "xxxx_replica_client_test",
+    srcs = ["xxxx_replica_client_test.cpp"],
     deps = [
         ":mock_async_replica_client",
-        ":resdb_replica_client",
-        "//client:mock_resdb_client",
+        ":xxxx_replica_client",
+        "//client:mock_xxxx_client",
         "//common/network:mock_socket",
         "//common/test:test_main",
     ],

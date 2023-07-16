@@ -25,7 +25,7 @@ cc_library(
     deps = [
         ":lock_free_collector_pool",
         ":transaction_utils",
-        "//server:resdb_replica_client",
+        "//server:xxxx_replica_client",
     ],
 )
 
@@ -34,10 +34,10 @@ cc_test(
     srcs = ["response_manager_test.cpp"],
     deps = [
         ":response_manager",
-        "//client:mock_resdb_client",
+        "//client:mock_xxxx_client",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
-        "//server:mock_resdb_replica_client",
+        "//config:xxxx_config_utils",
+        "//server:mock_xxxx_replica_client",
     ],
 )
 
@@ -48,7 +48,7 @@ cc_library(
     deps = [
         ":lock_free_collector_pool",
         ":transaction_utils",
-        "//server:resdb_replica_client",
+        "//server:xxxx_replica_client",
     ],
 )
 
@@ -61,10 +61,10 @@ cc_library(
         ":lock_free_collector_pool",
         ":transaction_collector",
         ":transaction_utils",
-        "//config:resdb_config",
+        "//config:xxxx_config",
         "//database:txn_memory_db",
         "//execution:transaction_executor_impl",
-        "//proto:resdb_cc_proto",
+        "//proto:xxxx_cc_proto",
         "//server:server_comm",
     ],
 )
@@ -75,7 +75,7 @@ cc_library(
     hdrs = ["transaction_utils.h"],
     visibility = ["//visibility:public"],
     deps = [
-        "//proto:resdb_cc_proto",
+        "//proto:xxxx_cc_proto",
     ],
 )
 
@@ -88,9 +88,9 @@ cc_library(
         ":transaction_manager",
         "//common/queue:batch_queue",
         "//common/utils",
-        "//config:resdb_config",
-        "//proto:resdb_cc_proto",
-        "//server:resdb_replica_client",
+        "//config:xxxx_config",
+        "//proto:xxxx_cc_proto",
+        "//server:xxxx_replica_client",
         "//statistic:stats",
     ],
 )
@@ -100,11 +100,11 @@ cc_test(
     srcs = ["commitment_test.cpp"],
     deps = [
         ":commitment",
-        "//client:mock_resdb_client",
+        "//client:mock_xxxx_client",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//crypto:mock_signature_verifier",
-        "//server:mock_resdb_replica_client",
+        "//server:mock_xxxx_replica_client",
     ],
 )
 
@@ -114,11 +114,11 @@ cc_library(
     hdrs = ["checkpoint_manager.h"],
     deps = [
         ":transaction_utils",
-        "//config:resdb_config",
+        "//config:xxxx_config",
         "//crypto:signature_verifier",
         "//database:txn_memory_db",
         "//proto:checkpoint_info_cc_proto",
-        "//server:resdb_replica_client",
+        "//server:xxxx_replica_client",
         "//server:server_comm",
     ],
 )
@@ -130,9 +130,9 @@ cc_test(
     deps = [
         ":checkpoint_manager",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//crypto:mock_signature_verifier",
-        "//server:mock_resdb_replica_client",
+        "//server:mock_xxxx_replica_client",
         "//statistic:stats",
     ],
 )
@@ -145,10 +145,10 @@ cc_library(
         ":checkpoint_manager",
         ":transaction_manager",
         ":transaction_utils",
-        "//config:resdb_config",
+        "//config:xxxx_config",
         "//execution:system_info",
         "//proto:viewchange_message_cc_proto",
-        "//server:resdb_replica_client",
+        "//server:xxxx_replica_client",
     ],
 )
 
@@ -158,10 +158,10 @@ cc_test(
     deps = [
         ":viewchange_manager",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//crypto:mock_signature_verifier",
         "//execution:system_info",
-        "//server:mock_resdb_replica_client",
+        "//server:mock_xxxx_replica_client",
     ],
 )
 
@@ -171,9 +171,9 @@ cc_library(
     hdrs = ["query.h"],
     deps = [
         ":transaction_manager",
-        "//config:resdb_config",
+        "//config:xxxx_config",
         "//execution:custom_query",
-        "//proto:resdb_cc_proto",
+        "//proto:xxxx_cc_proto",
     ],
 )
 
@@ -183,12 +183,12 @@ cc_test(
     deps = [
         ":commitment",
         ":query",
-        "//client:mock_resdb_client",
+        "//client:mock_xxxx_client",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//crypto:mock_signature_verifier",
         "//execution:mock_custom_query",
-        "//server:mock_resdb_replica_client",
+        "//server:mock_xxxx_replica_client",
     ],
 )
 
@@ -198,7 +198,7 @@ cc_library(
     hdrs = ["transaction_collector.h"],
     deps = [
         "//execution:transaction_executor",
-        "//proto:resdb_cc_proto",
+        "//proto:xxxx_cc_proto",
         "//server:server_comm",
         "//statistic:stats",
     ],

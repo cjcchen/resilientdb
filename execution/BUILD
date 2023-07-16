@@ -7,7 +7,7 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//common:comm",
-        "//proto:resdb_cc_proto",
+        "//proto:xxxx_cc_proto",
     ],
 )
 
@@ -16,8 +16,8 @@ cc_library(
     srcs = ["system_info.cpp"],
     hdrs = ["system_info.h"],
     deps = [
-        "//config:resdb_config",
-        "//proto:resdb_cc_proto",
+        "//config:xxxx_config",
+        "//proto:xxxx_cc_proto",
     ],
 )
 
@@ -47,8 +47,8 @@ cc_library(
         ":transaction_executor_impl",
         "//common:comm",
         "//common/queue:lock_free_queue",
-        "//config:resdb_config",
-        "//proto:resdb_cc_proto",
+        "//config:xxxx_config",
+        "//proto:xxxx_cc_proto",
         "//statistic:stats",
     ],
 )
@@ -72,7 +72,7 @@ cc_library(
         ":system_info",
         ":transaction_executor",
         "//ordering/pbft:transaction_utils",
-        "//server:resdb_replica_client",
+        "//server:xxxx_replica_client",
     ],
 )
 
@@ -84,7 +84,7 @@ cc_library(
         ":transaction_executor_impl",
         "//application/geo_pbft:geo_pbft_executor_impl",
         "//common/queue:lock_free_queue",
-        "//config:resdb_config",
+        "//config:xxxx_config",
         "//statistic:stats",
     ],
 )
@@ -96,7 +96,7 @@ cc_test(
         ":geo_global_executor",
         ":mock_transaction_executor_impl",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
     ],
 )
 
@@ -116,8 +116,8 @@ cc_test(
         ":mock_transaction_executor_impl",
         "//common/test",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
-        "//server:mock_resdb_replica_client",
+        "//config:xxxx_config_utils",
+        "//server:mock_xxxx_replica_client",
     ],
 )
 

@@ -26,20 +26,20 @@ cc_binary(
 )
 
 cc_binary(
-    name = "resdb_status_client_tools",
-    srcs = ["resdb_status_client_tools.cpp"],
+    name = "xxxx_status_client_tools",
+    srcs = ["xxxx_status_client_tools.cpp"],
     deps = [
-        "//client:resdb_state_client",
-        "//config:resdb_config_utils",
+        "//client:xxxx_state_client",
+        "//config:xxxx_config_utils",
     ],
 )
 
 cc_binary(
-    name = "resdb_txn_client_tools",
-    srcs = ["resdb_txn_client_tools.cpp"],
+    name = "xxxx_txn_client_tools",
+    srcs = ["xxxx_txn_client_tools.cpp"],
     deps = [
-        "//client:resdb_txn_client",
-        "//config:resdb_config_utils",
+        "//client:xxxx_txn_client",
+        "//config:xxxx_config_utils",
     ],
 )
 
@@ -47,8 +47,8 @@ cc_binary(
     name = "kv_client_txn_tools",
     srcs = ["kv_client_txn_tools.cpp"],
     deps = [
-        "//client:resdb_txn_client",
-        "//config:resdb_config_utils",
+        "//client:xxxx_txn_client",
+        "//config:xxxx_config_utils",
         "//proto:kv_server_cc_proto",
     ],
 )

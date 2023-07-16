@@ -17,7 +17,7 @@ cc_test(
     deps = [
         ":miner_utils",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//crypto:signature_verifier",
     ],
 )
@@ -46,7 +46,7 @@ cc_library(
     hdrs = ["miner.h"],
     deps = [
         ":miner_utils",
-        "//config:resdb_poc_config",
+        "//config:xxxx_poc_config",
         "//crypto:signature_verifier",
         "//ordering/poc/proto:pow_cc_proto",
         "@boost//:format",
@@ -59,7 +59,7 @@ cc_test(
     deps = [
         ":miner",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
     ],
 )
 
@@ -68,7 +68,7 @@ cc_library(
     srcs = ["miner_manager.cpp"],
     hdrs = ["miner_manager.h"],
     deps = [
-        "//config:resdb_poc_config",
+        "//config:xxxx_poc_config",
     ],
 )
 
@@ -80,10 +80,10 @@ cc_library(
         ":merkle",
         ":miner",
         "//common:comm",
-        "//config:resdb_poc_config",
+        "//config:xxxx_poc_config",
         "//ordering/poc/proto:pow_cc_proto",
         "//statistic:stats",
-	"//proto:resdb_cc_proto",
+	"//proto:xxxx_cc_proto",
   "//execution:transaction_executor_impl",
     ],
 )
@@ -94,7 +94,7 @@ cc_test(
     deps = [
         ":block_manager",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//crypto:key_generator",
     ],
 )
@@ -105,13 +105,13 @@ cc_library(
     hdrs = ["transaction_accessor.h"],
     deps = [
         ":miner_manager",
-        "//client:resdb_txn_client",
+        "//client:xxxx_txn_client",
         "//common/queue:lock_free_queue",
 	"//common/utils:utils",
-        "//config:resdb_poc_config",
+        "//config:xxxx_poc_config",
         "//ordering/poc/proto:pow_cc_proto",
         "//statistic:stats",
-	"//server:resdb_replica_client",
+	"//server:xxxx_replica_client",
     ],
 )
 
@@ -128,10 +128,10 @@ cc_test(
     srcs = ["transaction_accessor_test.cpp"],
     deps = [
         ":transaction_accessor",
-        "//client:mock_resdb_client",
-        "//client:mock_resdb_txn_client",
+        "//client:mock_xxxx_client",
+        "//client:mock_xxxx_txn_client",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
     ],
 )
 
@@ -158,7 +158,7 @@ cc_test(
     deps = [
         ":consensus_service_pow",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//crypto:key_generator",
         "//statistic:stats",
     ],
@@ -170,7 +170,7 @@ cc_library(
     srcs = ["shift_manager.cpp"],
     hdrs = ["shift_manager.h"],
     deps = [
-        "//config:resdb_poc_config",
+        "//config:xxxx_poc_config",
         "//ordering/poc/proto:pow_cc_proto",
     ],
 )
@@ -183,7 +183,7 @@ cc_library(
     deps = [
         ":block_manager",
 	":shift_manager",
-"//server:resdb_replica_client",
+"//server:xxxx_replica_client",
         ":transaction_accessor",
         "//common/queue:blocking_queue",
         "//common/utils",
@@ -197,8 +197,8 @@ cc_test(
     deps = [
         ":pow_manager",
 	":mock_transaction_accessor",
-"//server:mock_resdb_replica_client",
+"//server:mock_xxxx_replica_client",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
     ],
 )

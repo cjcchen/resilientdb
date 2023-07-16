@@ -1,19 +1,19 @@
 package(default_visibility = ["//visibility:public"])
 
 cc_test(
-    name = "resdb_test",
-    srcs = ["resdb_test.cpp"],
+    name = "xxxx_test",
+    srcs = ["xxxx_test.cpp"],
     data = [
         "//test/test_data",
     ],
     deps = [
-        "//client:resdb_user_client",
+        "//client:xxxx_user_client",
         "//common:comm",
         "//common/test:test_main",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//execution:transaction_executor_impl",
         "//ordering/pbft:consensus_service_pbft",
-        "//server:resdb_server",
-        "//test/proto:resdb_test_cc_proto",
+        "//server:xxxx_server",
+        "//test/proto:xxxx_test_cc_proto",
     ],
 )

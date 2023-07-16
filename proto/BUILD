@@ -66,8 +66,8 @@ cc_proto_library(
 )
 
 proto_library(
-    name = "resdb_proto",
-    srcs = ["resdb.proto"],
+    name = "xxxx_proto",
+    srcs = ["xxxx.proto"],
     deps = [
         ":replica_info_proto",
         ":signature_info_proto",
@@ -75,8 +75,8 @@ proto_library(
 )
 
 cc_proto_library(
-    name = "resdb_cc_proto",
-    deps = [":resdb_proto"],
+    name = "xxxx_cc_proto",
+    deps = [":xxxx_proto"],
 )
 
 proto_library(
@@ -146,7 +146,7 @@ proto_library(
     srcs = ["viewchange_message.proto"],
     deps = [
         ":checkpoint_info_proto",
-        ":resdb_proto",
+        ":xxxx_proto",
         ":signature_info_proto",
     ],
 )

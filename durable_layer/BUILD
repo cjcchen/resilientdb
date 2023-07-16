@@ -6,7 +6,7 @@ cc_library(
     hdrs = ["leveldb_durable.h"],
     deps = [
         "//common:comm",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//third_party:leveldb",
         "//third_party:rapidjson",
     ],
@@ -27,7 +27,7 @@ cc_library(
     hdrs = ["rocksdb_durable.h"],
     deps = [
         "//common:comm",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//third_party:rocksdb",
     ],
 )

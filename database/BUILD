@@ -6,7 +6,7 @@ cc_library(
     hdrs = ["txn_memory_db.h"],
     deps = [
         "//common:comm",
-        "//proto:resdb_cc_proto",
+        "//proto:xxxx_cc_proto",
     ],
 )
 

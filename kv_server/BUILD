@@ -45,7 +45,7 @@ cc_library(
     }),
     deps = [
         "//common:comm",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//durable_layer:leveldb_durable",
         "//durable_layer:rocksdb_durable",
         "//execution:transaction_executor_impl",
@@ -72,7 +72,7 @@ cc_binary(
     deps = [
         ":kv_server_executor",
         "//application/utils:server_factory",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
     ],
 )
 
@@ -82,7 +82,7 @@ cc_binary(
     deps = [
         ":kv_server_executor",
         "//application/utils:server_factory",
-        "//config:resdb_config_utils",
+        "//config:xxxx_config_utils",
         "//ordering/pbft:consensus_service_pbft",
     ],
 )
