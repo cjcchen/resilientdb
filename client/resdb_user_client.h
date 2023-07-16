@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 #include "client/xxxx_client.h"
 #include "config/xxxx_config.h"
 
-namespace resdb {
+namespace XXXX {
 
 // XDBUserClient to send data to one server located in the config replicas
 // and receive data from it.
@@ -66,4 +66,4 @@ class XDBUserClient : public XDBClient {
   bool is_check_signature_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

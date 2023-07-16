@@ -3,7 +3,7 @@
 #include "common/utils/utils.h"
 #include "glog/logging.h"
 
-namespace resdb {
+namespace XXXX {
 using poc::PoCTransactionManager;
 
 ConsensusServicePoW::ConsensusServicePoW(const XDBPoCConfig& config, PoCTransactionManager * manager)
@@ -76,5 +76,5 @@ int ConsensusServicePoW::ClientQuery(std::unique_ptr<Context> context,
     return 0;
 }
 
-}  // namespace resdb
+}  // namespace XXXX
 

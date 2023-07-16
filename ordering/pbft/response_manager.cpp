@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "common/utils/utils.h"
 
-namespace resdb {
+namespace XXXX {
 ResponseManager::ResponseManager(const XDBConfig& config,
                                  XDBReplicaClient* replica_client,
                                  SystemInfo* system_info,
@@ -318,4 +318,4 @@ void ResponseManager::SetSocketCallBack(std::function<void(std::unique_ptr<Socke
   socket_call_back_ = func;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

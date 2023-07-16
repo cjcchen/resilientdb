@@ -12,7 +12,7 @@ import (
 
 type PollblkTransactionConfirmer struct {
 	client   diemclient.Client
-  data map[uint64]*resdb.Transaction
+  data map[uint64]*XXXX.Transaction
 	lock     sync.Mutex
   min_v uint64
   max_v uint64
@@ -20,8 +20,8 @@ type PollblkTransactionConfirmer struct {
 
 const chainId = 4
 
-func newTransaction(from string, to string, seq uint64, version uint64, amount uint64)(*resdb.Transaction){
-  return &resdb.Transaction{
+func newTransaction(from string, to string, seq uint64, version uint64, amount uint64)(*XXXX.Transaction){
+  return &XXXX.Transaction{
     From: from,
     To:to,
     Uid:seq,
@@ -36,7 +36,7 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
 	this.client = diemclient.New(chainId, endpoint)
   log.Print("chainid:",chainId)
   log.Print("endpoint:",endpoint)
-  this.data = make(map[uint64]*resdb.Transaction)
+  this.data = make(map[uint64]*XXXX.Transaction)
   this.min_v = 0
   this.max_v = 0
 
@@ -45,7 +45,7 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
 	return &this
 }
 
-func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transaction) {
+func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *XXXX.Transaction) {
 
 	this.lock.Lock()
   _,ok := this.data[seq]

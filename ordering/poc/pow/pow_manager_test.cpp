@@ -9,10 +9,10 @@
 #include "ordering/poc/pow/mock_transaction_accessor.h"
 #include "server/mock_xxxx_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::ElementsAre;
 using ::testing::Invoke;
 using ::testing::Return;
@@ -133,7 +133,7 @@ TEST_F(PoWManagerBaseTest, MineBlockFail) {
 
 	EXPECT_CALL(*pow_manager_->mock_transaction_accessor_, ConsumeTransactions(_)).WillRepeatedly(Invoke([&](uint64_t seq){
 				if(seq>1) {
-					return (std::unique_ptr<resdb::BatchClientTransactions>)nullptr;
+					return (std::unique_ptr<XXXX::BatchClientTransactions>)nullptr;
 						}
 				int batch_num = 1;
 				std::unique_ptr<BatchClientRequest> batch_request = std::make_unique<BatchClientRequest>();
@@ -178,7 +178,7 @@ TEST_F(PoWManagerBaseTest, RecvCommitMsg) {
 
 	EXPECT_CALL(*pow_manager_->mock_transaction_accessor_, ConsumeTransactions(_)).WillRepeatedly(Invoke([&](uint64_t seq){
 				if(seq>1) {
-					return (std::unique_ptr<resdb::BatchClientTransactions>)nullptr;
+					return (std::unique_ptr<XXXX::BatchClientTransactions>)nullptr;
 						}
 				int batch_num = 1;
 				std::unique_ptr<BatchClientRequest> batch_request = std::make_unique<BatchClientRequest>();
@@ -371,7 +371,7 @@ TEST_F(PoWManagerTest, SendShift) {
 				}));
 	EXPECT_CALL(*pow_manager_->mock_transaction_accessor_, ConsumeTransactions(_)).WillRepeatedly(Invoke([&](uint64_t seq){
 				if(seq>1) {
-					return (std::unique_ptr<resdb::BatchClientTransactions>)nullptr;
+					return (std::unique_ptr<XXXX::BatchClientTransactions>)nullptr;
 						}
 				int batch_num = 1;
 				std::unique_ptr<BatchClientRequest> batch_request = std::make_unique<BatchClientRequest>();
@@ -431,7 +431,7 @@ TEST_F(PoWManagerTest, ReSendShift) {
 				}));
 	EXPECT_CALL(*pow_manager_->mock_transaction_accessor_, ConsumeTransactions(_)).WillRepeatedly(Invoke([&](uint64_t seq){
 				if(seq>1) {
-				return (std::unique_ptr<resdb::BatchClientTransactions>)nullptr;
+				return (std::unique_ptr<XXXX::BatchClientTransactions>)nullptr;
 				}
 				int batch_num = 1;
 				std::unique_ptr<BatchClientRequest> batch_request = std::make_unique<BatchClientRequest>();
@@ -479,4 +479,4 @@ TEST_F(PoWManagerTest, ReSendShift) {
 }
 
 }  // namespace
-}  // namespace resdb
+}  // namespace XXXX

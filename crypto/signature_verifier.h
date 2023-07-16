@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,7 +33,7 @@
 #include "absl/status/statusor.h"
 #include "proto/signature_info.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 // SignatureVerifier used to sign signatures using private_key,
 // and verify signatures using the public keys of the senders identified
@@ -84,4 +84,4 @@ class SignatureVerifier {
   mutable std::shared_mutex mutex_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

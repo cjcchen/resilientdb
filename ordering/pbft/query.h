@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 #include "execution/custom_query.h"
 #include "ordering/pbft/transaction_manager.h"
 
-namespace resdb {
+namespace XXXX {
 
 class Query {
  public:
@@ -51,4 +51,4 @@ class Query {
   std::unique_ptr<CustomQuery> custom_query_executor_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

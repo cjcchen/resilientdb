@@ -9,7 +9,7 @@
 #include "execution/transaction_executor_impl.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 // Manager all the blocks and mine the new blocks.
 class BlockManager {
@@ -97,4 +97,4 @@ XDBPoCConfig config_;
   TransactionExecutorImpl * executor_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

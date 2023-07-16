@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include "client/mock_xxxx_client.h"
 #include "common/test/test_macros.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
 using ::google::protobuf::util::MessageDifferencer;
@@ -161,4 +161,4 @@ TEST_F(StateClientTest, GetAllReplicaStateButOneFail) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

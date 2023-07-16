@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include "server/xxxx_server.h"
 #include "statistic/stats.h"
 
-using namespace resdb;
+using namespace XXXX;
 
 void ShowUsage() {
   printf("<config> <private_key> <cert_file> [logging_dir]\n");

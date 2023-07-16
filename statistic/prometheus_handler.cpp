@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 
 std::map<TableName, std::string> table_names = {
     {GENERAL, "general"},
@@ -111,4 +111,4 @@ void PrometheusHandler::Inc(MetricName name, double value) {
   metric_[metric_name_str]->Increment(value);
 }
 
-}  // namespace resdb
+}  // namespace XXXX

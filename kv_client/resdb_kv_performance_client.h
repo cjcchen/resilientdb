@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include "kv_client/xxxx_kv_client.h"
 
-namespace resdb {
+namespace XXXX {
 
 class XDBKVPerformanceClient : public XDBKVClient {
  public:
@@ -35,4 +35,4 @@ class XDBKVPerformanceClient : public XDBKVClient {
   int Start();
 };
 
-}  // namespace resdb
+}  // namespace XXXX

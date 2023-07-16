@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,10 +33,10 @@
 #include "crypto/signature_verifier.h"
 #include "proto/client_test.pb.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::_;
 using ::testing::Invoke;
 using ::testing::Return;
@@ -163,4 +163,4 @@ TEST_F(UserClientTest, RecvResponseFail) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

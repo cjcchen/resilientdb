@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include <thread>
 #include <vector>
 
-namespace resdb {
+namespace XXXX {
 
 TEST(NetworkUtilsTest, GetDNSName) {
   EXPECT_EQ(GetDNSName("127.0.0.1", 1234, NetworkType::TPORT_TYPE),
@@ -46,4 +46,4 @@ TEST(NetworkUtilsTest, GetTcpUrl) {
   EXPECT_EQ(GetTcpUrl("127.0.0.1", 1234), "tcp://127.0.0.1:1234");
   EXPECT_EQ(GetTcpUrl("127.0.0.1:1234"), "tcp://127.0.0.1:1234");
 }
-}  // namespace resdb
+}  // namespace XXXX

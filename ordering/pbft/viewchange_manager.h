@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,7 +33,7 @@
 #include "proto/viewchange_message.pb.h"
 #include "server/xxxx_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 
 class ViewChangeManager {
  public:
@@ -87,4 +87,4 @@ class ViewChangeManager {
   uint32_t view_change_counter_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include "execution/custom_query.h"
 #include "ordering/poc/pbft/transaction_manager.h"
 
-namespace resdb {
+namespace XXXX {
 namespace poc {
 
 class TransactionQuery : public CustomQuery {
@@ -44,4 +44,4 @@ class TransactionQuery : public CustomQuery {
 };
 
 }
-}  // namespace resdb
+}  // namespace XXXX

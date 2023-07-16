@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -26,13 +26,13 @@
 #pragma once
 
 #include "client/xxxx_client.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 struct Context {
   std::unique_ptr<XDBClient> client;
   SignatureInfo signature;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

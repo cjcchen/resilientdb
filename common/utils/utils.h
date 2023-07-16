@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,8 +27,8 @@
 
 #include <stdint.h>
 
-namespace resdb {
+namespace XXXX {
 
 uint64_t get_sys_clock();
 uint64_t GetCurrentTime();
-}  // namespace resdb
+}  // namespace XXXX

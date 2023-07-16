@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 #include "common/data_comm/data_comm.h"
 #include "common/network/tcp_socket.h"
 
-namespace resdb {
+namespace XXXX {
 
 XDBClient::XDBClient(const std::string& ip, int port)
     : ip_(ip), port_(port) {
@@ -248,4 +248,4 @@ int XDBClient::SendRequest(const google::protobuf::Message& message,
   return SendRawMessage(request);
 }
 
-}  // namespace resdb
+}  // namespace XXXX

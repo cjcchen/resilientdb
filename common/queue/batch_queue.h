@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 #include <condition_variable>
 #include <list>
 
-namespace resdb {
+namespace XXXX {
 
 template <typename T>
 class BatchQueue {
@@ -82,4 +82,4 @@ class BatchQueue {
   size_t batch_size_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

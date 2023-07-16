@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "proto/kv_server.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 XDBKVClient::XDBKVClient(const XDBConfig& config)
     : XDBUserClient(config) {}
@@ -82,4 +82,4 @@ std::unique_ptr<std::string> XDBKVClient::GetRange(
   return std::make_unique<std::string>(response.value());
 }
 
-}  // namespace resdb
+}  // namespace XXXX

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 
 #include "proto/broadcast.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 XDBReplicaClient::XDBReplicaClient(const std::vector<ReplicaInfo>& replicas,
                                        SignatureVerifier* verifier,
@@ -272,4 +272,4 @@ void XDBReplicaClient::SendMessage(const google::protobuf::Message& message,
   }
 }
 
-}  // namespace resdb
+}  // namespace XXXX

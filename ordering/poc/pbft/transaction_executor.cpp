@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 namespace poc {
 
 TransactionExecutor::TransactionExecutor(const XDBConfig& config, TransactionManager * manager)
@@ -41,4 +41,4 @@ std::unique_ptr<BatchClientResponse> TransactionExecutor::ExecuteBatch(
 }
 
 }
-}  // namespace resdb
+}  // namespace XXXX

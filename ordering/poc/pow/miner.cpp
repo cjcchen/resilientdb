@@ -9,7 +9,7 @@
 #include "crypto/signature_verifier.h"
 #include "ordering/poc/pow/miner_utils.h"
 
-namespace resdb {
+namespace XXXX {
 
 Miner::Miner(const XDBPoCConfig& config) : config_(config) {
   // the number of zeros ahead of the binary value.
@@ -161,4 +161,4 @@ bool Miner::IsValidHash(const Block* block) {
   return CalculatePoWHash(block) == block->hash();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

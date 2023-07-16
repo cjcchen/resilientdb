@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 
 namespace {
 uint32_t GetCapacity(uint32_t size) {
@@ -73,4 +73,4 @@ TransactionCollector* LockFreeCollectorPool::GetCollector(uint64_t seq) {
   return collector_[idx].get();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

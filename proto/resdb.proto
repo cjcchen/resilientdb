@@ -3,7 +3,7 @@ syntax = "proto3";
 import "proto/replica_info.proto";
 import "proto/signature_info.proto";
 
-package resdb;
+package XXXX;
 
 // Network message used to deliver Requests between replicas and client.
 message XDBMessage {

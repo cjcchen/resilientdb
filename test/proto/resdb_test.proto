@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package resdb;
+package XXXX;
 
 message TestRequest {
     int32 seq = 1;

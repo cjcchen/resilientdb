@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include "server/xxxx_replica_client.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 class ResponseManager {
  public:
@@ -88,4 +88,4 @@ class ResponseManager {
   std::function<void(std::unique_ptr<Socket> socket)> socket_call_back_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

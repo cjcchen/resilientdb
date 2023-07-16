@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include "common/queue/lock_free_queue.h"
 #include "proto/replica_info.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 AsyncReplicaClient::AsyncReplicaClient(boost::asio::io_service* io_service,
                                        const std::string& ip, int port,
@@ -116,4 +116,4 @@ void AsyncReplicaClient::ReConnect() {
   });
 }
 
-}  // namespace resdb
+}  // namespace XXXX

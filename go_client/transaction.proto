@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package resdb;
-option go_package = "./;resdb";
+package XXXX;
+option go_package = "./;XXXX";
 
 message Transaction{
     string from = 1;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -71,7 +71,7 @@
 namespace py = pybind11;
 using namespace py::literals;
 
-namespace resdb {
+namespace XXXX {
 
 PYVerificator::PYVerificator() {
   py::initialize_interpreter();
@@ -101,4 +101,4 @@ bool PYVerificator::Validate(const std::string& transaction) {
   return locals["is_valid"].cast<bool>();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

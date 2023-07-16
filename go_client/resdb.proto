@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package resdb;
+package XXXX;
 
 // Network message used to deliver Requests between replicas and client.
 message XDBMessage {

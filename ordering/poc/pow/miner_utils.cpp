@@ -4,7 +4,7 @@
 #include <glog/logging.h>
 
 #include "crypto/signature_verifier.h"
-namespace resdb {
+namespace XXXX {
 
 HashValue DigestToHash(const std::string& value) {
   HashValue hash;
@@ -99,4 +99,4 @@ bool operator==(const HashValue& h1, const HashValue& h2) {
   return CmpHash(h1, h2) == 0;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

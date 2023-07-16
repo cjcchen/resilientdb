@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "crypto/signature_verifier.h"
 
-namespace resdb {
+namespace XXXX {
 
 uint64_t TransactionCollector::Seq() { return seq_; }
 
@@ -167,4 +167,4 @@ int TransactionCollector::Commit() {
   return 0;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

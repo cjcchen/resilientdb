@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -32,7 +32,7 @@
 
 #include "absl/status/statusor.h"
 
-namespace resdb {
+namespace XXXX {
 
 template <typename T>
 class BlockingQueue {
@@ -109,4 +109,4 @@ class BlockingQueue {
   int64_t timeout_ms_ = 500;  // microsecond for timeout.
 };
 
-}  // namespace resdb
+}  // namespace XXXX

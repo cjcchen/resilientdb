@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -39,10 +39,10 @@
 #include "ordering/pbft/transaction_manager.h"
 #include "server/mock_xxxx_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::Invoke;
 using ::testing::Return;
 using ::testing::Test;
@@ -350,4 +350,4 @@ TEST_F(CommitmentTest, ProcessCommitMsgWithResponse) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

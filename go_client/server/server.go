@@ -15,7 +15,7 @@ import (
 )
 
 type Service struct {
-  result_list map[uint64]resdb.BlockMiningInfo
+  result_list map[uint64]XXXX.BlockMiningInfo
   //confirmer *algorand_client.PollblkTransactionConfirmer
   //confirmer1 *algorand_client.PollblkTransactionConfirmer
   //confirmer2 *algorand_client.PollblkTransactionConfirmer
@@ -29,7 +29,7 @@ type Service struct {
 
 func MakeService() *Service{
   return &Service{
-    result_list: make(map[uint64]resdb.BlockMiningInfo),
+    result_list: make(map[uint64]XXXX.BlockMiningInfo),
     confirmer: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9000"),
     confirmer1: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9001"),
     confirmer2: ndiem.NewPollblkTransactionConfirmer("http://127.0.0.1:9002"),
@@ -42,9 +42,9 @@ func MakeService() *Service{
 }
 
 func (s* Service) Process(buf []byte) ([]byte, error) {
-  var xxxx_message resdb.XDBMessage
-  var request resdb.Request
-  var resp resdb.XDBMessage
+  var xxxx_message XXXX.XDBMessage
+  var request XXXX.Request
+  var resp XXXX.XDBMessage
   var data []byte
   var err error
 
@@ -73,8 +73,8 @@ func (s* Service) Process(buf []byte) ([]byte, error) {
 
 func (s* Service) Dispatch(buf []byte, request_type int32)([]byte, error){
   if(request_type == 18) {
-    var query resdb.TxnQueryRequest
-    var response resdb.CustomQueryResponse
+    var query XXXX.TxnQueryRequest
+    var response XXXX.CustomQueryResponse
     var resp []byte
     var err error
 
@@ -104,20 +104,20 @@ func (s* Service) Dispatch(buf []byte, request_type int32)([]byte, error){
   return nil, nil
 }
 
-func MakeRequest(buf []byte) (*resdb.Request){
-  return &resdb.Request {
+func MakeRequest(buf []byte) (*XXXX.Request){
+  return &XXXX.Request {
     Data:buf,
   }
 }
 
-func MakeClientRequest(buf []byte)(*resdb.BatchClientRequest_ClientRequest){
-  return &resdb.BatchClientRequest_ClientRequest{
+func MakeClientRequest(buf []byte)(*XXXX.BatchClientRequest_ClientRequest){
+  return &XXXX.BatchClientRequest_ClientRequest{
     Request: MakeRequest(buf),
   }
 }
 
 func (s*Service) SaveResult(buf []byte){
-  var result resdb.BlockMiningInfo
+  var result XXXX.BlockMiningInfo
   var err error
 
   err = proto.Unmarshal(buf, &result)
@@ -133,7 +133,7 @@ func (s*Service) SaveResult(buf []byte){
 func (s*Service) GetTransaction(min_seq uint64, max_seq uint64) (buf []byte){
   var data []byte
   var num int
-  var resp resdb.TxnQueryResponse
+  var resp XXXX.TxnQueryResponse
 
 
   num = int(max_seq - min_seq)
@@ -181,8 +181,8 @@ func (s*Service) GetTransaction(min_seq uint64, max_seq uint64) (buf []byte){
 
 func (s*Service) GetResult(seq uint64) ([]byte){
   var data []byte
-  var resp resdb.TxnQueryResponse
-  var result resdb.BlockMiningInfo
+  var resp XXXX.TxnQueryResponse
+  var result XXXX.BlockMiningInfo
 
 	s.lock.Lock()
   _,ok := s.result_list[seq];
@@ -205,7 +205,7 @@ func (s*Service) GetResult(seq uint64) ([]byte){
   return data;
 }
 
-func (s*Service) GetData(seq uint64) (tx *resdb.Transaction) {
+func (s*Service) GetData(seq uint64) (tx *XXXX.Transaction) {
   tx = s.confirmer.GetData(seq)
   if(tx !=nil) {
     return
@@ -228,17 +228,17 @@ func (s*Service) GetData(seq uint64) (tx *resdb.Transaction) {
 func (s*Service) GetClientRequest(seq uint64) (buf []byte){
   var data []byte
   var err error
-  var client_request resdb.BatchClientRequest
-  var txns resdb.TransactionsRequest
-  var txn *resdb.Transaction
+  var client_request XXXX.BatchClientRequest
+  var txns XXXX.TransactionsRequest
+  var txn *XXXX.Transaction
 
   txn = s.GetData(seq)
   if (txn == nil){
     return nil
   }
 
-  client_request.ClientRequests = make([]*resdb.BatchClientRequest_ClientRequest,1)
-  txns.Transactions = make([]*resdb.Transaction,1)
+  client_request.ClientRequests = make([]*XXXX.BatchClientRequest_ClientRequest,1)
+  txns.Transactions = make([]*XXXX.Transaction,1)
   txns.Transactions[0] = txn
 
   data, err = proto.Marshal(&txns)

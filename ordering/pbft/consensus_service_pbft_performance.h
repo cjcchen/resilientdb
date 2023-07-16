@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -35,7 +35,7 @@
 #include "ordering/pbft/transaction_manager.h"
 #include "server/consensus_service.h"
 
-namespace resdb {
+namespace XXXX {
 
 class ConsensusServicePBFT : public ConsensusService {
  public:
@@ -65,4 +65,4 @@ class ConsensusServicePBFT : public ConsensusService {
   Stats* global_stats_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

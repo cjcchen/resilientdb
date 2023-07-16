@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 
 #include <thread>
 
-namespace resdb {
+namespace XXXX {
 
 AsyncAcceptor::Session::Session(boost::asio::io_service* io_service,
                                 CallBack call_back_func)
@@ -156,4 +156,4 @@ void AsyncAcceptor::OnAccept(boost::shared_ptr<Session> client_session,
   client_session->StartRead();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

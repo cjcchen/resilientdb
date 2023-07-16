@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package resdb;
+package XXXX;
 
 message RocksDBInfo {
   bool enable_rocksdb = 1;

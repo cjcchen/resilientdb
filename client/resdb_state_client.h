@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 #include "config/xxxx_config.h"
 #include "proto/replica_info.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 // XDBStateClient used to obtain the server state of each replica in XDB.
 // The addresses of each replica are provided from the config.
@@ -50,4 +50,4 @@ class XDBStateClient {
   XDBConfig config_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

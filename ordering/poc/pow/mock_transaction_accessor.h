@@ -3,7 +3,7 @@
 #include "ordering/poc/pow/transaction_accessor.h"
 #include "gmock/gmock.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MockTransactionAccessor : public TransactionAccessor {
  public:
@@ -12,4 +12,4 @@ class MockTransactionAccessor : public TransactionAccessor {
               (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

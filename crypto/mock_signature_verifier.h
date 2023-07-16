@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include "crypto/signature_verifier.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MockSignatureVerifier : public SignatureVerifier {
  public:
@@ -38,4 +38,4 @@ class MockSignatureVerifier : public SignatureVerifier {
               (const std::string&, const SignatureInfo& sign), (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

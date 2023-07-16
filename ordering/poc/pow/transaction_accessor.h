@@ -9,7 +9,7 @@
 #include "statistic/stats.h"
 #include "server/xxxx_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 
 // TransactionAccessor obtains the transaction from BFT cluster.
 // It broadcasts the request to all the replicas in BFT cluster
@@ -53,4 +53,4 @@ class TransactionAccessor {
 	std::unique_ptr<XDBTxnClient> txn_client_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

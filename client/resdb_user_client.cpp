@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 
 XDBUserClient::XDBUserClient(const XDBConfig& config)
     : XDBClient("", 0),
@@ -95,4 +95,4 @@ int XDBUserClient::SendRequest(const google::protobuf::Message& message,
   return -1;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

@@ -10,7 +10,7 @@
 #include "execution/transaction_executor_impl.h"
 #include "ordering/poc/proto/pow.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 class PoWManager {
  public:
@@ -96,4 +96,4 @@ void SetSent(uint64_t seq);
   TransactionExecutorImpl * executor_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

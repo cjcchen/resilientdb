@@ -9,7 +9,7 @@
 #include "common/test/test_macros.h"
 #include "ordering/poc/pow/miner_utils.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
 TEST(MerkleTest, GetHashFromOneTxn) {
@@ -43,4 +43,4 @@ TEST(MerkleTest, GetHashFromThreeTxn) {
 }
 
 }  // namespace
-}  // namespace resdb
+}  // namespace XXXX

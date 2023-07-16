@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -40,10 +40,10 @@
 #include "proto/checkpoint_info.pb.h"
 #include "server/mock_xxxx_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::_;
 using ::testing::Invoke;
 using ::testing::Return;
@@ -125,4 +125,4 @@ TEST_F(ViewChangeManagerTest, SendNewView) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

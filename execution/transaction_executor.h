@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,10 +31,10 @@
 #include "config/xxxx_config.h"
 #include "execution/system_info.h"
 #include "execution/transaction_executor_impl.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 // Execute the requests that may contain system information or client requests.
 class TransactionExecutor {
@@ -96,4 +96,4 @@ class TransactionExecutor {
   Stats* global_stats_ = nullptr;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

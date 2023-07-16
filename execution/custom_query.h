@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -25,7 +25,7 @@
 
 #pragma once
 
-namespace resdb {
+namespace XXXX {
 
 // Execute a query request which does not process consensus protocol.
 class CustomQuery {
@@ -37,4 +37,4 @@ class CustomQuery {
   }
 };
 
-}  // namespace resdb
+}  // namespace XXXX

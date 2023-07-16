@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -34,7 +34,7 @@
 #include "durable_layer/rocksdb_durable.h"
 #include "execution/transaction_executor_impl.h"
 
-namespace resdb {
+namespace XXXX {
 
 class KVServerExecutor : public TransactionExecutorImpl {
  public:
@@ -60,4 +60,4 @@ class KVServerExecutor : public TransactionExecutorImpl {
   bool require_txn_validation_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

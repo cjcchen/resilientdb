@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -34,7 +34,7 @@
 #include "server/xxxx_service.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 struct QueueItem {
   std::unique_ptr<Socket> socket;
@@ -73,4 +73,4 @@ class XDBServer {
   Stats* global_stats_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

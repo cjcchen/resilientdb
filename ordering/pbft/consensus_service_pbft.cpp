@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 #include "crypto/signature_verifier.h"
 #include "glog/logging.h"
 
-namespace resdb {
+namespace XXXX {
 
 bool IsClient(const XDBConfig& config){
     return config.GetPublicKeyCertificateInfo()
@@ -219,4 +219,4 @@ int ConsensusServicePBFT::SelfPropose(std::unique_ptr<Request> request) {
       return commitment_->ProcessNewRequest(nullptr, std::move(request), true);
 }
 
-}  // namespace resdb
+}  // namespace XXXX

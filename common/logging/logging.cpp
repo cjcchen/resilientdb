@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-namespace resdb {
+namespace XXXX {
 
 // TODO write to files
 Logging::Logging(const std::string &path) {
@@ -77,4 +77,4 @@ int Logging::Read(google::protobuf::Message *info) {
   return 0;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

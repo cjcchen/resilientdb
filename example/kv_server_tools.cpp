@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -34,11 +34,11 @@
 #include "kv_client/xxxx_kv_client.h"
 #include "proto/signature_info.pb.h"
 
-using resdb::GenerateReplicaInfo;
-using resdb::GenerateXDBConfig;
-using resdb::ReplicaInfo;
-using resdb::XDBConfig;
-using resdb::XDBKVClient;
+using XXXX::GenerateReplicaInfo;
+using XXXX::GenerateXDBConfig;
+using XXXX::ReplicaInfo;
+using XXXX::XDBConfig;
+using XXXX::XDBKVClient;
 
 int main(int argc, char** argv) {
   if (argc < 3) {

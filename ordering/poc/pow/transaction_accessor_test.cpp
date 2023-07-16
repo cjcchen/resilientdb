@@ -10,10 +10,10 @@
 #include "common/test/test_macros.h"
 #include "config/xxxx_config_utils.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::_;
 using ::testing::Invoke;
 using ::testing::Pointee;
@@ -118,4 +118,4 @@ TEST(TransactionAccessorTest, GetTransactions) {
 }
 
 }  // namespace
-}  // namespace resdb
+}  // namespace XXXX

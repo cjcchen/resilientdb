@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,9 +33,9 @@
 #include "application/kv_client/xxxx_kv_client.h"
 #include "config/xxxx_config_utils.h"
 
-using resdb::GenerateXDBConfig;
-using resdb::XDBConfig;
-using resdb::XDBKVClient;
+using XXXX::GenerateXDBConfig;
+using XXXX::XDBConfig;
+using XXXX::XDBKVClient;
 
 int main(int argc, char** argv) {
   if (argc < 3) {

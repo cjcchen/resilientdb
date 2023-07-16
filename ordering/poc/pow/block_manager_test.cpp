@@ -10,10 +10,10 @@
 #include "crypto/signature_verifier.h"
 #include "ordering/poc/pow/merkle.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::ElementsAre;
 using ::testing::Invoke;
 using ::testing::Pair;
@@ -397,4 +397,4 @@ TEST_F(BlockManagerTest, VerifyBlock) {
 }
 
 }  // namespace
-}  // namespace resdb
+}  // namespace XXXX

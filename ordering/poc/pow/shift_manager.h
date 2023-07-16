@@ -4,7 +4,7 @@
 #include "ordering/poc/proto/pow.pb.h"
 #include <condition_variable>
 
-namespace resdb {
+namespace XXXX {
 
 class ShiftManager {
  public:
@@ -21,4 +21,4 @@ class ShiftManager {
 	std::condition_variable cv_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

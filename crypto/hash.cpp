@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 #include <cryptopp/sha.h>
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 namespace utils {
 // Funtion to calculate hash of a string.
 std::string CalculateSHA256Hash(const std::string& str) {
@@ -51,4 +51,4 @@ std::string CalculateRIPEMD160Hash(const std::string& str) {
 }
 
 }  // namespace utils
-}  // namespace resdb
+}  // namespace XXXX

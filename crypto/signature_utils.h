@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include <string>
 
-namespace resdb {
+namespace XXXX {
 namespace utils {
 
 bool RsaVerifyString(const std::string& message, const std::string& public_key,
@@ -43,4 +43,4 @@ std::string ECDSASignString(const std::string& private_key,
                             const std::string& message);
 
 }  // namespace utils
-}  // namespace resdb
+}  // namespace XXXX

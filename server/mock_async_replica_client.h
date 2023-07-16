@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "server/async_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MockAsyncReplicaClient : public AsyncReplicaClient {
  public:
@@ -38,4 +38,4 @@ class MockAsyncReplicaClient : public AsyncReplicaClient {
   MOCK_METHOD(int, SendMessage, (const std::string &), (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

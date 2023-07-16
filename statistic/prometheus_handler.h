@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 #include <prometheus/exposer.h>
 #include <prometheus/registry.h>
 
-namespace resdb {
+namespace XXXX {
 
 enum TableName {
   GENERAL,
@@ -82,4 +82,4 @@ class PrometheusHandler {
   std::map<std::string, gmetric*> metric_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

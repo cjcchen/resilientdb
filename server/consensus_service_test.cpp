@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -32,10 +32,10 @@
 #include "common/test/test_macros.h"
 #include "server/mock_xxxx_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::_;
 using ::testing::AtLeast;
 using ::testing::Invoke;
@@ -306,4 +306,4 @@ TEST_F(ConsensusServiceTest, DispatchOK) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

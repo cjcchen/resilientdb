@@ -11,8 +11,8 @@ func main() {
   log.Printf("???")
 
   var client *xxxx_client.TransactionClient
-  var tx0 resdb.Transaction
-  var tx []*resdb.Transaction
+  var tx0 XXXX.Transaction
+  var tx []*XXXX.Transaction
   var uid uint64
   var resp map[uint64]int32
 
@@ -22,7 +22,7 @@ func main() {
 
   log.Printf("get uid %s\n",uid)
 
-  tx = make([]*resdb.Transaction, 1)
+  tx = make([]*XXXX.Transaction, 1)
 
   log.Printf("????", len(tx))
 

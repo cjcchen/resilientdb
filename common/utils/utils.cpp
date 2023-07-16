@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-namespace resdb {
+namespace XXXX {
 
 #define CPU_FREQ 2.2
 #define TIME_ENABLE true
@@ -62,4 +62,4 @@ uint64_t GetCurrentTime() {
   return (uint64_t)(tv.tv_sec) * 1000000 + tv.tv_usec;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

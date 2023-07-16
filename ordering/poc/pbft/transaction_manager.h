@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include "execution/transaction_executor_impl.h"
 #include "ordering/poc/proto/pow.pb.h"
 
-namespace resdb {
+namespace XXXX {
 namespace poc {
 
 class TransactionManager{
@@ -49,4 +49,4 @@ class TransactionManager{
 };
 
 }
-}  // namespace resdb
+}  // namespace XXXX

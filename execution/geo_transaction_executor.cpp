@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "ordering/pbft/transaction_utils.h"
 
-namespace resdb {
+namespace XXXX {
 
 GeoTransactionExecutor::GeoTransactionExecutor(
     const XDBConfig& config, std::unique_ptr<SystemInfo> system_info,
@@ -113,7 +113,7 @@ void GeoTransactionExecutor::SendBatchGeoMessage(
 
 std::unique_ptr<BatchClientResponse> GeoTransactionExecutor::ExecuteBatch(
     const BatchClientRequest& request) {
-  std::unique_ptr<Request> geo_request = resdb::NewRequest(
+  std::unique_ptr<Request> geo_request = XXXX::NewRequest(
       Request::TYPE_GEO_REQUEST, Request(), config_.GetSelfInfo().id(),
       config_.GetConfigData().self_region_id());
 
@@ -129,4 +129,4 @@ std::unique_ptr<BatchClientResponse> GeoTransactionExecutor::ExecuteBatch(
   return nullptr;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

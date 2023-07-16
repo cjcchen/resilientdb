@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include "execution/transaction_executor_impl.h"
 #include "ordering/poc/pbft/transaction_manager.h"
 
-namespace resdb {
+namespace XXXX {
 namespace poc {
 
 class TransactionExecutor : public TransactionExecutorImpl {
@@ -44,4 +44,4 @@ class TransactionExecutor : public TransactionExecutorImpl {
 };
 
 }
-}  // namespace resdb
+}  // namespace XXXX

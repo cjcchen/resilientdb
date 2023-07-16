@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -32,7 +32,7 @@
 #include "config/xxxx_config_utils.h"
 #include "proto/kv_server.pb.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
 using ::testing::Test;
@@ -264,4 +264,4 @@ TEST_F(KVServerExecutorTest, PythonValidate) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

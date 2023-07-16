@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,11 +28,11 @@
 #include <bitset>
 
 #include "execution/transaction_executor.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 #include "server/server_comm.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 enum TransactionStatue {
   None = 0,
@@ -130,4 +130,4 @@ class TransactionCollector {
   std::vector<SignatureInfo> commit_certs_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

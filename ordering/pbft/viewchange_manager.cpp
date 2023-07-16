@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 #include "ordering/pbft/transaction_utils.h"
 #include "proto/viewchange_message.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 // A manager to address View change process.
 // All stuff here will be addressed in sequential by using mutex
@@ -190,7 +190,7 @@ std::vector<std::unique_ptr<Request>> ViewChangeManager::GetPrepareMsg(
     if (prepared_msg.find(i) == prepared_msg.end()) {
       // for sequence hole, create a new request with empty data and
       // sign by the new primary.
-      std::unique_ptr<Request> client_request = resdb::NewRequest(
+      std::unique_ptr<Request> client_request = XXXX::NewRequest(
           Request::TYPE_PRE_PREPARE, Request(), config_.GetSelfInfo().id());
       client_request->set_seq(i);
       client_request->set_current_view(new_view_message.view_number());
@@ -206,7 +206,7 @@ std::vector<std::unique_ptr<Request>> ViewChangeManager::GetPrepareMsg(
       }
       redo_request.push_back(std::move(client_request));
     } else {
-      std::unique_ptr<Request> commit_request = resdb::NewRequest(
+      std::unique_ptr<Request> commit_request = XXXX::NewRequest(
           Request::TYPE_COMMIT, prepared_msg[i], config_.GetSelfInfo().id());
       commit_request->set_seq(i);
       commit_request->set_current_view(new_view_message.view_number());
@@ -393,4 +393,4 @@ void ViewChangeManager::SendViewChangeMsg() {
   replica_client_->BroadCast(*request);
 }
 
-}  // namespace resdb
+}  // namespace XXXX

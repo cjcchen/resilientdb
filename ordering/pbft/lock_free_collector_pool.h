@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "ordering/pbft/transaction_collector.h"
 
-namespace resdb {
+namespace XXXX {
 
 class LockFreeCollectorPool {
  public:
@@ -49,4 +49,4 @@ class LockFreeCollectorPool {
   bool enable_viewchange_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

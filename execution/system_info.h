@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,9 +28,9 @@
 #include <memory>
 
 #include "config/xxxx_config.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 // SystemInfo managers the cluster information which
 // has been agreed on, like the primary, the replicas,etc..
@@ -56,4 +56,4 @@ class SystemInfo {
   std::atomic<uint32_t> primary_id_;
   std::atomic<uint64_t> view_;
 };
-}  // namespace resdb
+}  // namespace XXXX

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include <future>
 #include <thread>
 
-namespace resdb {
+namespace XXXX {
 
 TEST(TcpSocket, SendAndRecv) {
   std::promise<bool> svr_done, cli_done;
@@ -97,4 +97,4 @@ TEST(TcpSocket, SendAfterClose) {
   svr_thead.join();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

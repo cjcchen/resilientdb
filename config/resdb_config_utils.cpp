@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -34,7 +34,7 @@
 
 #include <fstream>
 
-namespace resdb {
+namespace XXXX {
 
 using ::google::protobuf::util::JsonParseOptions;
 
@@ -167,4 +167,4 @@ XDBConfig GenerateXDBConfig(const std::string& config_file) {
   return XDBConfig(replicas, ReplicaInfo());
 }
 
-}  // namespace resdb
+}  // namespace XXXX

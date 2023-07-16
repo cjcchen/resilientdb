@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -32,8 +32,8 @@
 #include "ordering/poc/pbft/transaction_executor.h"
 #include "ordering/poc/pbft/transaction_query.h"
 
-using namespace resdb;
-using namespace resdb::poc;
+using namespace XXXX;
+using namespace XXXX::poc;
 
 void ShowUsage() {
   printf("<config> <private_key> <cert_file> [logging_dir]\n");
@@ -53,11 +53,11 @@ int main(int argc, char** argv) {
       GenerateXDBConfig(config_file, private_key_file, cert_file);
   ResConfigData config_data = config->GetConfigData();
 
-  resdb::poc::TransactionManager manager;
+  XXXX::poc::TransactionManager manager;
 
   auto server = CustomGenerateXDBServer<TransactionConsensor>(
 		  config_file, private_key_file, cert_file,
-		  std::make_unique<resdb::poc::TransactionExecutor>(*config, &manager), std::make_unique<TransactionQuery>(*config, &manager));
+		  std::make_unique<XXXX::poc::TransactionExecutor>(*config, &manager), std::make_unique<TransactionQuery>(*config, &manager));
 
 
   server->Run();

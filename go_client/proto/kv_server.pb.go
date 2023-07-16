@@ -4,7 +4,7 @@
 // 	protoc        v3.6.1
 // source: kv_server.proto
 
-package resdb
+package XXXX
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -80,7 +80,7 @@ type KVRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Cmd   KVRequest_CMD `protobuf:"varint,1,opt,name=cmd,proto3,enum=resdb.KVRequest_CMD" json:"cmd,omitempty"`
+	Cmd   KVRequest_CMD `protobuf:"varint,1,opt,name=cmd,proto3,enum=XXXX.KVRequest_CMD" json:"cmd,omitempty"`
 	Key   string        `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
 	Value []byte        `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
 }
@@ -229,12 +229,12 @@ func file_kv_server_proto_rawDescGZIP() []byte {
 var file_kv_server_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_kv_server_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_kv_server_proto_goTypes = []interface{}{
-	(KVRequest_CMD)(0), // 0: resdb.KVRequest.CMD
-	(*KVRequest)(nil),  // 1: resdb.KVRequest
-	(*KVResponse)(nil), // 2: resdb.KVResponse
+	(KVRequest_CMD)(0), // 0: XXXX.KVRequest.CMD
+	(*KVRequest)(nil),  // 1: XXXX.KVRequest
+	(*KVResponse)(nil), // 2: XXXX.KVResponse
 }
 var file_kv_server_proto_depIdxs = []int32{
-	0, // 0: resdb.KVRequest.cmd:type_name -> resdb.KVRequest.CMD
+	0, // 0: XXXX.KVRequest.cmd:type_name -> XXXX.KVRequest.CMD
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

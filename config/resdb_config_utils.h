@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "config/xxxx_config.h"
 
-namespace resdb {
+namespace XXXX {
 
 std::vector<ReplicaInfo> ReadConfig(const std::string& file_name);
 ReplicaInfo GenerateReplicaInfo(int id, const std::string& ip, int port);
@@ -48,4 +48,4 @@ std::unique_ptr<XDBConfig> GenerateXDBConfig(
 std::unique_ptr<XDBConfig> GenerateXDBConfigFromJson(const std::string& config_file);
 XDBConfig GenerateXDBConfig(const std::string& config_file);
 
-}  // namespace resdb
+}  // namespace XXXX

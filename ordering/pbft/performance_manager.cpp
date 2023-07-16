@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "common/utils/utils.h"
 
-namespace resdb {
+namespace XXXX {
 PerformanceManager::PerformanceManager(const XDBConfig& config,
                                        XDBReplicaClient* replica_client,
                                        SystemInfo* system_info,
@@ -258,4 +258,4 @@ int PerformanceManager::DoBatch(
   return 0;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

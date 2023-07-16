@@ -3,7 +3,7 @@
 #include <glog/logging.h>
 #include "common/utils/utils.h"
 
-namespace resdb {
+namespace XXXX {
 
 TransactionAccessor::TransactionAccessor(const XDBPoCConfig& config,
                                          bool auto_start)
@@ -194,4 +194,4 @@ absl::StatusOr<BlockMiningInfo> TransactionAccessor::FetchingResult(uint64_t seq
 	return ret.status();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

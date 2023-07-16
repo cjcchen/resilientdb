@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,11 +33,11 @@
 #include "common/test/test_macros.h"
 #include "gmock/gmock.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
 using ::google::protobuf::util::MessageDifferencer;
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 
 MATCHER_P(EqualsReplicas, replicas, "") {
   if (arg.size() != replicas.size()) {
@@ -129,4 +129,4 @@ TEST(TcpSocket, XDBConfigWith2Replicas) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

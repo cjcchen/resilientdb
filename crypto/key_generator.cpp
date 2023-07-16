@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -39,7 +39,7 @@
 #include <cryptopp/xed25519.h>
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 
 namespace {
 
@@ -156,4 +156,4 @@ SecretKey KeyGenerator::GeneratorKeys(SignatureInfo::HashType type) {
   return key;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

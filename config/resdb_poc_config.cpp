@@ -2,7 +2,7 @@
 
 #include "glog/logging.h"
 
-namespace resdb {
+namespace XXXX {
 
 XDBPoCConfig::XDBPoCConfig(const XDBConfig& bft_config,
                                const ResConfigData& config_data,
@@ -65,4 +65,4 @@ void XDBPoCConfig::SetWorkerNum(uint32_t worker_num) {
   worker_num_ = worker_num;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

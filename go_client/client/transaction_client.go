@@ -30,9 +30,9 @@ func (c*TransactionClient)GetIp() string {
 
 func (c * TransactionClient)SendRawTransaction(uid uint64, from string, to string, amount uint64) (uint64, error){
 
-  var tx resdb.Transaction
-  var req resdb.TransactionsRequest
-  var resp *resdb.TransactionsResponse
+  var tx XXXX.Transaction
+  var req XXXX.TransactionsRequest
+  var resp *XXXX.TransactionsResponse
   var err error
 
   tx.Uid = uid
@@ -40,7 +40,7 @@ func (c * TransactionClient)SendRawTransaction(uid uint64, from string, to strin
   tx.To =  to
   tx.Amount = amount
 
-  req.Transactions = make([]*resdb.Transaction, 1)
+  req.Transactions = make([]*XXXX.Transaction, 1)
   req.Transactions[0] = &tx
 
   for i:=0; i < 3; i++ {
@@ -57,9 +57,9 @@ func (c * TransactionClient)SendRawTransaction(uid uint64, from string, to strin
   return uid, nil
 }
 
-func (c * TransactionClient)SendBatchTransaction(txns []* resdb.Transaction) (map[uint64]int32, error){
-  var req resdb.TransactionsRequest
-  var resp *resdb.TransactionsResponse
+func (c * TransactionClient)SendBatchTransaction(txns []* XXXX.Transaction) (map[uint64]int32, error){
+  var req XXXX.TransactionsRequest
+  var resp *XXXX.TransactionsResponse
   var resp_list map[uint64]int32
   var err error
 
@@ -84,13 +84,13 @@ func (c * TransactionClient)SendBatchTransaction(txns []* resdb.Transaction) (ma
 }
 
 
-func (c * TransactionClient)SendTransaction(req *resdb.TransactionsRequest) (*resdb.TransactionsResponse, error){
+func (c * TransactionClient)SendTransaction(req *XXXX.TransactionsRequest) (*XXXX.TransactionsResponse, error){
   var data_len uint32
   var read_len uint32
   var bs []byte
   var err error
   var data []byte
-  var response resdb.TransactionsResponse
+  var response XXXX.TransactionsResponse
 
   if c.conn == nil {
     c.conn, err = net.Dial("tcp", fmt.Sprintf("%s:%d", c.ip, c.port))

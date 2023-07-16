@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 namespace poc {
 
 PoCTransactionManager::PoCTransactionManager(const XDBConfig& config) : TransactionExecutorImpl(false, false) {
@@ -81,4 +81,4 @@ std::unique_ptr<std::string> PoCTransactionManager::ClientQuery(const std::strin
 }
 
 }
-}  // namespace resdb
+}  // namespace XXXX

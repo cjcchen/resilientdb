@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 
 #include "crypto/key_generator.h"
 
-using namespace resdb;
+using namespace XXXX;
 
 void WriteKey(const KeyInfo& key, const std::string& file_name) {
   std::string str;

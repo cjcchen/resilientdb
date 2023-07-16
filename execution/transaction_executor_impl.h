@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,9 +27,9 @@
 
 #include <memory>
 
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 class TransactionExecutorImpl {
  public:
@@ -50,4 +50,4 @@ class TransactionExecutorImpl {
   bool is_out_of_order_ = false;
   bool need_response_ = true;
 };
-}  // namespace resdb
+}  // namespace XXXX

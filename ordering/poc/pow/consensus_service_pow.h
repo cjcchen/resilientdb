@@ -6,7 +6,7 @@
 #include "server/consensus_service.h"
 #include "execution/poc_transaction_manager.h"
 
-namespace resdb {
+namespace XXXX {
 
 class ConsensusServicePoW : public ConsensusService {
  public:
@@ -30,4 +30,4 @@ private:
   poc::PoCTransactionManager * txn_manager_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

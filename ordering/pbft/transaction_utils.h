@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -25,9 +25,9 @@
 
 #pragma once
 #include "proto/replica_info.pb.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 enum CollectorResultCode {
   INVALID = -2,
@@ -41,4 +41,4 @@ std::unique_ptr<Request> NewRequest(Request::Type type, const Request& request,
 std::unique_ptr<Request> NewRequest(Request::Type type, const Request& request,
                                     int sender_id, int region_info);
 
-}  // namespace resdb
+}  // namespace XXXX

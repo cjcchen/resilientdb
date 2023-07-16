@@ -2,7 +2,7 @@
 
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 
 ShiftManager::ShiftManager(const XDBPoCConfig& config) : config_(config) {}
 
@@ -30,4 +30,4 @@ bool ShiftManager::Check(const SliceInfo& slice_info, int timeout_ms) {
 	return check_done();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

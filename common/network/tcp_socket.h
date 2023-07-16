@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "common/network/socket.h"
 
-namespace resdb {
+namespace XXXX {
 
 // Socket for Tcp Server
 class TcpSocket : public Socket {
@@ -64,4 +64,4 @@ class TcpSocket : public Socket {
   int socket_fd_;
   int binding_port_ = 0;
 };
-}  // namespace resdb
+}  // namespace XXXX

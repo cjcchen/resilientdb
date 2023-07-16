@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include <memory>
 #include <string>
 
-namespace resdb {
+namespace XXXX {
 
 // Socket for Tcp Server
 class Socket {
@@ -56,4 +56,4 @@ class Socket {
   virtual int Fd(){ return -1; }
 };
 
-}  // namespace resdb
+}  // namespace XXXX

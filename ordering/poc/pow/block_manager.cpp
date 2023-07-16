@@ -5,11 +5,11 @@
 #include "common/utils/utils.h"
 #include "crypto/signature_verifier.h"
 #include "ordering/poc/pow/merkle.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 #include "ordering/poc/pow/miner_utils.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 BlockManager::BlockManager(const XDBPoCConfig& config,
     TransactionExecutorImpl* executor) : config_(config), executor_(executor){
@@ -290,4 +290,4 @@ LOG(ERROR)<<"confirm block:"<<block_info.DebugString()<<" data size:"<<new_minin
   return ret;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

@@ -10,7 +10,7 @@
 #include "config/xxxx_config_utils.h"
 #include "ordering/poc/pow/miner_utils.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
 using ::google::protobuf::util::MessageDifferencer;
@@ -167,4 +167,4 @@ TEST_F(MinerTest, HashNotValid) {
 }
 
 }  // namespace
-}  // namespace resdb
+}  // namespace XXXX

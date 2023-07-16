@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,9 +28,9 @@
 
 #include "common/network/socket.h"
 #include "crypto/signature_verifier.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 // XDBClient is used to send data to the server identified by ip:port or via
 // the provided socket. If SignatureVerifier is provided, data will be signed.
@@ -114,4 +114,4 @@ class XDBClient {
   bool is_async_send_ = false;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

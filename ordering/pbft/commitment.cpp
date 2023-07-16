@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include "glog/logging.h"
 #include "ordering/pbft/transaction_utils.h"
 
-namespace resdb {
+namespace XXXX {
 
 Commitment::Commitment(const XDBConfig& config,
                        TransactionManager* transaction_manager,
@@ -140,7 +140,7 @@ int Commitment::ProcessProposeMsg(std::unique_ptr<Context> context,
   }
 
   global_stats_->IncPropose();
-  std::unique_ptr<Request> prepare_request = resdb::NewRequest(
+  std::unique_ptr<Request> prepare_request = XXXX::NewRequest(
       Request::TYPE_PREPARE, *request, config_.GetSelfInfo().id());
   prepare_request->clear_data();
 
@@ -164,7 +164,7 @@ int Commitment::ProcessPrepareMsg(std::unique_ptr<Context> context,
   }
   global_stats_->IncPrepare();
   request->mutable_data_signature()->Clear();
-  std::unique_ptr<Request> commit_request = resdb::NewRequest(
+  std::unique_ptr<Request> commit_request = XXXX::NewRequest(
       Request::TYPE_COMMIT, *request, config_.GetSelfInfo().id());
   // Add request to message_manager.
   // If it has received enough same requests(2f+1), broadcast the commit
@@ -222,4 +222,4 @@ int Commitment::PostProcessExecutedMsg() {
   return 0;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

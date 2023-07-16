@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include "proto/replica_info.pb.h"
 #include "proto/signature_info.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 // TODO read from a proto json file.
 class XDBConfig {
@@ -148,4 +148,4 @@ class XDBConfig {
   uint32_t output_worker_num_ = 1;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

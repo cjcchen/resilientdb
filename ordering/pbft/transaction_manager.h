@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -41,11 +41,11 @@
 #include "ordering/pbft/transaction_collector.h"
 #include "ordering/pbft/transaction_utils.h"
 #include "proto/checkpoint_info.pb.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 #include "server/server_comm.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 class TransactionManager {
  public:
@@ -124,4 +124,4 @@ class TransactionManager {
   Stats* global_stats_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

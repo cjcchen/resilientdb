@@ -3,7 +3,7 @@
 #include "common/utils/utils.h"
 #include "glog/logging.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
 std::unique_ptr<Request> NewRequest(PoWRequest type,

@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-import "proto/resdb.proto";
+import "proto/XXXX.proto";
 import "proto/signature_info.proto";
 import "proto/checkpoint_info.proto";
 
-package resdb;
+package XXXX;
 
 message PreparedProof {
   Request request = 1;

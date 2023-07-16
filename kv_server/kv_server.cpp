@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,12 +30,12 @@
 #include "kv_server/kv_server_executor.h"
 #include "statistic/stats.h"
 
-using resdb::GenerateXDBConfig;
-using resdb::KVServerExecutor;
-using resdb::ResConfigData;
-using resdb::XDBConfig;
-using resdb::XDBServer;
-using resdb::Stats;
+using XXXX::GenerateXDBConfig;
+using XXXX::KVServerExecutor;
+using XXXX::ResConfigData;
+using XXXX::XDBConfig;
+using XXXX::XDBServer;
+using XXXX::Stats;
 
 void ShowUsage() {
   printf("<config> <private_key> <cert_file> [logging_dir]\n");

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 
 #include "crypto/signature_verifier.h"
 
-using namespace resdb;
+using namespace XXXX;
 
 CertificateInfo ReadData(const std::string& file_name) {
   int fd = open(file_name.c_str(), O_RDONLY, 0666);

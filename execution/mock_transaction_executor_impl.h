@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include "execution/transaction_executor.h"
 #include "gmock/gmock.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MockTransactionExecutorDataImpl : public TransactionExecutorImpl {
  public:
@@ -46,4 +46,4 @@ class MockTransactionExecutorImpl : public MockTransactionExecutorDataImpl {
               (const BatchClientRequest&), (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

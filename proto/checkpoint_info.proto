@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "proto/signature_info.proto";
 
-package resdb;
+package XXXX;
 
 message HashInfo {
     bytes last_hash = 1; // the last updated checkpoint hash value.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -25,7 +25,7 @@
 
 #include "network/network_utils.h"
 
-namespace resdb {
+namespace XXXX {
 
 std::string GetDNSName(const std::string& ip, int port, NetworkType type) {
   char dns_name[1024];
@@ -53,4 +53,4 @@ std::string GetTcpUrl(const std::string& ip, int port) {
   return name;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

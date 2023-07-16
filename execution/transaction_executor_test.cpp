@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,10 +33,10 @@
 #include "common/test/test_macros.h"
 #include "execution/mock_transaction_executor_impl.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
-using ::resdb::testing::EqualsProto;
+using ::XXXX::testing::EqualsProto;
 using ::testing::Invoke;
 
 XDBConfig GetXDBConfig() {
@@ -290,4 +290,4 @@ TEST(TransactionExecutorTest, CallBack) {
 
 }  // namespace
 
-}  // namespace resdb
+}  // namespace XXXX

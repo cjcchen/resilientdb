@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -34,7 +34,7 @@
 #include "common/network/tcp_socket.h"
 #include "server/mock_xxxx_service.h"
 
-namespace resdb {
+namespace XXXX {
 
 using ::testing::Invoke;
 using ::testing::Return;
@@ -119,4 +119,4 @@ TEST(XDBServerTest, RunningDone) {
   svr_thead2.join();
 }
 
-}  // namespace resdb
+}  // namespace XXXX

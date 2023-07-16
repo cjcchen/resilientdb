@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,11 +30,11 @@
 #include "common/queue/batch_queue.h"
 #include "common/queue/lock_free_queue.h"
 #include "proto/replica_info.pb.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 #include "server/async_replica_client.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 // XDBReplicaClient is used for replicas to broadcast messages.
 class XDBReplicaClient {
@@ -100,4 +100,4 @@ class XDBReplicaClient {
   std::mutex mutex_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include "common/data_comm/data_comm.h"
 #include "server/server_comm.h"
 
-namespace resdb {
+namespace XXXX {
 
 class XDBService {
  public:
@@ -54,4 +54,4 @@ protected:
   std::atomic<bool> is_running_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

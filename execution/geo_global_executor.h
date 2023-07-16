@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,7 +33,7 @@
 #include "execution/transaction_executor_impl.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 class GeoGlobalExecutor {
  public:
@@ -72,4 +72,4 @@ class GeoGlobalExecutor {
   LockFreeQueue<BatchClientResponse> resp_queue_;
   int my_region_;
 };
-}  // namespace resdb
+}  // namespace XXXX

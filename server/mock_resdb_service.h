@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "server/xxxx_service.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MockXDBService : public XDBService {
  public:
@@ -40,4 +40,4 @@ class MockXDBService : public XDBService {
               (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

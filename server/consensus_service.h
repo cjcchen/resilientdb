@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,12 +30,12 @@
 #include "common/queue/blocking_queue.h"
 #include "config/xxxx_config.h"
 #include "proto/replica_info.pb.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 #include "server/xxxx_replica_client.h"
 #include "server/xxxx_service.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 // ConsensusService is an consus algorithm implimentation of ConsensusService.
 // It receives the messages from XDBServer and running a consus algorithm
@@ -114,4 +114,4 @@ class ConsensusService : public XDBService {
   Stats* global_stats_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

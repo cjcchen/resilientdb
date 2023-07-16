@@ -4,7 +4,7 @@
 // 	protoc        v3.6.1
 // source: signature_info.proto
 
-package resdb
+package XXXX
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -126,7 +126,7 @@ type SignatureInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HashType  SignatureInfo_HashType `protobuf:"varint,1,opt,name=hash_type,json=hashType,proto3,enum=resdb.SignatureInfo_HashType" json:"hash_type,omitempty"`
+	HashType  SignatureInfo_HashType `protobuf:"varint,1,opt,name=hash_type,json=hashType,proto3,enum=XXXX.SignatureInfo_HashType" json:"hash_type,omitempty"`
 	NodeId    int64                  `protobuf:"varint,2,opt,name=node_id,json=nodeId,proto3" json:"node_id,omitempty"`
 	Signature []byte                 `protobuf:"bytes,3,opt,name=signature,proto3" json:"signature,omitempty"`
 }
@@ -191,7 +191,7 @@ type SecretKey struct {
 
 	PublicKey  []byte                 `protobuf:"bytes,1,opt,name=public_key,json=publicKey,proto3" json:"public_key,omitempty"`
 	PrivateKey []byte                 `protobuf:"bytes,2,opt,name=private_key,json=privateKey,proto3" json:"private_key,omitempty"`
-	HashType   SignatureInfo_HashType `protobuf:"varint,3,opt,name=hash_type,json=hashType,proto3,enum=resdb.SignatureInfo_HashType" json:"hash_type,omitempty"`
+	HashType   SignatureInfo_HashType `protobuf:"varint,3,opt,name=hash_type,json=hashType,proto3,enum=XXXX.SignatureInfo_HashType" json:"hash_type,omitempty"`
 }
 
 func (x *SecretKey) Reset() {
@@ -253,7 +253,7 @@ type KeyInfo struct {
 	unknownFields protoimpl.UnknownFields
 
 	Key      []byte                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-	HashType SignatureInfo_HashType `protobuf:"varint,2,opt,name=hash_type,json=hashType,proto3,enum=resdb.SignatureInfo_HashType" json:"hash_type,omitempty"`
+	HashType SignatureInfo_HashType `protobuf:"varint,2,opt,name=hash_type,json=hashType,proto3,enum=XXXX.SignatureInfo_HashType" json:"hash_type,omitempty"`
 }
 
 func (x *KeyInfo) Reset() {
@@ -309,7 +309,7 @@ type CertificateKeyInfo struct {
 
 	Key    *KeyInfo                `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
 	NodeId int64                   `protobuf:"varint,2,opt,name=node_id,json=nodeId,proto3" json:"node_id,omitempty"`
-	Type   CertificateKeyInfo_Type `protobuf:"varint,3,opt,name=type,proto3,enum=resdb.CertificateKeyInfo_Type" json:"type,omitempty"`
+	Type   CertificateKeyInfo_Type `protobuf:"varint,3,opt,name=type,proto3,enum=XXXX.CertificateKeyInfo_Type" json:"type,omitempty"`
 	Ip     string                  `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`
 	Port   int32                   `protobuf:"varint,5,opt,name=port,proto3" json:"port,omitempty"` // the ip:port the replica uses, if it is a client node, can be ignored.
 }
@@ -655,28 +655,28 @@ func file_signature_info_proto_rawDescGZIP() []byte {
 var file_signature_info_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_signature_info_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_signature_info_proto_goTypes = []interface{}{
-	(SignatureInfo_HashType)(0),  // 0: resdb.SignatureInfo.HashType
-	(CertificateKeyInfo_Type)(0), // 1: resdb.CertificateKeyInfo.Type
-	(*SignatureInfo)(nil),        // 2: resdb.SignatureInfo
-	(*SecretKey)(nil),            // 3: resdb.SecretKey
-	(*KeyInfo)(nil),              // 4: resdb.KeyInfo
-	(*CertificateKeyInfo)(nil),   // 5: resdb.CertificateKeyInfo
-	(*CertificateKey)(nil),       // 6: resdb.CertificateKey
-	(*CertificateInfo)(nil),      // 7: resdb.CertificateInfo
-	(*SignatureKeyInfo)(nil),     // 8: resdb.SignatureKeyInfo
+	(SignatureInfo_HashType)(0),  // 0: XXXX.SignatureInfo.HashType
+	(CertificateKeyInfo_Type)(0), // 1: XXXX.CertificateKeyInfo.Type
+	(*SignatureInfo)(nil),        // 2: XXXX.SignatureInfo
+	(*SecretKey)(nil),            // 3: XXXX.SecretKey
+	(*KeyInfo)(nil),              // 4: XXXX.KeyInfo
+	(*CertificateKeyInfo)(nil),   // 5: XXXX.CertificateKeyInfo
+	(*CertificateKey)(nil),       // 6: XXXX.CertificateKey
+	(*CertificateInfo)(nil),      // 7: XXXX.CertificateInfo
+	(*SignatureKeyInfo)(nil),     // 8: XXXX.SignatureKeyInfo
 }
 var file_signature_info_proto_depIdxs = []int32{
-	0,  // 0: resdb.SignatureInfo.hash_type:type_name -> resdb.SignatureInfo.HashType
-	0,  // 1: resdb.SecretKey.hash_type:type_name -> resdb.SignatureInfo.HashType
-	0,  // 2: resdb.KeyInfo.hash_type:type_name -> resdb.SignatureInfo.HashType
-	4,  // 3: resdb.CertificateKeyInfo.key:type_name -> resdb.KeyInfo
-	1,  // 4: resdb.CertificateKeyInfo.type:type_name -> resdb.CertificateKeyInfo.Type
-	5,  // 5: resdb.CertificateKey.public_key_info:type_name -> resdb.CertificateKeyInfo
-	2,  // 6: resdb.CertificateKey.certificate:type_name -> resdb.SignatureInfo
-	4,  // 7: resdb.CertificateInfo.admin_public_key:type_name -> resdb.KeyInfo
-	6,  // 8: resdb.CertificateInfo.public_key:type_name -> resdb.CertificateKey
-	4,  // 9: resdb.SignatureKeyInfo.admin_public_key:type_name -> resdb.KeyInfo
-	4,  // 10: resdb.SignatureKeyInfo.private_key:type_name -> resdb.KeyInfo
+	0,  // 0: XXXX.SignatureInfo.hash_type:type_name -> XXXX.SignatureInfo.HashType
+	0,  // 1: XXXX.SecretKey.hash_type:type_name -> XXXX.SignatureInfo.HashType
+	0,  // 2: XXXX.KeyInfo.hash_type:type_name -> XXXX.SignatureInfo.HashType
+	4,  // 3: XXXX.CertificateKeyInfo.key:type_name -> XXXX.KeyInfo
+	1,  // 4: XXXX.CertificateKeyInfo.type:type_name -> XXXX.CertificateKeyInfo.Type
+	5,  // 5: XXXX.CertificateKey.public_key_info:type_name -> XXXX.CertificateKeyInfo
+	2,  // 6: XXXX.CertificateKey.certificate:type_name -> XXXX.SignatureInfo
+	4,  // 7: XXXX.CertificateInfo.admin_public_key:type_name -> XXXX.KeyInfo
+	6,  // 8: XXXX.CertificateInfo.public_key:type_name -> XXXX.CertificateKey
+	4,  // 9: XXXX.SignatureKeyInfo.admin_public_key:type_name -> XXXX.KeyInfo
+	4,  // 10: XXXX.SignatureKeyInfo.private_key:type_name -> XXXX.KeyInfo
 	11, // [11:11] is the sub-list for method output_type
 	11, // [11:11] is the sub-list for method input_type
 	11, // [11:11] is the sub-list for extension type_name

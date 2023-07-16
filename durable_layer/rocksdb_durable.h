@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -35,8 +35,8 @@
 #include "rocksdb/options.h"
 #include "rocksdb/write_batch.h"
 
-using resdb::ResConfigData;
-using resdb::RocksDBInfo;
+using XXXX::ResConfigData;
+using XXXX::RocksDBInfo;
 
 class RocksDurable {
  public:

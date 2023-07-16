@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -38,8 +38,8 @@
 #include "leveldb/options.h"
 #include "leveldb/write_batch.h"
 
-using resdb::LevelDBInfo;
-using resdb::ResConfigData;
+using XXXX::LevelDBInfo;
+using XXXX::ResConfigData;
 using namespace std;
 
 class LevelDurable {

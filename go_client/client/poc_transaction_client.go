@@ -29,8 +29,8 @@ func (c*PoCTransactionClient)GetIp() string {
 }
 
 func (c * PoCTransactionClient)Query(uids []uint64) (map[uint64]int32, error){
-  var req resdb.TransactionQuery
-  var resp *resdb.TransactionQuery
+  var req XXXX.TransactionQuery
+  var resp *XXXX.TransactionQuery
   var resp_list map[uint64]int32
   var err error
 
@@ -51,8 +51,8 @@ func (c * PoCTransactionClient)Query(uids []uint64) (map[uint64]int32, error){
   return resp_list, nil
 }
 
-func (c * PoCTransactionClient)SendBatchTransaction(txns []* resdb.Transaction) (error){
-  var req resdb.TransactionsRequest
+func (c * PoCTransactionClient)SendBatchTransaction(txns []* XXXX.Transaction) (error){
+  var req XXXX.TransactionsRequest
   var err error
 
   req.Transactions = txns
@@ -65,7 +65,7 @@ func (c * PoCTransactionClient)SendBatchTransaction(txns []* resdb.Transaction) 
   return nil
 }
 
-func (c * PoCTransactionClient)SendTransaction(req *resdb.TransactionsRequest) (error){
+func (c * PoCTransactionClient)SendTransaction(req *XXXX.TransactionsRequest) (error){
   var data_len uint32
   var bs []byte
   var err error
@@ -119,13 +119,13 @@ func (c * PoCTransactionClient)SendTransaction(req *resdb.TransactionsRequest) (
 }
 
 
-func (c * PoCTransactionClient)QueryTransaction(req *resdb.TransactionQuery) (*resdb.TransactionQuery, error){
+func (c * PoCTransactionClient)QueryTransaction(req *XXXX.TransactionQuery) (*XXXX.TransactionQuery, error){
   var data_len uint32
   var read_len uint32
   var bs []byte
   var err error
   var data []byte
-  var response resdb.TransactionQuery
+  var response XXXX.TransactionQuery
   //log.Printf("query txn ip %s port %d",c.ip, c.port)
   if c.conn == nil {
     c.conn, err = net.Dial("tcp", fmt.Sprintf("%s:%d", c.ip, c.port))

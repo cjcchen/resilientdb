@@ -2,11 +2,11 @@
 
 #include "ordering/poc/proto/pow.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 class Merkle {
  public:
   static HashValue MakeHash(const BatchClientTransactions& transaction);
 };
 
-}  // namespace resdb
+}  // namespace XXXX

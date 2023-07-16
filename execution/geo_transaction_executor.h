@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 #include "execution/transaction_executor_impl.h"
 #include "server/xxxx_replica_client.h"
 
-namespace resdb {
+namespace XXXX {
 
 class GeoTransactionExecutor : public TransactionExecutorImpl {
  public:
@@ -61,4 +61,4 @@ class GeoTransactionExecutor : public TransactionExecutorImpl {
   std::vector<std::unique_ptr<BatchClientRequest>> messages_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

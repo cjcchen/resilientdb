@@ -9,7 +9,7 @@
 #include "common/test/test_macros.h"
 #include "crypto/signature_verifier.h"
 
-namespace resdb {
+namespace XXXX {
 namespace {
 
 using ::google::protobuf::util::MessageDifferencer;
@@ -73,4 +73,4 @@ TEST(MinerUtilsTest, DigestString) {
 }
 
 }  // namespace
-}  // namespace resdb
+}  // namespace XXXX

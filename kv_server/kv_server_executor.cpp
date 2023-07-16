@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "proto/transaction.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 KVServerExecutor::KVServerExecutor(const ResConfigData& config_data,
                                    char* cert_file)
@@ -78,4 +78,4 @@ void KVServerExecutor::Set(const std::string& key, const int64_t& value) {
     }
 }
 
-}  // namespace resdb
+}  // namespace XXXX

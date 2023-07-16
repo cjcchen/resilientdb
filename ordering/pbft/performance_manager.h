@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,7 +33,7 @@
 #include "server/server_comm.h"
 #include "statistic/stats.h"
 
-namespace resdb {
+namespace XXXX {
 
 class PerformanceManager {
  public:
@@ -90,4 +90,4 @@ class PerformanceManager {
   std::mutex response_lock_[response_set_size_];
 };
 
-}  // namespace resdb
+}  // namespace XXXX

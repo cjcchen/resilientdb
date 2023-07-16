@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 
 #include "ordering/pbft/checkpoint_manager.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MockCheckPointManager : public CheckPointManager {
  public:
@@ -49,4 +49,4 @@ class MockCheckPointManager : public CheckPointManager {
               (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

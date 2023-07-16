@@ -2,7 +2,7 @@
 
 #include "config/xxxx_config.h"
 
-namespace resdb {
+namespace XXXX {
 
 // TODO read from a proto json file.
 class XDBPoCConfig : public XDBConfig {
@@ -49,4 +49,4 @@ class XDBPoCConfig : public XDBConfig {
   XDBConfig bft_config_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

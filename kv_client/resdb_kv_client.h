@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include "client/xxxx_user_client.h"
 
-namespace resdb {
+namespace XXXX {
 
 // XDBKVClient to send data to the kv server.
 class XDBKVClient : public XDBUserClient {
@@ -41,4 +41,4 @@ class XDBKVClient : public XDBUserClient {
                                         const std::string& max_key);
 };
 
-}  // namespace resdb
+}  // namespace XXXX

@@ -22,7 +22,7 @@ func noteToUid(note []byte) (uint64, bool) {
 
 type PollblkTransactionConfirmer struct {
 	client    *algod.Client
-  data map[uint64]*resdb.Transaction
+  data map[uint64]*XXXX.Transaction
   min_v uint64
 	lock     sync.Mutex
 }
@@ -30,8 +30,8 @@ type PollblkTransactionConfirmer struct {
 const benchmarkToken =
 	"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
-func newTransaction(seq uint64)(*resdb.Transaction){
-  return &resdb.Transaction{
+func newTransaction(seq uint64)(*XXXX.Transaction){
+  return &XXXX.Transaction{
     Uid:seq,
   }
 }
@@ -43,7 +43,7 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
 
   //log.Print("chainid:",chainId)
   log.Print("endpoint:",endpoint)
-  this.data = make(map[uint64]*resdb.Transaction)
+  this.data = make(map[uint64]*XXXX.Transaction)
   this.min_v = 0
 
 	go this.run()
@@ -51,7 +51,7 @@ func NewPollblkTransactionConfirmer(endpoint string) *PollblkTransactionConfirme
 	return &this
 }
 
-func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *resdb.Transaction) {
+func (this *PollblkTransactionConfirmer) GetData(seq uint64)(tx *XXXX.Transaction) {
 	this.lock.Lock()
   _,ok := this.data[seq]
   if (ok) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,7 +27,7 @@
 
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 
 XDBConfig::XDBConfig(const std::vector<ReplicaInfo>& replicas,
                          const ReplicaInfo& self_info,
@@ -240,4 +240,4 @@ void XDBConfig::SetViewchangeCommitTimeout(uint64_t timeout_ms) {
   viewchange_commit_timeout_ms_ = timeout_ms;
 }
 
-}  // namespace resdb
+}  // namespace XXXX

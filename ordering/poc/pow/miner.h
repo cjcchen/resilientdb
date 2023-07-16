@@ -3,7 +3,7 @@
 #include "config/xxxx_poc_config.h"
 #include "ordering/poc/proto/pow.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 // A miner used to mine the block according to its header.
 // It contains the slices as the search space.
@@ -41,4 +41,4 @@ class Miner {
   uint32_t worker_num_ = 16;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

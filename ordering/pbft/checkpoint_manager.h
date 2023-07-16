@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,11 +29,11 @@
 #include "crypto/signature_verifier.h"
 #include "database/txn_memory_db.h"
 #include "proto/checkpoint_info.pb.h"
-#include "proto/resdb.pb.h"
+#include "proto/XXXX.pb.h"
 #include "server/xxxx_replica_client.h"
 #include "server/server_comm.h"
 
-namespace resdb {
+namespace XXXX {
 
 class CheckPointManager {
  public:
@@ -86,4 +86,4 @@ class CheckPointManager {
   int new_data_ = 0;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

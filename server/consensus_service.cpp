@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 
 #include "proto/broadcast.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 namespace {
 
@@ -347,4 +347,4 @@ uint32_t ConsensusService::GetPrimary() { return 1; }
 
 uint32_t ConsensusService::GetVersion() { return 1; }
 
-}  // namespace resdb
+}  // namespace XXXX

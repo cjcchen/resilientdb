@@ -3,10 +3,10 @@
 #include <assert.h>
 #include <glog/logging.h>
 
-namespace resdb {
+namespace XXXX {
 
 MinerManager::MinerManager(const XDBPoCConfig& config) : config_(config) {}
 
 std::vector<ReplicaInfo> MinerManager::GetReplicas() { return replicas_; }
 
-}  // namespace resdb
+}  // namespace XXXX

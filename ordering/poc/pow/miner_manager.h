@@ -2,7 +2,7 @@
 
 #include "config/xxxx_poc_config.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MinerManager {
  public:
@@ -15,4 +15,4 @@ class MinerManager {
   std::vector<ReplicaInfo> replicas_;
 };
 
-}  // namespace resdb
+}  // namespace XXXX

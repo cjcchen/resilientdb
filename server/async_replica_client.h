@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
 #include "common/queue/lock_free_queue.h"
 #include "proto/replica_info.pb.h"
 
-namespace resdb {
+namespace XXXX {
 
 class AsyncReplicaClient {
  public:
@@ -66,4 +66,4 @@ class AsyncReplicaClient {
   int status_ = 0;  // sending status.
 };
 
-}  // namespace resdb
+}  // namespace XXXX

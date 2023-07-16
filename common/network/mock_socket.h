@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,7 +30,7 @@
 #include "common/network/socket.h"
 #include "gmock/gmock.h"
 
-namespace resdb {
+namespace XXXX {
 
 class MockSocket : public Socket {
  public:
@@ -46,4 +46,4 @@ class MockSocket : public Socket {
   MOCK_METHOD(int, SetAsync, (bool), (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

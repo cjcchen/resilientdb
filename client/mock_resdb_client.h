@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -28,7 +28,7 @@
 #include "client/xxxx_client.h"
 #include "gmock/gmock.h"
 
-namespace resdb {
+namespace XXXX {
 
 // A mock class for XDBClient.
 class MockXDBClient : public XDBClient {
@@ -45,4 +45,4 @@ class MockXDBClient : public XDBClient {
   MOCK_METHOD(int, RecvRawMessage, (google::protobuf::Message*), (override));
 };
 
-}  // namespace resdb
+}  // namespace XXXX

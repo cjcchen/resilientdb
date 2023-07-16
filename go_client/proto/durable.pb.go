@@ -4,7 +4,7 @@
 // 	protoc        v3.6.1
 // source: durable.proto
 
-package resdb
+package XXXX
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -238,8 +238,8 @@ func file_durable_proto_rawDescGZIP() []byte {
 
 var file_durable_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_durable_proto_goTypes = []interface{}{
-	(*RocksDBInfo)(nil), // 0: resdb.RocksDBInfo
-	(*LevelDBInfo)(nil), // 1: resdb.LevelDBInfo
+	(*RocksDBInfo)(nil), // 0: XXXX.RocksDBInfo
+	(*LevelDBInfo)(nil), // 1: XXXX.LevelDBInfo
 }
 var file_durable_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

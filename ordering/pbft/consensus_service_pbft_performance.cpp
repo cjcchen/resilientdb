@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 ExpoLab, UC Davis
+ * Copyright (c) 2019-2022 XXXX, XXXX
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
 #include "glog/logging.h"
 #include "ordering/pbft/consensus_service_pbft.h"
 
-namespace resdb {
+namespace XXXX {
 
 ConsensusServicePBFT::ConsensusServicePBFT(
     const XDBConfig& config,
@@ -110,4 +110,4 @@ void ConsensusServicePBFT::AddNewReplica(const ReplicaInfo& info) {
   recovery_->AddNewReplica(info);
 }
 
-}  // namespace resdb
+}  // namespace XXXX
