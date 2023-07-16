@@ -12,7 +12,7 @@ import (
   //  "encoding/hex"
 
 
-  "github.com/resilientdb/go-resilientdb-sdk/proto"
+  "github.com/xdb/go-xdb-sdk/proto"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
